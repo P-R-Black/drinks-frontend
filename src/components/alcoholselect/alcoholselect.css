@@ -1,6 +1,8 @@
 .ginBackground{
-    background-image: url('/src/assets/pexels-lisa-f.jpg');
-    background-image: radial-gradient(#2e2c7c68, #4a5ecb5f), url('/src/assets/pexels-lisa-f.jpg');
+    /* background-image: url('/src/assets/pexels-lisa-f.jpg');
+    background-image: radial-gradient(#2e2c7c68, #4a5ecb5f), url('/src/assets/pexels-lisa-f.jpg'); */
+    
+    background-color: radial-gradient(#2e2c7c68, #4a5ecb5f);
     background-size: cover; 
     
     background-blend-mode: multiply;
