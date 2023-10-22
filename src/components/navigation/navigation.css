@@ -25,8 +25,7 @@
     display: block;
     height: 3px;
     margin: 5px;
-    width: 3rem; 
-    
+    width: 3rem;     
 }
 
 
@@ -46,9 +45,12 @@
     width: 20rem;
     height: auto; 
 
-    display: grid;
-    grid-template-columns:  1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    
 
+    border: 2px solid red;
 
 }
 
@@ -60,15 +62,11 @@
     -webkit-animation: fadeIn 1s;
 }
 
-/*
-.mobile_display_hide {
-    display: none;
+.navDropdownByDrink{
+    border: 2px solid green;
+    display: grid;
+    grid-template-columns:  1fr 1fr;
 }
-
-.navDropdown[data-visible="true"]{
-    transform: translateX(0%)
-} */
-
 
 .navBarMenu[aria-expanded="true"] .bar:nth-child(1){
     transform: translateY(8px) rotate(45deg);
@@ -91,9 +89,10 @@
 
 
 .navBarMenu[aria-expanded="true"] .bar:nth-child(4){
-    margin-top: -.25rem;
+    margin-top: -.35rem;
     margin-left: .70rem;
     width: 1.2rem;
+
 } 
 
 
@@ -101,4 +100,8 @@ a.navbarLinks{
     color: var(--color-primary-font);
     font-size: 1.25rem;
     font-weight: 700;
+}
+
+.navline {
+    border-top: 3px solid var(--color-primary-font);
 }

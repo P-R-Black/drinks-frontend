@@ -9,11 +9,8 @@ import { NavLink } from 'react-router-dom'
 
 export const Navigation = ({ baseAlcohol, fetchAlcoholType, navLinkText, alcohol }) => {
     
-    console.log('naveLinkText Nav', navLinkText)
-    console.log('alcohol Nav', alcohol)
     let chosenAlochol = alcohol
-    console.log('chosenAlochol Nav', chosenAlochol)
-
+    console.log('chosenAlc', chosenAlochol)
 
     const showNavMenu = () => {
         let navBarMenu = document.querySelector('.navBarMenu')
@@ -44,13 +41,22 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, navLinkText, alcohol
                 <Search className="navSearch"></Search>
             </search>
             <div className="navbarItems">
-                <ul className="navDropdown" data-visible="false">
-               {baseAlcohol.map(ba => {
-                    return (
-                        <NavLink className="navbarLinks" to={`alcohol/${ba.toLowerCase()}`}>{ba}</NavLink>
-                    )
-                })}
-                </ul>
+                <div className="navDropdown">
+                    <NavLink >Drink of the Day</NavLink>
+                    <hr className='navline'/>
+                    <h4>Find Cocktail By Alcohol</h4>
+                    <ul className="navDropdownByDrink" data-visible="false">
+                        {baseAlcohol.map(ba => {
+                        return (
+                            <NavLink
+                            className="navbarLinks" 
+                            to={`/alcohol/${ba.toLowerCase()}`}>{ba}</NavLink>
+                            )
+                        })}
+                    </ul>
+                    <hr className='navline'/>
+                    <NavLink>Must Know Drinks for Bartenders</NavLink>
+                </div>
                 <div className="navBarMenu" id="navBarMenu" aria-controls="navbar_menu" aria-expanded="false"
                      onClick={()=> {showNavMenu(); fetchAlcoholType()}}>
                     <span className="bar kg-only"></span>

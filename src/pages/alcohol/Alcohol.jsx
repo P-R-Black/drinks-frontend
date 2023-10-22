@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+
 import { useParams } from 'react-router-dom';
 
 import { Navigation } from '../../components/navigation/Navigation'
 import { AlcoholSelect } from '../../components/alcoholselect/AlcoholSelect'
 
 export const Alcohol = ({ drinks, baseAlcohol, fetchAlcoholType, navLinkText }) => {
-console.log( useParams())
-let { alcohol } = useParams()
-  
 
+  console.log(useParams())
+  let { alcohol } = useParams()
 
   return (
     <>  
@@ -18,9 +18,13 @@ let { alcohol } = useParams()
           fetchAlcoholType={fetchAlcoholType}
           navLinkText={navLinkText}
           alcohol={alcohol}
-       
           />
-        <AlcoholSelect drinks={drinks} baseAlcohol={baseAlcohol} navLinkText={navLinkText} alcohol={alcohol}/>
+        <AlcoholSelect 
+          drinks={drinks} 
+          baseAlcohol={baseAlcohol} 
+          navLinkText={navLinkText} 
+          alcohol={alcohol}
+        />
     </>
   )
 }

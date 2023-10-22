@@ -79,7 +79,7 @@ const App = () => {
                   fetchAlcoholType={fetchAlcoholType}
                   navLinkText={navLinkText}
                   />} />
-                <Route exact path="/alcohol/:alcohol" 
+                <Route exact path="alcohol/:alcohol" name="alcohol"
                   element={<Alcohol 
                   drinks={drinks}
                   baseAlcohol={loading ? (<p>Loading...</p>):(baseAlcohol)} 

@@ -1,8 +1,8 @@
 .ginBackground{
     /* background-image: url('/src/assets/pexels-lisa-f.jpg');
     background-image: radial-gradient(#2e2c7c68, #4a5ecb5f), url('/src/assets/pexels-lisa-f.jpg'); */
-    
-    background-color: radial-gradient(#2e2c7c68, #4a5ecb5f);
+/*     
+    background-color: radial-gradient(#2e2c7c68, #4a5ecb5f); */
     background-size: cover; 
     
     background-blend-mode: multiply;
@@ -72,7 +72,7 @@
 }
 
 .nameButtonContainer {
-    animation: drinkScroll 200s infinite linear;
+    /* animation: drinkScroll 200s infinite linear; */
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -95,7 +95,6 @@
 .linktoRecipe{
     background-color: transparent;
     border: 3px solid white;
-    /* box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24); */
     border-radius: 10px;
     color: white;
     cursor: pointer;
@@ -127,11 +126,3 @@
 
 }
 
-@keyframes drinkScroll {
-    0% {
-        transform: translate3d(100%, 0, 0); 
-    }
-    100% { 
-        transform: translate3d(-3250%, 0, 0); 
-    }
-}
