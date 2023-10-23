@@ -1,0 +1,30 @@
+.recipeBackground{
+    background-size: cover; 
+
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow-x: hidden;
+    
+    width: 100%;
+    margin-top: -5rem;
+    height: 100vh;
+
+}
+
+.recipeContainer{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 95vh;
+    width: 100%;
+
+    border: 2px solid yellow;
+}
+
+.recipeTitle{
+    color: var(--color-primary-font);
+    font-size: 8rem;
+    font-weight: 900;
+}

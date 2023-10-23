@@ -34,7 +34,7 @@
     -webkit-backdrop-filter: blur(3rem);
     background: hsl(0 0% 100% / 0.1);
     backdrop-filter: blur(2rem);
-    inset: 3% 0 0 51%;
+    inset: 3% 0 0 45%;
     opacity: 0;
     padding: min(20vh, 10rem) 1rem;
     position: fixed;
@@ -42,7 +42,7 @@
     transition: var(--transition);
     z-index: -100;
 
-    width: 20rem;
+    width: 22rem;
     height: auto; 
 
     display: flex;
@@ -62,8 +62,35 @@
     -webkit-animation: fadeIn 1s;
 }
 
+.dodNav{
+    color: var(--color-primary-font);
+    font-size: 1.25rem;
+    font-weight: 400;
+
+}
+
+
+.navDropdown h2{
+    color: var(--color-primary-font);
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.navbarLinks{
+    color: var(--color-primary-font);
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+.navbarLinks:hover, .dodNav:hover{
+    color: red;
+}
+
+.navline {
+    border-top: 3px solid var(--color-primary-font);
+}
+
 .navDropdownByDrink{
-    border: 2px solid green;
     display: grid;
     grid-template-columns:  1fr 1fr;
 }
@@ -94,14 +121,3 @@
     width: 1.2rem;
 
 } 
-
-
-a.navbarLinks{
-    color: var(--color-primary-font);
-    font-size: 1.25rem;
-    font-weight: 700;
-}
-
-.navline {
-    border-top: 3px solid var(--color-primary-font);
-}

@@ -11,8 +11,9 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, navLinkText, alcohol
     
     let chosenAlochol = alcohol
     console.log('chosenAlc', chosenAlochol)
-
+    
     const showNavMenu = () => {
+        
         let navBarMenu = document.querySelector('.navBarMenu')
         let visibility = navBarMenu.getAttribute('data-visible')
 
@@ -28,7 +29,9 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, navLinkText, alcohol
             navBarMenu.setAttribute('data-visible', 'false')
             navBarDropdown.classList.remove('show')
         }   
+        
     }
+
 
 
   return (
@@ -42,23 +45,24 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, navLinkText, alcohol
             </search>
             <div className="navbarItems">
                 <div className="navDropdown">
-                    <NavLink >Drink of the Day</NavLink>
+                    <NavLink className="dodNav">Drink of the Day</NavLink>
                     <hr className='navline'/>
-                    <h4>Find Cocktail By Alcohol</h4>
+                    <h2>Find Cocktail By Alcohol</h2>
                     <ul className="navDropdownByDrink" data-visible="false">
                         {baseAlcohol.map(ba => {
                         return (
                             <NavLink
                             className="navbarLinks" 
-                            to={`/alcohol/${ba.toLowerCase()}`}>{ba}</NavLink>
+                            to={`/alcohol/${ba.toLowerCase()}`}
+                            onClick={showNavMenu}>{ba}</NavLink>
                             )
                         })}
                     </ul>
                     <hr className='navline'/>
-                    <NavLink>Must Know Drinks for Bartenders</NavLink>
+                    <NavLink className="dodNav">Bartender Must Know Drinks</NavLink>
                 </div>
                 <div className="navBarMenu" id="navBarMenu" aria-controls="navbar_menu" aria-expanded="false"
-                     onClick={()=> {showNavMenu(); fetchAlcoholType()}}>
+                     onClick={()=> { showNavMenu(); fetchAlcoholType()}}>
                     <span className="bar kg-only"></span>
                     <span className="bar kg-only"></span>
                     <span className="bar kg-only"></span>

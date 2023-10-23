@@ -1,8 +1,4 @@
 .ginBackground{
-    /* background-image: url('/src/assets/pexels-lisa-f.jpg');
-    background-image: radial-gradient(#2e2c7c68, #4a5ecb5f), url('/src/assets/pexels-lisa-f.jpg'); */
-/*     
-    background-color: radial-gradient(#2e2c7c68, #4a5ecb5f); */
     background-size: cover; 
     
     background-blend-mode: multiply;
@@ -22,6 +18,8 @@
     justify-content: center;
     height: 95vh;
     width: 100%;
+
+    border: 2px solid yellow;
 }
 
 .baseAlcTitleContainer {
@@ -44,6 +42,7 @@
     font-weight: 600;
     line-height: 0%;
     margin-bottom: 2rem;
+    margin-top: 2rem;
 }
 
 .drinkListContainer{
@@ -53,11 +52,10 @@
 }
 
 .drinkListUl{
-    display: flex;
     align-items: center;
-    /* margin-top: 1rem; */
+    display: flex;
+    height: 10rem;
     overflow-y: scroll;
-
 }
 
 .drinkListLi{
@@ -72,12 +70,13 @@
 }
 
 .nameButtonContainer {
-    /* animation: drinkScroll 200s infinite linear; */
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
 }
+
+
 
 .moreDrinkLinkContainer{
     display: flex;
@@ -87,9 +86,6 @@
 
 }
 
-.moreDrinkLinkContainer:hover {
-    animation-play-state: paused;
-}
 
 
 .linktoRecipe{

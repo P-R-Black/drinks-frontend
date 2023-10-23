@@ -3,14 +3,14 @@ import './alcoholselect.css';
 import styled, { keyframes } from 'styled-components';
 
 
-export const AlcoholSelect = ({drinks, alcohol }) => {
+export const AlcoholSelect = ({ drinks, alcohol }) => {
+
+  console.log('alcohol as', alcohol)
+
   const [filteredDrink, setFilteredDrink ] = useState([])
   const [backgroundPic, setBackgroundPic] = useState()
-
-  console.log('Alc Select Alcohol 1', alcohol)
-  // rum (dark)
-  // rum (light)
-
+  const [alcFontSize, setAlcFontSize] = useState(200)
+  
   // format alcohol name
   if (alcohol == "punt e mes"){
       alcohol = "Punt e Mes"
@@ -28,7 +28,6 @@ export const AlcoholSelect = ({drinks, alcohol }) => {
     let alcoholFirstLetterRemainingLetters = alcohol.slice(1)
     alcohol = alcoholFirstLetterCap + alcoholFirstLetterRemainingLetters
   }
-  console.log('alcohol and length', alcohol, alcohol.length)
 
   let imgUrlLime = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-lisa-f.jpg') + ')'
   let imgUrlOrange = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-j-lewis.jpg') + ')'
@@ -73,12 +72,23 @@ export const AlcoholSelect = ({drinks, alcohol }) => {
       return gd;
     }).filter((dt) => {return dt.base_alcohol == alcohol})
     setFilteredDrink(fileDrinks)
+  }
 
+  
+
+  const adjustFontZSize = () => {
+    let baseAlcoholName = document.getElementById('baseAlcoholName').innerText
+    if(baseAlcoholName.length >= 19){
+      setAlcFontSize(120)
+    } else {
+      setAlcFontSize(200)
+    }
   }
 
 
   useEffect(() => {
     filterDrink()
+    adjustFontZSize()
     setBackgroundPic(picByDrink[alcohol][Math.floor(Math.random() * picByDrink[alcohol].length)])
   },[alcohol])
 
@@ -93,6 +103,12 @@ export const AlcoholSelect = ({drinks, alcohol }) => {
 
   const Scroll = styled.div`
    animation: ${drinkScroll} ${scrollDuration}s linear infinite;
+
+    &:hover{
+      animation-play-state: paused;
+      color: yellow;
+    }
+
    `;
 
   return (
@@ -100,7 +116,7 @@ export const AlcoholSelect = ({drinks, alcohol }) => {
       <div className="container">
         <div className="baseAlcoholContainer">
           <div className="baseAlcTitleContainer">
-            <h1>{alcohol}</h1>
+            <h1 id="baseAlcoholName" style={{fontSize: alcFontSize}}>{alcohol}</h1>
             <h2>Drinks & Cocktails</h2>
           </div>
           <div className="drinkListContainer">
@@ -109,7 +125,7 @@ export const AlcoholSelect = ({drinks, alcohol }) => {
                 return (
                   <Scroll className="nameButtonContainer">
                     <li className="drinkListLi" key={fd.id}>{fd.drink_name}</li>
-                    <a href="" className="linktoRecipe">Recipe</a>
+                    <a href={`/alcohol/${fd.base_alcohol}/${fd.drink_name.toLowerCase()}`} className="linktoRecipe">Recipe</a>
                   </Scroll>
                 )
               })}
@@ -126,7 +142,3 @@ export const AlcoholSelect = ({drinks, alcohol }) => {
     
   )
 }
-
-
-
-    

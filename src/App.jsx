@@ -5,6 +5,7 @@ import axios from 'axios'
 
 import { Home } from './pages/home/Home';
 import { Alcohol } from './pages/alcohol/Alcohol';
+import { Drinks } from './pages/drinks/Drinks';
 
 
 const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
@@ -12,8 +13,8 @@ const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
 const App = () => {
 
   const [ drinks, setDrinks ] = useState([])
-  const [loading, setLoading] = useState(true);
-  const [baseAlcohol, setBaseAlcohol] = useState([])
+  const [ loading, setLoading ] = useState(true);
+  const [ baseAlcohol, setBaseAlcohol ] = useState([])
   
 
   useEffect(() => {
@@ -44,7 +45,6 @@ const App = () => {
             }
         }
         setBaseAlcohol(filteredBase)
-        
     }
     
   }
@@ -61,7 +61,6 @@ const App = () => {
     })
     
   }
-  console.log('nl', navLinkText)
   navBarLinkText()
 
   
@@ -81,6 +80,14 @@ const App = () => {
                   />} />
                 <Route exact path="alcohol/:alcohol" name="alcohol"
                   element={<Alcohol 
+                  drinks={drinks}
+                  baseAlcohol={loading ? (<p>Loading...</p>):(baseAlcohol)} 
+                  fetchAlcoholType={fetchAlcoholType}
+                  navLinkText={navLinkText}
+
+                />} />
+                <Route exact path="alcohol/:alcohol/:drinkRecipe" name="drinkRecipe"
+                  element={<Drinks 
                   drinks={drinks}
                   baseAlcohol={loading ? (<p>Loading...</p>):(baseAlcohol)} 
                   fetchAlcoholType={fetchAlcoholType}
