@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import { BiShareAlt } from 'react-icons/bi';
+import { AiOutlineHeart } from 'react-icons/ai'
+
 import './drinkrecipe.css'
 
 export const DrinkRecipe = ({drinks, drinkRecipe }) => {
@@ -22,12 +25,12 @@ export const DrinkRecipe = ({drinks, drinkRecipe }) => {
                 console.log('recipe', recipe)
             } 
         })
-
     }
 
     useEffect(() => {
         getDrinkRecipe()
         setBackgroundRecipePic(picByRecipe[Math.floor(Math.random() * picByRecipe.length)])
+        
     },[])
 
 
@@ -40,31 +43,55 @@ export const DrinkRecipe = ({drinks, drinkRecipe }) => {
                 <div className="recipeContainer">
                     <div className="titleAndLikes">
                         <h2 className="recipeTitle">{dr.drink_name}</h2>
-                        <div className="likesAndShare" style={{color:"white"}}>Likes | Share</div>
+                        <div className="likesAndShare" style={{color:"white"}}> 
+                            <div className="likesHeart">
+                                <AiOutlineHeart className='iconHeart'/>
+                                <span>Like</span>
+                            </div>
+                            <div className="shareIcon">
+                                <BiShareAlt className='iconHeart'/>
+                                <span>Share</span>
+                            </div>
+                        </div>
                     </div>
                     <div className="ingredientInstructionContainer">
                         <div className="allIngredientsContainer">
-                            <h3 className="ingredientTitle" style={{color:"white"}}>Ingredients</h3>
+                            <h3 className="ingredientTitle">Ingredients</h3>
                             {dr.ingredient_name.map((im) => {
                                 return(
-                                    <h4 className="ingredients" style={{color:"white"}}>{im}</h4>
+                                    <h4 className="ingredients" key={im.id}>{im}</h4>
                                 )
                             })}
                         </div>
                         <div className="garnishAndGlassContainer">
                             <div className="garnishContainer">
-                                <h3 className="garnishTitle" style={{color:"white"}}>Garnish</h3>
-                                <h4 className="garnish" style={{color:"white"}}>{dr.garnish}</h4>
+                                <h3 className="garnishTitle">Garnish</h3>
+                                {dr.garnish.map((mg) => {
+                                    return (
+                                        <h4 className="garnish">{mg}</h4>
+                                    )
+                                })}
+                                
                             </div>
                             <div className="glassContainer">
-                                <h3 className="glassTitle" style={{color:"white"}}>Serving Glass</h3>
-                                <h4 className="glass" style={{color:"white"}}>{dr.serving_glass}</h4>
+                                <h3 className="glassTitle">Serving Glass</h3>
+                                <h4 className="glass">{dr.serving_glass}</h4>
                             </div>
                         </div>
                         <div className="recipeInstructionContainer">
                             <div className="instructionContainer">
-                                <h3 className="instructionTitle" style={{color:"white"}}>Instructions</h3>
-                                <h4 className="instructions" style={{color:"white"}}>{dr.mixing_direction}</h4>
+                                <h3 className="instructionTitle">Instructions</h3>
+                                <ol>
+                                    {dr.mixing_direction.split(".").map(instr =>{
+                                        let textSplits = instr.trim().replace(/[0-9]/g, '')
+                                        if (textSplits !== ""){
+                                            return (
+                                                <li className="instructions">{textSplits}.</li>
+                                            )
+                                        }
+                                    })}
+
+                                </ol>
                             </div>
                         </div>
                     </div>
