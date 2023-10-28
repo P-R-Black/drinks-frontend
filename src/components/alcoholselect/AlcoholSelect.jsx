@@ -61,7 +61,8 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
     "White Wine Apéritif": [imgUrlWhiteWine, imgUrlChampagneBot],
     "Apéritif": [imgUrlBloodOrange],
     "Aquavit": [imgUrlBloodOrange],
-    "Mezcal":[imgUrlOrangeSlices]
+    "Mezcal":[imgUrlOrangeSlices],
+    "Amaretto": [imgUrlScotchTopDown]
 
   }
 

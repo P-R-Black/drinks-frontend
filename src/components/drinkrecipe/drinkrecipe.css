@@ -17,17 +17,20 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 95vh;
+    height: 100vh;
     width: 100%;
 
     /* border: 2px solid yellow; */
+    
 }
 
 .recipeTitle{
     color: var(--color-primary-font);
     font-size: clamp(1rem, 15vw, 7rem);
     font-weight: 900;
+    margin-top: 3rem;
     text-align: center;
+
 }
 
 .likesAndShare{
@@ -54,6 +57,8 @@
     font-size: 1.2rem;
 }
 
+
+
 .ingredientInstructionContainer{
 
     align-items: flex-start;
@@ -67,6 +72,8 @@
 
 }
 
+
+
 .ingredientInstructionContainer h3{
     color: var(--color-primary-font);
     font-size: 1.5rem;
@@ -74,11 +81,10 @@
 
 }
 
-.ingredientInstructionContainer h4{
+.ingredientInstructionContainer h4, .ingredientInstructionContainer ul li{
     color: var(--color-primary-font);
     font-size: 1.15rem;
     font-weight: 300;
-    
 
 }
 
@@ -93,7 +99,8 @@
     color: var(--color-primary-font);
     font-size: 1.15rem;
     line-height: 1.50;
-    list-style: decimal;
     text-transform: capitalize;
     width: 120%;
+    white-space: pre-wrap; 
 }
+

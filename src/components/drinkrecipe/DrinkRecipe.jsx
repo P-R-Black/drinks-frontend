@@ -57,11 +57,21 @@ export const DrinkRecipe = ({drinks, drinkRecipe }) => {
                     <div className="ingredientInstructionContainer">
                         <div className="allIngredientsContainer">
                             <h3 className="ingredientTitle">Ingredients</h3>
+                            <ul>
                             {dr.ingredient_name.map((im) => {
-                                return(
-                                    <h4 className="ingredients" key={im.id}>{im}</h4>
+                                return (
+                                    <li className="ingredients" key={im.id}>
+                                        <span className="ingredientUnit">{(im.split(" ")[0]).replace(/^0+/,"")} </span>
+                                        <span className="ingredientMeasurement">{im.split(" ")[1]} </span>
+                                        <span className="ingredentIngredient">
+                                            {
+                                            im.replace(im.split(" ")[0], "").replace(im.split(" ")[1], "")
+                                            .trim()}
+                                        </span>
+                                    </li>
                                 )
                             })}
+                            </ul>
                         </div>
                         <div className="garnishAndGlassContainer">
                             <div className="garnishContainer">
@@ -81,17 +91,10 @@ export const DrinkRecipe = ({drinks, drinkRecipe }) => {
                         <div className="recipeInstructionContainer">
                             <div className="instructionContainer">
                                 <h3 className="instructionTitle">Instructions</h3>
-                                <ol>
-                                    {dr.mixing_direction.split(".").map(instr =>{
-                                        let textSplits = instr.trim().replace(/[0-9]/g, '')
-                                        if (textSplits !== ""){
-                                            return (
-                                                <li className="instructions">{textSplits}.</li>
-                                            )
-                                        }
-                                    })}
-
-                                </ol>
+                                <h4 className="instructions" style={{color :"white"}}>
+                                    {dr.mixing_direction}
+                                </h4>
+                            
                             </div>
                         </div>
                     </div>
