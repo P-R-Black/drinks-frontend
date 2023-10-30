@@ -6,7 +6,7 @@ export const Hero = ({ drinks }) => {
 
   useEffect(() => {
     const drinksCount = () => {
-      let recipeLengthRounded = Math.round(drinks.length / 10) * 10;
+      let recipeLengthRounded = Math.round(drinks.length / 5) * 5;
       if (drinks.length % 10 <= 5) {
         setNumOfRecipes(`Over ${recipeLengthRounded} recipes, with more added daily`)
       } else {

@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { BiShareAlt } from 'react-icons/bi';
-import { AiOutlineHeart } from 'react-icons/ai'
+import { AiOutlinePlus } from 'react-icons/ai'
+import  { AiOutlineMinus } from 'react-icons/ai'
 
 import './drinkrecipe.css'
 
 export const DrinkRecipe = ({drinks, drinkRecipe }) => {
 
     const [ recipe, setRecipe ] = useState([])
-    const [backgroundRecipePic, setBackgroundRecipePic] = useState()
-
-    //console.log('drink recipe', drinks)
+    const [ backgroundRecipePic, setBackgroundRecipePic] = useState()
+    let [ unitCount, setUnitCount ] = useState(1)
 
     let imgRecipeBG = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-kelly.jpg') + ')'
-    
     let picByRecipe = [imgRecipeBG]
 
 
@@ -26,6 +25,17 @@ export const DrinkRecipe = ({drinks, drinkRecipe }) => {
             } 
         })
     }
+
+    // removes zero before decimals
+    const formatUnits = (unit) =>{
+        let formattedUnit = unit.split(" ")[0] * unitCount
+        let temp = formattedUnit.toString()
+        formattedUnit = temp.replace(/^0+/,"")
+        
+        return formattedUnit  
+    }
+
+
 
     useEffect(() => {
         getDrinkRecipe()
@@ -44,10 +54,6 @@ export const DrinkRecipe = ({drinks, drinkRecipe }) => {
                     <div className="titleAndLikes">
                         <h2 className="recipeTitle">{dr.drink_name}</h2>
                         <div className="likesAndShare" style={{color:"white"}}> 
-                            <div className="likesHeart">
-                                <AiOutlineHeart className='iconHeart'/>
-                                <span>Like</span>
-                            </div>
                             <div className="shareIcon">
                                 <BiShareAlt className='iconHeart'/>
                                 <span>Share</span>
@@ -61,7 +67,7 @@ export const DrinkRecipe = ({drinks, drinkRecipe }) => {
                             {dr.ingredient_name.map((im) => {
                                 return (
                                     <li className="ingredients" key={im.id}>
-                                        <span className="ingredientUnit">{(im.split(" ")[0]).replace(/^0+/,"")} </span>
+                                        <span className="ingredientUnit">{formatUnits(im)} </span>  
                                         <span className="ingredientMeasurement">{im.split(" ")[1]} </span>
                                         <span className="ingredentIngredient">
                                             {
@@ -86,6 +92,27 @@ export const DrinkRecipe = ({drinks, drinkRecipe }) => {
                             <div className="glassContainer">
                                 <h3 className="glassTitle">Serving Glass</h3>
                                 <h4 className="glass">{dr.serving_glass}</h4>
+                            </div>
+                            <div className="servingAmountContainer">
+                                <h3 className="servingSize">Serving</h3>
+                                <div className="incrementUnit">
+                                    <h4 className="servings">{unitCount} </h4>
+                                    <div className="buttonContainer">
+                                        <button
+                                            onClick={() => setUnitCount(unitCount+=1)}
+                                            className="plusButton" 
+                                            type="submit">
+                                                <AiOutlinePlus/>
+                                        </button>
+                                        <button
+                                            onClick={() => setUnitCount(unitCount > 1 ? unitCount-=1:1)}
+                                            className="minusButton" 
+                                            type="submit">
+                                                <AiOutlineMinus/>
+                                        </button>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                         <div className="recipeInstructionContainer">

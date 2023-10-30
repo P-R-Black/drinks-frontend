@@ -18,6 +18,8 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
       alcohol = "Sloe Gin"
   } else if (alcohol == "white wine apéritif"){
       alcohol = "White Wine Apéritif"
+  } else if (alcohol == "rosé wine apéritif"){
+      alcohol = "Rosé Wine Apéritif"
   } else if (alcohol == "rum (dark)"){
     alcohol = "Rum (Dark)"
   } else if (alcohol == "rum (light)"){
@@ -45,25 +47,26 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
   
 
   let picByDrink = {
+    "Amaretto": [imgUrlScotchTopDown],
+    "Apéritif": [imgUrlBloodOrange],
+    "Aquavit": [imgUrlBloodOrange],
+    "Brandy": [imgUrlScotchTopDown],
+    "Bourbon": [imgUrlScotchTopDown],
+    "Cognac": [imgUrlScotchTopDown],
     "Gin": [imgUrlLime, imgUrlLemon, imgUrlBloodOrange, imgUrlRedLemonSlice],
+    "Mezcal":[imgUrlOrangeSlices],
+    "Punt e Mes": [imgUrlOrange, imgUrlBloodOrange, imgUrlRedLemonSlice],
+    "Rosé Wine Apéritif": [imgUrlChampagneBot],
     "Rum": [imgUrlColaUp, imgUrlMojito],
     "Rum (Dark)": [imgUrlColaUp], 
     "Rum (Light)": [imgUrlColaUp, imgUrlMojito],
-    "Whiskey": [imgUrlScotchTopDown],
+    "Scotch": [imgUrlScotchTopDown],
     "Sloe Gin": [imgUrlBloodOrange, imgUrlRedLemonSlice],
     "Tequila": [imgUrlLime, imgUrlOrange, imgUrlLemon],
-    "Bourbon": [imgUrlScotchTopDown],
-    "Scotch": [imgUrlScotchTopDown],
-    "Brandy": [imgUrlScotchTopDown],
     "Vodka":[imgUrlLime, imgUrlOrange, imgUrlLemon],
-    "Punt e Mes": [imgUrlOrange, imgUrlBloodOrange, imgUrlRedLemonSlice],
     "Vermouth": [imgUrlBloodOrange],
+    "Whiskey": [imgUrlScotchTopDown],
     "White Wine Apéritif": [imgUrlWhiteWine, imgUrlChampagneBot],
-    "Apéritif": [imgUrlBloodOrange],
-    "Aquavit": [imgUrlBloodOrange],
-    "Mezcal":[imgUrlOrangeSlices],
-    "Amaretto": [imgUrlScotchTopDown]
-
   }
 
 
@@ -77,9 +80,9 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
 
   
 
-  const adjustFontZSize = () => {
+  const adjustFontSize = () => {
     let baseAlcoholName = document.getElementById('baseAlcoholName').innerText
-    if(baseAlcoholName.length >= 19){
+    if(baseAlcoholName.length >= 18){
       setAlcFontSize(120)
     } else {
       setAlcFontSize(200)
@@ -89,7 +92,7 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
 
   useEffect(() => {
     filterDrink()
-    adjustFontZSize()
+    adjustFontSize()
     setBackgroundPic(picByDrink[alcohol][Math.floor(Math.random() * picByDrink[alcohol].length)])
   },[alcohol])
 

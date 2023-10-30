@@ -48,11 +48,10 @@
 
 }
 
-.likesHeart, .shareIcon {
+.shareIcon {
     display: flex;
 }
 
-.likesHeart span,
 .shareIcon span {
     font-size: 1.2rem;
 }
@@ -104,3 +103,50 @@
     white-space: pre-wrap; 
 }
 
+
+.incrementUnit{
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    width: 8rem;
+}
+
+.servings {
+    width: 1rem;
+}
+
+
+
+.buttonContainer{
+    border: 3px solid var(--color-primary-font);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.5rem;
+    margin-top: .15rem;
+    width: 5rem;
+
+}
+
+.plusButton,
+.minusButton {
+    background-color: transparent;
+    font-size: 1.2rem;
+    color: var(--color-primary-font);
+    cursor: pointer;
+
+   
+}
+
+.plusButton{
+    border-right: .5px solid var(--color-primary-font);
+    padding-right: .5rem;
+}
+
+.minusButton {
+    border-left: .5px solid var(--color-primary-font);
+    padding-left: .5rem;
+
+}
