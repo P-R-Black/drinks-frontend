@@ -44,7 +44,7 @@ const App = () => {
 
             }
         }
-        setBaseAlcohol(filteredBase)
+        setBaseAlcohol(filteredBase.sort())
     }
     
   }
@@ -92,7 +92,13 @@ const App = () => {
                   baseAlcohol={loading ? (<p>Loading...</p>):(baseAlcohol)} 
                   fetchAlcoholType={fetchAlcoholType}
                   navLinkText={navLinkText}
-
+                />} />
+                <Route exact path="alcohol/:alcohol/app_drinks" name="alcohol"
+                  element={<Drinks 
+                  drinks={drinks}
+                  baseAlcohol={loading ? (<p>Loading...</p>):(baseAlcohol)} 
+                  fetchAlcoholType={fetchAlcoholType}
+                  navLinkText={navLinkText}
                 />} />
             </Routes>
             )}

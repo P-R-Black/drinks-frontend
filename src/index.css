@@ -13,12 +13,16 @@
 
 :root {
     --color-primary-font: #ffffff;
+
+    --large-letter-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);
+    --small-letter-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
     
     --transition: all 300ms ease-in;
     
     --container-width-lg: 85%;
     --container-width-md: 90%;
     --container-width-sm: 95%;
+
 }
 
 html {
@@ -30,13 +34,7 @@ html {
 }
     
 body {
-    /* background-color: var(--color-bg-variant); */
-    /* background-size: cover; 
-    background-blend-mode: multiply;
-    background-repeat: no-repeat;
-    background-position: center; */
     font-family: 'Work Sans', sans-serif;
-    /* overflow-x: hidden; */
 } 
 
 /* ==================== GENERAL STYLES ==================== */
@@ -58,6 +56,15 @@ ul {
 .container {
     width: var(--container-width-lg);
     margin: 0 auto;
+}
+
+
+h1, h2, h3 {
+    text-shadow: var(--large-letter-shadow);
+}
+
+h4 {
+    text-shadow: var(--small-letter-shadow);
 }
 
 /* h1, h2, h3, h4, h5 {  

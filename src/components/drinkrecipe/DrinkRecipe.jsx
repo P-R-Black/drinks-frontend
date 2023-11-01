@@ -10,8 +10,8 @@ export const DrinkRecipe = ({drinks, drinkRecipe }) => {
     const [ recipe, setRecipe ] = useState([])
     const [ backgroundRecipePic, setBackgroundRecipePic] = useState()
     let [ unitCount, setUnitCount ] = useState(1)
-
-    let imgRecipeBG = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-kelly.jpg') + ')'
+    
+    let imgRecipeBG = 'radial-gradient(#25236E82, #4A5ECB75),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-kelly.jpg') + ')'
     let picByRecipe = [imgRecipeBG]
 
 
@@ -25,6 +25,7 @@ export const DrinkRecipe = ({drinks, drinkRecipe }) => {
             } 
         })
     }
+    console.log('recipe', recipe)
 
     // removes zero before decimals
     const formatUnits = (unit) =>{
@@ -84,7 +85,7 @@ export const DrinkRecipe = ({drinks, drinkRecipe }) => {
                                 <h3 className="garnishTitle">Garnish</h3>
                                 {dr.garnish.map((mg) => {
                                     return (
-                                        <h4 className="garnish">{mg}</h4>
+                                        <h4 className="garnish">{mg != "0 None" ? mg: "None"}</h4>
                                     )
                                 })}
                                 
@@ -99,7 +100,7 @@ export const DrinkRecipe = ({drinks, drinkRecipe }) => {
                                     <h4 className="servings">{unitCount} </h4>
                                     <div className="buttonContainer">
                                         <button
-                                            onClick={() => setUnitCount(unitCount+=1)}
+                                            onClick={() => setUnitCount(unitCount + 1)}
                                             className="plusButton" 
                                             type="submit">
                                                 <AiOutlinePlus/>

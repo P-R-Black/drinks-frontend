@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'; 
 import './alcoholselect.css';
 import styled, { keyframes } from 'styled-components';
-
+import { AllDrinks } from './AllDrinks';
 
 export const AlcoholSelect = ({ drinks, alcohol }) => {
 
@@ -12,17 +12,19 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
   const [alcFontSize, setAlcFontSize] = useState(200)
   
   // format alcohol name
-  if (alcohol == "punt e mes"){
+  if (alcohol === "punt e mes"){
       alcohol = "Punt e Mes"
-  } else if (alcohol == "sloe gin"){
+  } else if (alcohol === "sloe gin"){
       alcohol = "Sloe Gin"
-  } else if (alcohol == "white wine apéritif"){
+  } else if (alcohol === "white wine apéritif"){
       alcohol = "White Wine Apéritif"
-  } else if (alcohol == "rosé wine apéritif"){
+  } else if (alcohol === "rosé wine apéritif"){
       alcohol = "Rosé Wine Apéritif"
-  } else if (alcohol == "rum (dark)"){
+  } else if (alcohol === "rum (dark)"){
     alcohol = "Rum (Dark)"
-  } else if (alcohol == "rum (light)"){
+  } else if (alcohol === "rum (gold)"){
+    alcohol = "Rum (Gold)"
+  } else if (alcohol === "rum (light)"){
     alcohol = "Rum (Light)"
   } else {
     let alcoholFirstLetter = alcohol.charAt(0)
@@ -31,6 +33,7 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
     alcohol = alcoholFirstLetterCap + alcoholFirstLetterRemainingLetters
   }
 
+  let imgUrlDefault = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-rachel-default.jpg') + ')'
   let imgUrlLime = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-lisa-f.jpg') + ')'
   let imgUrlOrange = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-j-lewis.jpg') + ')'
   let imgUrlLemon = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-lukas.jpg')  + ')'
@@ -43,6 +46,10 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
   let imgUrlScotchTopDown = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-scotch-topdown.jpg') + ')'
   let imgUrlOrangeSlices = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-orange-slices.jpg') + ')'
   let imgUrlWhiteWine = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-white-wine.jpg') + ')'
+  let imgUrlRoseWine = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-polina-rose-over.jpg') + ')'
+  let imgUrlRumGold = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-eva-gold.jpg') + ')'
+
+
 
   
 
@@ -56,9 +63,10 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
     "Gin": [imgUrlLime, imgUrlLemon, imgUrlBloodOrange, imgUrlRedLemonSlice],
     "Mezcal":[imgUrlOrangeSlices],
     "Punt e Mes": [imgUrlOrange, imgUrlBloodOrange, imgUrlRedLemonSlice],
-    "Rosé Wine Apéritif": [imgUrlChampagneBot],
+    "Rosé Wine Apéritif": [imgUrlRoseWine],
     "Rum": [imgUrlColaUp, imgUrlMojito],
-    "Rum (Dark)": [imgUrlColaUp], 
+    "Rum (Dark)": [imgUrlColaUp],
+    "Rum (Gold)": [imgUrlRumGold],
     "Rum (Light)": [imgUrlColaUp, imgUrlMojito],
     "Scotch": [imgUrlScotchTopDown],
     "Sloe Gin": [imgUrlBloodOrange, imgUrlRedLemonSlice],
@@ -93,7 +101,7 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
   useEffect(() => {
     filterDrink()
     adjustFontSize()
-    setBackgroundPic(picByDrink[alcohol][Math.floor(Math.random() * picByDrink[alcohol].length)])
+    setBackgroundPic(picByDrink[alcohol] != undefined ? picByDrink[alcohol][Math.floor(Math.random() * picByDrink[alcohol].length)]: imgUrlDefault)
   },[alcohol])
 
   
@@ -125,7 +133,7 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
           </div>
           <div className="drinkListContainer">
             <ul className="drinkListUl">
-              {filteredDrink.map(fd => {
+              {filteredDrink.map((fd) => {
                 return (
                   <Scroll className="nameButtonContainer">
                     <li className="drinkListLi" key={fd.id}>{fd.drink_name}</li>
@@ -135,8 +143,8 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
               })}
               
             </ul>
-            <div className="moreDrinkLinkContainer">
-                <a href="" className="linktoRecipeLarge">More {alcohol} Drinks</a>
+              <div className="moreDrinkLinkContainer">
+                <a href={`/alcohol/${alcohol.toLowerCase()}/all_drinks`} className="linktoRecipeLarge">More {alcohol} Drinks</a>
               </div>
           </div>
         </div>
