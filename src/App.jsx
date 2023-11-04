@@ -6,6 +6,7 @@ import axios from 'axios'
 import { Home } from './pages/home/Home';
 import { Alcohol } from './pages/alcohol/Alcohol';
 import { Drinks } from './pages/drinks/Drinks';
+import { AllDrinks } from './pages/all_drinks/AllDrinks';
 
 
 const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
@@ -93,8 +94,8 @@ const App = () => {
                   fetchAlcoholType={fetchAlcoholType}
                   navLinkText={navLinkText}
                 />} />
-                <Route exact path="alcohol/:alcohol/app_drinks" name="alcohol"
-                  element={<Drinks 
+                <Route exact path="alcohol/:alcohol/all_drinks" name="alcohol"
+                  element={<AllDrinks 
                   drinks={drinks}
                   baseAlcohol={loading ? (<p>Loading...</p>):(baseAlcohol)} 
                   fetchAlcoholType={fetchAlcoholType}

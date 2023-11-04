@@ -18,6 +18,7 @@
 .navBarMenu{
     color: black;
     cursor: pointer;
+
 }
 
 .bar{
@@ -29,7 +30,7 @@
 }
 
 
-.navDropdown {
+.navDropdown{
     -webkit-background: hsl(0 0% 100% / 0.1);
     -webkit-backdrop-filter: blur(3rem);
     background: hsl(0 0% 100% / 0.1);
@@ -43,7 +44,7 @@
     z-index: -100;
 
     width: 22rem;
-    height: auto; 
+    height: 0rem; 
 
     display: flex;
     flex-direction: column;
@@ -57,9 +58,11 @@
 
 .navDropdown.show {
     animation: fadeIn 1s;
+    height: auto;
     opacity: 1;
     pointer-events: auto;
     -webkit-animation: fadeIn 1s;
+    /* z-index: 500; */
 }
 
 .dodNav{

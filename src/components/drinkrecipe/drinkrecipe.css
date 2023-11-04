@@ -19,14 +19,12 @@
     justify-content: center;
     height: 100vh;
     width: 100%;
-
-    /* border: 2px solid yellow; */
     
 }
 
 .recipeTitle{
     color: var(--color-primary-font);
-    font-size: clamp(1rem, 15vw, 7rem);
+    font-size: clamp(1rem, 15vw, 8rem);
     font-weight: 900;
     margin-top: 3rem;
     text-align: center;

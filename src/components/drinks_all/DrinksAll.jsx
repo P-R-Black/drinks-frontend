@@ -1,36 +1,32 @@
-import React, { useState, useEffect } from 'react'; 
-import './alcoholselect.css';
-import styled, { keyframes } from 'styled-components';
+import React, { useState, useEffect } from 'react'
+import './drinks_all.css'
 
-export const AlcoholSelect = ({ drinks, alcohol }) => {
-
-  console.log('alcohol as', alcohol)
-
-  const [filteredDrink, setFilteredDrink ] = useState([])
-  const [backgroundPic, setBackgroundPic] = useState()
+export const DrinksAll = ({drinks, alcohol}) => {
+  const [alldrinks, setallDrinks ] = useState([])
+  const [allDrknksBackgroundPic, setAllDrknksBackgroundPic] = useState()
   const [alcFontSize, setAlcFontSize] = useState(200)
-  
+
   // format alcohol name
   if (alcohol === "punt e mes"){
-      alcohol = "Punt e Mes"
-  } else if (alcohol === "sloe gin"){
-      alcohol = "Sloe Gin"
-  } else if (alcohol === "white wine apéritif"){
-      alcohol = "White Wine Apéritif"
-  } else if (alcohol === "rosé wine apéritif"){
-      alcohol = "Rosé Wine Apéritif"
-  } else if (alcohol === "rum (dark)"){
-    alcohol = "Rum (Dark)"
-  } else if (alcohol === "rum (gold)"){
-    alcohol = "Rum (Gold)"
-  } else if (alcohol === "rum (light)"){
-    alcohol = "Rum (Light)"
-  } else {
-    let alcoholFirstLetter = alcohol.charAt(0)
-    let alcoholFirstLetterCap = alcoholFirstLetter.toUpperCase()
-    let alcoholFirstLetterRemainingLetters = alcohol.slice(1)
-    alcohol = alcoholFirstLetterCap + alcoholFirstLetterRemainingLetters
-  }
+    alcohol = "Punt e Mes"
+} else if (alcohol === "sloe gin"){
+    alcohol = "Sloe Gin"
+} else if (alcohol === "white wine apéritif"){
+    alcohol = "White Wine Apéritif"
+} else if (alcohol === "rosé wine apéritif"){
+    alcohol = "Rosé Wine Apéritif"
+} else if (alcohol === "rum (dark)"){
+  alcohol = "Rum (Dark)"
+} else if (alcohol === "rum (gold)"){
+  alcohol = "Rum (Gold)"
+} else if (alcohol === "rum (light)"){
+  alcohol = "Rum (Light)"
+} else {
+  let alcoholFirstLetter = alcohol.charAt(0)
+  let alcoholFirstLetterCap = alcoholFirstLetter.toUpperCase()
+  let alcoholFirstLetterRemainingLetters = alcohol.slice(1)
+  alcohol = alcoholFirstLetterCap + alcoholFirstLetterRemainingLetters
+}
 
   let imgUrlDefault = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-rachel-default.jpg') + ')'
   let imgUrlLime = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-lisa-f.jpg') + ')'
@@ -48,9 +44,6 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
   let imgUrlRoseWine = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-polina-rose-over.jpg') + ')'
   let imgUrlRumGold = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-eva-gold.jpg') + ')'
 
-
-
-  
 
   let picByDrink = {
     "Amaretto": [imgUrlScotchTopDown],
@@ -76,16 +69,13 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
     "White Wine Apéritif": [imgUrlWhiteWine, imgUrlChampagneBot],
   }
 
-
-
-  const filterDrink = () =>{
-    let fileDrinks = drinks.map((gd) => {
-      return gd;
-    }).filter((dt) => {return dt.base_alcohol == alcohol})
-    setFilteredDrink(fileDrinks)
+  const getAllDrinks = () => {
+    let sortedList = []
+    let fileDrinks = drinks.filter((pb) => {
+      return pb.base_alcohol[0] == alcohol})
+    setallDrinks(fileDrinks)
+    console.log('file', alldrinks)
   }
-
-  
 
   const adjustFontSize = () => {
     let baseAlcoholName = document.getElementById('baseAlcoholName').innerText
@@ -97,59 +87,37 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
   }
 
 
+
+
+
   useEffect(() => {
-    filterDrink()
+    getAllDrinks()
     adjustFontSize()
-    setBackgroundPic(picByDrink[alcohol] != undefined ? picByDrink[alcohol][Math.floor(Math.random() * picByDrink[alcohol].length)]: imgUrlDefault)
+    setAllDrknksBackgroundPic(picByDrink[alcohol] != undefined ? picByDrink[alcohol][Math.floor(Math.random() * picByDrink[alcohol].length)]: imgUrlDefault)
   },[alcohol])
 
-  
-  let scrollLength =  filteredDrink.length
-  let scrollDuration = (scrollLength * 100) / 18
-
-
-  const drinkScroll = keyframes`
-    0% { transform: translate3d(100%, 0, 0);}
-  100% { transform: translate3d(${scrollLength * -100}%, 0, 0); }`
-
-  const Scroll = styled.div`
-   animation: ${drinkScroll} ${scrollDuration}s linear infinite;
-
-    &:hover{
-      animation-play-state: paused;
-      color: yellow;
-    }
-
-   `;
+    
 
   return (
-    <section className="ginBackground" style={{backgroundImage: backgroundPic}}>
+    <section className="allDrinksBackground" style={{backgroundImage: allDrknksBackgroundPic}}>
       <div className="container">
-        <div className="baseAlcoholContainer">
-          <div className="baseAlcTitleContainer">
+        <div className="allDrinksContainer">
+          <div className="baseAlcTitleContainerTwo">
             <h1 id="baseAlcoholName" style={{fontSize: alcFontSize}}>{alcohol}</h1>
             <h2>Drinks & Cocktails</h2>
           </div>
-          <div className="drinkListContainer">
-            <ul className="drinkListUl">
-              {filteredDrink.map((fd) => {
-                return (
-                  <Scroll className="nameButtonContainer">
-                    <li className="drinkListLi" key={fd.id}>{fd.drink_name}</li>
-                    <a href={`/alcohol/${fd.base_alcohol}/${fd.drink_name.toLowerCase()}`} className="linktoRecipe">Recipe</a>
-                  </Scroll>
-                )
-              })}
-              
-            </ul>
-              <div className="moreDrinkLinkContainer">
-                <a href={`/alcohol/${alcohol.toLowerCase()}/all_drinks`} className="linktoRecipeLarge">More {alcohol} Drinks</a>
-              </div>
+          <div className="linksToDrinksContainer">
+            {alldrinks.map((ad) => {
+            return(
+            <a 
+              href={`/alcohol/${ad.base_alcohol}/${ad.drink_name.toLowerCase()}`} 
+              className="linktoRecipeTwo">{ad.drink_name.length <= 18 ? ad.drink_name: ad.drink_name.slice(0, 15) + "..."}</a>
+            )
+            })}
+
           </div>
         </div>
       </div>
     </section>
-
-    
   )
 }
