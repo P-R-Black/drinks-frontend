@@ -69,12 +69,22 @@ export const DrinksAll = ({drinks, alcohol}) => {
     "White Wine Apéritif": [imgUrlWhiteWine, imgUrlChampagneBot],
   }
 
+
   const getAllDrinks = () => {
     let sortedList = []
-    let fileDrinks = drinks.filter((pb) => {
-      return pb.base_alcohol[0] == alcohol})
-    setallDrinks(fileDrinks)
-    console.log('file', alldrinks)
+    let fileDrinks = drinks.map((fd) => {
+      if(fd.base_alcohol[0] == alcohol){
+          if (fd.drink_name){
+            sortedList.push(fd.drink_name)
+          }
+        return fd.drink_name;
+      }
+    })
+    setallDrinks(sortedList.sort())
+    
+    console.log('fileDrinks', fileDrinks)
+    console.log('sortedList', sortedList)
+
   }
 
   const adjustFontSize = () => {
@@ -108,11 +118,10 @@ export const DrinksAll = ({drinks, alcohol}) => {
           </div>
           <div className="linksToDrinksContainer">
             {alldrinks.map((ad) => {
-            return(
-            <a 
-              href={`/alcohol/${ad.base_alcohol}/${ad.drink_name.toLowerCase()}`} 
-              className="linktoRecipeTwo">{ad.drink_name.length <= 18 ? ad.drink_name: ad.drink_name.slice(0, 15) + "..."}</a>
-            )
+              return (
+                <a href={`/alcohol/${ad.base_alcohol}/${ad.toLowerCase()}`} 
+                className="linktoRecipeTwo">{ad.length < 18 ? ad : ad.slice(0, 15) + "..."}</a>
+              )
             })}
 
           </div>

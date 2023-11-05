@@ -13,6 +13,8 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
   // format alcohol name
   if (alcohol === "punt e mes"){
       alcohol = "Punt e Mes"
+  } else if (alcohol === "elderflower liqueur"){
+      alcohol = "Elderflower Liqueur"
   } else if (alcohol === "sloe gin"){
       alcohol = "Sloe Gin"
   } else if (alcohol === "white wine apéritif"){
@@ -47,9 +49,6 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
   let imgUrlWhiteWine = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-white-wine.jpg') + ')'
   let imgUrlRoseWine = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-polina-rose-over.jpg') + ')'
   let imgUrlRumGold = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-eva-gold.jpg') + ')'
-
-
-
   
 
   let picByDrink = {
@@ -77,12 +76,18 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
   }
 
 
+  const filterDrink = () => {
+    let sortedList = []
+    let fileDrinks = drinks.map((fd) => {
+      if(fd.base_alcohol[0] == alcohol){
+          if (fd.drink_name){
+            sortedList.push(fd.drink_name)
+          }
+        return fd.drink_name;
+      }
+    })
+    setFilteredDrink(sortedList.sort())
 
-  const filterDrink = () =>{
-    let fileDrinks = drinks.map((gd) => {
-      return gd;
-    }).filter((dt) => {return dt.base_alcohol == alcohol})
-    setFilteredDrink(fileDrinks)
   }
 
   
@@ -135,15 +140,15 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
               {filteredDrink.map((fd) => {
                 return (
                   <Scroll className="nameButtonContainer">
-                    <li className="drinkListLi" key={fd.id}>{fd.drink_name}</li>
-                    <a href={`/alcohol/${fd.base_alcohol}/${fd.drink_name.toLowerCase()}`} className="linktoRecipe">Recipe</a>
+                    <li className="drinkListLi" key={fd.id}>{fd}</li>
+                    <a href={`/alcohol/${fd.base_alcohol}/${fd.toLowerCase()}`} className="linktoRecipe">Recipe</a>
                   </Scroll>
                 )
               })}
               
             </ul>
               <div className="moreDrinkLinkContainer">
-                <a href={`/alcohol/${alcohol.toLowerCase()}/all_drinks`} className="linktoRecipeLarge">More {alcohol} Drinks</a>
+                <a href={`/alcohol/${alcohol.toLowerCase()}/all_drinks`} className="linktoRecipeLarge">All {alcohol} Drinks</a>
               </div>
           </div>
         </div>

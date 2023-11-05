@@ -18,7 +18,7 @@
 .navBarMenu{
     color: black;
     cursor: pointer;
-
+    
 }
 
 .bar{
@@ -26,7 +26,8 @@
     display: block;
     height: 3px;
     margin: 5px;
-    width: 3rem;     
+    width: 3rem;  
+    
 }
 
 
@@ -35,7 +36,7 @@
     -webkit-backdrop-filter: blur(3rem);
     background: hsl(0 0% 100% / 0.1);
     backdrop-filter: blur(2rem);
-    inset: 3% 0 0 45%;
+    inset: 0% 0 0 25%;
     opacity: 0;
     padding: min(20vh, 10rem) 1rem;
     position: fixed;
@@ -43,15 +44,16 @@
     transition: var(--transition);
     z-index: -100;
 
-    width: 22rem;
+    width: 32rem;
     height: 0rem; 
 
+    
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     
 
-    border: 2px solid red;
+    border: 2px solid var(--color-primary-font);
 
 }
 
@@ -62,27 +64,38 @@
     opacity: 1;
     pointer-events: auto;
     -webkit-animation: fadeIn 1s;
-    /* z-index: 500; */
+
 }
 
 .dodNav{
     color: var(--color-primary-font);
-    font-size: 1.25rem;
-    font-weight: 400;
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-shadow: var(--small-letter-shadow);
+    margin: 1rem 0 1rem 0;
+
 
 }
 
 
 .navDropdown h2{
     color: var(--color-primary-font);
-    font-size: 1.25rem;
+    font-size: 1.75rem;
     font-weight: 700;
+    margin: 0rem 0 1rem 0;
 }
 
 .navbarLinks{
     color: var(--color-primary-font);
     font-size: 1.25rem;
     font-weight: 400;
+    margin-bottom: .15rem;
+    text-shadow: var(--small-letter-shadow);
+}
+
+.navbarLinks:last-child{
+    margin-bottom: 1rem;
+
 }
 
 .navbarLinks:hover, .dodNav:hover{
