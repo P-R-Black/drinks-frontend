@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { Navigation } from '../../components/navigation/Navigation'
 import { AlcoholSelect } from '../../components/alcoholselect/AlcoholSelect'
 
-export const Alcohol = ({ drinks, baseAlcohol, fetchAlcoholType, navLinkText }) => {
+export const Alcohol = ({ drinks, baseAlcohol, fetchAlcoholType, navLinkText, allDrknksBackgroundPic }) => {
 
   console.log(useParams())
   let { alcohol } = useParams()
@@ -24,6 +24,7 @@ export const Alcohol = ({ drinks, baseAlcohol, fetchAlcoholType, navLinkText }) 
           baseAlcohol={baseAlcohol} 
           navLinkText={navLinkText} 
           alcohol={alcohol}
+          allDrknksBackgroundPic={allDrknksBackgroundPic}
         />
     </>
   )

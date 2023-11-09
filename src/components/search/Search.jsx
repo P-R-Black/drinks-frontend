@@ -3,9 +3,12 @@ import './search.css'
 
 export const Search = () => {
   return (
-    <input 
-      id="search" 
-      className="searchBar"
-      type="text" />
+    <>
+      <input 
+        id="search" 
+        className="searchBar"
+        type="text" />
+    </>
+    
   )
 }

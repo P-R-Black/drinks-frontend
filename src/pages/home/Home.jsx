@@ -9,8 +9,13 @@ export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
 
   return (
     <>
-      <Navigation baseAlcohol={baseAlcohol} fetchAlcoholType={fetchAlcoholType} navLinkText={navLinkText} />
-      <Hero drinks={drinks}/>
+      <Navigation 
+        baseAlcohol={baseAlcohol} 
+        fetchAlcoholType={fetchAlcoholType} 
+        navLinkText={navLinkText} 
+        drinks={drinks}
+      />
+      <Hero/>
       <DailyDrink drinks={drinks}/>
     </>
   )

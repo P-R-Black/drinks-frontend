@@ -15,19 +15,6 @@
     height: 100vh;
 }
 
-.bannerContainer{
-    background-color: red;
-    border: solid red 3px;
-    border-radius: 5px;
-    color: var(--color-primary-font);
-    font-family: 'lobster';
-    font-size: 2rem;
-    font-weight: 600;
-    height: 3rem;
-    padding: 0 1rem 0 1rem;
-    text-align: center;
-
-}
 
 .homePageContainer{
     align-items: center;

@@ -140,7 +140,7 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
               {filteredDrink.map((fd) => {
                 return (
                   <Scroll className="nameButtonContainer">
-                    <li className="drinkListLi" key={fd.id}>{fd}</li>
+                    <li className="drinkListLi" key={fd.id}>{fd.length < 19 ? fd : fd.slice(0, 19) + "..."}</li>
                     <a href={`/alcohol/${fd.base_alcohol}/${fd.toLowerCase()}`} className="linktoRecipe">Recipe</a>
                   </Scroll>
                 )

@@ -3,6 +3,7 @@ import { BiShareAlt } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai'
 import  { AiOutlineMinus } from 'react-icons/ai'
 
+import { Share } from '../share/Share';
 import './drinkrecipe.css'
 
 export const DrinkRecipe = ({drinks, drinkRecipe }) => {
@@ -55,10 +56,7 @@ export const DrinkRecipe = ({drinks, drinkRecipe }) => {
                     <div className="titleAndLikes">
                         <h2 className="recipeTitle">{dr.drink_name}</h2>
                         <div className="likesAndShare" style={{color:"white"}}> 
-                            <div className="shareIcon">
-                                <BiShareAlt className='iconHeart'/>
-                                <span>Share</span>
-                            </div>
+                            <Share recipeInPlay={dr.drink_name}/>
                         </div>
                     </div>
                     <div className="ingredientInstructionContainer">

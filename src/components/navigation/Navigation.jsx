@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './navigation.css'
 
 import { Logo } from '../logo/Logo'
@@ -7,8 +7,9 @@ import { NavLink } from 'react-router-dom'
 
 
 
-export const Navigation = ({ baseAlcohol, fetchAlcoholType, navLinkText, alcohol }) => {
-    
+export const Navigation = ({ baseAlcohol, fetchAlcoholType, alcohol, drinks }) => {
+    const [numofRecipes, setNumOfRecipes] = useState(40)
+
     let chosenAlochol = alcohol
     console.log('chosenAlc', chosenAlochol)
     
@@ -32,10 +33,27 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, navLinkText, alcohol
         
     }
 
+    
+
+    useEffect(() => {
+        const drinksCount = () => {
+        let recipeLengthRounded = Math.round(drinks.length / 5) * 5;
+        if (drinks.length % 5 <= 5) {
+            setNumOfRecipes(`Over ${recipeLengthRounded} recipes, with more added daily`)
+        } else {
+            setNumOfRecipes(`Nearly ${recipeLengthRounded} recipes, with more added daily`)
+        }
+        
+        }
+        drinksCount()
+    },[])
+
 
 
   return (
-    <nav className="navbar">
+    <>  
+        <div className="bannerContainer">{numofRecipes}</div>
+        <nav className="navbar">
         <div className="navbarContainer container">
             <div id="logoId">
                 <Logo className="navbarLogo"></Logo>
@@ -71,6 +89,8 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, navLinkText, alcohol
             </div>
         </div>
     </nav>
+    </>
+    
   )
 }
 

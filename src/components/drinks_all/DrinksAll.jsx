@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import './drinks_all.css'
 
-export const DrinksAll = ({drinks, alcohol}) => {
+export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
   const [alldrinks, setallDrinks ] = useState([])
-  const [allDrknksBackgroundPic, setAllDrknksBackgroundPic] = useState()
+  // const [allDrknksBackgroundPic, setAllDrknksBackgroundPic] = useState()
   const [alcFontSize, setAlcFontSize] = useState(200)
 
   // format alcohol name
@@ -28,48 +28,6 @@ export const DrinksAll = ({drinks, alcohol}) => {
   alcohol = alcoholFirstLetterCap + alcoholFirstLetterRemainingLetters
 }
 
-  let imgUrlDefault = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-rachel-default.jpg') + ')'
-  let imgUrlLime = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-lisa-f.jpg') + ')'
-  let imgUrlOrange = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-j-lewis.jpg') + ')'
-  let imgUrlLemon = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-lukas.jpg')  + ')'
-  let imgUrlColaUp = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-cola-up.jpg') + ')'
-  let imgUrlColaDown = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-cola-down.jpg') + ')'
-  let imgUrlBloodOrange = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-blood-orange-wedge.jpg') + ')'
-  let imgUrlRedLemonSlice = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-red-lemon-slice.jpg') + ')'
-  let imgUrlChampagneBot = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-champagne-bottles.jpg') + ')'
-  let imgUrlMojito = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-lime-mint-drinks.jpg') + ')'
-  let imgUrlScotchTopDown = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-scotch-topdown.jpg') + ')'
-  let imgUrlOrangeSlices = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-orange-slices.jpg') + ')'
-  let imgUrlWhiteWine = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-white-wine.jpg') + ')'
-  let imgUrlRoseWine = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-polina-rose-over.jpg') + ')'
-  let imgUrlRumGold = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-eva-gold.jpg') + ')'
-
-
-  let picByDrink = {
-    "Amaretto": [imgUrlScotchTopDown],
-    "Apéritif": [imgUrlBloodOrange],
-    "Aquavit": [imgUrlBloodOrange],
-    "Brandy": [imgUrlScotchTopDown],
-    "Bourbon": [imgUrlScotchTopDown],
-    "Cognac": [imgUrlScotchTopDown],
-    "Gin": [imgUrlLime, imgUrlLemon, imgUrlBloodOrange, imgUrlRedLemonSlice],
-    "Mezcal":[imgUrlOrangeSlices],
-    "Punt e Mes": [imgUrlOrange, imgUrlBloodOrange, imgUrlRedLemonSlice],
-    "Rosé Wine Apéritif": [imgUrlRoseWine],
-    "Rum": [imgUrlColaUp, imgUrlMojito],
-    "Rum (Dark)": [imgUrlColaUp],
-    "Rum (Gold)": [imgUrlRumGold],
-    "Rum (Light)": [imgUrlColaUp, imgUrlMojito],
-    "Scotch": [imgUrlScotchTopDown],
-    "Sloe Gin": [imgUrlBloodOrange, imgUrlRedLemonSlice],
-    "Tequila": [imgUrlLime, imgUrlOrange, imgUrlLemon],
-    "Vodka":[imgUrlLime, imgUrlOrange, imgUrlLemon],
-    "Vermouth": [imgUrlBloodOrange],
-    "Whiskey": [imgUrlScotchTopDown],
-    "White Wine Apéritif": [imgUrlWhiteWine, imgUrlChampagneBot],
-  }
-
-
   const getAllDrinks = () => {
     let sortedList = []
     let fileDrinks = drinks.map((fd) => {
@@ -81,9 +39,6 @@ export const DrinksAll = ({drinks, alcohol}) => {
       }
     })
     setallDrinks(sortedList.sort())
-    
-    console.log('fileDrinks', fileDrinks)
-    console.log('sortedList', sortedList)
 
   }
 
@@ -97,16 +52,13 @@ export const DrinksAll = ({drinks, alcohol}) => {
   }
 
 
-
-
-
   useEffect(() => {
     getAllDrinks()
     adjustFontSize()
-    setAllDrknksBackgroundPic(picByDrink[alcohol] != undefined ? picByDrink[alcohol][Math.floor(Math.random() * picByDrink[alcohol].length)]: imgUrlDefault)
   },[alcohol])
 
-    
+  
+  console.log('background', allDrknksBackgroundPic)
 
   return (
     <section className="allDrinksBackground" style={{backgroundImage: allDrknksBackgroundPic}}>

@@ -20,19 +20,35 @@
     flex-direction: column;
     height: 95vh;
     justify-content: center;
+    position: relative;
+
 }
 
-h2.drinkOfDayTitle{
+
+h1.drinkOfDayTitle{
     color: var(--color-primary-font);
-    font-size: 5rem;
+    font-size: 6.5rem;
     font-weight: 700;
+    text-decoration: underline;
 }
 
-
-.drinkOfDayDrink{
+h2.drinkOfDayDrink{
     color: var(--color-primary-font);
-    font-size: 2.25rem;
-    font-weight: 200;
+    font-size: 4rem;
+    font-weight: 400;
+    
+}
+
+.drinkOftheDateDate{
+    color: var(--color-primary-font);
+    font-size: 3rem;
+    font-weight: 400;
+    bottom: 0;
+    position: absolute;
+
+
+
+
 }
 
 .recipeButton{
@@ -46,13 +62,13 @@ h2.drinkOfDayTitle{
     font-weight: 700;
     margin-top: 1.25rem;
     outline: none;
+    text-align: center;
     padding: .35rem 1.25rem;
     /* transition: var(--transition) */
     width: 10rem;
 
 }
-.r
-ecipeButton:active{
+.recipeButton:active{
     background-color: transparent;
     transform: translateY(3px);
 
