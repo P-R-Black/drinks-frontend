@@ -96,7 +96,10 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
     let baseAlcoholName = document.getElementById('baseAlcoholName').innerText
     if(baseAlcoholName.length >= 18){
       setAlcFontSize(120)
-    } else {
+    } else if (baseAlcoholName.length >= 12) {
+      setAlcFontSize(180)
+
+      } else {
       setAlcFontSize(200)
     }
   }

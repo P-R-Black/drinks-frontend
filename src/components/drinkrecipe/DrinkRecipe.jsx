@@ -6,7 +6,8 @@ import  { AiOutlineMinus } from 'react-icons/ai'
 import { Share } from '../share/Share';
 import './drinkrecipe.css'
 
-export const DrinkRecipe = ({drinks, drinkRecipe }) => {
+export const DrinkRecipe = ({drinks, drinkRecipe}) => {
+
 
     const [ recipe, setRecipe ] = useState([])
     const [ backgroundRecipePic, setBackgroundRecipePic] = useState()
@@ -38,7 +39,6 @@ export const DrinkRecipe = ({drinks, drinkRecipe }) => {
     }
 
 
-
     useEffect(() => {
         getDrinkRecipe()
         setBackgroundRecipePic(picByRecipe[Math.floor(Math.random() * picByRecipe.length)])
@@ -56,7 +56,12 @@ export const DrinkRecipe = ({drinks, drinkRecipe }) => {
                     <div className="titleAndLikes">
                         <h2 className="recipeTitle">{dr.drink_name}</h2>
                         <div className="likesAndShare" style={{color:"white"}}> 
-                            <Share recipeInPlay={dr.drink_name}/>
+                            <Share recipeInPlay={dr.drink_name}
+                                ingredientInPlay={dr.ingredient_name}
+                                garnishInPlay={dr.garnish}
+                                directionsInPlay={dr.mixing_direction}
+                                glassInPlay={dr.serving_glass}
+                            />
                         </div>
                     </div>
                     <div className="ingredientInstructionContainer">

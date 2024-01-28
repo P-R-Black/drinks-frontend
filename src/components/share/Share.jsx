@@ -9,7 +9,7 @@ import { HiOutlineMail } from 'react-icons/hi';
 
 import './share.css';
 
-export const Share = ({ recipeInPlay }) => {
+export const Share = ({ recipeInPlay, ingredientInPlay, garnishInPlay, directionsInPlay, glassInPlay }) => {
 
     const showShareMenu = () => {
         let shareBarMenu = document.querySelector('.shareIcon')
@@ -31,21 +31,39 @@ export const Share = ({ recipeInPlay }) => {
     }
 
 
+    const getTumbElement = () => {
+        let drinkInstructions = directionsInPlay.split("\r\n")
+        let tumblrLink = "https://www.tumblr.com/widgets/share/tool?posttype=text&tags=KeepsGuide," +
+        encodeURIComponent(recipeInPlay) +  "&title=" + encodeURIComponent("Keep's Guide Recipe:\n" + recipeInPlay) +
+        "&content=" + 
+        "<b>Ingredients:</b>" +
+        `<ul>${ingredientInPlay.map((iip => { return `<li>${encodeURIComponent(iip.replace(".00",""))}</li>`}))}</ul>`+ 
+        "<b>Garnish:</b>" + 
+        `<ul>${garnishInPlay.map((gip => { return `<li>${encodeURIComponent(gip.replace("0", "").trim())}</li>`}))}</ul>` +
+        "<b>Serving Glass:</b>" + `<ul><li>${encodeURIComponent(glassInPlay)}</li></ul>`+
+        "<b> Mixing Instructions:</b>" 
+        + `<ol>${drinkInstructions.map((dip => { return `<li>${encodeURIComponent(dip.replace(/[0-9]./, "").trim())}</li>`}))}</ol>`+
+       
+        "&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button";
+        document.getElementById("tumblr-quote").href = tumblrLink;
+    }
+
+
   return (
     <div className='shareIcon' aria-controls="shareMenu" aria-expanded="false" onClick={showShareMenu}>
         <BiShareAlt className='iconHeart'/>
         <span>Share</span>
         <div className="shareDropDown">
-        <a href="https://www.facebook.com/share.php?u=paulrblack.com" target="_blank">
-            <FaFacebookSquare className='shareIcons' id="facebookShare"/>
-        </a>
+            <a href="https://www.facebook.com/share.php?u=paulrblack.com" target="_blank">
+                <FaFacebookSquare className='shareIcons' id="facebookShare"/>
+            </a>
 
             
             <FaSquareXTwitter className='shareIcons' id="xShare"/>
-
-            <a href="https://www.tumblr.com/widgets/share/tool"
-                title="share this recipe" target="_blank">
-                <FaTumblrSquare className='shareIcons' id="tmblrShare"/>
+    
+            <a href="https://www.tumblr.com/widgets/share/tool" class="button" id="tumblr-quote" title="post this quote" target="_blank">
+                <FaTumblrSquare className='shareIcons' id="tmblrShare"
+                onClick={getTumbElement}/>
             </a>
             
             <FaFacebookMessenger className='shareIcons' id="messengerShare"/>
@@ -55,7 +73,7 @@ export const Share = ({ recipeInPlay }) => {
             </a>
             
             
-            <a href={`mailto:email@mail.com?subject=Keep's Guide for a ${recipeInPlay}&body=Check out the recipe at http://www.keepsguiide.com.`}
+            <a href={`mailto:email@mail.com?subject=Keep's Guide's recipe for a ${recipeInPlay}&body=Check out the recipe at http://www.keepsguide.com.`}
                 title="Share by Email" target="_blank">
                 <HiOutlineMail className='shareIcons' id="emailShare"/>
             </a>
