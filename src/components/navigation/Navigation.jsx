@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import './navigation.css'
 
-import { Logo } from '../logo/Logo'
-import { Search } from '../search/Search'
-import { NavLink } from 'react-router-dom'
+import { Logo } from '../logo/Logo';
+import { Search } from '../search/Search';
+import { SearchResults } from '../search/SearchResults';
+import { NavLink } from 'react-router-dom';
 
 
 
-export const Navigation = ({ baseAlcohol, fetchAlcoholType, alcohol, drinks }) => {
+export const Navigation = ({ baseAlcohol, fetchAlcoholType, alcohol, drinks,  drinkRecipe }) => {
     const [numofRecipes, setNumOfRecipes] = useState(40)
-
-    let chosenAlochol = alcohol
-    console.log('chosenAlc', chosenAlochol)
+    const [results, setResults] = useState([])
     
     const showNavMenu = () => {
         
@@ -46,7 +45,7 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, alcohol, drinks }) =
         
         }
         drinksCount()
-    },[])
+    },[drinks.length])
 
 
 
@@ -59,7 +58,14 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, alcohol, drinks }) =
                 <Logo className="navbarLogo"></Logo>
             </div>
             <search className="searchId">
-                <Search className="navSearch"></Search>
+                <Search 
+                    drinks={drinks}
+                    drinkRecipe={drinkRecipe}
+                    setResults={setResults}
+                    className="navSearch">
+                
+                </Search>
+                <SearchResults results={results}/>
             </search>
             <div className="navbarItems">
                 <div className="navDropdown">

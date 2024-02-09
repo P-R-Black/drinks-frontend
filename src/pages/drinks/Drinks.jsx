@@ -16,6 +16,7 @@ export const Drinks = ({ drinks, baseAlcohol, fetchAlcoholType, navLinkText}) =>
           fetchAlcoholType={fetchAlcoholType}
           navLinkText={navLinkText}
           drinks={drinks}
+          drinkRecipe={drinkRecipe}
         />
         <DrinkRecipe
           drinks={drinks} 

@@ -6,10 +6,17 @@ import { FaTumblrSquare } from 'react-icons/fa';
 import { FaFacebookMessenger } from 'react-icons/fa';
 import { FaWhatsappSquare } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
+import { FacebookShareButton, 
+    TwitterShareButton, 
+    FacebookMessengerShareButton, 
+    WhatsappShareButton} from 'react-share';
+
 
 import './share.css';
 
 export const Share = ({ recipeInPlay, ingredientInPlay, garnishInPlay, directionsInPlay, glassInPlay }) => {
+
+    let cocktailGlass = "/Users/paulblack/VS Code/drinks-app/src/assets/CocktailGlassTingPng.png"
 
     const showShareMenu = () => {
         let shareBarMenu = document.querySelector('.shareIcon')
@@ -17,7 +24,7 @@ export const Share = ({ recipeInPlay, ingredientInPlay, garnishInPlay, direction
         let shareDropDown = document.querySelector('.shareDropDown');
         
 
-        if (shareVisibility == null || shareVisibility == "false"){
+        if (shareVisibility == null || shareVisibility === "false"){
             console.log('Hey, Let\'s share this recipe')
             shareBarMenu.setAttribute('aria-expanded', 'true')
             shareBarMenu.setAttribute('data-visible', 'true')
@@ -30,11 +37,13 @@ export const Share = ({ recipeInPlay, ingredientInPlay, garnishInPlay, direction
         }
     }
 
+    const sharedURL = window.location.href
+    console.log('url', sharedURL)
 
     const getTumbElement = () => {
         let drinkInstructions = directionsInPlay.split("\r\n")
         let tumblrLink = "https://www.tumblr.com/widgets/share/tool?posttype=text&tags=KeepsGuide," +
-        encodeURIComponent(recipeInPlay) +  "&title=" + encodeURIComponent("Keep's Guide Recipe:\n" + recipeInPlay) +
+        encodeURIComponent(recipeInPlay.replace(/\s/g, "")) +  "&title=" + encodeURIComponent("Keep's Guide Recipe:\n" + recipeInPlay) +
         "&content=" + 
         "<b>Ingredients:</b>" +
         `<ul>${ingredientInPlay.map((iip => { return `<li>${encodeURIComponent(iip.replace(".00",""))}</li>`}))}</ul>`+ 
@@ -54,27 +63,31 @@ export const Share = ({ recipeInPlay, ingredientInPlay, garnishInPlay, direction
         <BiShareAlt className='iconHeart'/>
         <span>Share</span>
         <div className="shareDropDown">
-            <a href="https://www.facebook.com/share.php?u=paulrblack.com" target="_blank">
+          
+            <FacebookShareButton url={"http://www.paulrblack.com"}>
                 <FaFacebookSquare className='shareIcons' id="facebookShare"/>
-            </a>
+            </FacebookShareButton>
 
+            <TwitterShareButton>
+                <FaSquareXTwitter className='shareIcons' id="xShare"/>
+            </TwitterShareButton>
             
-            <FaSquareXTwitter className='shareIcons' id="xShare"/>
-    
-            <a href="https://www.tumblr.com/widgets/share/tool" class="button" id="tumblr-quote" title="post this quote" target="_blank">
+            <a href="https://www.tumblr.com/widgets/share/tool" class="button" id="tumblr-quote" 
+                title="post this quote" target="_blank" rel="noreferrer">
                 <FaTumblrSquare className='shareIcons' id="tmblrShare"
                 onClick={getTumbElement}/>
             </a>
             
-            <FaFacebookMessenger className='shareIcons' id="messengerShare"/>
-            <a href="whatsapp://send?text=Check out the recipe at http://www.keepsguiide.com." 
-                data-action="share/whatsapp/share"  target="_blank">
-                <FaWhatsappSquare className='shareIcons' id="whatsAppShare"/>
-            </a>
-            
+            <FacebookMessengerShareButton>
+                <FaFacebookMessenger className='shareIcons' id="messengerShare"/>
+            </FacebookMessengerShareButton>
+           
+            <WhatsappShareButton>
+            <FaWhatsappSquare className='shareIcons' id="whatsAppShare"/>
+            </WhatsappShareButton>
             
             <a href={`mailto:email@mail.com?subject=Keep's Guide's recipe for a ${recipeInPlay}&body=Check out the recipe at http://www.keepsguide.com.`}
-                title="Share by Email" target="_blank">
+                title="Share by Email" target="_blank" rel="noreferrer">
                 <HiOutlineMail className='shareIcons' id="emailShare"/>
             </a>
         </div>
