@@ -1,47 +1,83 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './search.css'
+import { SearchResults } from '../search/SearchResults';
+import { IoMdSearch } from "react-icons/io";
+import { IoMdClose } from "react-icons/io"
 
-export const Search = ({ drinks, setResults, drinkRecipe }) => {
-  const [input, setInput] = useState("")
 
-  const camelCase = (str) => {
-    return str.toLowerCase().split(' ').map(function(word){
-      return word.charAt(0).toUpperCase() + word.slice(1)
-    }).join('')
+export const Search = ({ drinks }) => {
+  const [ input, setInput ] = useState("")
+  const [ selectedItem, setSelectedItem ] = useState(-1)
+  const [results, setResults] = useState([])
+
+
+  const handleKeyDown = (e) => {
+    const selectedItemLink = document.getElementsByClassName('searchResultList active')
+    if (selectedItem < results.length){
+        if (e.key === "ArrowUp" && selectedItem > 0){
+            setSelectedItem((prev) => prev - 1);
+        } else if (e.key === "ArrowDown" && selectedItem < results.length - 1){
+            setSelectedItem((prev) => prev + 1);
+        } else if (e.key === "Enter" && selectedItem >= 0){
+          window.location.href = selectedItemLink[0].getAttribute('href')
+        }
+
+    } else {
+        setSelectedItem(-1)
+    }
+  };
+
+  const handleClose = () => {
+    setInput("")
+    setResults([])
+    setSelectedItem(-1)
+
   }
 
 
-  const fetchData = (value) => {
-    console.log('value', value)
-    const results = drinks.filter((drink) => {
-      // return drink && drink.drink_name.toLowerCase().includes(value)
-      return (
-        value &&
-        drink &&
-        // drink.base_alcohol[0].toUpperCase().includes(value) &&
-        drink.base_alcohol[0].toLowerCase().includes(value)
-        // drink.drink_name.toLowerCase().includes(value)
-    
-      );
+  useEffect(() => {
+    if (input !== ""){
+      const results = drinks.filter((drink) => {
+        return (
+          drink.base_alcohol[0].toLowerCase().includes(input.toLowerCase()) || 
+          drink.drink_name.toLowerCase().includes(input.toLowerCase()) ||
+          drink.ingredient_name.join(" ").toLowerCase().includes(input.toLowerCase())
+        );
+      })
+      setResults(results.sort())
+    } else {
+      setResults([])
+    }
 
-    });
-      setResults(results)
+  }, [input])
+
+  const handleChange = (e) => {
+    setInput(e.target.value)
   }
 
-  const handleChange = (value) => {
-    setInput(value)
-    fetchData(value)
-  }
+
+  
   return (
-    <>
-      <input 
-        id="search" 
-        className="searchBar"
-        type="text" 
-        value={input}
-        onChange={(e) => handleChange(e.target.value)}
+    <section className='searchSection'>
+      <div className="searchInputDiv">
+      <div className="searchIcons">
+          {
+            input === "" ? (<IoMdSearch/>) : (<IoMdClose onClick={handleClose}/>)
+          }
+        </div>
+        <input 
+          id="search" 
+          className="searchBar"
+          type="text"
+          placeholder="Search Drink by Name, Alcohol, or Ingredient"
+          value={input}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
         />
-    </>
+        <SearchResults results={results} selectedItem={selectedItem}/>
+
+      </div>
+    </section>
     
   )
 }

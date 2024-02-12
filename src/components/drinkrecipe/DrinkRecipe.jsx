@@ -8,7 +8,6 @@ import './drinkrecipe.css'
 
 export const DrinkRecipe = ({drinks, drinkRecipe}) => {
 
-
     const [ recipe, setRecipe ] = useState([])
     const [ backgroundRecipePic, setBackgroundRecipePic] = useState()
     let [ unitCount, setUnitCount ] = useState(1)
@@ -16,18 +15,22 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
     let imgRecipeBG = 'radial-gradient(#25236E82, #4A5ECB75),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-kelly.jpg') + ')'
     let picByRecipe = [imgRecipeBG]
 
+    useEffect(() => {
+        getDrinkRecipe()
+        setBackgroundRecipePic(picByRecipe[Math.floor(Math.random() * picByRecipe.length)])
+        
+    },[])
+
+
 
     // function to get drink recipe
     const getDrinkRecipe = () => {
         drinks.map((rec) => {
             if (rec.drink_name.toLowerCase() == drinkRecipe){
-                console.log('drink recipe', drinkRecipe)
                 setRecipe([rec])
-                console.log('recipe', recipe)
             } 
         })
     }
-    console.log('recipe', recipe)
 
     // removes zero before decimals
     const formatUnits = (unit) =>{
@@ -39,20 +42,13 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
     }
 
 
-    useEffect(() => {
-        getDrinkRecipe()
-        setBackgroundRecipePic(picByRecipe[Math.floor(Math.random() * picByRecipe.length)])
-        
-    },[])
-
-
 
   return (
     <section className="recipeBackground" style={{backgroundImage: backgroundRecipePic}}>
         <div className="container">
             {recipe.map((dr) => {
                 return (
-                <div className="recipeContainer">
+                <div className="recipeContainer" key={dr.id}>
                     <div className="titleAndLikes">
                         <h2 className="recipeTitle">{dr.drink_name}</h2>
                         <div className="likesAndShare" style={{color:"white"}}> 
@@ -68,9 +64,9 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
                         <div className="allIngredientsContainer">
                             <h3 className="ingredientTitle">Ingredients</h3>
                             <ul>
-                            {dr.ingredient_name.map((im) => {
+                            {dr.ingredient_name.map((im, imIndex) => {
                                 return (
-                                    <li className="ingredients" key={im.id}>
+                                    <li className="ingredients" key={imIndex}>
                                         <span className="ingredientUnit">{formatUnits(im)} </span>  
                                         <span className="ingredientMeasurement">{im.split(" ")[1]} </span>
                                         <span className="ingredentIngredient">
@@ -86,9 +82,9 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
                         <div className="garnishAndGlassContainer">
                             <div className="garnishContainer">
                                 <h3 className="garnishTitle">Garnish</h3>
-                                {dr.garnish.map((mg) => {
+                                {dr.garnish.map((mg, index) => {
                                     return (
-                                        <h4 className="garnish">{mg != "0 None" ? mg: "None"}</h4>
+                                        <h4 key={index} className="garnish">{mg != "0 None" ? mg: "None"}</h4>
                                     )
                                 })}
                                 

@@ -46,9 +46,8 @@
 }
 
 .drinkListContainer{
-    /* border: 2px solid red; */
     width: 100%;
-    
+
 }
 
 .drinkListUl{
@@ -65,6 +64,7 @@
     text-align: center;
     width: 23rem;
     text-shadow: var(--small-letter-shadow);
+   
 }
 
 .nameButtonContainer {

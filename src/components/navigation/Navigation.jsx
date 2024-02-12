@@ -3,14 +3,14 @@ import './navigation.css'
 
 import { Logo } from '../logo/Logo';
 import { Search } from '../search/Search';
-import { SearchResults } from '../search/SearchResults';
 import { NavLink } from 'react-router-dom';
 
 
 
 export const Navigation = ({ baseAlcohol, fetchAlcoholType, alcohol, drinks,  drinkRecipe }) => {
     const [numofRecipes, setNumOfRecipes] = useState(40)
-    const [results, setResults] = useState([])
+    
+
     
     const showNavMenu = () => {
         
@@ -31,7 +31,7 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, alcohol, drinks,  dr
         }   
         
     }
-
+     
     
 
     useEffect(() => {
@@ -47,8 +47,6 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, alcohol, drinks,  dr
         drinksCount()
     },[drinks.length])
 
-
-
   return (
     <>  
         <div className="bannerContainer">{numofRecipes}</div>
@@ -61,11 +59,9 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, alcohol, drinks,  dr
                 <Search 
                     drinks={drinks}
                     drinkRecipe={drinkRecipe}
-                    setResults={setResults}
                     className="navSearch">
                 
                 </Search>
-                <SearchResults results={results}/>
             </search>
             <div className="navbarItems">
                 <div className="navDropdown">

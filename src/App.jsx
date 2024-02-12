@@ -60,15 +60,19 @@ const App = () => {
   }
   
   useEffect(() => {
+
     const fetchData = async () =>{
       setLoading(true);
       try {
         const {data: response} = await axios.get(API_ENDPOINT);
         setDrinks(response);
+        setLoading(false);
+        
       } catch (error) {
         console.error(error.message);
+        setLoading(false);
       }
-      setLoading(false);
+     
     }
 
     fetchData();

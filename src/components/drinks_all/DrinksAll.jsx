@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import './drinks_all.css'
+import React, { useState, useEffect } from 'react';
+import { ToolTip } from '../tooltip/ToolTip';
+import './drinks_all.css';
 
 export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
   const [alldrinks, setallDrinks ] = useState([])
-  // const [allDrknksBackgroundPic, setAllDrknksBackgroundPic] = useState()
   const [alcFontSize, setAlcFontSize] = useState(200)
+  const [drinkToolTip, setdrinkToolTip] = useState("")
 
   // format alcohol name
   if (alcohol === "punt e mes"){
@@ -21,6 +22,8 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
   alcohol = "Rum (Gold)"
 } else if (alcohol === "rum (light)"){
   alcohol = "Rum (Light)"
+} else if (alcohol === "amaretto"){
+  alcohol = "Amaretto"
 } else {
   let alcoholFirstLetter = alcohol.charAt(0)
   let alcoholFirstLetterCap = alcoholFirstLetter.toUpperCase()
@@ -57,8 +60,6 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
     adjustFontSize()
   },[alcohol])
 
-  
-  console.log('background', allDrknksBackgroundPic)
 
   return (
     <section className="allDrinksBackground" style={{backgroundImage: allDrknksBackgroundPic}}>
@@ -69,13 +70,15 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
             <h2>Drinks & Cocktails</h2>
           </div>
           <div className="linksToDrinksContainer">
-            {alldrinks.map((ad) => {
-              return (
-                <a href={`/alcohol/${ad.base_alcohol}/${ad.toLowerCase()}`} 
-                className="linktoRecipeTwo">{ad.length < 18 ? ad : ad.slice(0, 15) + "..."}</a>
-              )
-            })}
-
+            {alldrinks.map((ad) => (
+               <>
+                 <a
+                  href={`/alcohol/${ad.base_alcohol}/${ad.toLowerCase()}`} 
+                  className="linktoRecipeTwo">
+                  {ad.length < 18 ? ad : ad.slice(0, 15) + "..."}
+                </a>       
+               </>
+            ))}
           </div>
         </div>
       </div>
