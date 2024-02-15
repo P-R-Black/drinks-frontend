@@ -65,7 +65,7 @@ export const Search = ({ drinks }) => {
             input === "" ? (<IoMdSearch/>) : (<IoMdClose onClick={handleClose}/>)
           }
         </div>
-        <input 
+        <input
           id="search" 
           className="searchBar"
           type="text"

@@ -34,7 +34,7 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
   const getAllDrinks = () => {
     let sortedList = []
     let fileDrinks = drinks.map((fd) => {
-      if(fd.base_alcohol[0] == alcohol){
+      if(fd.base_alcohol[0] === alcohol){
           if (fd.drink_name){
             sortedList.push(fd.drink_name)
           }
@@ -72,11 +72,13 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
           <div className="linksToDrinksContainer">
             {alldrinks.map((ad) => (
                <>
-                 <a
-                  href={`/alcohol/${ad.base_alcohol}/${ad.toLowerCase()}`} 
-                  className="linktoRecipeTwo">
-                  {ad.length < 18 ? ad : ad.slice(0, 15) + "..."}
-                </a>       
+                 <ToolTip text={ad}>
+                        <a 
+                          className="linktoRecipeTwo"
+                          href={`/alcohol/${ad.base_alcohol}/${ad.toLowerCase()}`}>
+                        {ad.length < 18 ? ad : ad.slice(0, 15) + "..."}
+                        </a>
+                  </ToolTip> 
                </>
             ))}
           </div>
