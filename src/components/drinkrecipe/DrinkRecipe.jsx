@@ -12,7 +12,7 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
     const [ backgroundRecipePic, setBackgroundRecipePic] = useState()
     let [ unitCount, setUnitCount ] = useState(1)
     
-    let imgRecipeBG = 'radial-gradient(#25236E82, #4A5ECB75),' + 'url(' + require ('/Users/paulblack/VS Code/drinks-app/src/assets/pexels-kelly.jpg') + ')'
+    let imgRecipeBG = 'radial-gradient(#25236E82, #4A5ECB75),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-kelly.jpg') + ')'
     let picByRecipe = [imgRecipeBG]
 
     useEffect(() => {
