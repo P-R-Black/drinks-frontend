@@ -73,7 +73,7 @@ export const Share = ({ recipeInPlay, ingredientInPlay, garnishInPlay, direction
             </TwitterShareButton>
             
             <a href="https://www.tumblr.com/widgets/share/tool" class="button" id="tumblr-quote" 
-                title="post this quote" target="_blank" rel="noreferrer">
+                title="post this quote" target="_blank" rel="noopener noreferrer">
                 <FaTumblrSquare className='shareIcons' id="tmblrShare"
                 onClick={getTumbElement}/>
             </a>
@@ -87,7 +87,7 @@ export const Share = ({ recipeInPlay, ingredientInPlay, garnishInPlay, direction
             </WhatsappShareButton>
             
             <a href={`mailto:email@mail.com?subject=Keep's Guide's recipe for a ${recipeInPlay}&body=Check out the recipe at http://www.keepsguide.com.`}
-                title="Share by Email" target="_blank" rel="noreferrer">
+                title="Share by Email" target="_blank" rel="noopener noreferrer">
                 <HiOutlineMail className='shareIcons' id="emailShare"/>
             </a>
         </div>

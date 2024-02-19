@@ -1,7 +1,4 @@
 .dodSection{
-
-    background-image: url('/src/assets/pexels-ron-lach.jpg');
-    background-image: radial-gradient(#2e2c7c68, #4a5ecb5f), url('/src/assets/pexels-ron-lach.jpg');
     background-size: cover; 
     
     background-blend-mode: multiply;

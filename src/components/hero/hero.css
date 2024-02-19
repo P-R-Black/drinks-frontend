@@ -1,13 +1,10 @@
 .indexBackground{
-    background-image: url('/src/assets/pexels-chris-f-1283219.jpeg');
-    background-image: radial-gradient(#2e2c7c68, #4a5ecb5f), url('/src/assets/pexels-chris-f-1283219.jpeg');
-    background-size: cover; 
-    
+    background-size: cover;     
     background-blend-mode: multiply;
     background-repeat: no-repeat;
     background-position: center;
     overflow-x: hidden;
-    
+  
     width: 100%;
 
     margin-top: -5rem;

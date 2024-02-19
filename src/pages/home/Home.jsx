@@ -16,7 +16,7 @@ export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
         drinks={drinks}
       />
       <Hero/>
-      <DailyDrink drinks={drinks}/>
+      <DailyDrink />
     </>
   )
 }

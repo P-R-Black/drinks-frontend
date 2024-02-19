@@ -42,8 +42,8 @@ export const Calendar = ({date, year, month}) => {
             previousCalendar += `<li className="inactive">${i - dayEnd + 1}</li>`
         }
         
-        currentDate.innerText = `${months[month]} ${year}`;       
-        day.innerHTML = previousCalendar
+        // currentDate.innerText = `${months[month]} ${year}`;       
+        // day.innerHTML = previousCalendar
     }
     generateCalendar()
 

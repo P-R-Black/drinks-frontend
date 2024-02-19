@@ -58,7 +58,7 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
   useEffect(() => {
     getAllDrinks()
     adjustFontSize()
-  },[alcohol])
+  },[getAllDrinks])
 
 
   return (

@@ -16,8 +16,9 @@ const App = () => {
   const [ drinks, setDrinks ] = useState([])
   const [ loading, setLoading ] = useState(true);
   const [ baseAlcohol, setBaseAlcohol ] = useState([])
-  const [allDrknksBackgroundPic, setAllDrknksBackgroundPic] = useState()
-                                                                                  //  '/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-rachel-default.jpg'
+  const [ allDrknksBackgroundPic, setAllDrknksBackgroundPic] = useState()
+
+
   let imgUrlDefault = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-rachel-default.jpg') + ')'
   let imgUrlLime = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-lisa-f.jpg') + ')'
   let imgUrlOrange = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-j-lewis.jpg') + ')'
@@ -67,7 +68,6 @@ const App = () => {
         const {data: response} = await axios.get(API_ENDPOINT);
         setDrinks(response);
         setLoading(false);
-        
       } catch (error) {
         console.error(error.message);
         setLoading(false);
@@ -76,10 +76,11 @@ const App = () => {
     }
 
     fetchData();
-    fetchAlcoholType()
+    fetchAlcoholType();
     setAllDrknksBackgroundPic(picByDrink[baseAlcohol] != undefined ? picByDrink[baseAlcohol][Math.floor(Math.random() * picByDrink[baseAlcohol].length)]: imgUrlDefault)
 
   }, []);
+
 
   const fetchAlcoholType = () => {
     let filteredBase = []
@@ -113,9 +114,6 @@ const App = () => {
 
   navBarLinkText()
 
-  useEffect (() => {
-
-  })
 
   
   return (
