@@ -16,7 +16,7 @@ import './share.css';
 
 export const Share = ({ recipeInPlay, ingredientInPlay, garnishInPlay, directionsInPlay, glassInPlay }) => {
 
-    let cocktailGlass = "/Users/paulblack/VS Code/drinks-app/src/assets/CocktailGlassTingPng.png"
+    // let cocktailGlass = "/Users/paulblack/VS Code/drinks-app/src/assets/CocktailGlassTingPng.png"
 
     const showShareMenu = () => {
         let shareBarMenu = document.querySelector('.shareIcon')

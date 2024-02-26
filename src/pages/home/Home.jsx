@@ -3,6 +3,7 @@ import React from 'react'
 import { Navigation } from '../../components/navigation/Navigation'
 import { Hero } from '../../components/hero/Hero'
 import { DailyDrink } from '../../components/daily_drink/DailyDrink'
+import { MustKnows } from '../../components/must_knows/MustKnows'
 
 
 export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
@@ -16,7 +17,8 @@ export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
         drinks={drinks}
       />
       <Hero/>
-      <DailyDrink />
+      <DailyDrink drinks={drinks}/>
+      <MustKnows />
     </>
   )
 }
