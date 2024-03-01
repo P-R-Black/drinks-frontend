@@ -1,90 +1,99 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { MdNavigateBefore } from "react-icons/md";
 import { MdNavigateNext } from "react-icons/md";
 import './calendar.css'
 
-export const Calendar = ({date, year, month}) => {
-    const day = document.querySelector('.calendarDates');
-    const currentDate = document.querySelector('.calendarCurrentDate');
-    const prevNextIcons = document.querySelectorAll('.calendarNavigation');
+export const Calendar = ({date, year, month, drinkOfTheDay}) => {
+    const [ calendarDate, setCalendarDate ] = useState(date)
+    const [ calendarYear, setCalendarYear ] = useState(year)
+    const [ calendarMonth, setCalendarMonth ] = useState(month)
+    const [ calendarHTML, setCalendarHTML ] = useState("")
 
+    const [ newMonth, setNewMonth ] = useState()
+    const [ calendarCount, setCalendarCount ] = useState(0)
 
     const months = [
         "January", "February", "March", "April", "May", "June", 
         "July", "August", "September", "October", "Novenber", "December"
     ];
 
+    const displayDate = () => {
+        console.log('test')
+        // const testClass = document.getElementsByTagName('li')
+
+    }
+
     const generateCalendar = () => {
+        let dayOne = new Date(calendarYear, calendarMonth, 1).getDay();
+        let lastDate = new Date(calendarYear, calendarMonth + 1, 0).getDate();
+        let dayEnd = new Date(calendarYear, calendarMonth, lastDate).getDay();
+        let monthLastDate = new Date(calendarYear, calendarMonth, 0).getDate();
 
-        let dayOne = new Date(year, month, 1).getDay();
-        let lastDay = new Date(year, month + 1, 0).getDate();
-        let dayEnd = new Date(year, month, lastDay).getDay();
-        let monthLastDate = new Date(year, month, 0).getDate();
         let previousCalendar = "";
-
+     
+        // to add the last date of the previous month
         for(let i = dayOne; i > 0; i--){
-            previousCalendar += `<li className="inactive">${monthLastDate - i + 1}</li>`
-        }
-
-        for (let i = 1; i <= lastDay; i++){
-            // check if current day is today
-            let isToday = i === date.getDate() 
-            && month === new Date().getMonth() 
-            && year === new Date().getFullYear() 
-            ? "active"
-            :"";
-
-            previousCalendar += `<li className=${isToday}>${i}</li>`
-
-        }
-
-        for (let i = dayEnd; i < 6; i++){
-            previousCalendar += `<li className="inactive">${i - dayEnd + 1}</li>`
+            previousCalendar += `<li class="inactive">${monthLastDate - i + 1}</li>`;
         }
         
-        // currentDate.innerText = `${months[month]} ${year}`;       
-        // day.innerHTML = previousCalendar
-    }
-    generateCalendar()
+        // Loop to add the dates of the current month
+        for (let i = 1; i <= lastDate; i++){
 
-    const scrollMonthForward = () => {
-        const nextIcon = document.querySelector('#calendarNext')
-        month = nextIcon === 'calendarNext' ? month - 1 : month + 1;
-        if (month < 0 || month > 11){
-            date = new Date(year, month, new Date().getDate());
-            year = date.getFullYear();
-            month = date.getMonth();
-        } else {
-            date = new Date()
+            // check if the current date is today
+            let isToday = i === calendarDate.getDate()
+            && calendarMonth === new Date().getMonth()
+            && calendarYear === new Date().getFullYear()
+            ? "active" : "";
+            previousCalendar += `<li class="${isToday}" onClick="{displayDate}">${i}</li>`
         }
-        generateCalendar()
-    }
-
-    const scrollMonthBackward = () => {
-        const prevIcon = document.querySelector('#calendarPrevious')
-        month = prevIcon === 'calendarPrevious' ? month + 1 : month - 1;        
-        if (month < 0 || month > 11){
-            date = new Date(year, month, new Date().getDate());
-            year = date.getFullYear();
-            month = date.getMonth();
-        } else {
-            date = new Date()
+        
+        // Loop to add the first dates for the next month
+        for (let i = dayEnd; i < 6; i++){
+            previousCalendar += `<li class="inactive">${i - dayEnd + 1}</li>`
         }
-        generateCalendar()
 
+        setCalendarHTML(previousCalendar)
     }
+    useEffect(() => {
+        generateCalendar()
+    }, [calendarYear, calendarMonth])
+    
+
+
+    const adjustMonth = (increment) => {
+        let newMonth = calendarMonth + increment
+        let newYear = calendarYear
+
+        console.log('newMonth', newMonth)
+        if (newMonth < 0){
+            newMonth = 11
+            newYear--;
+            console.log('test')
+        } else if (newMonth > 11) {
+            newMonth = 0
+            newYear++
+            console.log('test 2')
+        }
+        setCalendarYear(newYear)
+        setCalendarMonth(newMonth)
+        
+    }
+
+
+
 
     
   return (
     <section className="calendarSection">
         <div className="containerCalendar">
             <header className="calendarHeader">
-                <p className="calendarCurrentDate"></p>
-                <div style={{'color':'white'}} className="calendarNavigation">
-                    <span id="calendarPrevious" onClick={scrollMonthBackward}><MdNavigateBefore /></span>
-                    <span id="calendarNext" onClick={scrollMonthForward}><MdNavigateNext /></span>
+                <p style={{'color':'white'}} className="calendarCurrentDate">{months[calendarMonth]} {calendarYear}</p>
+                <div className="calendarNavigation">
+                    <span id="calendarPrevious" onClick={() => adjustMonth(-1)}><MdNavigateBefore /></span>
+                    <span id="calendarNext" onClick={() => adjustMonth(1)}><MdNavigateNext /></span>
                 </div>
             </header>
+
             <div className="calendarBody">
                 <ul className="calendarWeekdays">
                     <li>Sun</li>
@@ -95,8 +104,7 @@ export const Calendar = ({date, year, month}) => {
                     <li>Fri</li>
                     <li>Sat</li>
                 </ul>
-                <ul className="calendarDates" id="calendarDates">
-
+                <ul className="calendarDates" id="calendarDates" dangerouslySetInnerHTML={{ __html: calendarHTML }}>
                 </ul>
             </div>
         </div>

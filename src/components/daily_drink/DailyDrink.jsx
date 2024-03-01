@@ -50,7 +50,6 @@ export const DailyDrink = ({drinks}) => {
       try {
         const {data: response} = await axios.get(DB_ENDPOINT)
         setDrinkOfTheDay(response)
-        console.log('last response', response)
       } catch (error) {
         console.error(error.message)
 
@@ -58,9 +57,9 @@ export const DailyDrink = ({drinks}) => {
     }
 
     const fetchLastRecord = async () => {
+ 
       try {
         const {data: resp} = await axios.get(DB_LAST_ENTRY)
-        console.log('resp', resp)
         setLastDrinkOfTheDay(resp['name'])
         getFullDrinkInfo(resp['name'])
       } catch (error){
@@ -74,7 +73,6 @@ export const DailyDrink = ({drinks}) => {
 
   const getFullDrinkInfo = async (theLastDod) => {
     let ldod = await drinks.find((drink) => drink.drink_name === theLastDod)
-    console.log('ldod', ldod)
     setCurrentDrink([ldod])
     
   }
@@ -88,8 +86,6 @@ export const DailyDrink = ({drinks}) => {
   useEffect(() => {
     localStorage.setItem("ITEM", JSON.stringify(currentDrink))
   },[currentDrink])
-
-  
   
     
 
@@ -103,13 +99,13 @@ export const DailyDrink = ({drinks}) => {
                 <h2 className="todaysDrink">Today's Drink</h2>
                 <div className='dailyDrink'>{lastDrinkOfTheDay}</div>
                 {currentDrink.map((cd) => (
-                   <a href={`/alcohol/${cd.base_alcohol}/${lastDrinkOfTheDay.toLowerCase()}`} className="linktoRecipe">Recipe</a> 
+                   <a key={cd.id} href={`/alcohol/${cd.base_alcohol}/${lastDrinkOfTheDay.toLowerCase()}`} className="linktoRecipe">Recipe</a> 
                 ))}
               </div>
 
               <div className="dodRightSide">
                 <h2 className="boxTitle">Past Drink of the Day</h2>
-                  <Calendar date={date} year={year} month={month}/>
+                  <Calendar date={date} year={year} month={month} drinkOfTheDay={drinkOfTheDay}/>
               </div>
 
           </div>
