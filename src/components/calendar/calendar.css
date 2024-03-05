@@ -120,3 +120,12 @@ header .calendarCurrentDate {
 .calendarDates li:not(.active):hover::before {
     background: #e4e1e1;
 }
+
+
+.popUp{
+    height: 2px;
+    width: 2px;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+}

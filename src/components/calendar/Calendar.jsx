@@ -3,25 +3,67 @@ import { MdNavigateBefore } from "react-icons/md";
 import { MdNavigateNext } from "react-icons/md";
 import './calendar.css'
 
-export const Calendar = ({date, year, month, drinkOfTheDay}) => {
+export const Calendar = ({ date, year, month}) => {
     const [ calendarDate, setCalendarDate ] = useState(date)
     const [ calendarYear, setCalendarYear ] = useState(year)
     const [ calendarMonth, setCalendarMonth ] = useState(month)
     const [ calendarHTML, setCalendarHTML ] = useState("")
-
-    const [ newMonth, setNewMonth ] = useState()
-    const [ calendarCount, setCalendarCount ] = useState(0)
-
+    
     const months = [
         "January", "February", "March", "April", "May", "June", 
         "July", "August", "September", "October", "Novenber", "December"
     ];
 
-    const displayDate = () => {
-        console.log('test')
-        // const testClass = document.getElementsByTagName('li')
+    
+    //   const handleDateHover = (date) => {
+    //     const event = eventMap[date];
+    //     if (event) {
+    //       // Display the event name or perform any other action
+    //       console.log("Event:", event);
+    //     }
+    //   };
+      
+    //   const handleDateClick = (date) => {
+    //     const event = eventMap[String(date)];
+    //     if (event) {
+    //         changeDrink(event)
+    //         console.log("Event:", event);
+    //     }
+    //   };
+      
 
-    }
+    // const calDate = document.querySelectorAll('.calDate')
+    // calDate.forEach((tc) => {
+    //     tc.addEventListener('click', ()=> {
+    //         let getClassNames = tc.getAttribute('class')
+    //         console.log('attributes', getClassNames)
+    //         console.log('tc', tc, 'calendarDate', calendarDate)
+
+    //         let clickedDay = tc.innerHTML
+    //         let clickedYear = calendarYear
+    //         let clickedMonth;
+
+    //         if (getClassNames.includes('lastMonthDays')){
+    //             clickedMonth = calendarMonth
+    //         } else if (getClassNames.includes('nextMonthDays')){
+    //             clickedMonth = calendarMonth + 2
+    //         } else {
+    //             clickedMonth = calendarMonth + 1
+    //         }
+            
+            // if (String(clickedMonth).length < 2){
+            //     clickedMonth = "0" + String(clickedMonth)
+            // }
+            
+            // let clickedDate = `${calendarYear}-${clickedMonth}-${tc.innerHTML.length === 1 ? '0'+tc.innerHTML : tc.innerHTML}`
+            // let monthInText = months[Number(clickedMonth - 1)]
+
+            // handleDateClick(clickedDate)
+            // changeDate(`${monthInText} ${clickedDay}, ${clickedYear}`)
+           
+            
+    //     })
+    // })
 
     const generateCalendar = () => {
         let dayOne = new Date(calendarYear, calendarMonth, 1).getDay();
@@ -33,7 +75,7 @@ export const Calendar = ({date, year, month, drinkOfTheDay}) => {
      
         // to add the last date of the previous month
         for(let i = dayOne; i > 0; i--){
-            previousCalendar += `<li class="inactive">${monthLastDate - i + 1}</li>`;
+            previousCalendar += `<li class="inactive calDate lastMonthDays">${monthLastDate - i + 1}</li>`;  
         }
         
         // Loop to add the dates of the current month
@@ -44,16 +86,17 @@ export const Calendar = ({date, year, month, drinkOfTheDay}) => {
             && calendarMonth === new Date().getMonth()
             && calendarYear === new Date().getFullYear()
             ? "active" : "";
-            previousCalendar += `<li class="${isToday}" onClick="{displayDate}">${i}</li>`
+            previousCalendar += `<li class="${isToday} calDate">${i}</li>`
         }
-        
+   
         // Loop to add the first dates for the next month
         for (let i = dayEnd; i < 6; i++){
-            previousCalendar += `<li class="inactive">${i - dayEnd + 1}</li>`
+            previousCalendar += `<li class="inactive calDate nextMonthDays">${i - dayEnd + 1}</li>`
         }
 
         setCalendarHTML(previousCalendar)
     }
+    
     useEffect(() => {
         generateCalendar()
     }, [calendarYear, calendarMonth])
@@ -78,9 +121,6 @@ export const Calendar = ({date, year, month, drinkOfTheDay}) => {
         setCalendarMonth(newMonth)
         
     }
-
-
-
 
     
   return (

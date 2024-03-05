@@ -21,8 +21,6 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
         
     },[])
 
-
-
     // function to get drink recipe
     const getDrinkRecipe = () => {
         drinks.map((rec) => {
