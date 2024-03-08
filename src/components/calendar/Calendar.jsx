@@ -14,56 +14,7 @@ export const Calendar = ({ date, year, month}) => {
         "July", "August", "September", "October", "Novenber", "December"
     ];
 
-    
-    //   const handleDateHover = (date) => {
-    //     const event = eventMap[date];
-    //     if (event) {
-    //       // Display the event name or perform any other action
-    //       console.log("Event:", event);
-    //     }
-    //   };
-      
-    //   const handleDateClick = (date) => {
-    //     const event = eventMap[String(date)];
-    //     if (event) {
-    //         changeDrink(event)
-    //         console.log("Event:", event);
-    //     }
-    //   };
-      
 
-    // const calDate = document.querySelectorAll('.calDate')
-    // calDate.forEach((tc) => {
-    //     tc.addEventListener('click', ()=> {
-    //         let getClassNames = tc.getAttribute('class')
-    //         console.log('attributes', getClassNames)
-    //         console.log('tc', tc, 'calendarDate', calendarDate)
-
-    //         let clickedDay = tc.innerHTML
-    //         let clickedYear = calendarYear
-    //         let clickedMonth;
-
-    //         if (getClassNames.includes('lastMonthDays')){
-    //             clickedMonth = calendarMonth
-    //         } else if (getClassNames.includes('nextMonthDays')){
-    //             clickedMonth = calendarMonth + 2
-    //         } else {
-    //             clickedMonth = calendarMonth + 1
-    //         }
-            
-            // if (String(clickedMonth).length < 2){
-            //     clickedMonth = "0" + String(clickedMonth)
-            // }
-            
-            // let clickedDate = `${calendarYear}-${clickedMonth}-${tc.innerHTML.length === 1 ? '0'+tc.innerHTML : tc.innerHTML}`
-            // let monthInText = months[Number(clickedMonth - 1)]
-
-            // handleDateClick(clickedDate)
-            // changeDate(`${monthInText} ${clickedDay}, ${clickedYear}`)
-           
-            
-    //     })
-    // })
 
     const generateCalendar = () => {
         let dayOne = new Date(calendarYear, calendarMonth, 1).getDay();
@@ -111,11 +62,9 @@ export const Calendar = ({ date, year, month}) => {
         if (newMonth < 0){
             newMonth = 11
             newYear--;
-            console.log('test')
         } else if (newMonth > 11) {
             newMonth = 0
             newYear++
-            console.log('test 2')
         }
         setCalendarYear(newYear)
         setCalendarMonth(newMonth)

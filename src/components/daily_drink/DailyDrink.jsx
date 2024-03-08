@@ -5,41 +5,52 @@ import './dailyDrink.css'
 import { MdUpdate } from 'react-icons/md'
 
 
-export const DailyDrink = ({ generateCalendar, adjustMonth, date, year, month, lastDrinkOfTheDay, 
-  currentDrink, dateLookup }) => {
+export const DailyDrink = ({ generateCalendar, adjustMonth, date, year, month, mm, dd, lastDrinkOfTheDay, 
+  currentDrink, dateLookup, months }) => {
 
   // const [ isLoading, setIsLoading] = useState(true)
   // const [ dateUpdate, setDateUpdate ] = useState()
   // const [ drinkUpdate, setDrinkUpdate ] = useState()
 
 
-  // let today = `${year}-${mm}-${dd}`
+  let today = `${months[Number(mm) - 1]} ${dd.replace(/^0+/, "")}, ${year}`
   let dodImage = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-ron-lach.jpg') + ')'
 
+  let lookUpDate = new Date(dateLookup).getTime()
+  let lookUpToday = new Date(today).getTime()
+
+
   return (
-      <section className="dodSection" style={{backgroundImage: dodImage}}>
+      <section id="dodSection" className="dodSection" style={{backgroundImage: dodImage}}>
         <div className="container">
         <h1 className="drinkOfDayTitle">Drink of the Day</h1>
             <div className="dodContainer">
 
               <div className="dodLeftSide">
-              <h2 className="todaysDrink">{dateLookup != undefined ? dateLookup : "Today's Drink"}</h2>
-              {currentDrink.map((cd) => (
-                <>
-                  <div key={cd.id} className='dailyDrink'>{cd.drink_name != undefined ? cd.drink_name : lastDrinkOfTheDay}</div>
-                  <a  href={!lastDrinkOfTheDay ? `/alcohol/${cd.base_alcohol}/${cd.drink_name.toLowerCase}`:  `/alcohol/${cd.base_alcohol}/${lastDrinkOfTheDay.toLowerCase()}`} 
-                    className="linktoRecipe">Recipe</a> 
-                </>
-              
+              {dateLookup !== undefined && lookUpDate < lookUpToday  ? (
+              <>
+                <h2 className="todaysDrink">{dateLookup === today ? "Today's Drink": dateLookup}</h2>
+                <h3 className="todaysDrinkofDay" style={{color: "white"}}>{dateLookup === today ? "" : "Drink of the Day"}</h3>
+                {currentDrink.map((cd) => (
+                  <>
+                    <div key={cd.id} className='dailyDrink'>{cd.drink_name}</div>
+                    <a key={cd.drink_name} href={`/alcohol/${cd.base_alcohol}/${cd.drink_name.toLowerCase()}`} className="linktoRecipe">Recipe</a>
+                  </>
                   
-              ))}
-              
-                {/* <h2 className="todaysDrink">{dateUpdate != undefined ? dateUpdate : "Today's Drink"}</h2>
-                <div className='dailyDrink'>{drinkUpdate != undefined ? drinkUpdate : lastDrinkOfTheDay}</div> */}
-               
-                {/* {currentDrink.map((cd) => (
-                   <a key={cd.id} href={`/alcohol/${cd.base_alcohol}/${lastDrinkOfTheDay.toLowerCase()}`} className="linktoRecipe">Recipe</a> 
-                ))} */}
+                ))}
+              </>
+              ): (
+                <>
+                <h2 className="todaysDrink">{"Today's Drink"}</h2>
+                {currentDrink.map((cd) => (
+                  <>
+                    <div key={cd.id} className='dailyDrink'>{lastDrinkOfTheDay}</div>
+                    <a key={cd.drink_name} href={`/alcohol/${cd.base_alcohol}/${lastDrinkOfTheDay.toLowerCase()}`} className="linktoRecipe">Recipe</a> 
+                  </>
+                ))}
+                
+                </>
+              )}
               </div>
 
               <div className="dodRightSide">
@@ -48,11 +59,6 @@ export const DailyDrink = ({ generateCalendar, adjustMonth, date, year, month, l
                     date={date}
                     year={year} 
                     month={month} 
-                    // drinkOfTheDay={drinkOfTheDay}
-                    // months={months}
-                    // changeDate={dateUpdate => setDateUpdate(dateUpdate)}
-                    // changeDrink={drinkUpdate => setDrinkUpdate(drinkUpdate)}
-                    // eventMap={eventMap}
                     generateCalendar={generateCalendar}
                     adjustMonth={adjustMonth}
 

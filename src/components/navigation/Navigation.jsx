@@ -4,10 +4,11 @@ import './navigation.css'
 import { Logo } from '../logo/Logo';
 import { Search } from '../search/Search';
 import { NavLink } from 'react-router-dom';
+import { HashLink, NavHashLink } from 'react-router-hash-link'
 
 
 
-export const Navigation = ({ baseAlcohol, fetchAlcoholType, alcohol, drinks,  drinkRecipe }) => {
+export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks,  drinkRecipe }) => {
     const [numofRecipes, setNumOfRecipes] = useState(40)
     
 
@@ -16,6 +17,7 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, alcohol, drinks,  dr
         
         let navBarMenu = document.querySelector('.navBarMenu')
         let visibility = navBarMenu.getAttribute('data-visible')
+        let dodNave = document.querySelector('.dodNav')
 
         let navBarDropdown = document.querySelector('.navDropdown');
 
@@ -28,7 +30,15 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, alcohol, drinks,  dr
             navBarMenu.setAttribute('aria-expanded', 'false')
             navBarMenu.setAttribute('data-visible', 'false')
             navBarDropdown.classList.remove('show')
-        }   
+        } 
+
+        navBarDropdown.addEventListener('click', () => {
+            navBarMenu.setAttribute('aria-expanded', 'false')
+            navBarMenu.setAttribute('data-visible', 'false')
+            navBarDropdown.classList.remove('show')
+
+           
+        })
         
     }
      
@@ -56,25 +66,23 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, alcohol, drinks,  dr
                 <Logo className="navbarLogo"></Logo>
             </div>
             <search className="searchId">
-                <Search 
-                    drinks={drinks}
-                    drinkRecipe={drinkRecipe}
-                    className="navSearch">
-                
-                </Search>
+                <Search drinks={drinks} drinkRecipe={drinkRecipe} className="navSearch" />
             </search>
+            
             <div className="navbarItems">
                 <div className="navDropdown">
-                    <NavLink className="dodNav">Drink of the Day</NavLink>
+                    <HashLink to="/#dodSection" className="dodNav">Drink of the Day</HashLink>
                     <hr className='navline'/>
                     <h2>Find Cocktail By Alcohol</h2>
                     <ul className="navDropdownByDrink" data-visible="false">
                         {baseAlcohol.map(ba => {
                         return (
                             <NavLink
-                            className="navbarLinks" 
-                            to={`/alcohol/${ba.toLowerCase()}`}
-                            onClick={showNavMenu}>{ba}</NavLink>
+                                className="navbarLinks" 
+                                to={`/alcohol/${ba.toLowerCase()}`}
+                                onClick={showNavMenu}
+                            >{ba}
+                            </NavLink>
                             )
                         })}
                     </ul>
@@ -82,7 +90,7 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, alcohol, drinks,  dr
                     <NavLink className="dodNav">Bartender Must Know Drinks</NavLink>
                 </div>
                 <div className="navBarMenu" id="navBarMenu" aria-controls="navbar_menu" aria-expanded="false"
-                     onClick={()=> { showNavMenu(); fetchAlcoholType()}}>
+                        onClick={()=> { showNavMenu(); fetchAlcoholType()}}>
                     <span className="bar kg-only"></span>
                     <span className="bar kg-only"></span>
                     <span className="bar kg-only"></span>

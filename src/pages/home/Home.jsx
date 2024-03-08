@@ -76,7 +76,6 @@ export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
     const event = eventMap[String(date)];
     if (event) {
         setDrinkLookup(event)
-        console.log("Event:", event);
         getFullDrinkInfo(event)
     }
   };
@@ -110,11 +109,6 @@ export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
     let changedDate = `${monthInText} ${clickedDay}, ${clickedYear}`
     setDateLookup(changedDate)
     
-
-    console.log('changedDate', changedDate)
-    console.log('dateLookup', dateLookup)
-    // console.log('drinkLookup', drinkLookup)
-    console.log('clickedMonth', clickedMonth)
     })
   })
 
@@ -140,14 +134,7 @@ export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
         lastDrinkOfTheDay={lastDrinkOfTheDay}
         currentDrink={currentDrink}
         dateLookup={dateLookup}
-        // eventMap={eventMap}
-        // months={months}
-        // generateCalendar={generateCalendar}
-        // calendarDate={calendarDate}
-        // calendarYear={calendarYear}
-        // calendarMonth={calendarMonth}
-        // calendarHTML={calendarHTML}
-        // adjustMonth={adjustMonth}
+        months={months}
       />
       <MustKnows />
     </>

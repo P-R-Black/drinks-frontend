@@ -11,6 +11,12 @@
 
 .navbarItems{
     z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    width: 3.5rem;
+ 
 
 }
 
@@ -18,12 +24,14 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
+
 }
+
 
 .navBarMenu{
     color: black;
     cursor: pointer;
-
+    position: absolute;
 }
 
 .bar{
@@ -36,26 +44,23 @@
 
 
 .navDropdown{
+    display: none;
     -webkit-background: hsl(0 0% 100% / 0.1);
     -webkit-backdrop-filter: blur(3rem);
     background: hsl(0 0% 100% / 0.1);
     backdrop-filter: blur(2rem);
-    inset: 0% 0 0 25%;
+    margin-top: 38rem;
+    margin-right: 25rem;
+    min-width: 30rem;
     opacity: 0;
-    padding: min(20vh, 10rem) 1rem;
-    position: fixed;
-    transform: translateX(100%);
+    padding: min(11vh, 10rem) 1rem;
+    position: sticky;
     transition: var(--transition);
     z-index: -100;
-
-    width: 32rem;
-    height: 0rem; 
-
     
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    
 
     border: 2px solid var(--color-primary-font);
 
@@ -77,6 +82,7 @@
     font-weight: 700;
     text-shadow: var(--small-letter-shadow);
     margin: 1rem 0 1rem 0;
+
 }
 
 
@@ -113,31 +119,34 @@
     grid-template-columns:  1fr 1fr;
 }
 
+
 .navBarMenu[aria-expanded="true"] .bar:nth-child(1){
-    transform: translateY(8px) rotate(45deg);
+    transform: translateY(7px) rotate(45deg);
+    margin-left: .5rem;
     width: 1.25rem;
+
 }
 
 .navBarMenu[aria-expanded="true"] .bar:nth-child(2){
-    margin-left: 1rem;
-    transform: translateY(0px) rotate(-45deg);
+    margin-left: 1.5rem;
+    transform: translateY(-1px) translateX(-1px) rotate(-45deg);
     width: 1.25rem;
 }
 
 
 .navBarMenu[aria-expanded="true"] .bar:nth-child(3){
-    margin-left: .65rem;
-    margin-top: 1.1rem;
-    transform: translateY(-8px) rotate(90deg);
+    margin-left: .99rem;
+    margin-top: 1.35rem;
+    transform: translateY(-9px) rotate(90deg);
     width: 1.25rem;
 }
 
 
 .navBarMenu[aria-expanded="true"] .bar:nth-child(4){
     margin-top: -.35rem;
-    margin-left: .70rem;
+    margin-left: .95rem;
     transform: translateY(-1px) rotate(0deg);
-    width: 1.2rem;
+    width: 1.25rem;
 
 } 
 

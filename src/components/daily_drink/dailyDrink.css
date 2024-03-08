@@ -13,11 +13,11 @@
 
 h1.drinkOfDayTitle{
     color: var(--color-primary-font);
-    font-size: 6.5rem;
-    font-weight: 700;
+    font-size: 8.5rem;
+    font-weight: 900;
     margin-top: 4.5rem;
     text-align: center;
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
 
 
@@ -40,6 +40,11 @@ h1.drinkOfDayTitle{
     font-size: 4rem;
     font-weight: 600;
     
+}
+
+.todaysDrinkofDay{
+    font-size: 2rem;
+    font-weight: 300;
 }
 
 .dailyDrink{
