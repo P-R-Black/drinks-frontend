@@ -42,7 +42,6 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks,  drinkRecipe
         
     }
      
-    
 
     useEffect(() => {
         const drinksCount = () => {

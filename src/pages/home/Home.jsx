@@ -118,6 +118,7 @@ export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
     setCurrentDrink([ldod])
   }
 
+  console.log('drinkOfTheDay', drinkOfTheDay)
   
   return (
     <>
