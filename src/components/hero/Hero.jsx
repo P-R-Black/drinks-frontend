@@ -1,69 +1,43 @@
 import React, {useState, useEffect } from 'react'
 
 import './hero.css'
+import { Parallax, Background } from 'react-parallax';
+import heroImage from '../../assets/pexels-chris-f-1283219.jpeg'
+
 
 export const Hero = () => {
-  let heroImage = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-chris-f-1283219.jpeg') + ')'
-  let topImage = 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/BarTopImage.png')
-  let middleImage = 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/BarMiddleImage.png')
-  let bottomImage = 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/BarBottomImage.png')
 
-  const [ offsetY, setOffSetY ] = useState(0)
-  const handleScroll = () => setOffSetY(window.pageYOffset);
+  const heroImage2 = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-chris-f-1283219.jpeg') + ')'
+  const heroImage3 = '/../../assets/pexels-chris-f-1283219.jpeg'
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
 
-    return () => window.removeEventListener('scroll', handleScroll)
+  return (
+    
+    <section id="heroSection" className='indexBackground'>
+        <Parallax 
+          blur={5} 
+          // bgImage={heroImage}
 
-  }, []) 
-
-    return (
-      <section id="heroSection" className='indexBackground'>
+          bgImageAlt={heroImage}
+          strength={500}>
+            <Background>
+              <img src={heroImage} className='parallaxImage' style={{position: "absolute", height: "auto", width: "1486.28px", backfaceVisibility: "hidden",
+                transform: 'translate3d(-50%, -49.5868px, 0px)',  left: "50%", transformStyle: 'preserve-3d',
+                backgroundSize: "cover"         
+            }}/>
+            </Background>
         <div className="container">
           <div className="homePageContainer">
-            <div 
-              className="topImage"
-              style={{backgroundImage: topImage,
-              backgroundPosition: 'bottom',
-              backgroundSize: 'cover',
-              // transform: `translateY(${offsetY * 0.6}px)`
-         
-              }}>
+            <div className="titleContainer">
+                <h2>Make Great</h2>
+                <h1>Cocktails</h1>
             </div>
-        
-          <div className="mdlImage"
-            style={{
-              backgroundImage: middleImage,
-              backgroundPosition: 'bottom',
-              backgroundSize: 'cover',
-              transform: `translateY(${offsetY * 0.2}px)`
-            
-            }}>
-
-          </div>
-          <div className="bottomImage"
-            style={{
-              backgroundImage: bottomImage,
-              backgroundPosition: 'bottom',
-              backgroundSize: 'cover',
-              transform: `translateY(${offsetY * 0.1}px)`
-            }}>
-
-          </div>
-          <div className="titleContainer">
-                 <h2 style={{transform: `translateY(${offsetY * 0.8}px)`}} >Make Great</h2>
-                 <h1 style={{transform: `translateY(${offsetY * 0.6}px)`}}>Cocktails</h1>
-             </div>
-             <div
-              style={{transform: `translateY(${offsetY * 0.6}px)`}}
-              className="horizonalDivider"></div>
-              
-            
+            <div className="horizonalDivider"></div>
           </div>
         </div>
-      </section>
+      </Parallax>
+    </section>
     
-    )
+  )
 }
 

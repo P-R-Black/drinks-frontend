@@ -4,6 +4,8 @@ import { Navigation } from '../../components/navigation/Navigation'
 import { Hero } from '../../components/hero/Hero'
 import { DailyDrink } from '../../components/daily_drink/DailyDrink'
 import { MustKnows } from '../../components/must_knows/MustKnows'
+import { MidSection } from '../../components/midsection/MidSection'
+
 import axios from 'axios'
 
 export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
@@ -129,6 +131,7 @@ export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
         drinks={drinks}
       />
       <Hero/>
+      <MidSection/>
       <DailyDrink 
         drinks={drinks} date={date} year={year} month={month} dd={dd} mm={mm}
         // drinkOfTheDay={drinkOfTheDay}
@@ -137,7 +140,9 @@ export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
         dateLookup={dateLookup}
         months={months}
       />
-      <MustKnows />
+     
+      {/* 
+      <MustKnows /> */}
     </>
   )
 }

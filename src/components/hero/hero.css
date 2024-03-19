@@ -1,9 +1,26 @@
 
 
-/* .indexBackground{
-    background-color: radial-gradient(#2e2c7c68, #4a5ecb5f);
-} */
+.indexBackground{
+    /* filter: sepia(100%) saturate(300%) brightness(70%) hue-rotate(180deg); */
+    
+    /* 
+    background-image: radial-gradient(#2e2c7c68, #4a5ecb5f);
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow-x: hidden;
+    width: 100%;
+    margin-top: -5rem;
+    height: 100vh; */
+    /* background-color: black; */
+    
+}
 
+.parallaxImage {
+    filter: sepia(100%) saturate(300%) brightness(95%) hue-rotate(185deg) contrast(.50) opacity(1); 
+    
+}
 
 #heroSection{
     height: 100vh;
@@ -11,45 +28,25 @@
     overflow:hidden;
     position: relative;
     width: 100%;
-} 
-
-
-
- 
-.titleContainer {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    top: 30%;
-    position: absolute;
-    z-index: 20;
-
-}
-
-
-.topImage, .mdlImage, .bottomImage{
-    inset: 0;
-    position: absolute;
     
-}
-
-.mdlImage {
-    z-index: 10;
 } 
 
-.bottomImage {
-    z-index: 30;
-}
-
+    
 .homePageContainer{
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
-    height: 75vh;
-    margin-top: 8rem;
+    height: 100vh;
     width: 100%;
+}
+
+
+.titleContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
 }
 
 
@@ -69,11 +66,11 @@
 .horizonalDivider{
     color: var(--color-primary-font);
     border-top: 7px solid white;
-    margin-bottom: 3rem;
+    /* margin-bottom: 3rem; */
     position: absolute;
     width: 45rem;
     z-index: 20;
-    top: 55%;
+    top: 62%;
     
 }
 
