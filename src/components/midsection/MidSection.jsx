@@ -13,6 +13,6 @@ export const MidSection = () => (
         bgImageAlt="the cat" 
         strength={800}>
         <h1 style={{color: "white", fontSize: '3.5rem', fontWeight:'900', marginTop:'4.5rem', textAlign: 'center'}}
-            className="drinkOfDayTitle">{"Drink Responsibly"}</h1>
+            className="drinkOfDayTitle">{"Please Drink Responsibly"}</h1>
     </Parallax>
 );

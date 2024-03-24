@@ -63,14 +63,99 @@
     line-height: 0%;
 }
 
-.horizonalDivider{
-    color: var(--color-primary-font);
+
+.horizonalDivider.hidden{
+    opacity: 0;
+    filter: blur(5px);
+    transition: all 1s;
+}
+
+.horizonalDivider.show{
+    animation-name: animate-underline;
+    animation-duration: 2s;
     border-top: 7px solid white;
-    /* margin-bottom: 3rem; */
-    position: absolute;
+    color: var(--color-primary-font);
+    filter: blur(0);
+    margin-top: -2.5rem;
+    opacity: 1;
     width: 45rem;
     z-index: 20;
-    top: 62%;
+}
+
+
+
+
+.titleContainerH1.hidden{
+    opacity: 0;
+    filter: blur(5px);
+    transition: all 1s;
+
+
+}
+
+.titleContainerH1.show{
+    filter: blur(0);
+    opacity: 1;
+    animation-duration: 2s;
+    animation-name: animate-text-two;
+}
+
+
+
+.titleContainerH2.hidden{ 
+    opacity: 0;
+    filter: blur(5px);
+    transition: all 1s;
+
+}
+
+.titleContainerH2.show{
+    filter: blur(0);
+    opacity: 1;
+   
+    animation-duration: 2s;
+    animation-name: animate-text;
+}
+
+
+@media(perfers-reduced-motion) {
+    .hidden {
+        transition: none;
+    }
+}
+
+@keyframes animate-text{
+    0%{
+        transform: translateX(-200%) 
+    }
+
+    100%{
+        transform: translateX(0%)
+    }
+
+
+}
+
+@keyframes animate-text-two {
+    0%{
+        transform: translateX(200%) 
+    }
+
+    100%{
+        transform: translateX(0%)
+    }
+    
+}
+
+@keyframes animate-underline {
+
+    0%{
+        transform: translatey(1000%) 
+    }
+
+    100%{
+        transform: translatey(0%)
+    }
     
 }
 

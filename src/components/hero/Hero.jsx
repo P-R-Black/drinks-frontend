@@ -1,14 +1,27 @@
-import React, {useState, useEffect } from 'react'
+import React, {useState, useEffect, useRef } from 'react'
 
 import './hero.css'
 import { Parallax, Background } from 'react-parallax';
 import heroImage from '../../assets/pexels-chris-f-1283219.jpeg'
 
 
+
 export const Hero = () => {
 
-  const heroImage2 = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-chris-f-1283219.jpeg') + ')'
-  const heroImage3 = '/../../assets/pexels-chris-f-1283219.jpeg'
+  const titleRefOne = useRef();
+  const [ elementVisible, setElementVisible ] = useState();
+
+  console.log('elementVisible', elementVisible)
+  console.log('titleRefOne', titleRefOne)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0]
+      setElementVisible(entry.isIntersecting)
+     
+    })
+    observer.observe(titleRefOne.current)
+  },[])
 
 
   return (
@@ -16,8 +29,6 @@ export const Hero = () => {
     <section id="heroSection" className='indexBackground'>
         <Parallax 
           blur={5} 
-          // bgImage={heroImage}
-
           bgImageAlt={heroImage}
           strength={500}>
             <Background>
@@ -29,10 +40,10 @@ export const Hero = () => {
         <div className="container">
           <div className="homePageContainer">
             <div className="titleContainer">
-                <h2>Make Great</h2>
-                <h1>Cocktails</h1>
+                <h2  ref={titleRefOne} className={`${elementVisible} ? titleContainerH2 show : titleContainerH2 hidden`}>Make Great</h2>
+                <h1 ref={titleRefOne} className={`${elementVisible} ? titleContainerH1 show : titleContainerH1 hidden`}>Cocktails</h1>
             </div>
-            <div className="horizonalDivider"></div>
+            <div ref={titleRefOne} className={`${elementVisible} ? horizonalDivider show : horizonalDivider hidden`}></div>
           </div>
         </div>
       </Parallax>

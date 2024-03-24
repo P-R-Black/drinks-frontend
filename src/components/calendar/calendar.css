@@ -1,11 +1,9 @@
 
-.boxTitle{
-    margin-bottom: 1rem;
-}
 
 #calendarPrevious, #calendarNext{
     font-size: 2rem;
     color: white;
+    
 }
 
 .calendarWeekdays{
