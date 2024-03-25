@@ -1,26 +1,23 @@
 .dodSection{
     background-size: cover; 
-    
     background-blend-mode: multiply;
     background-repeat: no-repeat;
     background-position: center;
     overflow-x: hidden;
 
     width: 100%;
-    height: 100vh;
+    height: 100%;
 }
 
 h1.drinkOfDayTitle.hidden{
     opacity: 0;
     filter: blur(15px);
-    transition: all 1s;
-  
-    
+    transition: all 1s;  
 }
 
 h1.drinkOfDayTitle.show{
     color: var(--color-primary-font);
-    font-size: 8.5rem;
+    font-size: 9.5rem;
     font-weight: 900;
     margin-top: 4.5rem;
     text-align: center;
@@ -37,7 +34,6 @@ h1.drinkOfDayTitle.show{
 
 .parallaxImageDod {
     filter: sepia(100%) saturate(300%) brightness(95%) hue-rotate(185deg) contrast(.50) opacity(1); 
-    
 }
 
 

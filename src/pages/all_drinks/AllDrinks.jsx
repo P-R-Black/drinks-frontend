@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { Navigation } from '../../components/navigation/Navigation'
 import { DrinksAll } from '../../components/drinks_all/DrinksAll';
+import { Footer } from '../../components/footer/Footer'
 
 export const AllDrinks = ({ drinks, baseAlcohol, fetchAlcoholType, navLinkText, allDrknksBackgroundPic }) => {
     let { alcohol } = useParams()
@@ -20,6 +21,7 @@ export const AllDrinks = ({ drinks, baseAlcohol, fetchAlcoholType, navLinkText, 
         drinks={drinks}
         allDrknksBackgroundPic={allDrknksBackgroundPic}
     />
+    <Footer/>
    </>
   )
 }

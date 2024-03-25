@@ -13,13 +13,13 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks,  drinkRecipe
     
 
     
-    const showNavMenu = () => {
+    const showNavMenu = async () => {
         
         let navBarMenu = document.querySelector('.navBarMenu')
         let visibility = navBarMenu.getAttribute('data-visible')
         let dodNave = document.querySelector('.dodNav')
 
-        let navBarDropdown = document.querySelector('.navDropdown');
+        let navBarDropdown = await document.querySelector('.navDropdown');
 
         if (visibility === "false" || visibility == null){
             navBarMenu.setAttribute('aria-expanded', 'true')

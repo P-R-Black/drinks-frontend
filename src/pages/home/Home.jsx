@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
 
-import { Navigation } from '../../components/navigation/Navigation'
-import { Hero } from '../../components/hero/Hero'
-import { DailyDrink } from '../../components/daily_drink/DailyDrink'
-import { MustKnows } from '../../components/must_knows/MustKnows'
-import { MidSection } from '../../components/midsection/MidSection'
+import { Navigation } from '../../components/navigation/Navigation';
+import { Hero } from '../../components/hero/Hero';
+import { DailyDrink } from '../../components/daily_drink/DailyDrink';
+import { MustKnows } from '../../components/must_knows/MustKnows';
+import { MidSection } from '../../components/midsection/MidSection';
+import { Discover } from '../../components/discover/Discover';
+import { Footer } from '../../components/footer/Footer';
 
 import axios from 'axios'
+
 
 export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
 
@@ -74,8 +77,8 @@ export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
   });
   
     
-  const handleDateClick = (date) => {
-    const event = eventMap[String(date)];
+  const handleDateClick = async (date) => {
+    const event = await eventMap[String(date)];
     if (event) {
         setDrinkLookup(event)
         getFullDrinkInfo(event)
@@ -120,7 +123,6 @@ export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
     setCurrentDrink([ldod])
   }
 
-  console.log('drinkOfTheDay', drinkOfTheDay)
   
   return (
     <>
@@ -134,15 +136,16 @@ export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
       <MidSection/>
       <DailyDrink 
         drinks={drinks} date={date} year={year} month={month} dd={dd} mm={mm}
-        // drinkOfTheDay={drinkOfTheDay}
         lastDrinkOfTheDay={lastDrinkOfTheDay}
         currentDrink={currentDrink}
         dateLookup={dateLookup}
         months={months}
       />
-     
-      {/* 
-      <MustKnows /> */}
+      <Discover 
+        baseAlcohol={baseAlcohol}
+        drinks={drinks}
+      />
+      <Footer/>
     </>
   )
 }

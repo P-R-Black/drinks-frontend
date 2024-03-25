@@ -1,0 +1,92 @@
+.discoverSection{
+    background-size: cover; 
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow-x: hidden;
+
+    width: 100%;
+    height: 100%;
+}
+
+.linktoRecipeThree{
+    color: white;
+}
+
+.discoverTitleContainer{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.discoverTitleContainerH1{
+    color: var(--color-primary-font);
+    font-size: 9.5rem;
+    font-weight: 900;
+}
+
+.discoverTitleContainerH1.hidden{
+    opacity: 0;
+    filter: blur(15px);
+    transition: all 1s;
+}
+
+.discoverTitleContainerH1.show{
+    filter: blur(0);
+    opacity: 1;
+    animation-duration: 2s;
+    /* animation-name: animated-disc-title; */
+}
+
+/* .discoverTitleContainerH2{
+    color: var(--color-primary-font);
+    font-size: 3.5rem;
+    font-weight: 600;
+    line-height: 0%;
+} */
+
+/* .discoverTitleContainerH2.hidden {
+    opacity: 0;
+    filter: blur(15px);
+    transition: all 1s;
+
+}
+
+.discoverTitleContainerH2.show {
+    filter: blur(0);
+    opacity: 1;
+    animation-duration: 2s;
+    animation-name: animate-disc-sub-text;
+
+} */
+
+
+
+
+
+@keyframes animated-disc-title{
+    0%{
+        transform: translateX(-200%) 
+    }
+
+    100%{
+        transform: translateX(0%)
+    }
+
+
+}
+
+
+/* @keyframes animate-disc-sub-text{
+    0%{
+        transform: translateX(200%) 
+    }
+
+    100%{
+        transform: translateX(0%)
+    }
+
+
+} */
+

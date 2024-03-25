@@ -5,7 +5,6 @@ import './drinks_all.css';
 export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
   const [alldrinks, setallDrinks ] = useState([])
   const [alcFontSize, setAlcFontSize] = useState(200)
-  const [drinkToolTip, setdrinkToolTip] = useState("")
 
   // format alcohol name
   if (alcohol === "punt e mes"){

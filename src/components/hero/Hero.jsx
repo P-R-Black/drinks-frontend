@@ -5,14 +5,11 @@ import { Parallax, Background } from 'react-parallax';
 import heroImage from '../../assets/pexels-chris-f-1283219.jpeg'
 
 
-
 export const Hero = () => {
 
   const titleRefOne = useRef();
   const [ elementVisible, setElementVisible ] = useState();
 
-  console.log('elementVisible', elementVisible)
-  console.log('titleRefOne', titleRefOne)
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {

@@ -58,7 +58,6 @@ export const Calendar = ({ date, year, month}) => {
         let newMonth = calendarMonth + increment
         let newYear = calendarYear
 
-        console.log('newMonth', newMonth)
         if (newMonth < 0){
             newMonth = 11
             newYear--;

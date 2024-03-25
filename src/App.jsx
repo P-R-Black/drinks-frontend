@@ -7,6 +7,7 @@ import { Home } from './pages/home/Home';
 import { Alcohol } from './pages/alcohol/Alcohol';
 import { Drinks } from './pages/drinks/Drinks';
 import { AllDrinks } from './pages/all_drinks/AllDrinks';
+import { PageNotFound } from './pages/notFound/NotFound';
 
 
 const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
@@ -17,6 +18,7 @@ const App = () => {
   const [ loading, setLoading ] = useState(true);
   const [ baseAlcohol, setBaseAlcohol ] = useState([])
   const [ allDrknksBackgroundPic, setAllDrknksBackgroundPic] = useState()
+  const [navLinkText, setNavLinkText] = useState("")
 
 
   let imgUrlDefault = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-rachel-default.jpg') + ')'
@@ -82,12 +84,12 @@ const App = () => {
   }, []);
 
 
-  const fetchAlcoholType = () => {
+  const fetchAlcoholType = async () => {
     let filteredBase = []
     for (let d = 0; d < drinks.length; d++){
         let base = drinks.map((ba) => ba.base_alcohol)
         for (let b = 0; b < base.length; b++){
-            let baseText = base[b][0]
+            let baseText = await base[b][0]
             if (!filteredBase.includes(baseText)){
                 filteredBase.push(baseText)
 
@@ -98,24 +100,18 @@ const App = () => {
     
   }
 
-  const [navLinkText, setNavLinkText] = useState("")
-
-  const navBarLinkText = () => {
-    let navvyLink = document.querySelectorAll('.navbarLinks')
+  const navBarLinkText = async () => {
+    let navvyLink = await document.querySelectorAll('.navbarLinks')
     navvyLink.forEach(nl => {
       nl.addEventListener('click', ()=> {
         setNavLinkText(nl.innerHTML)
         
       })
     })
-    
   }
   
-
   navBarLinkText()
 
-
-  
   return (
     <div className="app">
       <Router>
@@ -154,6 +150,13 @@ const App = () => {
                   navLinkText={navLinkText}
                   allDrknksBackgroundPic={allDrknksBackgroundPic}
                 />} />
+                <Route path="*" element={<PageNotFound
+                  baseAlcohol={baseAlcohol} 
+                  fetchAlcoholType={fetchAlcoholType}
+                  navLinkText={navLinkText}
+                  drinks={drinks}
+                  />}
+                />
             </Routes>
             )}
           </React.StrictMode>

@@ -17,16 +17,13 @@ export const DailyDrink = ({ generateCalendar, adjustMonth, date, year, month, m
   const dodRefRightSide = useRef()
 
   const [ dodElementVisible, setDodElementVisible ] = useState();
-  const [ leftSideVisible, setLeftSideVisible ] = useState();
 
 
   let today = `${months[Number(mm) - 1]} ${dd.replace(/^0+/, "")}, ${year}`
   let lookUpDate = new Date(dateLookup).getTime()
   let lookUpToday = new Date(today).getTime()
 
-  
-  console.log('dodElementVisible', dodElementVisible)
-  console.log('titleRefTwo', titleRefTwo)
+
 
   useEffect(() => {
     const dodObserver = new IntersectionObserver((entries) => {
@@ -77,7 +74,7 @@ export const DailyDrink = ({ generateCalendar, adjustMonth, date, year, month, m
                     
                   ))}
                 </>
-                ): (
+                ):(
                   <>
                   <h2 className="todaysDrink">{"Today's Drink"}</h2>
                   {currentDrink.map((cd) => (
