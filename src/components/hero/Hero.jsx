@@ -29,8 +29,8 @@ export const Hero = () => {
           bgImageAlt={heroImage}
           strength={500}>
             <Background>
-              <img src={heroImage} className='parallaxImage' style={{position: "absolute", height: "auto", width: "1486.28px", backfaceVisibility: "hidden",
-                transform: 'translate3d(-50%, -49.5868px, 0px)',  left: "50%", transformStyle: 'preserve-3d',
+              <img src={heroImage} className='parallaxImage' style={{position: "absolute", height: "auto", width: "100vw", backfaceVisibility: "hidden",
+                transform: 'translate3d(-50%, -49.5868px, 0px)', top: "0", left: "0", transformStyle: 'preserve-3d',
                 backgroundSize: "cover"         
             }}/>
             </Background>

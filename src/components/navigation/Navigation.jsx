@@ -31,14 +31,6 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks,  drinkRecipe
             navBarMenu.setAttribute('data-visible', 'false')
             navBarDropdown.classList.remove('show')
         } 
-
-        navBarDropdown.addEventListener('click', () => {
-            navBarMenu.setAttribute('aria-expanded', 'false')
-            navBarMenu.setAttribute('data-visible', 'false')
-            navBarDropdown.classList.remove('show')
-
-           
-        })
         
     }
      

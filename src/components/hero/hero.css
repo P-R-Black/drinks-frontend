@@ -1,5 +1,3 @@
-
-
 .indexBackground{
     /* filter: sepia(100%) saturate(300%) brightness(70%) hue-rotate(180deg); */
     
@@ -15,6 +13,7 @@
     height: 100vh; */
     /* background-color: black; */
     
+    
 }
 
 .parallaxImage {
@@ -23,11 +22,9 @@
 }
 
 #heroSection{
-    height: 100vh;
     margin-top: -5rem;
-    overflow:hidden;
-    position: relative;
     width: 100%;
+    height: 100vh;
     
 } 
 
@@ -53,7 +50,9 @@
     color: var(--color-primary-font);
     font-size: 12.5rem;
     font-weight: 900;
+    transition: 0.5s;
 }
+
 
 .titleContainer h2{
     color: var(--color-primary-font);

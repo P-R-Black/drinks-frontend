@@ -23,7 +23,7 @@ export const Footer = () => {
             </div>
             <div className="footerSiteSections">
                 <HashLink to="/#dodSection">{"Drink of the Day"}</HashLink>
-                <HashLink to="">{"Discover"}</HashLink>
+                <HashLink to="/#discoverSection">{"Discover"}</HashLink>
                 <HashLink to="">{"Mocktails"}</HashLink>
                 <HashLink to="">{"Bartender Must Knows"}</HashLink>
             </div>

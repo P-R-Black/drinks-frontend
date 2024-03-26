@@ -40,16 +40,14 @@ export const DailyDrink = ({ generateCalendar, adjustMonth, date, year, month, m
       <section id="dodSection" className="dodSection">
         <Parallax 
           blur={5} 
-          // bgImage={dodImage} 
           bgImageAlt={dodImage}
-          strength={500}
-        >
-        <Background>
-              <img src={dodImage} className='parallaxImageDod' style={{position: "absolute", height: "auto", width: "1486.28px", backfaceVisibility: "hidden",
-                transform: 'translate3d(-50%, -49.5868px, 0px)',  left: "50%", transformStyle: 'preserve-3d',
-                backgroundSize: "cover"         
-            }}/>
-            </Background>
+          strength={500}>
+          <Background>
+              <img src={dodImage} className='parallaxImageDod' style={{position: "absolute", height: "100%", width: "100vw", backfaceVisibility: "hidden",
+                transform: 'translate3d(-50%, -49.5868px, 0px)', left:"50%", transformStyle: 'preserve-3d',
+                backgroundSize: "cover"}}
+              />
+          </Background>
           <div className="container">
           <div ref={titleRefTwo}>
             {dodElementVisible ? ( 
@@ -138,8 +136,6 @@ export const DailyDrink = ({ generateCalendar, adjustMonth, date, year, month, m
                   />
               </div>
               )}
-              
-
           </div>
           </div>
         </Parallax>

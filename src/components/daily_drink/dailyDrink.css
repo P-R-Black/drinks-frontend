@@ -1,13 +1,19 @@
+
 .dodSection{
-    background-size: cover; 
+    height: 100vh;
+    overflow:hidden;
+    position: relative;
+    width: 100%;
+
+    background-image: radial-gradient(#2e2c7c68, #4a5ecb5f), url('../../assets/pexels-ron-lach.jpg');
+    background-size: cover;
     background-blend-mode: multiply;
     background-repeat: no-repeat;
     background-position: center;
     overflow-x: hidden;
-
-    width: 100%;
-    height: 100%;
+    
 }
+
 
 h1.drinkOfDayTitle.hidden{
     opacity: 0;
@@ -21,8 +27,6 @@ h1.drinkOfDayTitle.show{
     font-weight: 900;
     margin-top: 4.5rem;
     text-align: center;
-    /* text-decoration: underline; */
-
     filter: blur(0);
     opacity: 1;
     animation-duration: 2s;
@@ -31,11 +35,11 @@ h1.drinkOfDayTitle.show{
 }
 
 
-
-.parallaxImageDod {
+/* .parallaxImageDod {
     filter: sepia(100%) saturate(300%) brightness(95%) hue-rotate(185deg) contrast(.50) opacity(1); 
 }
 
+*/
 
 .dodContainer{
     align-items: center;
@@ -87,7 +91,7 @@ h1.drinkOfDayTitle.show{
 .recipeButton{
     background-color: transparent;
     border: 3px solid white;
-    /* box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24); */
+    
     border-radius: 10px;
     color: white;
     cursor: pointer;
@@ -97,10 +101,10 @@ h1.drinkOfDayTitle.show{
     outline: none;
     text-align: center;
     padding: .35rem 1.25rem;
-    /* transition: var(--transition) */
     width: 10rem;
 
 }
+
 .recipeButton:active{
     transform: translateY(3px);
 
@@ -108,7 +112,8 @@ h1.drinkOfDayTitle.show{
 
 .boxTitle{
     color: white;
-    text-align: center;;
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
 
@@ -131,10 +136,6 @@ h1.drinkOfDayTitle.show{
     animation-name: animate-dod-right-text;
 }
 
-.boxTitle{
-    margin-bottom: 1rem;
-}
-
 
 @keyframes animate-dod-text{
     0%{
@@ -147,7 +148,6 @@ h1.drinkOfDayTitle.show{
 
 
 }
-
 
 @keyframes animate-dod-right-text{
     0%{

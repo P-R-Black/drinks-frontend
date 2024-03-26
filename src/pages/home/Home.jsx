@@ -6,6 +6,7 @@ import { DailyDrink } from '../../components/daily_drink/DailyDrink';
 import { MustKnows } from '../../components/must_knows/MustKnows';
 import { MidSection } from '../../components/midsection/MidSection';
 import { Discover } from '../../components/discover/Discover';
+import { Mocktails } from '../../components/mocktails/Mocktails';
 import { Footer } from '../../components/footer/Footer';
 
 import axios from 'axios'
@@ -142,8 +143,10 @@ export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
         months={months}
       />
       <Discover 
-        baseAlcohol={baseAlcohol}
         drinks={drinks}
+      />
+      <Mocktails
+         drinks={drinks}
       />
       <Footer/>
     </>

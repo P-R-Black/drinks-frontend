@@ -18,6 +18,7 @@
     color: white;
     width: 400px;
     height: 350px;
+
 }
 
 .containerCalendar header {
@@ -59,7 +60,7 @@ header .calendarCurrentDate {
 }
  
 .calendarBody {
-    padding: 20px;
+    padding: 25px;
 }
  
 .calendarBody ul {
