@@ -13,6 +13,7 @@ import axios from 'axios'
 
 
 export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
+  console.log('drinks home.jsx', drinks)
 
   var date = new Date()
   var year = date.getFullYear();

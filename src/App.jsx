@@ -8,17 +8,36 @@ import { Alcohol } from './pages/alcohol/Alcohol';
 import { Drinks } from './pages/drinks/Drinks';
 import { AllDrinks } from './pages/all_drinks/AllDrinks';
 import { PageNotFound } from './pages/notFound/NotFound';
-
+import { AboutUs } from './pages/about/About';
+import DrinksAPI from './api/drinksapi/DrinksAPI';
 
 const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
 
 const App = () => {
 
+
+  
+ 
   const [ drinks, setDrinks ] = useState([])
   const [ loading, setLoading ] = useState(true);
   const [ baseAlcohol, setBaseAlcohol ] = useState([])
   const [ allDrknksBackgroundPic, setAllDrknksBackgroundPic] = useState()
-  const [navLinkText, setNavLinkText] = useState("")
+  const [ navLinkText, setNavLinkText] = useState("")
+
+
+  const [ newDrinks, setNewDrinks] = useState([])
+  console.log('newDrinks', newDrinks)
+  const findAPIData = async () => {
+    const drinksAPI = <DrinksAPI/>
+    const apiData = await drinksAPI._owner.memoizedState.queue.lastRenderedState
+    console.log('newDrinks', newDrinks)
+    setNewDrinks(apiData)
+   
+  }
+
+  
+
+  
 
 
   let imgUrlDefault = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-rachel-default.jpg') + ')'
@@ -76,11 +95,10 @@ const App = () => {
       }
      
     }
-
     fetchData();
     fetchAlcoholType();
     setAllDrknksBackgroundPic(picByDrink[baseAlcohol] != undefined ? picByDrink[baseAlcohol][Math.floor(Math.random() * picByDrink[baseAlcohol].length)]: imgUrlDefault)
-
+   
   }, []);
 
 
@@ -150,6 +168,14 @@ const App = () => {
                   navLinkText={navLinkText}
                   allDrknksBackgroundPic={allDrknksBackgroundPic}
                 />} />
+                <Route exact path="/about-us" name="about"
+                    element={<AboutUs
+                    baseAlcohol={baseAlcohol} 
+                    fetchAlcoholType={fetchAlcoholType}
+                    navLinkText={navLinkText}
+                    drinks={drinks}
+                  />}
+                />
                 <Route path="*" element={<PageNotFound
                   baseAlcohol={baseAlcohol} 
                   fetchAlcoholType={fetchAlcoholType}

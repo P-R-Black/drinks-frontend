@@ -24,12 +24,12 @@ export const Footer = () => {
             <div className="footerSiteSections">
                 <HashLink to="/#dodSection">{"Drink of the Day"}</HashLink>
                 <HashLink to="/#discoverSection">{"Discover"}</HashLink>
-                <HashLink to="">{"Mocktails"}</HashLink>
+                <HashLink to="/#mocktailSection">{"Mocktails"}</HashLink>
                 <HashLink to="">{"Bartender Must Knows"}</HashLink>
             </div>
             <div className="footerSiteInfo">
                 <div className="siteInfoLeft">
-                    <HashLink to="">{"About Us"}</HashLink>
+                    <HashLink to="/about-us">{"About Us"}</HashLink>
                     <HashLink to="">{"Contact"}</HashLink>
                     <HashLink to="">{"Privacy Choices"}</HashLink>
                     <HashLink to="">{"Privacy Policy"}</HashLink>

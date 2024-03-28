@@ -6,6 +6,10 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
   const [alldrinks, setallDrinks ] = useState([])
   const [alcFontSize, setAlcFontSize] = useState(200)
 
+    console.log('alcohol DrinksAll', alcohol)
+    console.log('allDrinks DrinksAll', alldrinks)
+
+
   // format alcohol name
   if (alcohol === "punt e mes"){
     alcohol = "Punt e Mes"
@@ -23,6 +27,8 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
   alcohol = "Rum (Light)"
 } else if (alcohol === "amaretto"){
   alcohol = "Amaretto"
+} else if (alcohol === "non-alcoholic"){
+  alcohol = "Non-Alcoholic"
 } else {
   let alcoholFirstLetter = alcohol.charAt(0)
   let alcoholFirstLetterCap = alcoholFirstLetter.toUpperCase()

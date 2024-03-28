@@ -11,8 +11,6 @@ export const Mocktails = ({ drinks }) => {
     const [ mocktailElementVisible, setMocktailElementVisible ] = useState();
     const [ mocktails, setMocktails ] = useState([])
 
-    console.log('mocktails', mocktails)
-
     const nonAlcoholicDrinks = async () => {
         let nonAlcBase = await drinks.filter((nab) => nab.base_alcohol[0] === "Non-Alcoholic")
         setMocktails(nonAlcBase.sort())

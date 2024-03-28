@@ -27,6 +27,10 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
     alcohol = "Rum (Gold)"
   } else if (alcohol === "rum (light)"){
     alcohol = "Rum (Light)"
+  } else if (alcohol === "non-alcoholic"){
+    alcohol = "Non-Alcoholic"
+  } else if (alcohol === "sparkling white wine"){
+    alcohol = "Sparkling White Wine"
   } else {
     let alcoholFirstLetter = alcohol.charAt(0)
     let alcoholFirstLetterCap = alcoholFirstLetter.toUpperCase()
@@ -94,7 +98,9 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
 
   const adjustFontSize = () => {
     let baseAlcoholName = document.getElementById('baseAlcoholName').innerText
-    if(baseAlcoholName.length >= 18){
+    if (baseAlcoholName.length >= 20){
+      setAlcFontSize(115)
+    }else if(baseAlcoholName.length >= 18){
       setAlcFontSize(120)
     } else if (baseAlcoholName.length >= 12) {
       setAlcFontSize(180)

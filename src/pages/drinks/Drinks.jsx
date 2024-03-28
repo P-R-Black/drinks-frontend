@@ -7,8 +7,6 @@ import { Footer } from '../../components/footer/Footer'
 
 
 export const Drinks = ({ drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
-
-    // console.log("Drinks.jsx", useParams())
     let { drinkRecipe } = useParams()
 
   return (
