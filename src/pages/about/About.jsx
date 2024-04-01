@@ -16,6 +16,5 @@ export const AboutUs = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) =>
       <TheAbout />
       < Footer />
     </>
-    
   )
 }

@@ -9,6 +9,7 @@ import { Drinks } from './pages/drinks/Drinks';
 import { AllDrinks } from './pages/all_drinks/AllDrinks';
 import { PageNotFound } from './pages/notFound/NotFound';
 import { AboutUs } from './pages/about/About';
+import { Contact } from './pages/contact/Contact'
 import { DrinksAPI } from './api/drinksapi/DrinksAPI';
 
 const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
@@ -21,7 +22,8 @@ const App = () => {
   const [ allDrknksBackgroundPic, setAllDrknksBackgroundPic] = useState()
   const [ navLinkText, setNavLinkText] = useState("")
 
-
+  console.log('drinks', drinks)
+  
   const [ newDrinks, setNewDrinks] = useState([])
   console.log('newDrinks', newDrinks)
 
@@ -33,10 +35,6 @@ const App = () => {
     setNewDrinks(apiData)
    
   }
-
-  
-
-  
 
 
   let imgUrlDefault = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-rachel-default.jpg') + ')'
@@ -169,6 +167,14 @@ const App = () => {
                 />} />
                 <Route exact path="/about-us" name="about"
                     element={<AboutUs
+                    baseAlcohol={baseAlcohol} 
+                    fetchAlcoholType={fetchAlcoholType}
+                    navLinkText={navLinkText}
+                    drinks={drinks}
+                  />}
+                />
+                <Route exact path="/contact-us" name="contact"
+                    element={<Contact
                     baseAlcohol={baseAlcohol} 
                     fetchAlcoholType={fetchAlcoholType}
                     navLinkText={navLinkText}

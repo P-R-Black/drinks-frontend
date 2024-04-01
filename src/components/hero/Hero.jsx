@@ -3,7 +3,7 @@ import React, {useState, useEffect, useRef } from 'react'
 import './hero.css'
 import { Parallax, Background } from 'react-parallax';
 import heroImage from '../../assets/pexels-chris-f-1283219.jpeg'
-
+import altImage from '../../assets/pexels-lime-mint-drinks.jpg'
 
 export const Hero = () => {
 
@@ -28,7 +28,7 @@ export const Hero = () => {
     <section id="heroSection" className='indexBackground'>
         <Parallax 
           blur={5} 
-          bgImageAlt={heroImage}
+          bgImageAlt={altImage}
           strength={500}>
             <Background>
             {(window.innerWidth > 600) ? (window.innerWidth > 1080) ?(<img src={heroImage} className='parallaxImage' 

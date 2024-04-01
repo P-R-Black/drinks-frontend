@@ -61,7 +61,7 @@ export const Footer = () => {
                 </div>
                 <div className="footerSiteInfo">
                     <HashLink to="/about-us">{"About Us"}</HashLink>
-                    <HashLink to="">{"Contact"}</HashLink>
+                    <HashLink to="/contact-us">{"Contact"}</HashLink>
                     <HashLink to="">{"Privacy Choices"}</HashLink>
                     <HashLink to="">{"Privacy Policy"}</HashLink>
                     <HashLink to="">{"Terms Of Service"}</HashLink>
