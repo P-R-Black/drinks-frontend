@@ -60,20 +60,20 @@ export const Search = ({ drinks }) => {
   return (
     <section className='searchSection'>
       <div className="searchInputDiv">
-      <div className="searchIcons">
-          {
-            input === "" ? (<IoMdSearch/>) : (<IoMdClose onClick={handleClose}/>)
-          }
-        </div>
-        <input
-          id="search" 
-          className="searchBar"
-          type="text"
-          placeholder="Search Drink by Name, Alcohol, or Ingredient"
-          value={input}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-        />
+          <input
+            id="search" 
+            className="searchBar"
+            type="text"
+            placeholder="Search Drink by Name, Alcohol, or Ingredient"
+            value={input}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+          />
+          <div className="searchIcons">
+            {
+              input === "" ? (<IoMdSearch/>) : (<IoMdClose onClick={handleClose}/>)
+            }
+          </div>
         <SearchResults results={results} selectedItem={selectedItem}/>
 
       </div>

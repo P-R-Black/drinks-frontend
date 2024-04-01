@@ -9,14 +9,11 @@ import { Drinks } from './pages/drinks/Drinks';
 import { AllDrinks } from './pages/all_drinks/AllDrinks';
 import { PageNotFound } from './pages/notFound/NotFound';
 import { AboutUs } from './pages/about/About';
-import DrinksAPI from './api/drinksapi/DrinksAPI';
+import { DrinksAPI } from './api/drinksapi/DrinksAPI';
 
 const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
 
 const App = () => {
-
-
-  
  
   const [ drinks, setDrinks ] = useState([])
   const [ loading, setLoading ] = useState(true);
@@ -27,6 +24,8 @@ const App = () => {
 
   const [ newDrinks, setNewDrinks] = useState([])
   console.log('newDrinks', newDrinks)
+
+
   const findAPIData = async () => {
     const drinksAPI = <DrinksAPI/>
     const apiData = await drinksAPI._owner.memoizedState.queue.lastRenderedState

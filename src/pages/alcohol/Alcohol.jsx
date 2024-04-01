@@ -9,8 +9,8 @@ import { Footer } from '../../components/footer/Footer'
 
 export const Alcohol = ({ drinks, baseAlcohol, fetchAlcoholType, navLinkText, allDrknksBackgroundPic }) => {
 
-  console.log(useParams())
   let { alcohol } = useParams()
+
 
   return (
     <>  

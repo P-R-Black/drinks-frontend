@@ -1,3 +1,19 @@
+.bannerContainer{
+    background-color: red;
+    border: solid red 3px;
+    color: var(--color-primary-font);
+    display: inline-block;
+    font-family: 'lobster';
+    font-size: 2rem;
+    font-weight: 400;
+    height: 3rem;
+    padding: 0 1rem 0 1rem;
+    position: relative;
+    text-align: center;
+    width: 100vw;
+}
+
+
 .navbar{
     /* background-color: rgba(16, 14, 14, 0.202);
     display: flex;
@@ -8,7 +24,7 @@
     width: 100vw;
     z-index:300; */
 
-    background-color: rgba(16, 14, 14, 0.202);
+    background-color: rgba(16, 14, 14, 0.727);
     width: 100vw;
     position: sticky;
     top: 0;
@@ -25,17 +41,14 @@
     align-items: center;
     justify-content: center;
     height: 5rem;
-    width: 3.5rem;
-   
-
+    width: 3.5rem;   
 }
+
 
 .navbarContainer{
     align-items: center;
     display: flex;
     justify-content: space-between;
-   
-
 }
 
 
@@ -87,48 +100,42 @@
 
 
 .navDropdown{
-    display: none;
-    -webkit-background: hsl(0 0% 100% / 0.1);
-    -webkit-backdrop-filter: blur(3rem);
     background: hsl(0 0% 100% / 0.1);
     backdrop-filter: blur(2rem);
-    /* margin-top: 38rem;
-    margin-right: 25rem; */
-    min-width: 30rem;
+    -webkit-background: hsl(0 0% 100% / 0.1);
+    -webkit-backdrop-filter: blur(3rem);
+    border: 2px solid var(--color-primary-font);
+    display: none;
+    margin-right: 27rem;
+
+    min-width: clamp(23rem, 33vw, 34rem);
     opacity: 0;
     padding: min(11vh, 10rem) 1rem;
     position: sticky;
-    transition: var(--transition);
+    
     z-index: -100;
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    margin-right: 25rem;
-    border: 2px solid var(--color-primary-font);
 
+    animation: fadeOut 1s;
+    -webkit-animation: fadeOut 1s;
+    transition: var(--transition-out);
     
-
 }
 
 
 .navDropdown.show {
     display: block;
     animation: fadeIn 1s;
+    -webkit-animation: fadeIn 1s;
     height: auto;
+    margin-top: 38rem;
     opacity: 1;
     pointer-events: auto;
-    -webkit-animation: fadeIn 1s;
-    margin-top: 34rem;
-    
-
-    
-
+    transition: var(--transition-in);
 }
 
 .dodNav{
     color: var(--color-primary-font);
-    font-size: 1.75rem;
+    font-size: clamp(1.25rem, 2vw, 2rem);   
     font-weight: 700;
     text-shadow: var(--small-letter-shadow);
     margin: 1rem 0 1rem 0;
@@ -137,15 +144,16 @@
 
 
 .navDropdown h2{
+    /*300 - 600 - 10px or .625rem |601 - 1023 = 16.2px or 1rem | 1024+ = 20.5px or 1.28rem */
     color: var(--color-primary-font);
-    font-size: 1.75rem;
+    font-size: clamp(1.25rem, 2vw, 2rem); ;
     font-weight: 700;
     margin: 0rem 0 1rem 0;
 }
 
 .navbarLinks{
     color: var(--color-primary-font);
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 1.4vw, 2rem);
     font-weight: 400;
     margin-bottom: .15rem;
     text-shadow: var(--small-letter-shadow);
@@ -172,19 +180,83 @@
 
 
 
-.bannerContainer{
-    background-color: red;
-    border: solid red 3px;
-    color: var(--color-primary-font);
-    font-family: 'lobster';
-    font-size: 2rem;
-    font-weight: 400;
-    height: 3rem;
-    padding: 0 1rem 0 1rem;
-    text-align: center;
 
-    width: 100vw;
-    position: relative;
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  }
+
+  @-webkit-keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+  }
+  
+  @keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity:0 ;}
+  }
+  
+
+  /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+    .navDropdown {
+        margin-right: 19rem;
+        margin-bottom: -5rem;
+        
+    }
+    
+    
+    .navDropdown.show {
+        display: flex;
+        flex-direction: column;
+        margin-top: 29rem;
+    }
    
+    
+}
 
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+ 
+    .bannerContainer{
+        display: none;
+    }
+
+    .navbar{
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    
+    .navDropdown {
+        margin-right: 19rem;
+        margin-bottom: -5rem;
+        
+    }
+    
+    
+    .navDropdown.show {
+        display: flex;
+        flex-direction: column;
+        margin-top: 29rem;
+    }
+
+    .mobileNavContainer{
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        top: 14%;
+        width: 100%;
+        z-index: 200;
+        
+    }
 }

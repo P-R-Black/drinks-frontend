@@ -1,25 +1,27 @@
-.indexBackground{
-    /* filter: sepia(100%) saturate(300%) brightness(70%) hue-rotate(180deg); */
+.indexBackground{    
+    .mocktailSection{
+        height: 100vh;
+        overflow:hidden;
+        position: relative;
+        width: 100%;
     
-    /* 
-    background-image: radial-gradient(#2e2c7c68, #4a5ecb5f);
-    background-size: cover;
-    background-blend-mode: multiply;
-    background-repeat: no-repeat;
-    background-position: center;
-    overflow-x: hidden;
-    width: 100%;
-    margin-top: -5rem;
-    height: 100vh; */
-    /* background-color: black; */
-    
+        background-image: radial-gradient(#2e2c7c68, #4a5ecb5f), url('../../assets/pexels-chris-f-1283219.jpeg');
+        background-size: cover;
+        background-blend-mode: multiply;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow-x: hidden;
+    }
     
 }
 
 .parallaxImage {
-    filter: sepia(100%) saturate(300%) brightness(95%) hue-rotate(185deg) contrast(.50) opacity(1); 
+    /* height: 100vh;
+    width: 100%; */
+    /* filter: sepia(100%) saturate(300%) brightness(95%) hue-rotate(185deg) contrast(.50) opacity(1);  */
     
 }
+
 
 #heroSection{
     margin-top: -5rem;
@@ -47,17 +49,12 @@
 
 
 .titleContainer h1{
-    color: var(--color-primary-font);
-    font-size: 12.5rem;
-    font-weight: 900;
-    transition: 0.5s;
+    font-size: clamp(4rem, 12.5vw, 14.5vw);
 }
 
 
 .titleContainer h2{
-    color: var(--color-primary-font);
-    font-size: 3.5rem;
-    font-weight: 600;
+    font-size: clamp(2rem, 3.5vw, 6.5vw);
     line-height: 0%;
 }
 
@@ -76,11 +73,9 @@
     filter: blur(0);
     margin-top: -2.5rem;
     opacity: 1;
-    width: 45rem;
+    width: clamp(15rem, 45rem, 47vw);
     z-index: 20;
 }
-
-
 
 
 .titleContainerH1.hidden{
@@ -157,3 +152,24 @@
     
 }
 
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+   
+    
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
+    #heroSection{
+        margin-top: 0rem;
+    }
+
+    .homePageContainer {
+        height: 90vh;
+    }
+
+    .horizonalDivider.show{
+        margin-top: -.55rem;
+    }       
+}

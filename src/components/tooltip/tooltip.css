@@ -12,8 +12,7 @@
     outline: none;
     text-align: center;
     padding: .25rem;
-    /* transition: var(--transition) */
-    width: 11rem;
+    width: clamp(8.5rem, 11rem, 12vw);
 }
 
 .tooltip{
@@ -24,9 +23,58 @@
     min-width: auto;
     padding: .5rem .5rem .5rem .5rem;
     position: absolute;
-    /* top: cacl(-100%, -20px); */
     transform: translateX(-10%);
     z-index: 1;
-   
 
+}
+
+
+.tooltip_container_card{
+    position: relative;
+    /* display: inline-block; */
+    background-color: #000000b6;
+    border: 1px solid var(--color-primary-font);;
+    border-radius: 10px;
+    color: var(--color-primary-font);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    padding: .5rem 0 .5rem 0 ;
+    width: clamp(14.5rem, 17rem, 19vw);
+    height: 20rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+
+}
+
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+   
+    
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
+    .tooltip_container{
+        padding: .2rem;
+        margin-top: 1rem;
+        
+    } 
+
+    .tooltip_container_card{
+        height: 10rem;
+        margin-bottom: 1rem;
+        width: 20rem;
+    }
+    
+    .tooltip_container_card:nth-child(3){
+        display: none;
+    }
 }

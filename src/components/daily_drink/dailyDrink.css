@@ -21,9 +21,10 @@ h1.drinkOfDayTitle.hidden{
     transition: all 1s;  
 }
 
-h1.drinkOfDayTitle.show{
+
+h1.drinkOfDayTitle.show {
     color: var(--color-primary-font);
-    font-size: 9.5rem;
+    font-size: clamp(2.5rem, 9.5vw, 11.5vw);
     font-weight: 900;
     margin-top: 4.5rem;
     text-align: center;
@@ -62,7 +63,6 @@ h1.drinkOfDayTitle.show{
     display: flex;
     flex-direction: column;   
     gap: 1rem;
-
     filter: blur(0);
     opacity: 1;
     animation-duration: 2s;
@@ -71,38 +71,36 @@ h1.drinkOfDayTitle.show{
 
 .todaysDrink{
     color: var(--color-primary-font);
-    font-size: 4rem;
+    font-size: clamp(2rem, 4.5vw, 6.5vw);
     font-weight: 600;
     
 }
 
-.todaysDrinkofDay{
-    font-size: 2rem;
+.todaysDrinkofDay {
+    font-size: clamp(1.25rem, 2.5vw, 4.5vw);
     font-weight: 300;
 }
 
 .dailyDrink{
     color: var(--color-primary-font);
-    font-size: 3rem;
-    font-weight: 500;
+    font-size: clamp(2rem, 4vw, 6vw);
+    font-weight: 400;
     margin-top: 2rem;
 }
 
 .recipeButton{
     background-color: transparent;
-    border: 3px solid white;
-    
+    border: 3px solid var(--color-primary-font);
     border-radius: 10px;
-    color: white;
+    color: var(--color-primary-font);
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 2vw, 10rem);
     font-weight: 700;
     margin-top: 1.25rem;
     outline: none;
     text-align: center;
     padding: .35rem 1.25rem;
-    width: 10rem;
-
+    width: clamp(7rem, 12vw, 12rem);
 }
 
 .recipeButton:active{
@@ -112,6 +110,8 @@ h1.drinkOfDayTitle.show{
 
 .boxTitle{
     color: white;
+    /* font-size: clamp(2rem, 4vw, 6rem); */
+    font-size: clamp(1.5rem, 2.5vw, 4.5rem);
     text-align: center;
     margin-bottom: 1rem;
 }
@@ -158,5 +158,47 @@ h1.drinkOfDayTitle.show{
         transform: translateX(0%)
     }
 
+
+}
+
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+   
+    
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
+
+    h1.drinkOfDayTitle.show {
+        line-height: 4rem;
+        margin-top: 1.25rem;
+    }
+
+    .dodContainer{
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+    }
+
+    .todaysDrinkofDay{
+       display: none
+    }
+
+    .dailyDrink{
+        margin-top: .25rem;
+    }
+
+
+
+    .recipeButton{
+        margin-top: .15rem;
+    }
+
+    .boxTitle{
+        margin-top: 1.75rem;
+    }
 
 }

@@ -53,7 +53,7 @@ export const DailyDrink = ({ generateCalendar, adjustMonth, date, year, month, m
             {dodElementVisible ? ( 
               <h1 className={"drinkOfDayTitle show"}>Drink of the Day</h1>) : (
 
-              <h1 className={"drinkOfDayTitle hidden"}>Drink of the Day</h1>
+              <h1 className={"drinkOfDayTitle hidden"}></h1>
             )}
 
           </div>
@@ -63,11 +63,10 @@ export const DailyDrink = ({ generateCalendar, adjustMonth, date, year, month, m
                 {dateLookup !== undefined && lookUpDate < lookUpToday  ? (
                 <>
                   <h2 className="todaysDrink">{dateLookup === today ? "Today's Drink": dateLookup}</h2>
-                  <h3 className="todaysDrinkofDay" style={{color: "white"}}>{dateLookup === today ? "" : "Drink of the Day"}</h3>
                   {currentDrink.map((cd) => (
                     <>
                       <div key={cd.id} className='dailyDrink'>{cd.drink_name}</div>
-                      <a key={cd.drink_name} href={`/alcohol/${cd.base_alcohol}/${cd.drink_name.toLowerCase()}`} className="linktoRecipe">Recipe</a>
+                      <a key={cd.drink_name} href={`/alcohol/${cd.base_alcohol}/${cd.drink_name.toLowerCase()}`} className="recipeButton">Recipe</a>
                     </>
                     
                   ))}
@@ -78,7 +77,7 @@ export const DailyDrink = ({ generateCalendar, adjustMonth, date, year, month, m
                   {currentDrink.map((cd) => (
                     <>
                       <div key={cd.id} className='dailyDrink'>{lastDrinkOfTheDay}</div>
-                      <a key={cd.drink_name} href={`/alcohol/${cd.base_alcohol}/${lastDrinkOfTheDay.toLowerCase()}`} className="linktoRecipe">Recipe</a> 
+                      <a key={cd.drink_name} href={`/alcohol/${cd.base_alcohol}/${lastDrinkOfTheDay.toLowerCase()}`} className="recipeButton">Recipe</a> 
                     </>
                   ))}
                   
@@ -88,11 +87,10 @@ export const DailyDrink = ({ generateCalendar, adjustMonth, date, year, month, m
                 {dateLookup !== undefined && lookUpDate < lookUpToday  ? (
                 <>
                   <h2 className="todaysDrink">{dateLookup === today ? "Today's Drink": dateLookup}</h2>
-                  <h3 className="todaysDrinkofDay" style={{color: "white"}}>{dateLookup === today ? "" : "Drink of the Day"}</h3>
                   {currentDrink.map((cd) => (
                     <>
                       <div key={cd.id} className='dailyDrink'>{cd.drink_name}</div>
-                      <a key={cd.drink_name} href={`/alcohol/${cd.base_alcohol}/${cd.drink_name.toLowerCase()}`} className="linktoRecipe">Recipe</a>
+                      <a key={cd.drink_name} href={`/alcohol/${cd.base_alcohol}/${cd.drink_name.toLowerCase()}`} className="recipeButton">Recipe</a>
                     </>
                     
                   ))}
@@ -103,7 +101,7 @@ export const DailyDrink = ({ generateCalendar, adjustMonth, date, year, month, m
                   {currentDrink.map((cd) => (
                     <>
                       <div key={cd.id} className='dailyDrink'>{lastDrinkOfTheDay}</div>
-                      <a key={cd.drink_name} href={`/alcohol/${cd.base_alcohol}/${lastDrinkOfTheDay.toLowerCase()}`} className="linktoRecipe">Recipe</a> 
+                      <a key={cd.drink_name} href={`/alcohol/${cd.base_alcohol}/${lastDrinkOfTheDay.toLowerCase()}`} className="recipeButton">Recipe</a> 
                     </>
                   ))}
                   

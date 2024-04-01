@@ -1,55 +1,54 @@
 
 .searchInputDiv {
     align-items: center;
-    background-color: white;
-    border-radius: 40px;
+    border-radius: 10px;
+    border: 2px solid white;
     display: flex;
     justify-content: space-between;
     min-height: 2rem;
     overflow: hidden;
     width: 28rem;
-
 }
 
 input.searchBar {
+    background-color: transparent;
     border: 0;
     outline: 0;
+    border-radius: 10px;
+    margin-left: 1rem;;
 
 }
 
 .searchBar::placeholder{
-    color: rgba(0, 0, 0, 0.513);
+    color: var(--color-primary-font);
     font-size: .9rem;
     font-style: italic;
     font-weight: 500;
 }
 
 .searchBar{
-    border-radius: 50px;
-    color: rgb(15, 0, 0);
+    border-radius: 10px;
+    color: var(--color-primary-font);
     cursor: auto;
     font-size: 1rem;
+    font-weight: 600;
     height: 2rem;
-    margin-left: .25rem;
-    width: 25rem;
-
+    width: 26rem;
 }
 
 .searchIcons{
     align-items: center;
-    background-color: rgba(1, 1, 1, 0.993);
+    background-color: transparent;
     color: white;
     cursor: pointer;
     display: flex;
     font-size: 2rem;
-    padding: 0 15px;
     height: 2rem;
     width: 3.5rem;
     
 }
 
 .results_list{
-
     background-color: white;
     border-radius: 10px;
     box-shadow: 0px 0px 8px #ddd;
@@ -103,4 +102,41 @@ input.searchBar {
     font-weight: 400;
     margin-right: .5rem;
 
+}
+
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+
+    .searchInputDiv{
+        background-color: rgba(16, 14, 14, 0.727);
+        width: 45vw;
+    }
+
+    .searchBar::placeholder{
+        font-size: .75rem;
+    }
+
+    .searchIcons{
+        font-size: 1.5rem; 
+    }
+   
+    
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
+    .searchInputDiv {
+        background-color: rgba(16, 14, 14, 0.727);
+        width: 90vw;
+    }
+
+    .searchBar::placeholder{
+        font-size: .75rem;
+    }
+
+    .searchIcons{
+        font-size: 1.25rem; 
+    }
 }

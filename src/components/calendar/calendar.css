@@ -56,7 +56,7 @@ header .calendarNavigation span:hover {
 
 header .calendarCurrentDate {
     font-weight: 500;
-    font-size: 1.5rem;
+    font-size: clamp(1.5rem, 2.25vw, 3rem);
 }
  
 .calendarBody {
@@ -108,3 +108,50 @@ header .calendarCurrentDate {
 }
 
 
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+   
+    
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
+
+    .containerCalendar header {
+        padding: 10px 20px 0px;
+    }
+
+
+    .containerCalendar{
+        border: 2px solid white;
+        height: auto;
+        margin-top: -1rem;
+        padding-bottom: 1rem;;
+        width: 350px;
+    }
+
+
+    .calendarBody li {
+        font-size: 1rem;
+        margin-top: 1rem;
+        width: calc(100% / 7);
+    }
+
+    .calendarBody .calendarWeekdays li {
+        cursor: default;
+        font-weight: 500;
+    }
+     
+    .calendarBody .calendarDates li {
+        margin-top: .25rem;
+        font-size: 1rem;
+    }
+     
+
+    .calendarBody{
+        padding: 0px;
+    }
+
+
+}

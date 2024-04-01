@@ -11,10 +11,9 @@ export const MidSection = () => (
             className="midSection" 
             blur={3} 
             bgImage={midSectionImage}
-            bgImageAlt="the cat" 
+            bgImageAlt={midSectionImage}
             strength={800}>
-            <h1 style={{color: "white", fontSize: '3.5rem', fontWeight:'900', marginTop:'4.5rem', textAlign: 'center'}}
-                className="drinkOfDayTitle">{"Please Drink Responsibly"}</h1>
+            <h1 className="drinkOfDayTitle">{"Please Drink Responsibly"}</h1>
         </Parallax>
     </section>
     

@@ -44,12 +44,11 @@ export const Discover = ({ drinks }) => {
                 bgImageAlt={discoverImage}
                 strength={500}>
                 <Background>
-                    <img src={discoverImage} 
-                        className='parallaxDiscoverImage' 
-                        style={{position: "absolute", height: "auto", width: "100vw", backfaceVisibility: "hidden",
-                        transform: 'translate3d(-50%, -49.5868px, 0px)',  left: "50%", transformStyle: 'preserve-3d',
-                        backgroundSize: "cover"}}
-                    />
+                <img src={discoverImage} 
+                    className='parallaxImageDod' style={{position: "absolute", height: "100%", width: "100vw", 
+                    backfaceVisibility: "hidden", transform: 'translate3d(-50%, -49.5868px, 0px)', left:"50%", 
+                    transformStyle: 'preserve-3d', backgroundSize: "cover"}}
+              />
                 </Background>
                 <div className="container">
                     <div className="discoverContainer">
@@ -68,7 +67,7 @@ export const Discover = ({ drinks }) => {
                                    
                             )}
                         </div>
-                        <div className="linksToDrinksContainer">
+                        <div className="discLinksToDrinkContainer">
                             {mainAlcohols.map((ad) => (
                             <>
                                 <ToolTip text={ad}>

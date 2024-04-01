@@ -3,10 +3,14 @@ import axios from 'axios'
 
 const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
 
-const DrinksAPI = () => {
+
+
+export const DrinksAPI = () => {
     const [ loading, setLoading ] = useState(true)
     const [ newDrink, setNewDrink ] = useState([])
 
+    console.log('newDrink api', newDrink)
+    
     const GetData = async () =>{
         setLoading(true);
         try {
@@ -17,14 +21,6 @@ const DrinksAPI = () => {
           console.error(error.message);
           setLoading(false);
         }
- 
+        
     }
-
-    return {
-      newDrink
-
-    }
-
 }
-
-export default DrinksAPI

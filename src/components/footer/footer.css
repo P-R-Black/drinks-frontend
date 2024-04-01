@@ -1,6 +1,6 @@
 .footerSection{
     background-color: #1B0000;
-    height: 15rem;
+    height: auto;
     display: flex;
     justify-content: center;
 }
@@ -25,17 +25,29 @@
     color: white;
     cursor: pointer;
     display: flex;
-    font-size: 1.5rem;
+    font-size: clamp(1.5rem, 2vw, 5vw);
     height: 2rem;
     justify-content: space-between;
     margin-top: 1rem;
-    width: 11rem;
+    width: clamp(9rem, 14rem, 17vw)
 
 }
+
+.footerSiteSections {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(.9rem, 1.15rem, 2vw);
+    font-weight: 500;
+    gap: 1rem;    
+}
+
+
 
 .footerSiteSections a{
     color: white;
     cursor: pointer;
+    width: auto;
 }
 
 .footerSiteSections a:hover{
@@ -52,37 +64,60 @@
 }
 
 
-.footerSiteInfo{
+.footerSiteInfo {
+    color: var(--color-primary-grey);
+    cursor: pointer;
     display: flex;
+    flex-direction: column;
+    font-size: clamp(.9rem, 1.15rem, 2vw);
+    font-weight: 500;   
+    gap: .75rem; 
     justify-content: space-evenly;
     width: 10rem;
-
-    color: #989797;
-    cursor: pointer;
-    font-weight: 500;
 }
 
 
-.footerSiteSections {
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-    font-size: 1.15rem;
-    font-weight: 500;
-    gap: 1rem;
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+   
     
 }
 
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
 
+    .footerContainer{
+        flex-direction: column;
+        height: auto;
+        margin-bottom: 1rem;
+        
+    }
 
-.siteInfoLeft{
-    display: flex;
-    flex-direction: column;
-    gap: .75rem;
-}
+    .footerLogoSocials{
+        height: auto;
+        margin-top: 2rem;
+        width: auto;
 
-.siteInfoRight{
-    display: flex;
-    flex-direction: column;
-    gap: .75rem;
+    }
+
+    .mobileDivisionContainer {
+        display: grid;
+        grid-template-columns: repeat(2, 45%);
+        justify-content: space-between;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        width: 95%;
+    
+    }
+
+    .mobileDivisionContainer a{
+        text-align: center;
+        width: auto;
+    }
+
+    .footerSiteSections{
+        align-items: center;
+    }
+    
 }

@@ -51,7 +51,47 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks,  drinkRecipe
   return (
     <>  
         <div className="bannerContainer">{numofRecipes}</div>
-        <nav className="navbar">
+        {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? (
+            <nav className="navbar">
+            <div className="navbarContainer container">
+                <div id="logoId">
+                    <Logo className="navbarLogo"></Logo>
+                </div>
+                <search className="searchId">
+                    <Search drinks={drinks} drinkRecipe={drinkRecipe} className="navSearch" />
+                </search>
+                
+                <div className="navbarItems">
+                    <div className="navDropdown">
+                        <HashLink to="/#dodSection" className="dodNav">Drink of the Day</HashLink>
+                        <hr className='navline'/>
+                        <h2>Find Cocktail By Alcohol</h2>
+                        <ul className="navDropdownByDrink" data-visible="false">
+                            {baseAlcohol.map(ba => {
+                            return (
+                                <NavLink
+                                    className="navbarLinks" 
+                                    to={`/alcohol/${ba.toLowerCase()}`}
+                                    onClick={showNavMenu}
+                                >{ba}
+                                </NavLink>
+                                )
+                            })}
+                        </ul>
+                        <hr className='navline'/>
+                        <NavLink className="dodNav">Bartender Must Know Drinks</NavLink>
+                    </div>
+                    <div className="navBarMenu" id="navBarMenu" aria-controls="navbar_menu" aria-expanded="false"
+                            onClick={()=> { showNavMenu(); fetchAlcoholType()}}>
+                        <span className="bar kg-only"></span>
+                        <span className="bar kg-only"></span>
+                        <span className="bar kg-only"></span>
+                        <span className="bar kg-only"></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        ):(<nav className="navbar">
         <div className="navbarContainer container">
             <div id="logoId">
                 <Logo className="navbarLogo"></Logo>
@@ -89,7 +129,50 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks,  drinkRecipe
                 </div>
             </div>
         </div>
-    </nav>
+    </nav>): (
+        <>
+            <nav className="navbar">
+            <div className="navbarContainer container">
+                <div id="logoId">
+                    <Logo className="navbarLogo"></Logo>
+                </div>
+                
+                <div className="navbarItems">
+                    <div className="navDropdown">
+                        <HashLink to="/#dodSection" className="dodNav">Drink of the Day</HashLink>
+                        <hr className='navline'/>
+                        <h2>Find Cocktail By Alcohol</h2>
+                        <ul className="navDropdownByDrink" data-visible="false">
+                            {baseAlcohol.map(ba => {
+                            return (
+                                <NavLink
+                                    className="navbarLinks" 
+                                    to={`/alcohol/${ba.toLowerCase()}`}
+                                    onClick={showNavMenu}
+                                >{ba}
+                                </NavLink>
+                                )
+                            })}
+                        </ul>
+                        <hr className='navline'/>
+                        <NavLink className="dodNav">Bartender Must Know Drinks</NavLink>
+                    </div>
+                    <div className="navBarMenu" id="navBarMenu" aria-controls="navbar_menu" aria-expanded="false"
+                            onClick={()=> { showNavMenu(); fetchAlcoholType()}}>
+                        <span className="bar kg-only"></span>
+                        <span className="bar kg-only"></span>
+                        <span className="bar kg-only"></span>
+                        <span className="bar kg-only"></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div className="mobileNavContainer">
+            <search className="searchId">
+                <Search drinks={drinks} drinkRecipe={drinkRecipe} className="navSearch" />
+            </search>
+        </div>
+        </>)}
     </>
     
   )

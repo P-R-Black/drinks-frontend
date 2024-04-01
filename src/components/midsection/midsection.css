@@ -1,4 +1,25 @@
 .midSection{
+    font-size: 4rem;
+    filter: sepia(100%) saturate(300%) brightness(95%) hue-rotate(185deg) contrast(.50) opacity(1); 
     height: 30vh;
     width: 100%;
+}
+
+.midSection H1{
+    color: var(--color-primary-font);
+    font-size: clamp(2rem, 5vw, 10rem);
+    font-weight:900;
+    margin-top: 4.5rem;
+    text-align: center
+}
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+   
+    
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
 }

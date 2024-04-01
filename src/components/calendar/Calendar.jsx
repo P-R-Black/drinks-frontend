@@ -81,7 +81,6 @@ export const Calendar = ({ date, year, month}) => {
                     <span id="calendarNext" onClick={() => adjustMonth(1)}><MdNavigateNext /></span>
                 </div>
             </header>
-
             <div className="calendarBody">
                 <ul className="calendarWeekdays">
                     <li>Sun</li>
@@ -92,7 +91,9 @@ export const Calendar = ({ date, year, month}) => {
                     <li>Fri</li>
                     <li>Sat</li>
                 </ul>
-                <ul className="calendarDates" id="calendarDates" dangerouslySetInnerHTML={{ __html: calendarHTML }}>
+                <ul className="calendarDates" 
+                    id="calendarDates" 
+                    dangerouslySetInnerHTML={{ __html: calendarHTML }}>
                 </ul>
             </div>
         </div>

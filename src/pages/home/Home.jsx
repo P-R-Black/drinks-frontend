@@ -13,7 +13,6 @@ import axios from 'axios'
 
 
 export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
-  console.log('drinks home.jsx', drinks)
 
   var date = new Date()
   var year = date.getFullYear();
@@ -91,7 +90,6 @@ export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
   const calDate = document.querySelectorAll('.calDate')
   calDate.forEach((cd) => {
     cd.addEventListener('click', async () => {
-
       let getClassNames = await cd.getAttribute('class')
       let clickedDay = await cd.innerHTML
       let clickedYear = await calendarYear

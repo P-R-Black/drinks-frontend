@@ -31,9 +31,9 @@
 }
 
 .baseAlcTitleContainer h1{
-    color: var(--color-primary-font);
-    font-size: 10.4rem; /* clamp(1rem, 6vw, 5rem); */
-    font-weight: 900;
+    /* color: var(--color-primary-font);
+    font-size: 10.4rem; 
+    font-weight: 900; */
 }
 
 .baseAlcTitleContainer h2{

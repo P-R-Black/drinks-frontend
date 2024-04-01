@@ -8,7 +8,8 @@ export const TheAbout = () => {
         <div className="container">
           <div className="aboutContainer">
             <div className="aboutTitleContainer">
-            <h1>What is Keep's Guide</h1>
+            <h1>About Us</h1>
+            <h2>What is Keep's Guide</h2>
             </div>
             <div className="aboutParagraphContainer">
             <p>
@@ -18,15 +19,15 @@ export const TheAbout = () => {
                 drink's recipe and instructions, and little else.
               </p>
               <p>
-                At Keep's Guide, the drink is the star of the show, no blog posts, 
-                or stories about the drink's origin, by the way, did you know that the Gimlet was promoted as a 
-                cure for scurvy? That's probably not the first thing you want to read about when you're looking up a 
+                At Keep's Guide, the drink is the star of the show, no blog posts or stories about the drink's 
+                origin, by the way, did you know that the Gimlet was promoted as a cure for scurvy? That's 
+                probably not the first thing you want to read when you're looking up a 
                 Gimlet recipe, but that's how many sites dedicated to drink recipes are structured, with paragraphs
                 about the drink, and the drink's flavor profile, as well as the drink's place in world history, 
-                and burried at the bottom of the page, is where you'll find the drinks ingredients.
+                and burried at the bottom of the page, is where you'll find the drink's ingredients.
               </p>
               <p>
-                Keep's Guide aims to keep it simple, and give barkeeps and drink enthusiasts the guideance needed 
+                Keep's Guide aims to keep it simple, and give barkeeps and drink enthusiasts the guide needed 
                 to craft delcious cocktails and shots.
               </p>
             </div>
