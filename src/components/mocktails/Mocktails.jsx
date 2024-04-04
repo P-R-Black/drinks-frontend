@@ -3,7 +3,6 @@ import React, {useState, useRef, useEffect } from 'react'
 import './mocktails.css'
 import { Parallax, Background } from 'react-parallax';
 import mocktailImage from '../../assets/pexels-rachel-default.jpg'
-import { ToolTip } from '../tooltip/ToolTip';
 import { ToolTipCard } from '../tooltip/ToolTipCard';
 
 export const Mocktails = ({ drinks }) => {

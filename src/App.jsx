@@ -11,6 +11,7 @@ import { PageNotFound } from './pages/notFound/NotFound';
 import { AboutUs } from './pages/about/About';
 import { Contact } from './pages/contact/Contact'
 import { Terms } from './pages/terms/Terms';
+import { Privacy } from './pages/privacy/Privacy';
 import { DrinksAPI } from './api/drinksapi/DrinksAPI';
 
 const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
@@ -183,6 +184,14 @@ const App = () => {
                 />
                 <Route exact path="/terms-and-conditions" name="terms"
                     element={<Terms
+                    baseAlcohol={baseAlcohol} 
+                    fetchAlcoholType={fetchAlcoholType}
+                    navLinkText={navLinkText}
+                    drinks={drinks}
+                  />}
+                />
+                <Route exact path="/privacy-policy" name="terms"
+                    element={<Privacy
                     baseAlcohol={baseAlcohol} 
                     fetchAlcoholType={fetchAlcoholType}
                     navLinkText={navLinkText}

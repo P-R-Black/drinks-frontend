@@ -79,6 +79,7 @@ export const TermsAndConditions = () => {
                     <p className="siteAddress">PO Box 220085 Rosedale, NY 11422</p>
 
                     <p>You can also contact us through the feedback <HashLink className="formLink" to="/contact-us">{"form"}</HashLink> available on our Site</p>
+                    <h2 className="effectDate">Effective Date: April 2, 2024</h2>
                 </div>
             </div>
         </div>
