@@ -1,5 +1,5 @@
 .mocktailSection{
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
     width: 100%;
 
@@ -13,7 +13,8 @@
 
 
 .mocktailContainer{
-    min-height: 100vh;
+    margin-bottom: 3rem;
+    /* min-height: auto; */
 }
 
 .mocktailTitleContainer{
@@ -86,6 +87,10 @@
     align-items: center;
     justify-content: space-between;
 
+}
+
+.linktoRecipe{
+    margin-bottom: .5rem;
 }
 
 .mocktailMore{

@@ -10,6 +10,7 @@ import { AllDrinks } from './pages/all_drinks/AllDrinks';
 import { PageNotFound } from './pages/notFound/NotFound';
 import { AboutUs } from './pages/about/About';
 import { Contact } from './pages/contact/Contact'
+import { Terms } from './pages/terms/Terms';
 import { DrinksAPI } from './api/drinksapi/DrinksAPI';
 
 const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
@@ -22,7 +23,6 @@ const App = () => {
   const [ allDrknksBackgroundPic, setAllDrknksBackgroundPic] = useState()
   const [ navLinkText, setNavLinkText] = useState("")
 
-  console.log('drinks', drinks)
   
   const [ newDrinks, setNewDrinks] = useState([])
   console.log('newDrinks', newDrinks)
@@ -175,6 +175,14 @@ const App = () => {
                 />
                 <Route exact path="/contact-us" name="contact"
                     element={<Contact
+                    baseAlcohol={baseAlcohol} 
+                    fetchAlcoholType={fetchAlcoholType}
+                    navLinkText={navLinkText}
+                    drinks={drinks}
+                  />}
+                />
+                <Route exact path="/terms-and-conditions" name="terms"
+                    element={<Terms
                     baseAlcohol={baseAlcohol} 
                     fetchAlcoholType={fetchAlcoholType}
                     navLinkText={navLinkText}

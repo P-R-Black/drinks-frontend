@@ -23,8 +23,7 @@
 }
 
 .aboutTitleContainer h1{
-    /* font-size: 9.5rem;
-    font-weight: 900; */
+    font-size: clamp(4rem, 11vw, 13vw);
     margin-top: 4.5rem;
 
 }

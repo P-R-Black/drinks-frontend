@@ -66,7 +66,7 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
                                 return (
                                     <li className="ingredients" key={imIndex}>
                                         <span className="ingredientUnit">{formatUnits(im)} </span>  
-                                        <span className="ingredientMeasurement">{im.split(" ")[1]}</span>
+                                        <span className="ingredientMeasurement">{`${im.split(" ")[1]} `}</span>
                                         <span className="ingredentIngredient">
                                             {
                                             im.replace(im.split(" ")[0], "").replace(im.split(" ")[1], "")

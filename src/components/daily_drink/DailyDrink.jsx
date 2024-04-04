@@ -121,20 +121,20 @@ export const DailyDrink = ({ generateCalendar, adjustMonth, date, year, month, m
 
                   />
               </div>
-              ) : (
-                <div className="dodRightSide hidden" ref={dodRefRightSide}>
-                <h2 className="boxTitle">Past Drink of the Day</h2>
-                  <Calendar 
-                    date={date}
-                    year={year} 
-                    month={month} 
-                    generateCalendar={generateCalendar}
-                    adjustMonth={adjustMonth}
+                  ) : (
+                  <div className="dodRightSide hidden" ref={dodRefRightSide}>
+                  <h2 className="boxTitle">Past Drink of the Day</h2>
+                    <Calendar 
+                      date={date}
+                      year={year} 
+                      month={month} 
+                      generateCalendar={generateCalendar}
+                      adjustMonth={adjustMonth}
 
-                  />
-              </div>
-              )}
-          </div>
+                    />
+                </div>
+                )}
+            </div>
           </div>
         </Parallax>
       </section>

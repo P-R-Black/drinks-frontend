@@ -47,7 +47,7 @@ export const Footer = () => {
                     <HashLink to="">{"Contact"}</HashLink>
                     <HashLink to="">{"Privacy Choices"}</HashLink>
                     <HashLink to="">{"Privacy Policy"}</HashLink>
-                    <HashLink to="">{"Terms Of Service"}</HashLink>
+                    <HashLink to="/terms-and-conditions">{"Terms Of Service"}</HashLink>
                 </div>
             </div>
             ):( 
@@ -64,7 +64,7 @@ export const Footer = () => {
                     <HashLink to="/contact-us">{"Contact"}</HashLink>
                     <HashLink to="">{"Privacy Choices"}</HashLink>
                     <HashLink to="">{"Privacy Policy"}</HashLink>
-                    <HashLink to="">{"Terms Of Service"}</HashLink>
+                    <HashLink to="/terms-and-conditions">{"Terms Of Service"}</HashLink>
                 </div>
                 </>
            )}

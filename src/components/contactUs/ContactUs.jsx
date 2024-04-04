@@ -13,22 +13,29 @@ export const ContactUs = () => {
 
     const [isLoading, setIsLoading] = useState(false)
 
+
+    const reactAppServiceID = process.env.REACT_APP_SERVICE_ID
+    const reactAppTemplateID = process.env.REACT_APP_TEMPLATE_ID
+    const reactPublicEmailJSKey = process.env.REACT_APP_PUBLIC_EMALJS_KEY
+
+
     const isPending = () => {
         setIsLoading(true);
         
     }
   
-    const sendEmail = (e) => {
-      e.preventDefault();
+    const sendEmail = async (e) => {
+        e.preventDefault();
 
-      emailjs.sendForm(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, form.current, process.env.REACT_APP_PUBLIC_KEY)
+      emailjs.sendForm(reactAppServiceID, reactAppTemplateID, form.current, reactPublicEmailJSKey)
         .then((result) => {
-            setIsLoading(false);
             setEmailSent('Your email has been sent successfully.');
-            console.log(result.text);
+            setIsLoading(false);
+            console.log('result.text', result.text);
         }, (error) => {
             setEmailSent('There was an issue, the email was not sent.')
-            console.log(error.text);
+            setIsLoading(false);
+            console.log('error.text', error.text);
         });
 
         e.target.reset();
@@ -36,29 +43,29 @@ export const ContactUs = () => {
     };
   
     return (
-        <section id="contact" className='contact_section'>
-            <h5>Get in Touch
-            <   span className='animate scroll' style={{'--i':"1"}}></span>
-            </h5>
-            <h2>Contact Me
-                <span className='animate scroll' style={{'--i':"2"}}></span>
-            </h2>
-        <form ref={form} onSubmit={sendEmail} className="contact_form">
+        <section id="contact" className='contactSection'>
+            <div className="container">
+                <div className="contactContainer">
+                    <div className="contactTitleContainer">
+                        <h1>Contact Us</h1>
+                        <h3>Have a suggestion, critique, or drink recipe, contact us here.</h3>
+                    </div>
+                    <div className="formContainer">
+                        <form ref={form} onSubmit={sendEmail} className="contactForm">
+                            <input type="text" name="name" placeholder="Your Name" required/>
+                            <input type="email" name="email" placeholder="Your Email" required/>
+                            <textarea name="message" placeholder="Your Message" cols="30" 
+                            rows="10" required/>
 
-            <input type="text" name="name" placeholder="Your Name" required/>
-            <input type="email" name="email" placeholder="Your Email" required />
-            <textarea name="message" placeholder="Your Message" id="" cols="30" rows="10" required/>
-
-            <div className='email_sent'>{emailSent}</div>
-            { isLoading &&  <CgSpinnerTwo className='spinner'/> }
-
-            <button type="submit" className='button_light' 
-            onClick={isPending}>
-                Send Message
-            </button>
-
-            <span className='animate scroll' style={{'--i':"2"}}></span> 
-        </form>
+                            <div className="emailSent">{emailSent}</div>
+                            {isLoading ? <CgSpinnerTwo className="spinner" /> : ""}
+                            <button type="submit" className="buttonLight" onClick={isPending}>
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
       </section>
     );
 }

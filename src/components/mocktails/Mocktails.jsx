@@ -71,7 +71,8 @@ export const Mocktails = ({ drinks }) => {
                                         ))}
                                     </ol>
                                    
-                                    <div className="linktoRecipe">Recipe</div>
+                                    <a className="linktoRecipe" href={`/alcohol/${mt.base_alcohol}/${mt.drink_name.toLowerCase()}`}>
+                                        Recipe</a>
                                 </ToolTipCard>    
                             </>
                             ))}
