@@ -2,10 +2,10 @@
 .searchInputDiv {
     align-items: center;
     border-radius: 10px;
-    border: 2px solid white;
+    border: 2px solid var(--color-primary-font);
     display: flex;
     justify-content: space-between;
-    min-height: 2rem;
+    min-height: 1.75rem;
     overflow: hidden;
     width: 28rem;
 }
@@ -15,7 +15,7 @@ input.searchBar {
     border: 0;
     outline: 0;
     border-radius: 10px;
-    margin-left: 1rem;;
+    margin-left: .5rem;;
 
 }
 
@@ -32,7 +32,7 @@ input.searchBar {
     cursor: auto;
     font-size: 1rem;
     font-weight: 600;
-    height: 2rem;
+    height: 1.75rem;
     width: 26rem;
 }
 
@@ -42,8 +42,8 @@ input.searchBar {
     color: white;
     cursor: pointer;
     display: flex;
-    font-size: 2rem;
-    height: 2rem;
+    font-size: 1.75rem;
+    height: 1.75rem;
     width: 3.5rem;
     
 }

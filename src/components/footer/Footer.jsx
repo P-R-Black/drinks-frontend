@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './footer.css'
 
 import { Logo } from '../logo/Logo'
@@ -7,19 +7,11 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaTumblr } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa";
 import { HashLink } from 'react-router-hash-link'
-import { useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { PrivacyChoice } from '../user_privacy/PrivacyChoice';
 
 export const Footer = () => {
-
-    const ScrollToTop = () => {
-        const { pathname } = useLocation();
-        console.log('pathname', pathname)
-        useEffect(() => {
-            window.scrollTo(0, 0);
-        }, [pathname]);
-
-        return null;
-    }
+    const [ buttonPopUp, setButtonPopUp ] = useState(false);
 
   return (
     <div className='footerSection'>
@@ -36,35 +28,35 @@ export const Footer = () => {
             {window.innerWidth < 601 ? (  
             <div className="mobileDivisionContainer">
                 <div className="footerSiteSections">
-                    <ScrollToTop/>
                     <HashLink to="/#dodSection">{"Drink of the Day"}</HashLink>
                     <HashLink to="/#discoverSection">{"Discover"}</HashLink>
                     <HashLink to="/#mocktailSection">{"Mocktails"}</HashLink>
                     <HashLink to="">{"Bartender Must Knows"}</HashLink>
                 </div>
                 <div className="footerSiteInfo">
-                    <HashLink to="/about-us">{"About Us"}</HashLink>
-                    <HashLink to="">{"Contact"}</HashLink>
-                    <HashLink to="">{"Privacy Choices"}</HashLink>
-                    <HashLink to="/privacy-policy">{"Privacy Policy"}</HashLink>
-                    <HashLink to="/terms-and-conditions">{"Terms Of Service"}</HashLink>
+                    <NavLink to="/about-us">{"About Us"}</NavLink>
+                    <NavLink to="">{"Contact"}</NavLink>
+                    <NavLink onClick={() => setButtonPopUp(true)} to="">{"Privacy Choices"}</NavLink>
+                    <PrivacyChoice trigger={buttonPopUp} setTrigger={setButtonPopUp}></PrivacyChoice>
+                    <NavLink to="/privacy-policy">{"Privacy Policy"}</NavLink>
+                    <NavLink to="/#TermsSection">{"Terms Of Service"}</NavLink>
                 </div>
             </div>
             ):( 
                 <>
                  <div className="footerSiteSections">
-                    <ScrollToTop/>
                     <HashLink to="/#dodSection">{"Drink of the Day"}</HashLink>
                     <HashLink to="/#discoverSection">{"Discover"}</HashLink>
                     <HashLink to="/#mocktailSection">{"Mocktails"}</HashLink>
                     <HashLink to="">{"Bartender Must Knows"}</HashLink>
                 </div>
                 <div className="footerSiteInfo">
-                    <HashLink to="/about-us">{"About Us"}</HashLink>
-                    <HashLink to="/contact-us">{"Contact"}</HashLink>
-                    <HashLink to="">{"Privacy Choices"}</HashLink>
-                    <HashLink to="/privacy-policy">{"Privacy Policy"}</HashLink>
-                    <HashLink to="/terms-and-conditions">{"Terms Of Service"}</HashLink>
+                    <NavLink to="/about-us">{"About Us"}</NavLink>
+                    <NavLink to="/contact-us">{"Contact"}</NavLink>
+                    <NavLink onClick={() => setButtonPopUp(true)} to="">{"Privacy Choices"}</NavLink>
+                    <PrivacyChoice trigger={buttonPopUp} setTrigger={setButtonPopUp}></PrivacyChoice>
+                    <NavLink to="/privacy-policy">{"Privacy Policy"}</NavLink>
+                    <NavLink to="/terms-and-conditions">{"Terms Of Service"}</NavLink>
                 </div>
                 </>
            )}

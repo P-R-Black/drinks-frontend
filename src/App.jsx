@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './index.css'
-import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import { useLocation, Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios'
 
 import { Home } from './pages/home/Home';
@@ -128,6 +128,7 @@ const App = () => {
   
   navBarLinkText()
 
+
   return (
     <div className="app">
       <Router>
@@ -197,6 +198,7 @@ const App = () => {
                     navLinkText={navLinkText}
                     drinks={drinks}
                   />}
+                  
                 />
                 <Route path="*" element={<PageNotFound
                   baseAlcohol={baseAlcohol} 

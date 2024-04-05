@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Logo } from '../../components/logo/Logo'
 import './user_privacy.css'
 
-export const PrivacyChoice = () => {
-  return (
-    <section className="privacyChoiceSection">
+export const PrivacyChoice = (props) => {
+ 
+  return (props.trigger) ? (
+    <section className="privacyChoiceSection privacyPopup">
         <div className="logoDiv">
             <Logo/>
+            <button onClick={() => props.setTrigger(false)} className="closeButton">X</button>
+            { props.children }
         </div>
         <div className="privacyChoiceContainer">
             <h3>Your Privacy Choices</h3>
@@ -19,13 +22,14 @@ export const PrivacyChoice = () => {
             </p>
             <p>
                 To opt-out, you must (1) submit the "Opt-Out Form" using the link below or send an 
-                email toprivacy@dotdashmdp.com with the subject line, "Opt-Out of Sales" and (2) 
+                email pblackdevdemo@gmail.com with the subject line, "Opt-Out of Sales" and (2) 
                 opt-out of Targeting Cookies as instructed below. We will process your opt-out 
                 request in accordance with applicable U.S. state privacy laws. 
             </p>
-            <a href="/">Go To Opt Out Form</a>
         </div>
-        <button>Confirm My CHoices</button>
+        <a href="/">Go To Opt Out Form</a>
+        <button className="privacyChoiceConfirmChoice">Confirm My Choices</button>
+        
     </section>
-  )
+  ) : "";
 }
