@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { ToolTip } from '../tooltip/ToolTip';
 import './drinks_all.css';
 
@@ -6,29 +7,33 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
   const [alldrinks, setallDrinks ] = useState([])
   const [alcFontSize, setAlcFontSize] = useState(200)
 
-    console.log('alcohol DrinksAll', alcohol)
-    console.log('allDrinks DrinksAll', alldrinks)
+    // console.log('alcohol DrinksAll', alcohol)
+    // console.log('allDrinks DrinksAll', alldrinks)
 
 
   // format alcohol name
-  if (alcohol === "punt e mes"){
+  if (alcohol === "puntemes"){
     alcohol = "Punt e Mes"
-} else if (alcohol === "sloe gin"){
+} else if (alcohol === "elderflowerliqueur"){
+  alcohol = "Elderflower Liqueur"
+} else if (alcohol === "sloegin"){
     alcohol = "Sloe Gin"
-} else if (alcohol === "white wine apéritif"){
+} else if (alcohol === "whitewineapéritif"){
     alcohol = "White Wine Apéritif"
-} else if (alcohol === "rosé wine apéritif"){
+} else if (alcohol === "roséwineapéritif"){
     alcohol = "Rosé Wine Apéritif"
-} else if (alcohol === "rum (dark)"){
+} else if (alcohol === "rum(dark)"){
   alcohol = "Rum (Dark)"
-} else if (alcohol === "rum (gold)"){
+} else if (alcohol === "rum(gold)"){
   alcohol = "Rum (Gold)"
-} else if (alcohol === "rum (light)"){
+} else if (alcohol === "rum(light)"){
   alcohol = "Rum (Light)"
 } else if (alcohol === "amaretto"){
   alcohol = "Amaretto"
 } else if (alcohol === "non-alcoholic"){
   alcohol = "Non-Alcoholic"
+} else if (alcohol === "sparklingwhitewine"){
+  alcohol = "Sparkling White Wine"
 } else {
   let alcoholFirstLetter = alcohol.charAt(0)
   let alcoholFirstLetterCap = alcoholFirstLetter.toUpperCase()
@@ -63,7 +68,7 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
   useEffect(() => {
     getAllDrinks()
     adjustFontSize()
-  },[getAllDrinks])
+  },[getAllDrinks, alcohol, alldrinks])
 
 
   return (
@@ -78,11 +83,12 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
             {alldrinks.map((ad) => (
                <>
                  <ToolTip text={ad}>
-                        <a 
+                        <Link
+                          key={ad}
                           className="linktoRecipeTwo"
-                          href={`/alcohol/${ad.base_alcohol}/${ad.toLowerCase()}`}>
+                          to={`/${alcohol.toLowerCase().replaceAll(" ", "")}/${ad.toLowerCase().replaceAll(" ", "")}`}>
                         {ad.length < 18 ? ad : ad.slice(0, 15) + "..."}
-                        </a>
+                        </Link>
                   </ToolTip> 
                </>
             ))}

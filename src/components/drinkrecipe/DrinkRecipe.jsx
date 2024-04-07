@@ -15,6 +15,8 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
     let imgRecipeBG = 'radial-gradient(#25236E82, #4A5ECB75),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-kelly.jpg') + ')'
     let picByRecipe = [imgRecipeBG]
 
+    console.log('drinks', drinks, 'drinkRecipe', drinkRecipe)
+
     useEffect(() => {
         getDrinkRecipe()
         setBackgroundRecipePic(picByRecipe[Math.floor(Math.random() * picByRecipe.length)])
@@ -24,7 +26,8 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
     // function to get drink recipe
     const getDrinkRecipe = () => {
         drinks.map((rec) => {
-            if (rec.drink_name.toLowerCase() == drinkRecipe){
+            if (rec.drink_name.toLowerCase() == drinkRecipe || 
+                rec.drink_name.toLowerCase().replaceAll(" ", "") == drinkRecipe){
                 setRecipe([rec])
             } 
         })

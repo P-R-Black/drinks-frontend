@@ -124,7 +124,7 @@
 
     .discoverTitleContainerH1{
         line-height: 4rem;
-        margin-top: 1.25rem;
+        margin-top: 3rem;
     }
 
     .discoverTitleContainerH2{
@@ -141,6 +141,8 @@
         grid-template-columns: repeat(2, 40%);
         gap: .25rem;
         overflow-y: scroll;
+        margin-bottom: 2rem;
+        height: 25rem;
 
     }
     

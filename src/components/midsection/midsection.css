@@ -21,5 +21,14 @@
 
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
+    .midSection{
+        font-size: 2rem;
+        height: 20vh;
+    }
+
+    .midSection H1{
+        margin-top: 2rem;
+        text-align: center
+    }
 
 }

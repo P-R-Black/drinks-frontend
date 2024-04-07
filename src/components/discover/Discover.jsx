@@ -14,7 +14,7 @@ export const Discover = ({ drinks }) => {
     const allAlcohol = async () => {
         let filteredBase = []
         for (let d = 0; d < drinks.length; d++){
-        let base = drinks.map((ba) => ba.base_alcohol)
+        let base = await drinks.map((ba) => ba.base_alcohol)
         for (let b = 0; b < base.length; b++){
             let baseText = await base[b][0]
             if (!filteredBase.includes(baseText)){
@@ -35,7 +35,7 @@ export const Discover = ({ drinks }) => {
         })
         observer.observe(discoverRef.current)
         allAlcohol()
-    },[])
+    },[drinks])
 
     return (
         <section id="discoverSection" className="discoverSection">

@@ -9,21 +9,25 @@ import dodImage from '../../assets/pexels-ron-lach.jpg'
 
 
 
-export const DailyDrink = ({ generateCalendar, adjustMonth, date, year, month, mm, dd, lastDrinkOfTheDay, 
-  currentDrink, dateLookup, months }) => {
-
+export const DailyDrink = ({ currentDrink, generateCalendar, adjustMonth, date, year, 
+  month, mm, dd, lastDrinkOfTheDay, dateLookup, months }) => {
+  
   const titleRefTwo = useRef();
   const dodRefLeftSide = useRef()
   const dodRefRightSide = useRef()
 
   const [ dodElementVisible, setDodElementVisible ] = useState();
+  const [ loading, setLoading ] = useState(true)
+  
+
+  console.log('currentDrink', currentDrink, 'lastDrinkOfTheDay', lastDrinkOfTheDay)
 
 
   let today = `${months[Number(mm) - 1]} ${dd.replace(/^0+/, "")}, ${year}`
   let lookUpDate = new Date(dateLookup).getTime()
   let lookUpToday = new Date(today).getTime()
 
-
+  
 
   useEffect(() => {
     const dodObserver = new IntersectionObserver((entries) => {
@@ -34,7 +38,6 @@ export const DailyDrink = ({ generateCalendar, adjustMonth, date, year, month, m
     dodObserver.observe(titleRefTwo.current)
   },[])
 
-  
 
     return (
       <section id="dodSection" className="dodSection">
@@ -48,15 +51,16 @@ export const DailyDrink = ({ generateCalendar, adjustMonth, date, year, month, m
                 backgroundSize: "cover"}}
               />
           </Background>
+               
           <div className="container">
-          <div ref={titleRefTwo}>
-            {dodElementVisible ? ( 
-              <h1 className={"drinkOfDayTitle show"}>Drink of the Day</h1>) : (
+            <div ref={titleRefTwo}>
+              {dodElementVisible ? ( 
+                <h1 className={"drinkOfDayTitle show"}>Drink of the Day</h1>) : (
 
-              <h1 className={"drinkOfDayTitle hidden"}></h1>
-            )}
+                <h1 className={"drinkOfDayTitle hidden"}></h1>
+              )}
 
-          </div>
+            </div>
           
             <div className="dodContainer">
               {dodElementVisible ? (<div className="dodLeftSide show" ref={dodRefLeftSide}>

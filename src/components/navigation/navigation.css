@@ -136,8 +136,6 @@
     padding-bottom: 5rem;
     pointer-events: auto;
     transition: var(--transition-in);
-
-    
    
 }
 
@@ -243,26 +241,23 @@
         flex-direction: column;
     }
 
-
     
     .navDropdown {
-        margin-right: 19rem;
-        margin-bottom: -5rem;
-        
+        margin-right: 18.9rem;
+        margin-bottom: -.25rem;    
     }
-    
     
     .navDropdown.show {
         display: flex;
         flex-direction: column;
-        margin-top: 29rem;
+        margin-top: 32.75rem;
     }
 
     .mobileNavContainer{
         align-items: center;
         display: flex;
         justify-content: center;
-        position: absolute;
+        position: sticky;
         top: 14%;
         width: 100%;
         z-index: 200;

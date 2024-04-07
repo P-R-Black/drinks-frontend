@@ -25,7 +25,7 @@ export const Mocktails = ({ drinks }) => {
         })
         observer.observe(mocktailTitleRef.current)
         nonAlcoholicDrinks()
-    },[])
+    },[drinks])
 
 
   return (
@@ -57,7 +57,7 @@ export const Mocktails = ({ drinks }) => {
                     <div className="MockLinksToDrinksContainerCard">
                         {mocktails.map((mt) => (
                             <>
-                                <ToolTipCard text={mt.drink_name}>
+                                <ToolTipCard text={mt.drink_name} key={mt.id}>
                                     <a className="linktoRecipeThreeCard"
                                         href={`/alcohol/${mt.base_alcohol}/${mt.drink_name.toLowerCase()}`}>
                                             {mt.drink_name}

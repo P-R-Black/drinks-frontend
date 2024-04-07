@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './alcoholselect.css';
 import styled, { keyframes } from 'styled-components';
 
@@ -9,27 +10,28 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
   const [filteredDrink, setFilteredDrink ] = useState([])
   const [backgroundPic, setBackgroundPic] = useState()
   const [alcFontSize, setAlcFontSize] = useState(200)
+
   
   // format alcohol name
-  if (alcohol === "punt e mes"){
+  if (alcohol === "puntemes"){
       alcohol = "Punt e Mes"
-  } else if (alcohol === "elderflower liqueur"){
+  } else if (alcohol === "elderflowerliqueur"){
       alcohol = "Elderflower Liqueur"
-  } else if (alcohol === "sloe gin"){
+  } else if (alcohol === "sloegin"){
       alcohol = "Sloe Gin"
-  } else if (alcohol === "white wine apéritif"){
+  } else if (alcohol === "whitewineapéritif"){
       alcohol = "White Wine Apéritif"
-  } else if (alcohol === "rosé wine apéritif"){
+  } else if (alcohol === "roséwineapéritif"){
       alcohol = "Rosé Wine Apéritif"
-  } else if (alcohol === "rum (dark)"){
+  } else if (alcohol === "rum(dark)"){
     alcohol = "Rum (Dark)"
-  } else if (alcohol === "rum (gold)"){
+  } else if (alcohol === "rum(gold)"){
     alcohol = "Rum (Gold)"
-  } else if (alcohol === "rum (light)"){
+  } else if (alcohol === "rum(light)"){
     alcohol = "Rum (Light)"
   } else if (alcohol === "non-alcoholic"){
     alcohol = "Non-Alcoholic"
-  } else if (alcohol === "sparkling white wine"){
+  } else if (alcohol === "sparklingwhitewine"){
     alcohol = "Sparkling White Wine"
   } else {
     let alcoholFirstLetter = alcohol.charAt(0)
@@ -94,6 +96,7 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
 
   }
 
+  console.log('filtered Drink', filteredDrink)
   
 
   const adjustFontSize = () => {
@@ -150,14 +153,14 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
                 return (
                   <Scroll className="nameButtonContainer">
                     <li className="drinkListLi" key={fd.id}>{fd.length < 19 ? fd : fd.slice(0, 19) + "..."}</li>
-                    <a href={`/alcohol/${fd.base_alcohol}/${fd.toLowerCase()}`} className="linktoRecipe">Recipe</a>
+                    <Link to={`/${alcohol.toLowerCase().replaceAll(" ","")}/${fd.toLowerCase().replaceAll(" ","")}`} className="linktoRecipe">Recipe</Link>
                   </Scroll>
                 )
               })}
               
             </ul>
               <div className="moreDrinkLinkContainer">
-                <a href={`/alcohol/${alcohol.toLowerCase()}/all_drinks`} className="linktoRecipeLarge">All {alcohol} Drinks</a>
+                <Link to={`/${alcohol.toLowerCase().replaceAll(" ","")}/all_drinks`} className="linktoRecipeLarge">All {alcohol} Drinks</Link>
               </div>
           </div>
         </div>

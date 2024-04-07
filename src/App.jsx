@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import './index.css'
-import { useLocation, Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {createRoutesFromElements} from 'react-router-dom'
+
 import axios from 'axios'
 
 import { Home } from './pages/home/Home';
@@ -12,7 +15,6 @@ import { AboutUs } from './pages/about/About';
 import { Contact } from './pages/contact/Contact'
 import { Terms } from './pages/terms/Terms';
 import { Privacy } from './pages/privacy/Privacy';
-import { DrinksAPI } from './api/drinksapi/DrinksAPI';
 
 const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
 
@@ -23,19 +25,18 @@ const App = () => {
   const [ baseAlcohol, setBaseAlcohol ] = useState([])
   const [ allDrknksBackgroundPic, setAllDrknksBackgroundPic] = useState()
   const [ navLinkText, setNavLinkText] = useState("")
-
   
-  const [ newDrinks, setNewDrinks] = useState([])
-  console.log('newDrinks', newDrinks)
+  // const [ newDrinks, setNewDrinks] = useState([])
+  // console.log('newDrinks', newDrinks)
 
 
-  const findAPIData = async () => {
-    const drinksAPI = <DrinksAPI/>
-    const apiData = await drinksAPI._owner.memoizedState.queue.lastRenderedState
-    console.log('newDrinks', newDrinks)
-    setNewDrinks(apiData)
+  // const findAPIData = async () => {
+  //   const drinksAPI = <DrinksAPI/>
+  //   const apiData = await drinksAPI._owner.memoizedState.queue.lastRenderedState
+  //   // console.log('newDrinks', newDrinks)
+  //   setNewDrinks(apiData)
    
-  }
+  // }
 
 
   let imgUrlDefault = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-rachel-default.jpg') + ')'
@@ -79,25 +80,48 @@ const App = () => {
     "White Wine Apéritif": [imgUrlWhiteWine, imgUrlChampagneBot],
   }
   
-  useEffect(() => {
+  // useEffect(() => {
 
+  //   const fetchData = async () =>{
+  //     setLoading(true);
+  //     try {
+  //       const {data: response} = await axios.get(API_ENDPOINT);
+  //       setDrinks(response);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error(error.message);
+  //       setLoading(false);
+  //     }
+     
+  //   }
+  //   navBarLinkText()
+  //   fetchData();
+  //   fetchAlcoholType();
+  //   setAllDrknksBackgroundPic(picByDrink[baseAlcohol] != undefined ? picByDrink[baseAlcohol][Math.floor(Math.random() * picByDrink[baseAlcohol].length)]: imgUrlDefault)
+   
+  // }, []);
+
+  // ChatGPT
     const fetchData = async () =>{
-      setLoading(true);
       try {
         const {data: response} = await axios.get(API_ENDPOINT);
-        setDrinks(response);
-        setLoading(false);
+        return response;
       } catch (error) {
         console.error(error.message);
-        setLoading(false);
       }
-     
     }
-    fetchData();
+  useEffect(() =>{
+    fetchData().then(data => {
+      setDrinks(data);
+      setLoading(false); // Set loading to false after data is fetched
+    }).catch(error => {
+      console.error('Error fetching data:', error);
+      setLoading(false); // Make sure to handle error case and set loading to false
+    });
+    navBarLinkText();
     fetchAlcoholType();
     setAllDrknksBackgroundPic(picByDrink[baseAlcohol] != undefined ? picByDrink[baseAlcohol][Math.floor(Math.random() * picByDrink[baseAlcohol].length)]: imgUrlDefault)
-   
-  }, []);
+  },[])
 
 
   const fetchAlcoholType = async () => {
@@ -126,12 +150,126 @@ const App = () => {
     })
   }
   
-  navBarLinkText()
+  
+
+  // const router = createBrowserRouter(
+  //   createRoutesFromElements(
+  //     <Route>
+  
+  //       <Route 
+  //         index 
+  //         element={<Home
+  //         drinks={drinks} 
+  //         baseAlcohol={baseAlcohol} 
+  //         fetchAlcoholType={fetchAlcoholType}
+  //         navLinkText={navLinkText}
+  //         />}
+        
+  //       />
+  //       <Route path="*" element={<PageNotFound
+  //                 baseAlcohol={baseAlcohol} 
+  //                 fetchAlcoholType={fetchAlcoholType}
+  //                 navLinkText={navLinkText}
+  //                 drinks={drinks}
+  //                 />}
+  //         />
+  //     </Route>
+  //   )
+  // )
+
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Home 
+                drinks={drinks} 
+                baseAlcohol={baseAlcohol} 
+                fetchAlcoholType={fetchAlcoholType}
+                navLinkText={navLinkText}
+                />,
+    },
+    {
+      path: '/:alcohol',
+      element: <Alcohol  
+                drinks={drinks} 
+                baseAlcohol={baseAlcohol} 
+                fetchAlcoholType={fetchAlcoholType}
+                navLinkText={navLinkText}
+                allDrknksBackgroundPic={allDrknksBackgroundPic}
+              />
+    },
+    {
+      path: "/:alcohol/:drinkRecipe",
+      element: <Drinks 
+                  drinks={drinks}
+                  baseAlcohol={baseAlcohol} 
+                  fetchAlcoholType={fetchAlcoholType}
+                  navLinkText={navLinkText}
+                />
+    },
+    {
+      path: `/:alcohol/all_drinks`,
+      element: <AllDrinks 
+                  drinks={drinks}
+                  baseAlcohol={baseAlcohol} 
+                  fetchAlcoholType={fetchAlcoholType}
+                  navLinkText={navLinkText}
+                  allDrknksBackgroundPic={allDrknksBackgroundPic}
+                />
+    },
+    {
+      path: "/about-us",
+      element: <AboutUs
+                    baseAlcohol={baseAlcohol} 
+                    fetchAlcoholType={fetchAlcoholType}
+                    navLinkText={navLinkText}
+                    drinks={drinks}
+                  />
+    },
+    {
+      path: "/contact-us",
+      element: <Contact
+                    baseAlcohol={baseAlcohol} 
+                    fetchAlcoholType={fetchAlcoholType}
+                    navLinkText={navLinkText}
+                    drinks={drinks}
+                  />
+    },
+    {
+      path: "/terms-and-conditions",
+      element: <Terms
+                    baseAlcohol={baseAlcohol} 
+                    fetchAlcoholType={fetchAlcoholType}
+                    navLinkText={navLinkText}
+                    drinks={drinks}
+                  />
+    },
+    {
+      path: "/privacy-policy",
+      element: <Privacy
+                    baseAlcohol={baseAlcohol} 
+                    fetchAlcoholType={fetchAlcoholType}
+                    navLinkText={navLinkText}
+                    drinks={drinks}
+                  />
+    },
+    {
+      path: "*",
+      element: <PageNotFound
+        baseAlcohol={baseAlcohol} 
+        fetchAlcoholType={fetchAlcoholType}
+        navLinkText={navLinkText}
+        drinks={drinks}
+      />
+    }
+  ])
 
 
   return (
     <div className="app">
-      <Router>
+      {loading ? (<p>Loading...</p>): (<RouterProvider router={router} />)}
+            {/* <RouterProvider router={router} /> */}
+            
+      {/* <Router>
           <React.StrictMode>
             {loading ? (
               <p>Loading...</p>
@@ -143,7 +281,7 @@ const App = () => {
                   fetchAlcoholType={fetchAlcoholType}
                   navLinkText={navLinkText}
                   />} />
-                <Route exact path="alcohol/:alcohol" name="alcohol"
+                <Route exact path="/:alcohol" name="alcohol"
                   element={<Alcohol 
                   drinks={drinks}
                   baseAlcohol={loading ? (<p>Loading...</p>):(baseAlcohol)} 
@@ -152,14 +290,14 @@ const App = () => {
                   allDrknksBackgroundPic={allDrknksBackgroundPic}
 
                 />} />
-                <Route exact path="alcohol/:alcohol/:drinkRecipe" name="drinkRecipe"
+                <Route exact path="/:alcohol/:drinkRecipe" name="drinkRecipe"
                   element={<Drinks 
                   drinks={drinks}
                   baseAlcohol={loading ? (<p>Loading...</p>):(baseAlcohol)} 
                   fetchAlcoholType={fetchAlcoholType}
                   navLinkText={navLinkText}
                 />} />
-                <Route exact path="alcohol/:alcohol/all_drinks" name="alcohol"
+                <Route exact path="/:alcohol/all_drinks" name="alcohol"
                   element={<AllDrinks 
                   drinks={drinks}
                   baseAlcohol={loading ? (<p>Loading...</p>):(baseAlcohol)} 
@@ -210,8 +348,7 @@ const App = () => {
             </Routes>
             )}
           </React.StrictMode>
-      </Router>
-      
+      </Router> */}
     </div>
   )
 }
