@@ -68,8 +68,7 @@ export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
     fetchLastRecord()
   },[])
 
-
-  // Create a mapping from dates to event names
+  console.log('drinkOfTheDay', drinkOfTheDay)
   const eventMap = {};
   drinkOfTheDay.forEach(event => {
     const date = event.theDate.split('T')[0];

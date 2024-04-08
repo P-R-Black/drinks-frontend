@@ -130,7 +130,7 @@ h1.drinkOfDayTitle.show {
     flex-direction: column;   
     gap: 1rem;
     
-    filter: blur(0);
+    filter: blur(0px);
     opacity: 1;
     animation-duration: 2s;
     animation-name: animate-dod-right-text;

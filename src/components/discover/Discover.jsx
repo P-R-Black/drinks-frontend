@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-
+import { Link } from 'react-router-dom';
 import './discover.css'
 import { Parallax, Background } from 'react-parallax';
 import discoverImage from '../../assets/sergio-alves-santos-PeDrafNlY2Y-unsplash.jpg'
@@ -53,29 +53,20 @@ export const Discover = ({ drinks }) => {
                 <div className="container">
                     <div className="discoverContainer">
                         <div className="discoverTitleContainer" ref={discoverRef} >
-                            {discElementVisible ? (
-                                    <>
-                                     <h1 className={"discoverTitleContainerH1 show"} >Discover</h1>
-                                     <h2 className={"discoverTitleContainerH2 show"}>Your Next Cocktail</h2> 
-                                    </>
-                                   
-                            ):(
-                                <>
-                                    <h1 className={"discoverTitleContainerH1 hidden"}></h1>
-                                    <h2 className={"discoverTitleContainerH2 hidden"}></h2>
-                                </>
-                                   
-                            )}
+                            <h1 className={discElementVisible ? `discoverTitleContainerH1 show` : `discoverTitleContainerH1 hidden`} >Discover</h1>
+                            <h2 className={discElementVisible ? `discoverTitleContainerH2 show` : `discoverTitleContainerH2 hidden`}>Your Next Cocktail</h2> 
                         </div>
                         <div className="discLinksToDrinkContainer">
                             {mainAlcohols.map((ad) => (
                             <>
                                 <ToolTip text={ad}>
-                                        <a 
-                                        className="linktoRecipeThree"
-                                        href={`/alcohol/${ad.toLowerCase()}`}>
-                                        {ad.length < 18 ? ad : ad.slice(0, 15) + "..."}
-                                        </a>
+                                        <Link
+                                            key={ad.toLowerCase()}
+                                            className="linktoRecipeThree" 
+                                            to={`/${ad.toLowerCase()}`}
+                                            > 
+                                            {ad.length < 18 ? ad : ad.slice(0, 15) + "..."}
+                                        </Link>
                                 </ToolTip> 
                             </>
                             ))}

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Calendar } from '../calendar/Calendar'
 import './dailyDrink.css'
 
+import { Link } from 'react-router-dom'
 import { MdUpdate } from 'react-icons/md'
 
 import { Parallax, Background } from 'react-parallax';
@@ -16,9 +17,7 @@ export const DailyDrink = ({ currentDrink, generateCalendar, adjustMonth, date, 
   const dodRefLeftSide = useRef()
   const dodRefRightSide = useRef()
 
-  const [ dodElementVisible, setDodElementVisible ] = useState();
-  const [ loading, setLoading ] = useState(true)
-  
+  const [ dodElementVisible, setDodElementVisible ] = useState();  
 
   console.log('currentDrink', currentDrink, 'lastDrinkOfTheDay', lastDrinkOfTheDay)
 
@@ -26,6 +25,12 @@ export const DailyDrink = ({ currentDrink, generateCalendar, adjustMonth, date, 
   let today = `${months[Number(mm) - 1]} ${dd.replace(/^0+/, "")}, ${year}`
   let lookUpDate = new Date(dateLookup).getTime()
   let lookUpToday = new Date(today).getTime()
+
+  console.log('today', today)
+  console.log('lookUpDate', lookUpDate)
+  console.log('lookUpToday', lookUpToday)
+  console.log('dateLookUp', dateLookup)
+
 
   
 
@@ -53,68 +58,23 @@ export const DailyDrink = ({ currentDrink, generateCalendar, adjustMonth, date, 
           </Background>
                
           <div className="container">
-            <div ref={titleRefTwo}>
-              {dodElementVisible ? ( 
-                <h1 className={"drinkOfDayTitle show"}>Drink of the Day</h1>) : (
-
-                <h1 className={"drinkOfDayTitle hidden"}></h1>
-              )}
-
+            <div ref={titleRefTwo}>  
+                <h1 className={dodElementVisible? `drinkOfDayTitle show` : `drinkOfDayTitle hidden`}>Drink of the Day</h1>
             </div>
-          
             <div className="dodContainer">
-              {dodElementVisible ? (<div className="dodLeftSide show" ref={dodRefLeftSide}>
-                {dateLookup !== undefined && lookUpDate < lookUpToday  ? (
-                <>
-                  <h2 className="todaysDrink">{dateLookup === today ? "Today's Drink": dateLookup}</h2>
-                  {currentDrink.map((cd) => (
-                    <>
-                      <div key={cd.id} className='dailyDrink'>{cd.drink_name}</div>
-                      <a key={cd.drink_name} href={`/alcohol/${cd.base_alcohol}/${cd.drink_name.toLowerCase()}`} className="recipeButton">Recipe</a>
-                    </>
-                    
-                  ))}
-                </>
-                ):(
+              <div className={dodElementVisible ? `dodLeftSide show`: `dodLeftSide hidden`} ref={dodRefLeftSide}>
+                <h2 className="todaysDrink">{!dateLookup || dateLookup === today ? "Today's Drink": dateLookup}</h2>
+                {currentDrink.map((cd) => (
                   <>
-                  <h2 className="todaysDrink">{"Today's Drink"}</h2>
-                  {currentDrink.map((cd) => (
-                    <>
-                      <div key={cd.id} className='dailyDrink'>{lastDrinkOfTheDay}</div>
-                      <a key={cd.drink_name} href={`/alcohol/${cd.base_alcohol}/${lastDrinkOfTheDay.toLowerCase()}`} className="recipeButton">Recipe</a> 
-                    </>
-                  ))}
-                  
+                     <div key={cd.id} className="dailyDrink">{!dateLookup ? lastDrinkOfTheDay : cd.drink_name}</div>
+                     <Link className="recipeButton" to={`/${cd.base_alcohol}/${cd.drink_name.toLowerCase()}`}>
+                          Recipe
+                      </Link>
                   </>
-                )}
-              </div>) : (<div className="dodLeftSide hidden" ref={dodRefLeftSide}>
-                {dateLookup !== undefined && lookUpDate < lookUpToday  ? (
-                <>
-                  <h2 className="todaysDrink">{dateLookup === today ? "Today's Drink": dateLookup}</h2>
-                  {currentDrink.map((cd) => (
-                    <>
-                      <div key={cd.id} className='dailyDrink'>{cd.drink_name}</div>
-                      <a key={cd.drink_name} href={`/alcohol/${cd.base_alcohol}/${cd.drink_name.toLowerCase()}`} className="recipeButton">Recipe</a>
-                    </>
-                    
-                  ))}
-                </>
-                ): (
-                  <>
-                  <h2 className="todaysDrink">{"Today's Drink"}</h2>
-                  {currentDrink.map((cd) => (
-                    <>
-                      <div key={cd.id} className='dailyDrink'>{lastDrinkOfTheDay}</div>
-                      <a key={cd.drink_name} href={`/alcohol/${cd.base_alcohol}/${lastDrinkOfTheDay.toLowerCase()}`} className="recipeButton">Recipe</a> 
-                    </>
-                  ))}
-                  
-                  </>
-                )}
-              </div>)}
+                ))}
+              </div>
               
-              {dodElementVisible ? (
-                <div className="dodRightSide show" ref={dodRefRightSide}>
+              <div className={dodElementVisible ? `dodRightSide show` : `dodRightSide hidden`} ref={dodRefRightSide}>
                 <h2 className="boxTitle">Past Drink of the Day</h2>
                   <Calendar 
                     date={date}
@@ -122,22 +82,8 @@ export const DailyDrink = ({ currentDrink, generateCalendar, adjustMonth, date, 
                     month={month} 
                     generateCalendar={generateCalendar}
                     adjustMonth={adjustMonth}
-
                   />
-              </div>
-                  ) : (
-                  <div className="dodRightSide hidden" ref={dodRefRightSide}>
-                  <h2 className="boxTitle">Past Drink of the Day</h2>
-                    <Calendar 
-                      date={date}
-                      year={year} 
-                      month={month} 
-                      generateCalendar={generateCalendar}
-                      adjustMonth={adjustMonth}
-
-                    />
-                </div>
-                )}
+              </div> 
             </div>
           </div>
         </Parallax>

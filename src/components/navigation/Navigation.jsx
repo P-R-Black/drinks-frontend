@@ -169,12 +169,13 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                         <ul className="navDropdownByDrink" data-visible="false">
                             {baseAlcohol.map(ba => {
                             return (
-                                <NavLink
+                                <Link
+                                    key={ba.toLowerCase()}
                                     className="navbarLinks" 
-                                    to={`/alcohol/${ba.toLowerCase()}`}
+                                    to={`/${ba.toLowerCase()}`}
                                     onClick={showNavMenu}
-                                >{ba}
-                                </NavLink>
+                                    >{ba}
+                                </Link>
                                 )
                             })}
                         </ul>

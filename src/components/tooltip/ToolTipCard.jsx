@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import './tooltip.css'
 
 export const ToolTipCard = ({ text, children }) => {
-    const [isVisible, setisVisible] = useState(false)
+    const [isVisible, setisVisible] = useState(false);
+
 
   return (
     <div className='tooltip_container_card'

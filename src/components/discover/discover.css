@@ -70,21 +70,16 @@
 }
 
 .discLinksToDrinkContainer {
-    align-items: center;
     display: grid;
-    justify-content: center;
+    justify-content: space-evenly;
     gap: .25rem;
     grid-template-columns: repeat(6, 15%);
-
     margin-top: 3rem;
-    overflow-y: auto;
-    padding: 0 0 2rem 0;
+    overflow-y: scroll;
     width: 100%;
+   
     
 }
-
-
-
 
 
 
@@ -115,6 +110,23 @@
 
 /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
 @media screen and (max-width: 1024px) {
+
+    .discoverTitleContainer{
+        height: 8rem;
+    }
+
+    .discLinksToDrinkContainer{
+        grid-template-columns: repeat(4, 20%);
+        height: 22rem;
+        overflow-y: scroll;
+        
+    }
+
+    .linktoRecipeThree{
+        margin: 0 0;
+        padding: 0 0;
+
+    }
    
     
 }
@@ -130,10 +142,10 @@
     .discoverTitleContainerH2{
         line-height: 1.5rem;
     }
+
     .discoverTitleContainer{
         height: 8rem;
         margin-bottom: 0rem;
-
     }
 
 
@@ -145,6 +157,5 @@
         height: 25rem;
 
     }
-    
     
 }

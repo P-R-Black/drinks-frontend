@@ -1,5 +1,5 @@
 .mocktailSection{
-    min-height: 100vh;
+    /* min-height: 100vh;
     position: relative;
     width: 100%;
 
@@ -8,13 +8,13 @@
     background-blend-mode: multiply;
     background-repeat: no-repeat;
     background-position: center;
-   
+    */
 }
 
 
 .mocktailContainer{
     margin-bottom: 3rem;
-    /* min-height: auto; */
+    min-height: 100vh;
 }
 
 .mocktailTitleContainer{
@@ -62,7 +62,6 @@
     filter: blur(0);
     opacity: 1;
     animation-duration: 2s;
-    /* animation-delay: 2s; */
     animation-name: animated-mock-sub-text;
   
 } 
@@ -78,14 +77,16 @@
 }
 
 .linktoRecipeThreeCard{
+    align-items: center;
     color: var(--color-primary-font);
-    font-size: clamp(1.25rem, 2.25vw, 5.25vw);
+    font-size: clamp(1.15rem, 2.25vw, 5.25vw);
     font-weight: 700;
 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    
     justify-content: space-between;
+    padding: 0 .5rem 0 .5rem;
 
 }
 
@@ -93,16 +94,28 @@
     margin-bottom: .5rem;
 }
 
-.mocktailMore{
+.mocktailMore.hidden {
+    filter: blur(15px);
+    opacity: 0;
+    transition: all 2s;
+    
+}
+
+.mocktailMore.show{
+    animation-name: slide-card;
     background-color: #000000b6;
     border: 1px solid var(--color-primary-font);
     border-radius: 10px;
+    color: var(--color-primary-font);
     cursor: pointer;
+    filter: blur(0px);
     font-size: clamp(1rem, 2vw, 5vw);
+    font-weight: 600;
+    height: 3rem;
     padding-top: .15rem;
     text-align: center;
-    width: clamp(7.5rem, 10rem, 12vw);
-    height: 3rem;
+    width: clamp(5rem, 10rem, 12vw);
+
 
 }
 
@@ -118,8 +131,74 @@ ol.mockIngredientContainer li{
 
 .mockIngredients{
     font-size: clamp(.75rem, 1vw, 4.25vw);
-  
 }
+
+
+.toolTipCards.hidden{
+    filter: blur(15px);
+    opacity: 0;
+    transition: all 2s;
+}
+
+
+.toolTipCards.show {
+    align-items: center;
+    animation-name: slide-card;
+    background-color: #000000b6;
+    border: 1px solid var(--color-primary-font);
+    border-radius: 10px;
+    color: var(--color-primary-font);
+    cursor: pointer;
+    display: flex;
+    filter: blur(0px);
+    flex-direction: column;
+    height: 20rem;
+    justify-content: space-between;
+    padding: .5rem 0 .5rem 0 ;
+    position: relative;
+    text-align: center;
+    width: clamp(9rem, 17rem, 19vw);    
+}
+
+
+.toolTipCards.show:nth-child(1){
+    animation-duration: 1s;
+    transition-delay: 300ms;
+
+}
+
+.toolTipCards.show:nth-child(2){
+    animation-duration: 2s;
+    transition-delay: 700ms;
+
+}
+
+.toolTipCards.show:nth-child(3){
+    animation-duration: 2.5s;
+    transition-delay: 1000ms;
+}
+
+.mocktailMore{
+    animation-duration: 2.75s;
+    transition-delay: 1200ms;
+}
+
+
+@keyframes slide-card{
+    0%{
+        transform: translateX(-300px);
+        opacity: 0;
+    }
+
+    100%{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+
+}
+
+
+
 
 @keyframes animated-mock-title{
     0%{
@@ -147,10 +226,20 @@ ol.mockIngredientContainer li{
 
 }
 
+
+
 /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
 @media screen and (max-width: 1024px) {
-   
-    
+
+    .mocktailTitleContainer{
+        margin-bottom: 3rem;
+    }
+
+    .mocktailMore.show{
+        padding-top: .6rem;
+    }
+
+
 }
 
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
@@ -194,5 +283,15 @@ ol.mockIngredientContainer li{
 
     .mocktailMore{
         padding-top: .75rem;
+    }
+
+    .toolTipCards.show{
+        height: 10rem;
+        margin-bottom: 1rem;
+        width: 20rem;
+    }
+    
+    .toolTipCards.show:nth-child(3){
+        display: none;
     }
 }

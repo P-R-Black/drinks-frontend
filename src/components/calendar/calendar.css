@@ -110,6 +110,10 @@ header .calendarCurrentDate {
 
 /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
 @media screen and (max-width: 1024px) {
+    .containerCalendar{
+        width: 350px;
+        height: auto
+    }
    
     
 }
