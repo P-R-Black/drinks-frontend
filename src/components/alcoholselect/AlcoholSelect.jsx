@@ -99,24 +99,23 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
   console.log('filtered Drink', filteredDrink)
   
 
-  const adjustFontSize = () => {
-    let baseAlcoholName = document.getElementById('baseAlcoholName').innerText
-    if (baseAlcoholName.length >= 20){
-      setAlcFontSize(115)
-    }else if(baseAlcoholName.length >= 18){
-      setAlcFontSize(120)
-    } else if (baseAlcoholName.length >= 12) {
-      setAlcFontSize(180)
+  // const adjustFontSize = () => {
+  //   let baseAlcoholName = document.getElementById('baseAlcoholName').innerText
+  //   if (baseAlcoholName.length >= 20){
+  //     setAlcFontSize(115)
+  //   }else if(baseAlcoholName.length >= 18){
+  //     setAlcFontSize(120)
+  //   } else if (baseAlcoholName.length >= 12) {
+  //     setAlcFontSize(180)
 
-      } else {
-      setAlcFontSize(200)
-    }
-  }
+  //     } else {
+  //     setAlcFontSize(200)
+  //   }
+  // }
 
 
   useEffect(() => {
     filterDrink()
-    adjustFontSize()
     setBackgroundPic(picByDrink[alcohol] != undefined ? picByDrink[alcohol][Math.floor(Math.random() * picByDrink[alcohol].length)]: imgUrlDefault)
   },[alcohol])
 
@@ -144,7 +143,7 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
       <div className="container">
         <div className="baseAlcoholContainer">
           <div className="baseAlcTitleContainer">
-            <h1 id="baseAlcoholName" style={{fontSize: alcFontSize}}>{alcohol}</h1>
+            <h1 id="baseAlcoholName">{alcohol}</h1>
             <h2>Drinks & Cocktails</h2>
           </div>
           <div className="drinkListContainer">

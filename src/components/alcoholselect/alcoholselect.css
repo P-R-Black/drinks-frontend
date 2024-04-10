@@ -6,9 +6,10 @@
     background-position: center;
     overflow-x: hidden;
     
+    height: 100vh;
     width: 100%;
     margin-top: -5rem;
-    height: 100vh;
+   
 }
 
 .baseAlcoholContainer{
@@ -18,28 +19,28 @@
     justify-content: center;
     height: 95vh;
     width: 100%;
-
-    border: 2px solid yellow;
 }
 
 .baseAlcTitleContainer {
     align-items: center;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
- 
+    margin-top: 5rem;
+    width: 100%;
+    
 }
 
 .baseAlcTitleContainer h1{
-    /* color: var(--color-primary-font);
-    font-size: 10.4rem; 
-    font-weight: 900; */
+    font-size: clamp(3rem, 10vw, 14.5vw);
+    text-align: center;
+    text-transform: capitalize;
+     
 }
 
 .baseAlcTitleContainer h2{
-    color: var(--color-primary-font);
-    font-size: 3.5rem;
-    font-weight: 600;
+    font-size: clamp(1.5rem, 3.5vw, 6.5vw);
     line-height: 0%;
     margin-bottom: 2rem;
     margin-top: 2rem;
@@ -59,12 +60,11 @@
 
 .drinkListLi{
     color: var(--color-primary-font);
-    font-size: 2rem;
+    font-size: clamp(1.25rem, 2rem, 5vw);
     font-weight: 500;
     text-align: center;
-    width: 23rem;
+    width: clamp(13rem, 24rem, 25vw);
     text-shadow: var(--small-letter-shadow);
-   
 }
 
 .nameButtonContainer {
@@ -75,13 +75,11 @@
 }
 
 
-
 .moreDrinkLinkContainer{
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
-
 }
 
 
@@ -92,31 +90,67 @@
     border-radius: 10px;
     color: white;
     cursor: pointer;
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 1.25rem, 4vw);
     font-weight: 700;
     margin-top: 2rem;
     outline: none;
     text-align: center;
     padding: .25rem;
-    /* transition: var(--transition) */
-    width: 6rem;
+    width: clamp(5rem, 6rem, 15vw);
 }
 
 .linktoRecipeLarge{
     background-color: transparent;
     border: 3px solid white;
-    /* box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24); */
     border-radius: 10px;
     color: white;
     cursor: pointer;
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 1.25rem, 3vw);
     font-weight: 700;
     margin-top: .75rem;
     outline: none;
     text-align: center;
-    padding: .25rem;
-    /* transition: var(--transition) */
-    width: 15rem;
+    text-transform: capitalize;
+    padding: .75rem 1.25rem .75rem 1.25rem;
+    width: auto;
+
+}
+
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+    .baseAlcTitleContainer{
+        margin-top: -15rem;
+    }
+
+    .drinkListLi{
+    
+        width: 25rem;
+    }
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
+    .ginBackground{
+        border: 2px solid white;
+    }
+
+    .baseAlcTitleContainer{
+        margin-top: 0rem;
+    }
+
+    .baseAlcTitleContainer h2{
+        margin-top: 1rem;
+
+    }
+    .baseAlcoholName{
+        border: 2px solid red;
+    }
+    .drinkListLi{
+        font-weight: 400;
+    }
+
 
 }
 

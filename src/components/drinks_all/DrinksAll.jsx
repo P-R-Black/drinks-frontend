@@ -55,20 +55,20 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
 
   }
 
-  const adjustFontSize = () => {
-    let baseAlcoholName = document.getElementById('baseAlcoholName').innerText
-    if(baseAlcoholName.length >= 18){
-      setAlcFontSize(120)
-    } else {
-      setAlcFontSize(200)
-    }
-  }
+  // const adjustFontSize = () => {
+  //   let baseAlcoholName = document.getElementById('baseAlcoholName').innerText
+  //   if(baseAlcoholName.length >= 18){
+  //     setAlcFontSize(120)
+  //   } else {
+  //     setAlcFontSize(200)
+  //   }
+  // }
 
 
   useEffect(() => {
     getAllDrinks()
-    adjustFontSize()
-  },[getAllDrinks, alcohol, alldrinks])
+  
+  },[]) //getAllDrinks, alcohol, alldrinks
 
 
   return (
@@ -76,21 +76,56 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
       <div className="container">
         <div className="allDrinksContainer">
           <div className="baseAlcTitleContainerTwo">
-            <h1 id="baseAlcoholName" style={{fontSize: alcFontSize}}>{alcohol}</h1>
+            <h1 id="baseAlcoholName">{alcohol}</h1>
             <h2>Drinks & Cocktails</h2>
           </div>
           <div className="linksToDrinksContainer">
             {alldrinks.map((ad) => (
-               <>
-                 <ToolTip text={ad}>
-                        <Link
-                          key={ad}
-                          className="linktoRecipeTwo"
-                          to={`/${alcohol.toLowerCase().replaceAll(" ", "")}/${ad.toLowerCase().replaceAll(" ", "")}`}>
-                        {ad.length < 18 ? ad : ad.slice(0, 15) + "..."}
-                        </Link>
+              <>
+                   {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? (
+                <>
+                  <ToolTip text={ad}>
+                    <Link
+                      key={ad}
+                      className="linktoRecipeTwo"
+                      to={`/${alcohol.toLowerCase().replaceAll(" ", "")}/${ad.toLowerCase().replaceAll(" ", "")}`}>
+                      {ad.length < 18 && window.innerWidth > 1024 ? ad : ad.slice(0, 15) + "..."}
+                    </Link>
                   </ToolTip> 
-               </>
+                </>
+              ):(<>
+                <ToolTip text={ad}>
+                  <Link
+                    key={ad}
+                    className="linktoRecipeTwo"
+                    to={`/${alcohol.toLowerCase().replaceAll(" ", "")}/${ad.toLowerCase().replaceAll(" ", "")}`}>
+                    {ad.length < 13 && window.innerWidth > 601 ? ad : ad.slice(0, 11) + "..."}
+                  </Link>
+                </ToolTip> 
+              </>):(
+                <>
+                  <ToolTip text={ad}>
+                    <Link
+                      key={ad}
+                      className="linktoRecipeTwo"
+                      to={`/${alcohol.toLowerCase().replaceAll(" ", "")}/${ad.toLowerCase().replaceAll(" ", "")}`}>
+                      {ad.length < 11 && window.innerWidth < 601 ? ad : ad.slice(0, 11) + "..."}
+                    </Link>
+                  </ToolTip> 
+                </>
+              )}
+              </>
+           
+              //  <> 
+              //    <ToolTip text={ad}>
+              //           <Link
+              //             key={ad}
+              //             className="linktoRecipeTwo"
+              //             to={`/${alcohol.toLowerCase().replaceAll(" ", "")}/${ad.toLowerCase().replaceAll(" ", "")}`}>
+              //             {ad.length < 18 && window.innerWidth > 1024 ? ad : ad.slice(0, 15) + "..."}
+              //           </Link>
+              //     </ToolTip> 
+              //  </>
             ))}
           </div>
         </div>
@@ -98,3 +133,4 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
     </section>
   )
 }
+// {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? ():():()}

@@ -9,7 +9,7 @@ import { HashLink, NavHashLink } from 'react-router-hash-link'
 
 
 export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe }) => {
-    const [numofRecipes, setNumOfRecipes] = useState(40)
+    const [numofRecipes, setNumOfRecipes] = useState(0)
         
     const showNavMenu = async () => {
         
@@ -126,7 +126,7 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                             <Link
                                 key={ba.toLowerCase()}
                                 className="navbarLinks" 
-                                to={`/${ba.toLowerCase()}`}
+                                to={`/${ba.toLowerCase().replaceAll(" ", "")}`}
                                 onClick={showNavMenu}
                             >{ba}
                             </Link>
@@ -172,7 +172,7 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                                 <Link
                                     key={ba.toLowerCase()}
                                     className="navbarLinks" 
-                                    to={`/${ba.toLowerCase()}`}
+                                    to={`/${ba.toLowerCase().replaceAll(" ", "")}`}
                                     onClick={showNavMenu}
                                     >{ba}
                                 </Link>

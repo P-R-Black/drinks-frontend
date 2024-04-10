@@ -58,17 +58,10 @@ export const Mocktails = ({ drinks }) => {
             <div className="container">
                 <div className="mocktailContainer">
                     <div className="mocktailTitleContainer" ref={mocktailTitleRef}>
-                    {mocktailElementVisible ? (
                         <>
-                            <h1 className="mocktailTitleH1 show">Mocktails</h1>
-                            <h2 className="mocktailTitleH2 show">No Alcohol, No Problem</h2>
+                            <h1 className={mocktailElementVisible ? `mocktailTitleH1 show`:`mocktailTitleH1 hidden`}>Mocktails</h1>
+                            <h2 className={mocktailElementVisible ? `mocktailTitleH2 show`:`mocktailTitleH2 hidden`}>No Alcohol, No Problem</h2>
                         </>
-                    ) : (
-                        <>
-                            <h1 className="mocktailTitleH1 hidden"></h1>
-                            <h2 className="mocktailTitleH2 hidden"></h2>
-                        </>
-                    )}
                     </div>
                     <div className="MockLinksToDrinksContainerCard">
                         {mocktails.map((mt) => (

@@ -63,7 +63,7 @@ export const Discover = ({ drinks }) => {
                                         <Link
                                             key={ad.toLowerCase()}
                                             className="linktoRecipeThree" 
-                                            to={`/${ad.toLowerCase()}`}
+                                            to={`/${ad.toLowerCase().replaceAll(" ","")}`}
                                             > 
                                             {ad.length < 18 ? ad : ad.slice(0, 15) + "..."}
                                         </Link>

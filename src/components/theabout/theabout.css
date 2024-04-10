@@ -2,7 +2,7 @@
     align-items: center;
     background-color: black;
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
     justify-content: center;
     margin-top: -5rem;
     width: 100%;
@@ -29,8 +29,7 @@
 }
 
 .aboutTitleContainer h2{
-    font-size: 3rem;
-    font-weight: 600;
+    font-size: clamp(1.5rem, 3.5vw, 6.5vw);
     line-height: 0%;
 
 }
@@ -42,10 +41,29 @@
     gap: 1rem;
     justify-content: center;
     margin-top: 3rem;
+    margin-bottom: 2rem;
     width: 100%;
 }
 
 .aboutParagraphContainer p{
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 1.25vw, 3vw);
+    text-align: justify;
     width: 80%;
+}
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+   
+    
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+    .aboutTitleContainer{
+       margin-top: 4.5rem;
+    
+    }
+
+   
+    
 }

@@ -35,11 +35,11 @@ export const Footer = () => {
                 </div>
                 <div className="footerSiteInfo">
                     <NavLink to="/about-us">{"About Us"}</NavLink>
-                    <NavLink to="">{"Contact"}</NavLink>
+                    <NavLink to="/contact-us">{"Contact"}</NavLink>
                     <NavLink onClick={() => setButtonPopUp(true)} to="">{"Privacy Choices"}</NavLink>
                     <PrivacyChoice trigger={buttonPopUp} setTrigger={setButtonPopUp}></PrivacyChoice>
                     <NavLink to="/privacy-policy">{"Privacy Policy"}</NavLink>
-                    <NavLink to="/#TermsSection">{"Terms Of Service"}</NavLink>
+                    <NavLink to="/terms-and-conditions">{"Terms Of Service"}</NavLink>
                 </div>
             </div>
             ):( 

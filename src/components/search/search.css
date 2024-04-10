@@ -21,7 +21,8 @@ input.searchBar {
 
 .searchBar::placeholder{
     color: var(--color-primary-font);
-    font-size: .9rem;
+    /* font-size: .9rem; */
+    font-size: clamp(.40rem, .90rem, 3vw);
     font-style: italic;
     font-weight: 400;
 }
@@ -107,7 +108,7 @@ input.searchBar {
 
 /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
 @media screen and (max-width: 1024px) {
-
+  
     .searchInputDiv{
         background-color: rgba(16, 14, 14, 0.727);
         width: 45vw;
