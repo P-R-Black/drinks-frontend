@@ -89,7 +89,7 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
                       key={ad}
                       className="linktoRecipeTwo"
                       to={`/${alcohol.toLowerCase().replaceAll(" ", "")}/${ad.toLowerCase().replaceAll(" ", "")}`}>
-                      {ad.length < 18 && window.innerWidth > 1024 ? ad : ad.slice(0, 15) + "..."}
+                      {ad.length < 18 && window.innerWidth > 1024 ? ad : ad.slice(0, 11) + "..."}
                     </Link>
                   </ToolTip> 
                 </>
@@ -133,4 +133,3 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
     </section>
   )
 }
-// {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? ():():()}

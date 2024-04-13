@@ -9,8 +9,7 @@ export const ErrorPage = () => {
         <div className="container">
             <div className="container404">
                 <h1>404</h1>
-                <h2>Party Fail.</h2>
-                <h2>We've Got an Error.</h2>
+                <h2>We've Got an Error</h2>
             </div>
         </div>
     </section>

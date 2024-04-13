@@ -8,13 +8,12 @@ export const SearchResults = ({ results, selectedItem }) => {
          
        {results.map((result, index) =>{
             return(
-              <ul>
+              <ul className="searchResultContainer">
                 <li>
                   <a key={index}
-                      href={`/alcohol/${result.base_alcohol}/${result.drink_name.toLowerCase()}`} 
+                      href={`/${result.base_alcohol[0].toLowerCase().replaceAll(" ","")}/${result.drink_name.toLowerCase().replaceAll(" ","")}`} 
                       className={selectedItem === index ? "searchResultList active" : "searchResultList"}>
                       {result.drink_name}
-                      <span className='resultDesc'>{"Drink"}</span>
                     </a>
                   </li>
               </ul>

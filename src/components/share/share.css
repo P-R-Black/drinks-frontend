@@ -82,3 +82,25 @@
     color: #25D366;
 
 }
+
+
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+   
+ 
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+    .shareDropDown{
+        
+        margin-left: 4.25rem;
+        margin-top: 2.5rem;
+        height: 1; 
+        left: 0;
+
+    }
+
+
+}

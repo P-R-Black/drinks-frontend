@@ -10,7 +10,6 @@ import emailjs from '@emailjs/browser';
 export const ContactUs = () => {
     const form = useRef();
     const [emailSent, setEmailSent] = useState('')
-
     const [isLoading, setIsLoading] = useState(false)
 
 
@@ -29,13 +28,15 @@ export const ContactUs = () => {
 
       emailjs.sendForm(reactAppServiceID, reactAppTemplateID, form.current, reactPublicEmailJSKey)
         .then((result) => {
-            setEmailSent('Your email has been sent successfully.');
-            setIsLoading(false);
-            console.log('result.text', result.text);
+            console.log('result', result)
+            // setEmailSent('Your email has been sent successfully.');
+            // setIsLoading(false);
+            // console.log('result.text', result.text);
         }, (error) => {
-            setEmailSent('There was an issue, the email was not sent.')
-            setIsLoading(false);
-            console.log('error.text', error.text);
+            console.log('error', error)
+            // setEmailSent('There was an issue, the email was not sent.')
+            // setIsLoading(false);
+            // console.log('error.text', error.text);
         });
 
         e.target.reset();

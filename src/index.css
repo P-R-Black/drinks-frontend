@@ -29,6 +29,7 @@
 
 html {
     scroll-behavior: smooth;
+   
 }   
     
 ::-webkit-scrollbar {
@@ -97,6 +98,16 @@ h2{
     background-color: #ff8b57;
     animation-delay: 0.4s
     
+}
+
+.loadingText{
+    color: var(--color-primary-font);
+    display: inline-block;
+    font-family: 'lobster';
+    font-size: 2rem;
+    font-weight: 400;
+    margin-right: 1rem;
+
 }
 
 @keyframes dots {

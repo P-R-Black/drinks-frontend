@@ -44,6 +44,8 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
 
 
 
+
+
   return (
     <section className="recipeBackground" style={{backgroundImage: backgroundRecipePic}}>
         <div className="container">
@@ -51,7 +53,7 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
                 return (
                 <div className="recipeContainer" key={dr.id}>
                     <div className="titleAndLikes">
-                        <h2 className="recipeTitle">{dr.drink_name}</h2>
+                        <h2 id="recipeTitle" className="recipeTitle">{dr.drink_name}</h2>
                         <div className="likesAndShare" style={{color:"white"}}> 
                             <Share recipeInPlay={dr.drink_name}
                                 ingredientInPlay={dr.ingredient_name}

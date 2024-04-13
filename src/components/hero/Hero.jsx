@@ -26,7 +26,7 @@ export const Hero = () => {
     <>
      {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? (
       <section id="heroSection" className="indexBackground"> {/* normal screen size*/}
-          <Parallax blur={{ min: -15, max: 15 }} strength={500} style={{marginTop: "-5rem"}}
+          <Parallax blur={{ min: -15, max: 15 }} strength={500}
             bgImage={require ('../../assets/pexels-chris-f-1283219.jpeg')}
           > 
             <div className="container">
@@ -38,12 +38,11 @@ export const Hero = () => {
                 <div ref={titleRefOne} className={`${elementVisible} ? horizonalDivider show : horizonalDivider hidden`}></div>
               </div>
             </div>
-              
             <div className="custom_bg"/>
           </Parallax>
         </section>) :(
         <section id="heroSection" className="indexBackground">  {/* medium screen size*/}
-          <Parallax blur={{ min: -15, max: 15 }} strength={500} style={{marginTop: "-5rem"}}
+          <Parallax blur={{ min: -15, max: 15 }} strength={500} 
             bgImage={require ('../../assets/pexels-chris-f-1283219.jpeg')}
           > 
             <div className="container">
@@ -60,7 +59,7 @@ export const Hero = () => {
           </Parallax>
         </section>) : (
           <section id="heroSection" className="indexBackground"> {/* small screen size*/}
-          <Parallax blur={{ min: -15, max: 15 }} strength={500} style={{marginTop: "5rem"}}
+          <Parallax blur={{ min: -15, max: 15 }} strength={500}
             bgImage={require ('../../assets/pexels-chris-f-1283219.jpeg')}
           > 
             <div className="container">

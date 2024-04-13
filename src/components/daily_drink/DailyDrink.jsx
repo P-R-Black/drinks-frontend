@@ -14,25 +14,14 @@ export const DailyDrink = ({ currentDrink, generateCalendar, adjustMonth, date, 
   month, mm, dd, lastDrinkOfTheDay, dateLookup, months }) => {
   
   const titleRefTwo = useRef();
-  const dodRefLeftSide = useRef()
-  const dodRefRightSide = useRef()
 
   const [ dodElementVisible, setDodElementVisible ] = useState();  
-
-  console.log('currentDrink', currentDrink, 'lastDrinkOfTheDay', lastDrinkOfTheDay)
 
 
   let today = `${months[Number(mm) - 1]} ${dd.replace(/^0+/, "")}, ${year}`
   let lookUpDate = new Date(dateLookup).getTime()
   let lookUpToday = new Date(today).getTime()
 
-  console.log('today', today)
-  console.log('lookUpDate', lookUpDate)
-  console.log('lookUpToday', lookUpToday)
-  console.log('dateLookUp', dateLookup)
-
-
-  
 
   useEffect(() => {
     const dodObserver = new IntersectionObserver((entries) => {
@@ -41,6 +30,7 @@ export const DailyDrink = ({ currentDrink, generateCalendar, adjustMonth, date, 
      
     })
     dodObserver.observe(titleRefTwo.current)
+    
   },[])
 
 
@@ -62,7 +52,7 @@ export const DailyDrink = ({ currentDrink, generateCalendar, adjustMonth, date, 
                 <h1 className={dodElementVisible? `drinkOfDayTitle show` : `drinkOfDayTitle hidden`}>Drink of the Day</h1>
             </div>
             <div className="dodContainer">
-              <div className={dodElementVisible ? `dodLeftSide show`: `dodLeftSide hidden`} ref={dodRefLeftSide}>
+              <div className={dodElementVisible ? `dodLeftSide show`: `dodLeftSide hidden`}>
                 <h2 className="todaysDrink">{!dateLookup || dateLookup === today ? "Today's Drink": dateLookup}</h2>
                 {currentDrink.map((cd) => (
                   <>
@@ -74,7 +64,7 @@ export const DailyDrink = ({ currentDrink, generateCalendar, adjustMonth, date, 
                 ))}
               </div>
               
-              <div className={dodElementVisible ? `dodRightSide show` : `dodRightSide hidden`} ref={dodRefRightSide}>
+              <div className={dodElementVisible ? `dodRightSide show` : `dodRightSide hidden`}>
                 <h2 className="boxTitle">Past Drink of the Day</h2>
                   <Calendar 
                     date={date}

@@ -69,16 +69,18 @@ input.searchBar {
     display: none;
 } */
 
+
+
 .searchResultList{
     align-items: center;
-    border: 2px solid grey;
-    color: #000000;
+    background-color: rgba(0, 0, 0, .9);
+    border: 2px solid rgb(0, 0, 0);
+    color: var(--color-primary-font);
     cursor: pointer;
     display: flex;
     font-weight: 700;
     font-size: 1.35rem;
     justify-content: space-between;
-   
     padding: .25rem; 
 
 }

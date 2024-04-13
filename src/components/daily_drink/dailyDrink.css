@@ -110,7 +110,6 @@ h1.drinkOfDayTitle.show {
 
 .boxTitle{
     color: white;
-    /* font-size: clamp(2rem, 4vw, 6rem); */
     font-size: clamp(1.5rem, 2.5vw, 4.5rem);
     text-align: center;
     margin-bottom: 1rem;

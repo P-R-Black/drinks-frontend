@@ -17,6 +17,9 @@ import { Terms } from './pages/terms/Terms';
 import { Privacy } from './pages/privacy/Privacy';
 
 const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
+const API_ENDPOINT_TWO=process.env.REACT_APP_DRINKS_KEY
+
+
 
 const App = () => {
  
@@ -86,7 +89,7 @@ const App = () => {
     const fetchData = async () =>{
       setLoading(true);
       try {
-        const {data: response} = await axios.get(API_ENDPOINT);
+        const {data: response} = await axios.get(API_ENDPOINT_TWO);
         setDrinks(response);
       } catch (e) {
         setError(e)
@@ -136,11 +139,14 @@ const App = () => {
       return (
       <>
         <div className="bannerContainer">{"Fetching A New Bottle"}</div>
-        <div className="pageLoading">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+          <div className="pageLoading">
+          <div className="loadingText">Loading</div>
+            <span></span>
+            <span></span>
+            <span></span>
+            
+          </div>
+          
       </>)
     }
   }
