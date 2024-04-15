@@ -47,7 +47,7 @@ export const DailyDrink = ({ currentDrink, generateCalendar, adjustMonth, date, 
               />
           </Background>
                
-          <div className="container">
+          <div className="container dodOuterContainer">
             <div ref={titleRefTwo}>  
                 <h1 className={dodElementVisible? `drinkOfDayTitle show` : `drinkOfDayTitle hidden`}>Drink of the Day</h1>
             </div>

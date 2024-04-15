@@ -7,10 +7,6 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
   const [alldrinks, setallDrinks ] = useState([])
   const [alcFontSize, setAlcFontSize] = useState(200)
 
-    // console.log('alcohol DrinksAll', alcohol)
-    // console.log('allDrinks DrinksAll', alldrinks)
-
-
   // format alcohol name
   if (alcohol === "puntemes"){
     alcohol = "Punt e Mes"
@@ -28,6 +24,8 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
   alcohol = "Rum (Gold)"
 } else if (alcohol === "rum(light)"){
   alcohol = "Rum (Light)"
+} else if (alcohol === "rum(spiced)"){
+  alcohol = "Rum (Spiced)"
 } else if (alcohol === "amaretto"){
   alcohol = "Amaretto"
 } else if (alcohol === "non-alcoholic"){
@@ -115,17 +113,6 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
                 </>
               )}
               </>
-           
-              //  <> 
-              //    <ToolTip text={ad}>
-              //           <Link
-              //             key={ad}
-              //             className="linktoRecipeTwo"
-              //             to={`/${alcohol.toLowerCase().replaceAll(" ", "")}/${ad.toLowerCase().replaceAll(" ", "")}`}>
-              //             {ad.length < 18 && window.innerWidth > 1024 ? ad : ad.slice(0, 15) + "..."}
-              //           </Link>
-              //     </ToolTip> 
-              //  </>
             ))}
           </div>
         </div>

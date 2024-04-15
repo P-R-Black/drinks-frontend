@@ -128,18 +128,10 @@
 }
 
 .plusButton{
-    /* border-right: .1px solid var(--color-primary-font);
-    padding-right: .5rem;
-    padding-left: .25rem;
-     */
     padding-top: .25rem;
 }
 
 .minusButton {
-    /* border-left: .1px solid var(--color-primary-font); */
-    /* padding-left: .5rem;
-    padding-right: .25rem;
-  */
     padding-top: .25rem; 
 
 }
@@ -153,6 +145,9 @@
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
 
+    .recipeBackground{
+        margin-top: -7rem;
+    }
     .ingredientInstructionContainer{
         align-items: center;
         display: flex;

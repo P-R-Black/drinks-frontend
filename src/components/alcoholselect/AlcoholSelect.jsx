@@ -5,8 +5,6 @@ import styled, { keyframes } from 'styled-components';
 
 export const AlcoholSelect = ({ drinks, alcohol }) => {
 
-  console.log('alcohol as', alcohol)
-
   const [filteredDrink, setFilteredDrink ] = useState([])
   const [backgroundPic, setBackgroundPic] = useState()
   const [alcFontSize, setAlcFontSize] = useState(200)
@@ -29,6 +27,8 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
     alcohol = "Rum (Gold)"
   } else if (alcohol === "rum(light)"){
     alcohol = "Rum (Light)"
+  } else if (alcohol === "rum(spiced)"){
+    alcohol = "Rum (Spiced)"
   } else if (alcohol === "non-alcoholic"){
     alcohol = "Non-Alcoholic"
   } else if (alcohol === "sparklingwhitewine"){
@@ -95,8 +95,6 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
     setFilteredDrink(sortedList.sort())
 
   }
-
-  console.log('filtered Drink', filteredDrink)
   
 
   // const adjustFontSize = () => {

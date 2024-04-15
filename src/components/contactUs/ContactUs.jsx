@@ -1,46 +1,28 @@
-import React,  { useRef, useState } from 'react'
-
-import './contactus.css' 
-
+import React,  { useRef, useState } from 'react';
 import { CgSpinnerTwo } from 'react-icons/cg'
-
+import './contactus.css' 
 import emailjs from '@emailjs/browser';
+// import emailjs from 'emailjs-com';
 
+const reactAppServiceID = process.env.REACT_APP_SERVICE_ID
+const reactAppTemplateID = process.env.REACT_APP_TEMPLATE_ID
+const reactPublicEmailJSKey = process.env.REACT_APP_PUBLIC_KEY_TWO
 
 export const ContactUs = () => {
-    const form = useRef();
+    const form = useRef(null);
     const [emailSent, setEmailSent] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-
-
-    const reactAppServiceID = process.env.REACT_APP_SERVICE_ID
-    const reactAppTemplateID = process.env.REACT_APP_TEMPLATE_ID
-    const reactPublicEmailJSKey = process.env.REACT_APP_PUBLIC_EMALJS_KEY
-
 
     const isPending = () => {
         setIsLoading(true);
         
     }
   
-    const sendEmail = async (e) => {
+    const sendEmail = (e) => {
         e.preventDefault();
 
-      emailjs.sendForm(reactAppServiceID, reactAppTemplateID, form.current, reactPublicEmailJSKey)
-        .then((result) => {
-            console.log('result', result)
-            // setEmailSent('Your email has been sent successfully.');
-            // setIsLoading(false);
-            // console.log('result.text', result.text);
-        }, (error) => {
-            console.log('error', error)
-            // setEmailSent('There was an issue, the email was not sent.')
-            // setIsLoading(false);
-            // console.log('error.text', error.text);
-        });
-
-        e.target.reset();
-     
+      emailjs.sendForm(reactAppServiceID, reactAppTemplateID, form.current, {publicKey: reactPublicEmailJSKey,})
+        
     };
   
     return (
@@ -53,13 +35,13 @@ export const ContactUs = () => {
                     </div>
                     <div className="formContainer">
                         <form ref={form} onSubmit={sendEmail} className="contactForm">
-                            <input type="text" name="name" placeholder="Your Name" required/>
-                            <input type="email" name="email" placeholder="Your Email" required/>
-                            <textarea name="message" placeholder="Your Message" cols="30" 
-                            rows="10" required/>
+                            <input required type="text" name="name" placeholder="Your Name" />
+                            <input required type="email" name="email" placeholder="Your Email" />
+                            <textarea required name="message" placeholder="Your Message" cols="30" 
+                            rows="10" />
 
                             <div className="emailSent">{emailSent}</div>
-                            {isLoading ? <CgSpinnerTwo className="spinner" /> : ""}
+                            {isLoading && <CgSpinnerTwo className="spinner" />}
                             <button type="submit" className="buttonLight" onClick={isPending}>
                                 Send Message
                             </button>

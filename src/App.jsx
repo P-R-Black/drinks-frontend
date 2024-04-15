@@ -29,6 +29,7 @@ const App = () => {
   const [ baseAlcohol, setBaseAlcohol ] = useState([])
   const [ allDrknksBackgroundPic, setAllDrknksBackgroundPic] = useState()
   const [ navLinkText, setNavLinkText] = useState("")
+
   
   // const [ newDrinks, setNewDrinks] = useState([])
   // console.log('newDrinks', newDrinks)
@@ -152,7 +153,20 @@ const App = () => {
   }
    
   if (error){
-    return <div>{"Something went wrong"}</div>
+    return ( 
+          <section className='loadErrorSection'>
+            <div className="container">
+                <div className="loadErrorContainer">
+                  <div className="loadErrorTitleContainer">
+                    <h1>{"Sorry"}</h1>
+                    <h2>{"We're Closed"}</h2>
+                    <h3>{"Refresh to Reopen"}</h3>
+                  </div>
+
+                </div>
+            </div>
+            
+          </section>)
   }
   
 

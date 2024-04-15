@@ -112,7 +112,6 @@ input.searchBar {
 @media screen and (max-width: 1024px) {
   
     .searchInputDiv{
-        background-color: rgba(16, 14, 14, 0.727);
         width: 45vw;
     }
 
@@ -131,7 +130,6 @@ input.searchBar {
 @media screen and (max-width: 600px) {
 
     .searchInputDiv {
-        background-color: rgba(16, 14, 14, 0.727);
         width: 90vw;
     }
 

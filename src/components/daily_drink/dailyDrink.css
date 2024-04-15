@@ -170,16 +170,14 @@ h1.drinkOfDayTitle.show {
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
 
-
-    h1.drinkOfDayTitle.show {
-        line-height: 4rem;
-        margin-top: 3rem;
+    .dodOuterContainer{
+        padding-top: 4rem;
     }
+
 
     .dodContainer{
         display: flex;
         flex-direction: column;
-        margin-top: 1rem;
     }
 
     .todaysDrinkofDay{
@@ -187,17 +185,17 @@ h1.drinkOfDayTitle.show {
     }
 
     .dailyDrink{
-        margin-top: .25rem;
+        margin-top: .15rem;
     }
 
 
 
     .recipeButton{
-        margin-top: .15rem;
+        margin-top: .10rem;
     }
 
     .boxTitle{
-        margin-top: 1.75rem;
+        margin-top: 1.5rem;
     }
 
 }

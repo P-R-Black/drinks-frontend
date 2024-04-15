@@ -120,11 +120,10 @@
 /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
 @media screen and (max-width: 1024px) {
     .baseAlcTitleContainer{
-        margin-top: -15rem;
+        margin-top: 0rem;
     }
 
     .drinkListLi{
-    
         width: 25rem;
     }
 }
@@ -133,19 +132,16 @@
 @media screen and (max-width: 600px) {
 
     .ginBackground{
-        border: 2px solid white;
+        margin-top: -7rem;
     }
 
     .baseAlcTitleContainer{
-        margin-top: 0rem;
+        margin-top: 3rem;
     }
 
     .baseAlcTitleContainer h2{
         margin-top: 1rem;
 
-    }
-    .baseAlcoholName{
-        border: 2px solid red;
     }
     .drinkListLi{
         font-weight: 400;
