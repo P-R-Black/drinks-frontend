@@ -2,14 +2,10 @@ import React,  { useRef, useState } from 'react';
 import { CgSpinnerTwo } from 'react-icons/cg'
 import './contactus.css' 
 import emailjs from '@emailjs/browser';
-// import emailjs from 'emailjs-com';
 
-const reactAppServiceID = process.env.REACT_APP_SERVICE_ID
-const reactAppTemplateID = process.env.REACT_APP_TEMPLATE_ID
-const reactPublicEmailJSKey = process.env.REACT_APP_PUBLIC_KEY_TWO
 
 export const ContactUs = () => {
-    const form = useRef(null);
+    const form = useRef();
     const [emailSent, setEmailSent] = useState('')
     const [isLoading, setIsLoading] = useState(false)
 
@@ -17,13 +13,27 @@ export const ContactUs = () => {
         setIsLoading(true);
         
     }
-  
-    const sendEmail = (e) => {
-        e.preventDefault();
 
-      emailjs.sendForm(reactAppServiceID, reactAppTemplateID, form.current, {publicKey: reactPublicEmailJSKey,})
-        
+  
+    const sendEmail = async (e) => {
+        e.preventDefault();
+        emailjs.sendForm(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, 
+            form.current, process.env.REACT_APP_PUBLIC_KEY_TWO)
+        .then((result) => {
+            setEmailSent('Your email has been sent successfully.');
+            setIsLoading(false);
+            console.log(result.text);
+        }, (error) => {
+            setEmailSent('There was an issue, the email was not sent.')
+            setIsLoading(false);
+            console.log('error.text', error.text);
+        });
+
+        e.target.reset();
+       
     };
+
+
   
     return (
         <section id="contact" className='contactSection'>
@@ -35,10 +45,11 @@ export const ContactUs = () => {
                     </div>
                     <div className="formContainer">
                         <form ref={form} onSubmit={sendEmail} className="contactForm">
-                            <input required type="text" name="name" placeholder="Your Name" />
-                            <input required type="email" name="email" placeholder="Your Email" />
-                            <textarea required name="message" placeholder="Your Message" cols="30" 
-                            rows="10" />
+                            <input  type="text" name="name" placeholder="Your Name" required 
+                             
+                                />
+                            <input type="email" name="email" placeholder="Your Email" required />
+                            <textarea name="message" placeholder="Your Message" id="" cols="30" rows="10" required />
 
                             <div className="emailSent">{emailSent}</div>
                             {isLoading && <CgSpinnerTwo className="spinner" />}

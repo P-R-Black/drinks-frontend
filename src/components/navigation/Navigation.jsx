@@ -12,15 +12,14 @@ import { HashLink, NavHashLink } from 'react-router-hash-link'
 export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe }) => {
     const [numofRecipes, setNumOfRecipes] = useState(0)
         
-    const showNavMenu = async () => {
-        
+    const showNavMenu = () => {
+
         let navBarMenu = document.querySelector('.navBarMenu')
 
-        // let navBarMenu = document.querySelector('.MobileNavBarMenu')
         let visibility = navBarMenu.getAttribute('data-visible')
         let dodNave = document.querySelectorAll('.dodNav')
 
-        let navBarDropdown = await document.querySelector('.navDropdown');
+        let navBarDropdown = document.querySelector('.navDropdown');
 
         if (visibility === "false" || visibility == null){
             navBarMenu.setAttribute('aria-expanded', 'true')

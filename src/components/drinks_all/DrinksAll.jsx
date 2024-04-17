@@ -32,6 +32,8 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
   alcohol = "Non-Alcoholic"
 } else if (alcohol === "sparklingwhitewine"){
   alcohol = "Sparkling White Wine"
+} else if (alcohol === "crèmedementhe(green)"){
+  alcohol = "Crème de Menthe (Green)"
 } else {
   let alcoholFirstLetter = alcohol.charAt(0)
   let alcoholFirstLetterCap = alcoholFirstLetter.toUpperCase()

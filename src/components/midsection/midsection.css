@@ -1,7 +1,7 @@
 .midSection{
     font-size: 4rem;
     filter: sepia(100%) saturate(300%) brightness(95%) hue-rotate(185deg) contrast(.50) opacity(1); 
-    height: 30vh;
+    min-height: 30vh;
     width: 100%;
 }
 

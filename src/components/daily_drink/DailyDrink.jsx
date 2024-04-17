@@ -7,7 +7,7 @@ import { MdUpdate } from 'react-icons/md'
 
 import { Parallax, Background } from 'react-parallax';
 import dodImage from '../../assets/pexels-ron-lach.jpg'
-
+import altImage from '../../assets/pexels-lime-mint-drinks.jpg'
 
 
 export const DailyDrink = ({ currentDrink, generateCalendar, adjustMonth, date, year, 
@@ -37,15 +37,10 @@ export const DailyDrink = ({ currentDrink, generateCalendar, adjustMonth, date, 
     return (
       <section id="dodSection" className="dodSection">
         <Parallax 
-          blur={5} 
-          bgImageAlt={dodImage}
+          blur={{ min: -15, max: 15 }}
+          bgImage={dodImage}
+          bgImageAlt={altImage}
           strength={500}>
-          <Background>
-              <img src={dodImage} className='parallaxImageDod' style={{position: "absolute", height: "100%", width: "100vw", backfaceVisibility: "hidden",
-                transform: 'translate3d(-50%, -49.5868px, 0px)', left:"50%", transformStyle: 'preserve-3d',
-                backgroundSize: "cover"}}
-              />
-          </Background>
                
           <div className="container dodOuterContainer">
             <div ref={titleRefTwo}>  

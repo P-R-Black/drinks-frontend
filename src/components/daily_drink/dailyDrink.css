@@ -5,13 +5,14 @@
     position: relative;
     width: 100%;
 
-    background-image: radial-gradient(#2e2c7c68, #4a5ecb5f), url('../../assets/pexels-ron-lach.jpg');
+    /* background-image: radial-gradient(#2e2c7c68, #4a5ecb5f), url('../../assets/pexels-ron-lach.jpg'); */
+    /* background-image: url('../../assets/pexels-ron-lach.jpg'); */
+
     background-size: cover;
-    background-blend-mode: multiply;
+    /* background-blend-mode: multiply; */
     background-repeat: no-repeat;
     background-position: center;
-    overflow-x: hidden;
-    
+
 }
 
 
@@ -47,7 +48,7 @@ h1.drinkOfDayTitle.show {
     display: flex;
     justify-content: space-around;
     margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 22rem;
 }
 
 
