@@ -13,6 +13,15 @@
     text-align: center
 }
 
+.midSection H3{
+    color: var(--color-primary-font);
+    font-size: clamp(1.25rem, 3.5vw, 7rem);
+    font-weight:600;
+    line-height: 1;
+    margin: 2rem;
+    text-align: center;
+}
+
 /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
 @media screen and (max-width: 1024px) {
    

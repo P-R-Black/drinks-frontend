@@ -5,6 +5,7 @@ import { Hero } from '../../components/hero/Hero';
 import { DailyDrink } from '../../components/daily_drink/DailyDrink';
 import { MustKnows } from '../../components/must_knows/MustKnows';
 import { MidSection } from '../../components/midsection/MidSection';
+import { MidSectionTwo } from '../../components/midsection/MidSection';
 import { Discover } from '../../components/discover/Discover';
 import { Mocktails } from '../../components/mocktails/Mocktails';
 import { Footer } from '../../components/footer/Footer';
@@ -140,6 +141,7 @@ export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
         dateLookup={dateLookup}
         months={months}
       />
+      <MidSectionTwo />
       <Discover 
         drinks={drinks}
       />
