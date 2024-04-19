@@ -10,12 +10,15 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
 
     const [ recipe, setRecipe ] = useState([])
     const [ backgroundRecipePic, setBackgroundRecipePic] = useState()
+
+    const [ toMl, setToMl ] = useState()
     let [ unitCount, setUnitCount ] = useState(1)
+    let [ unitMeasure, setUnitMeasure ] = useState("oz")
+
+    
     
     let imgRecipeBG = 'radial-gradient(#25236E82, #4A5ECB75),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-kelly.jpg') + ')'
     let picByRecipe = [imgRecipeBG]
-
-    console.log('drinks', drinks, 'drinkRecipe', drinkRecipe)
 
     useEffect(() => {
         getDrinkRecipe()
@@ -42,7 +45,35 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
         return formattedUnit  
     }
 
+    const convertUnitMeasurements = () => {
+        // console.log('recipe', recipe)
+        let testing = []
+        let ingredients = recipe.map((ing) => ing['ingredient_name']) 
+        let splitIngredients = ingredients.map((ings) =>{
+            let testing = ings.map((is) => is.split(" "))
+            for (let i = 0; i < testing.length; i++){
+                let ingredientUnits = testing[i][0]
+                let ingredientMeasurement = testing[i][1]
 
+                if (ingredientMeasurement == "oz"){
+                    let newUnit = parseFloat(ingredientUnits ) * Math.ceil(29.5735)
+                    let newMeasurement = ingredientMeasurement.replace('oz', 'ml')
+                    console.log("newUnit", newUnit, "newMeasurement", newMeasurement)
+                    testing[i][0] = newUnit.toString()
+                    testing[i][1] = newMeasurement.toString()
+                    console.log('new testing', testing)
+                    setToMl(testing)
+                }
+            }
+         
+        })
+    }
+
+    const splitIngredients = (text) => {
+        let newText = text.slice(2).join(" ")
+        return newText
+
+    }
 
 
 
@@ -66,21 +97,60 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
                     <div className="ingredientInstructionContainer">
                         <div className="allIngredientsContainer">
                             <h3 className="ingredientTitle">Ingredients</h3>
+                
+                           {unitMeasure == "ml" ? (
+                            <>
                             <ul>
-                            {dr.ingredient_name.map((im, imIndex) => {
-                                return (
-                                    <li className="ingredients" key={imIndex}>
-                                        <span className="ingredientUnit">{formatUnits(im)} </span>  
-                                        <span className="ingredientMeasurement">{`${im.split(" ")[1]} `}</span>
+                                {toMl.map((ml, mlIndex) => (
+                                    <li className="ingredients" key={mlIndex}>
+                                        <span className="ingredientUnit">{formatUnits(ml[0])} </span>  
+                                        <span className="ingredientMeasurement">{`${ml[1]} `} </span>
                                         <span className="ingredentIngredient">
-                                            {
-                                            im.replace(im.split(" ")[0], "").replace(im.split(" ")[1], "")
-                                            .trim()}
-                                        </span>
+                                             {splitIngredients(ml)}
+                                         </span>
+
                                     </li>
-                                )
-                            })}
+                                ))}
                             </ul>
+                            </>
+                            ):(
+                             <ul>
+                             {dr.ingredient_name.map((im, imIndex) => {
+                                 return (
+                                     <li className="ingredients" key={imIndex}>
+                                         <span className="ingredientUnit">{formatUnits(im)} </span>  
+                                         <span className="ingredientMeasurement">{`${im.split(" ")[1]} `}</span>
+                                         <span className="ingredentIngredient">
+                                             {
+                                             im.replace(im.split(" ")[0], "").replace(im.split(" ")[1], "")
+                                             .trim()}
+                                         </span>
+                                     </li>
+                                 )
+                             })}
+                             </ul>
+                           ) }
+                           
+                            <div className="measureContainer">
+                            <div className="incrementUnit  unitMeasure">
+                                    <div className={`${unitMeasure == "oz"} ? measureButtonContainer oz : measureButtonContainer ml`}>
+                                        <button
+                                            onClick={() => setUnitMeasure("oz")}
+                                            className="ozButton"
+                                            type="submit"
+                                            
+                                            >
+                                                oz
+                                        </button>
+                                        <button
+                                            onClick={() => {setUnitMeasure("ml"); convertUnitMeasurements()}}
+                                            className="mlButton" 
+                                            type="submit">
+                                                ml
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className="garnishAndGlassContainer">
                             <div className="garnishContainer">

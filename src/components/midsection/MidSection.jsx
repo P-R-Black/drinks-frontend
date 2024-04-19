@@ -28,7 +28,9 @@ export const MidSectionTwo = () => (
             bgImageAlt={midSectionImage}
             strength={800}>
                 <div className="container">
-                    <h3 className="midsectionQuote">{'"Shake the shaker as hard as you can: don\'t just rock it: you are trying to wake it up, not sent it to sleep!" - Harry Craddock '}</h3>
+                    <h3 className="midsectionQuote">
+                        {'"Shake the shaker as hard as you can: don\'t just rock it: you are trying to wake it up, not send it to sleep!" - Harry Craddock '}
+                    </h3>
                 </div>
         </Parallax>
     </section>
