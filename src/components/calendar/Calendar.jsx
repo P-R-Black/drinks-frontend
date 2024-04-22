@@ -4,10 +4,14 @@ import { MdNavigateNext } from "react-icons/md";
 import './calendar.css'
 
 export const Calendar = ({ date, year, month}) => {
-    const [ calendarDate, setCalendarDate ] = useState(date)
+    
+    // const [ calendarDate, setCalendarDate ] = useState(date)
+    // console.log('calendarDate', calendarDate)
+
     const [ calendarYear, setCalendarYear ] = useState(year)
     const [ calendarMonth, setCalendarMonth ] = useState(month)
     const [ calendarHTML, setCalendarHTML ] = useState("")
+    const calendarDate = date
     
     const months = [
         "January", "February", "March", "April", "May", "June", 

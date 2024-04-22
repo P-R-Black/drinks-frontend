@@ -22,11 +22,9 @@ export const ContactUs = () => {
         .then((result) => {
             setEmailSent('Your email has been sent successfully.');
             setIsLoading(false);
-            console.log(result.text);
         }, (error) => {
             setEmailSent('There was an issue, the email was not sent.')
             setIsLoading(false);
-            console.log('error.text', error.text);
         });
 
         e.target.reset();

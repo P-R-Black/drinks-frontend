@@ -5,7 +5,6 @@ import './drinks_all.css';
 
 export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
   const [alldrinks, setallDrinks ] = useState([])
-  const [alcFontSize, setAlcFontSize] = useState(200)
 
   // format alcohol name
   if (alcohol === "puntemes"){
@@ -43,7 +42,7 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
 
   const getAllDrinks = () => {
     let sortedList = []
-    let fileDrinks = drinks.map((fd) => {
+    drinks.map((fd) => {
       if(fd.base_alcohol[0] === alcohol){
           if (fd.drink_name){
             sortedList.push(fd.drink_name)
@@ -55,14 +54,6 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
 
   }
 
-  // const adjustFontSize = () => {
-  //   let baseAlcoholName = document.getElementById('baseAlcoholName').innerText
-  //   if(baseAlcoholName.length >= 18){
-  //     setAlcFontSize(120)
-  //   } else {
-  //     setAlcFontSize(200)
-  //   }
-  // }
 
 
   useEffect(() => {

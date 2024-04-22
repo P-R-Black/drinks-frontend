@@ -1,8 +1,9 @@
 import React, {useState, useEffect, useRef } from 'react'
 
 import './hero.css'
-import { Parallax, Background } from 'react-parallax';
-import heroImage from '../../assets/pexels-chris-f-1283219.jpeg'
+import { Parallax } from 'react-parallax';
+
+// import heroImage from '../../assets/pexels-chris-f-1283219.jpeg'
 import altImage from '../../assets/pexels-lime-mint-drinks.jpg'
 
 export const Hero = () => {
@@ -20,7 +21,6 @@ export const Hero = () => {
     observer.observe(titleRefOne.current)
   },[])
 
-  console.log('window.innerWidth', window.innerWidth)
 
   return (
     <>
@@ -28,6 +28,7 @@ export const Hero = () => {
       <section id="heroSection" className="indexBackground"> {/* normal screen size*/}
           <Parallax blur={{ min: -15, max: 15 }} strength={500}
             bgImage={require ('../../assets/pexels-chris-f-1283219.jpeg')}
+            bgImageAlt={altImage}
           > 
             <div className="container">
               <div className="homePageContainer">

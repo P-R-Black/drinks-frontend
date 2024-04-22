@@ -10,10 +10,6 @@ import { Footer } from '../../components/footer/Footer'
 export const Alcohol = ({ drinks, baseAlcohol, fetchAlcoholType, navLinkText, allDrknksBackgroundPic }) => {
 
   let { alcohol} = useParams()
- 
-  console.log('alcohol useParams', alcohol) //  alcohol useParams rum (gold)
-
-  console.log('baseAlc', baseAlcohol)
 
 
   return (

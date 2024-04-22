@@ -24,13 +24,13 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
         getDrinkRecipe()
         setBackgroundRecipePic(picByRecipe[Math.floor(Math.random() * picByRecipe.length)])
         
-    },[])
+    },[backgroundRecipePic])
 
     // function to get drink recipe
     const getDrinkRecipe = () => {
         drinks.map((rec) => {
-            if (rec.drink_name.toLowerCase() == drinkRecipe || 
-                rec.drink_name.toLowerCase().replaceAll(" ", "") == drinkRecipe){
+            if (rec.drink_name.toLowerCase() === drinkRecipe || 
+                rec.drink_name.toLowerCase().replaceAll(" ", "") === drinkRecipe){
                 setRecipe([rec])
             } 
         })
@@ -38,30 +38,28 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
 
     // removes zero before decimals
     const formatUnits = (unit) =>{
-        let formattedUnit = unit.split(" ")[0] * unitCount
-        let temp = formattedUnit.toString()
-        formattedUnit = temp.replace(/^0+/,"")
-        
-        return formattedUnit  
+        let formattedUnit = unit.split(" ")[0] * unitCount;
+        let temp = formattedUnit.toString();
+        let limitDecimalPlace = Number(temp).toFixed(2);
+        formattedUnit = String(limitDecimalPlace).replace(/^0+/,"").replace(".00","");
+        return formattedUnit;
     }
 
+    // Convert Ingredient Ounces to Milliliters
     const convertUnitMeasurements = () => {
-        // console.log('recipe', recipe)
-        let testing = []
+   
         let ingredients = recipe.map((ing) => ing['ingredient_name']) 
-        let splitIngredients = ingredients.map((ings) =>{
+        ingredients.map((ings) =>{
             let testing = ings.map((is) => is.split(" "))
             for (let i = 0; i < testing.length; i++){
                 let ingredientUnits = testing[i][0]
                 let ingredientMeasurement = testing[i][1]
 
-                if (ingredientMeasurement == "oz"){
+                if (ingredientMeasurement === "oz"){
                     let newUnit = parseFloat(ingredientUnits ) * Math.ceil(29.5735)
                     let newMeasurement = ingredientMeasurement.replace('oz', 'ml')
-                    console.log("newUnit", newUnit, "newMeasurement", newMeasurement)
                     testing[i][0] = newUnit.toString()
                     testing[i][1] = newMeasurement.toString()
-                    console.log('new testing', testing)
                     setToMl(testing)
                 }
             }
@@ -80,7 +78,7 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
   return (
     <section className="recipeBackground" style={{backgroundImage: backgroundRecipePic}}>
         <div className="container">
-            {recipe.map((dr) => {
+            {recipe.map((dr, index) => {
                 return (
                 <div className="recipeContainer" key={dr.id}>
                     <div className="titleAndLikes">
@@ -98,7 +96,7 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
                         <div className="allIngredientsContainer">
                             <h3 className="ingredientTitle">Ingredients</h3>
                 
-                           {unitMeasure == "ml" ? (
+                           {unitMeasure === "ml" ? (
                             <>
                             <ul>
                                 {toMl.map((ml, mlIndex) => (
@@ -133,7 +131,7 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
                            
                             <div className="measureContainer">
                             <div className="incrementUnit  unitMeasure">
-                                    <div className={`${unitMeasure == "oz"} ? measureButtonContainer oz : measureButtonContainer ml`}>
+                                    <div className={`${unitMeasure === "oz" ? "measureButtonContainer oz" : "measureButtonContainer ml"}`}>
                                         <button
                                             onClick={() => setUnitMeasure("oz")}
                                             className="ozButton"
@@ -155,9 +153,9 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
                         <div className="garnishAndGlassContainer">
                             <div className="garnishContainer">
                                 <h3 className="garnishTitle">Garnish</h3>
-                                {dr.garnish.map((mg, index) => {
+                                {dr.garnish.map((mg, mgIndex) => {
                                     return (
-                                        <h4 key={index} className="garnish">{mg != "0 None" ? mg: "None"}</h4>
+                                        <h4 key={mgIndex} className="garnish">{mg !== "0 None" ? mg: "None"}</h4>
                                     )
                                 })}
                                 

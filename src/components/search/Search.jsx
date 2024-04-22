@@ -74,7 +74,7 @@ export const Search = ({ drinks }) => {
               input === "" ? (<IoMdSearch/>) : (<IoMdClose onClick={handleClose}/>)
             }
           </div>
-        <SearchResults results={results} selectedItem={selectedItem}/>
+        <SearchResults  results={results} selectedItem={selectedItem} />
 
       </div>
     </section>

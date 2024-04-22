@@ -25,7 +25,6 @@ export const Share = ({ recipeInPlay, ingredientInPlay, garnishInPlay, direction
         
 
         if (shareVisibility == null || shareVisibility === "false"){
-            console.log('Hey, Let\'s share this recipe')
             shareBarMenu.setAttribute('aria-expanded', 'true')
             shareBarMenu.setAttribute('data-visible', 'true')
             shareDropDown.classList.add('show')
@@ -33,12 +32,10 @@ export const Share = ({ recipeInPlay, ingredientInPlay, garnishInPlay, direction
             shareBarMenu.setAttribute('aria-expanded', 'false')
             shareBarMenu.setAttribute('data-visible', 'false')
             shareDropDown.classList.remove('show')
-            console.log('Need to close')
         }
     }
 
     const sharedURL = window.location.href
-    console.log('url', sharedURL)
 
     const getTumbElement = () => {
         let drinkInstructions = directionsInPlay.split("\r\n")

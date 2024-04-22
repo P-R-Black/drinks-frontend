@@ -20,7 +20,6 @@
     margin-top: 5em;
     margin-bottom: 2rem;
     width: 100%;
-    
 }
 
 .recipeTitle{
@@ -59,6 +58,7 @@
     color: var(--color-primary-font);
     font-size: 1.5rem;
     text-decoration: underline;
+    margin-bottom: .5rem;
 
 }
 
@@ -151,15 +151,16 @@
     margin-top: .15rem;
     width: 6rem;
 
+
 }
 
 .measureButtonContainer.oz {
-    background: linear-gradient(to right, yellow 50%, transparent 50%);
+    background: linear-gradient(to right,  #968686aa 50%, transparent 50%);
 
 }
 
 .measureButtonContainer.ml {
-    background: linear-gradient(to right, transparent 50%, yellow 50%);
+    background: linear-gradient(to right, transparent 50%,  #968686aa 50%);
 
 }
 
@@ -189,6 +190,7 @@
     .recipeBackground{
         margin-top: -7rem;
     }
+    
     .ingredientInstructionContainer{
         align-items: center;
         display: flex;
@@ -208,11 +210,12 @@
         text-align: center;
     }
 
-    .servingAmountContainer{
+    .servingAmountContainer, .measureContainer{
         align-items: center;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        margin-bottom: .25rem;
     }
 
 }

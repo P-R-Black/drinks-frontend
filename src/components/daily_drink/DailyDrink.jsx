@@ -3,9 +3,8 @@ import { Calendar } from '../calendar/Calendar'
 import './dailyDrink.css'
 
 import { Link } from 'react-router-dom'
-import { MdUpdate } from 'react-icons/md'
 
-import { Parallax, Background } from 'react-parallax';
+import { Parallax } from 'react-parallax';
 import dodImage from '../../assets/pexels-ron-lach.jpg'
 import altImage from '../../assets/pexels-lime-mint-drinks.jpg'
 
@@ -19,8 +18,6 @@ export const DailyDrink = ({ currentDrink, generateCalendar, adjustMonth, date, 
 
 
   let today = `${months[Number(mm) - 1]} ${dd.replace(/^0+/, "")}, ${year}`
-  let lookUpDate = new Date(dateLookup).getTime()
-  let lookUpToday = new Date(today).getTime()
 
 
   useEffect(() => {

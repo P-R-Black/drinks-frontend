@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './discover.css'
 import { Parallax, Background } from 'react-parallax';
 import discoverImage from '../../assets/sergio-alves-santos-PeDrafNlY2Y-unsplash.jpg'
+import altImage from '../../assets/pexels-lime-mint-drinks.jpg'
 import { ToolTip } from '../tooltip/ToolTip';
 
 export const Discover = ({ drinks }) => {
@@ -47,7 +48,7 @@ export const Discover = ({ drinks }) => {
                 <img src={discoverImage} 
                     className='parallaxImageDod' style={{position: "absolute", height: "100%", width: "100vw", 
                     backfaceVisibility: "hidden", transform: 'translate3d(-50%, -49.5868px, 0px)', left:"50%", 
-                    transformStyle: 'preserve-3d', backgroundSize: "cover"}}
+                    transformStyle: 'preserve-3d', backgroundSize: "cover"}} alt={altImage}
               />
                 </Background>
                 <div className="container">

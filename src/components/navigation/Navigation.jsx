@@ -5,7 +5,7 @@ import './navigation.css'
 import { Logo } from '../logo/Logo';
 import { Search } from '../search/Search';
 import { NavLink, Link } from 'react-router-dom';
-import { HashLink, NavHashLink } from 'react-router-hash-link'
+import { HashLink } from 'react-router-hash-link'
 
 
 
@@ -15,10 +15,7 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
     const showNavMenu = () => {
 
         let navBarMenu = document.querySelector('.navBarMenu')
-
         let visibility = navBarMenu.getAttribute('data-visible')
-        let dodNave = document.querySelectorAll('.dodNav')
-
         let navBarDropdown = document.querySelector('.navDropdown');
 
         if (visibility === "false" || visibility == null){

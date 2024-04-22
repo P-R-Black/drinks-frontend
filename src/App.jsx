@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './index.css'
-import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import {createRoutesFromElements} from 'react-router-dom'
 
@@ -16,7 +16,7 @@ import { Contact } from './pages/contact/Contact'
 import { Terms } from './pages/terms/Terms';
 import { Privacy } from './pages/privacy/Privacy';
 
-const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
+// const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
 const API_ENDPOINT_TWO=process.env.REACT_APP_DRINKS_KEY
 
 
@@ -29,19 +29,6 @@ const App = () => {
   const [ baseAlcohol, setBaseAlcohol ] = useState([])
   const [ allDrknksBackgroundPic, setAllDrknksBackgroundPic] = useState()
   const [ navLinkText, setNavLinkText] = useState("")
-
-  
-  // const [ newDrinks, setNewDrinks] = useState([])
-  // console.log('newDrinks', newDrinks)
-
-
-  // const findAPIData = async () => {
-  //   const drinksAPI = <DrinksAPI/>
-  //   const apiData = await drinksAPI._owner.memoizedState.queue.lastRenderedState
-  //   // console.log('newDrinks', newDrinks)
-  //   setNewDrinks(apiData)
-   
-  // }
 
 
   let imgUrlDefault = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-rachel-default.jpg') + ')'
@@ -103,7 +90,7 @@ const App = () => {
     navBarLinkText()
     fetchData();
     fetchAlcoholType();
-    setAllDrknksBackgroundPic(picByDrink[baseAlcohol] != undefined ? picByDrink[baseAlcohol][Math.floor(Math.random() * picByDrink[baseAlcohol].length)]: imgUrlDefault)
+    setAllDrknksBackgroundPic(picByDrink[baseAlcohol] !== undefined ? picByDrink[baseAlcohol][Math.floor(Math.random() * picByDrink[baseAlcohol].length)]: imgUrlDefault)
    
   }, []);
 

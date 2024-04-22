@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Logo } from '../../components/logo/Logo'
 import './user_privacy.css'
 

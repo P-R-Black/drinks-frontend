@@ -1,9 +1,10 @@
-import React, {useState, useRef, useEffect } from 'react'
+import React, {useState, useRef, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom';
 
 import './mocktails.css'
 import { Parallax, Background } from 'react-parallax';
 import mocktailImage from '../../assets/pexels-mocktails.jpg'
+import altImage from '../../assets/pexels-lime-mint-drinks.jpg'
 
 export const Mocktails = ({ drinks }) => {
 
@@ -14,10 +15,13 @@ export const Mocktails = ({ drinks }) => {
     const [ toolTipCardVisible, seToolTipCardtVisible ] = useState();
 
     const [ mocktails, setMocktails ] = useState([])
-    const nonAlcoholicDrinks = async () => {
+
+
+    const nonAlcoholicDrinks = useCallback(async () => {
         let nonAlcBase = await drinks.filter((nab) => nab.base_alcohol[0] === "Non-Alcoholic")
-        setMocktails(nonAlcBase.sort().slice(0, 3))
-    }
+        setMocktails(nonAlcBase.sort().slice(0, 3));
+    }, [drinks, setMocktails])
+       
 
 
     useEffect(() => {
@@ -28,9 +32,24 @@ export const Mocktails = ({ drinks }) => {
         
         })
         observer.observe(mocktailTitleRef.current)
-        // observer.observe(tooTipCardRef.current)
-        nonAlcoholicDrinks()
-    },[drinks])
+
+        // Call nonAlcoholicDrinks as a dependency
+        nonAlcoholicDrinks();
+
+        return () => {
+            observer.disconnect();
+        };
+        
+  
+    }, [nonAlcoholicDrinks])
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // useEffect(() => {
+    //     nonAlcoholicDrinks();
+
+    // },[])
+
+    
 
 // normal screen => medium screen => small screen
   return (
@@ -41,17 +60,17 @@ export const Mocktails = ({ drinks }) => {
                     src={mocktailImage} className='parallaxDiscoverImage' style={{position: "absolute", 
                     height: "auto", width: "100vw", backfaceVisibility: "hidden",
                     transform: 'translate3d(-50%, -49.5868px, 0px)', left:"50%", transformStyle: 'preserve-3d',
-                    backgroundSize: "cover"}}
+                    backgroundSize: "cover"}} alt={altImage}
                 />):(<img 
                     src={mocktailImage} className='parallaxDiscoverImage' style={{position: "absolute", 
                     height: "auto", width: "auto", backfaceVisibility: "hidden",
                     transform: 'translate3d(-50%, -49.5868px, 0px)', left:"50%", transformStyle: 'preserve-3d',
-                    backgroundSize: "cover"}} 
+                    backgroundSize: "cover"}} alt={altImage}
                 />):(<img 
                     src={mocktailImage} className='parallaxDiscoverImage' style={{position: "absolute", 
                     height: "auto", width: "auto", backfaceVisibility: "hidden",
                     transform: 'translate3d(-50%, -49.5868px, 0px)', left:"50%", transformStyle: 'preserve-3d',
-                    backgroundSize: "cover"}} 
+                    backgroundSize: "cover"}} alt={altImage}
                 />)}
              
             </Background>

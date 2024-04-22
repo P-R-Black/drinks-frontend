@@ -7,7 +7,6 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
 
   const [filteredDrink, setFilteredDrink ] = useState([])
   const [backgroundPic, setBackgroundPic] = useState()
-  const [alcFontSize, setAlcFontSize] = useState(200)
 
   
   // format alcohol name
@@ -87,7 +86,7 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
   const filterDrink = () => {
     let sortedList = []
     let fileDrinks = drinks.map((fd) => {
-      if(fd.base_alcohol[0] == alcohol){
+      if(fd.base_alcohol[0] === alcohol){
           if (fd.drink_name){
             sortedList.push(fd.drink_name)
           }
@@ -116,7 +115,7 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
 
   useEffect(() => {
     filterDrink()
-    setBackgroundPic(picByDrink[alcohol] != undefined ? picByDrink[alcohol][Math.floor(Math.random() * picByDrink[alcohol].length)]: imgUrlDefault)
+    setBackgroundPic(picByDrink[alcohol] !== undefined ? picByDrink[alcohol][Math.floor(Math.random() * picByDrink[alcohol].length)]: imgUrlDefault)
   },[alcohol])
 
   
