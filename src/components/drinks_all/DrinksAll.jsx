@@ -6,39 +6,42 @@ import './drinks_all.css';
 export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
   const [alldrinks, setallDrinks ] = useState([])
 
+  console.log('allDrknksBackgroundPic', allDrknksBackgroundPic)
+
+
   // format alcohol name
   if (alcohol === "puntemes"){
     alcohol = "Punt e Mes"
-} else if (alcohol === "elderflowerliqueur"){
-  alcohol = "Elderflower Liqueur"
-} else if (alcohol === "sloegin"){
-    alcohol = "Sloe Gin"
-} else if (alcohol === "whitewineapéritif"){
-    alcohol = "White Wine Apéritif"
-} else if (alcohol === "roséwineapéritif"){
-    alcohol = "Rosé Wine Apéritif"
-} else if (alcohol === "rum(dark)"){
-  alcohol = "Rum (Dark)"
-} else if (alcohol === "rum(gold)"){
-  alcohol = "Rum (Gold)"
-} else if (alcohol === "rum(light)"){
-  alcohol = "Rum (Light)"
-} else if (alcohol === "rum(spiced)"){
-  alcohol = "Rum (Spiced)"
-} else if (alcohol === "amaretto"){
-  alcohol = "Amaretto"
-} else if (alcohol === "non-alcoholic"){
-  alcohol = "Non-Alcoholic"
-} else if (alcohol === "sparklingwhitewine"){
-  alcohol = "Sparkling White Wine"
-} else if (alcohol === "crèmedementhe(green)"){
-  alcohol = "Crème de Menthe (Green)"
-} else {
-  let alcoholFirstLetter = alcohol.charAt(0)
-  let alcoholFirstLetterCap = alcoholFirstLetter.toUpperCase()
-  let alcoholFirstLetterRemainingLetters = alcohol.slice(1)
-  alcohol = alcoholFirstLetterCap + alcoholFirstLetterRemainingLetters
-}
+    } else if (alcohol === "elderflowerliqueur"){
+      alcohol = "Elderflower Liqueur"
+    } else if (alcohol === "sloegin"){
+        alcohol = "Sloe Gin"
+    } else if (alcohol === "whitewineapéritif"){
+        alcohol = "White Wine Apéritif"
+    } else if (alcohol === "roséwineapéritif"){
+        alcohol = "Rosé Wine Apéritif"
+    } else if (alcohol === "rum(dark)"){
+      alcohol = "Rum (Dark)"
+    } else if (alcohol === "rum(gold)"){
+      alcohol = "Rum (Gold)"
+    } else if (alcohol === "rum(light)"){
+      alcohol = "Rum (Light)"
+    } else if (alcohol === "rum(spiced)"){
+      alcohol = "Rum (Spiced)"
+    } else if (alcohol === "amaretto"){
+      alcohol = "Amaretto"
+    } else if (alcohol === "non-alcoholic"){
+      alcohol = "Non-Alcoholic"
+    } else if (alcohol === "sparklingwhitewine"){
+      alcohol = "Sparkling White Wine"
+    } else if (alcohol === "crèmedementhe(green)"){
+      alcohol = "Crème de Menthe (Green)"
+    } else {
+      let alcoholFirstLetter = alcohol.charAt(0)
+      let alcoholFirstLetterCap = alcoholFirstLetter.toUpperCase()
+      let alcoholFirstLetterRemainingLetters = alcohol.slice(1)
+      alcohol = alcoholFirstLetterCap + alcoholFirstLetterRemainingLetters
+  }
 
   const getAllDrinks = () => {
     let sortedList = []

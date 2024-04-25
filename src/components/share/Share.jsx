@@ -35,23 +35,24 @@ export const Share = ({ recipeInPlay, ingredientInPlay, garnishInPlay, direction
         }
     }
 
-    const sharedURL = window.location.href
+    // const sharedURL = window.location.href
 
     const getTumbElement = () => {
         let drinkInstructions = directionsInPlay.split("\r\n")
-        let tumblrLink = "https://www.tumblr.com/widgets/share/tool?posttype=text&tags=KeepsGuide," +
-        encodeURIComponent(recipeInPlay.replace(/\s/g, "")) +  "&title=" + encodeURIComponent("Keep's Guide Recipe:\n" + recipeInPlay) +
-        "&content=" + 
+        let tumblrLink = "https://www.tumblr.com/widgets/share/tool?" +
+        "posttype=text" +
+        "&tags=KeepsGuide," + encodeURIComponent(recipeInPlay.replace(/\s/g, "")) +
+        "&title=" + encodeURIComponent("Keep's Guide Recipe:\n" + recipeInPlay) +
+        "&content=" +
         "<b>Ingredients:</b>" +
-        `<ul>${ingredientInPlay.map((iip => { return `<li>${encodeURIComponent(iip.replace(".00",""))}</li>`}))}</ul>`+ 
-        "<b>Garnish:</b>" + 
-        `<ul>${garnishInPlay.map((gip => { return `<li>${encodeURIComponent(gip.replace("0", "").trim())}</li>`}))}</ul>` +
-        "<b>Serving Glass:</b>" + `<ul><li>${encodeURIComponent(glassInPlay)}</li></ul>`+
-        "<b> Mixing Instructions:</b>" 
-        + `<ol>${drinkInstructions.map((dip => { return `<li>${encodeURIComponent(dip.replace(/[0-9]./, "").trim())}</li>`}))}</ol>`+
-       
+        `<ul>${ingredientInPlay.map(iip => `<li>${encodeURIComponent(iip.replace(".00", ""))}</li>`).join('')}</ul>` +
+        "<b>Garnish:</b>" +
+        `<ul>${garnishInPlay.map(gip => `<li>${encodeURIComponent(gip.replace("0", "").trim())}</li>`).join('')}</ul>` +
+        "<b>Serving Glass:</b>" + `<ul><li>${encodeURIComponent(glassInPlay)}</li></ul>` +
+        "<b> Mixing Instructions:</b>" +
+        `<ol>${drinkInstructions.map(dip => `<li>${encodeURIComponent(dip.replace(/[0-9]./, "").trim())}</li>`).join('')}</ol>` +
         "&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button";
-        document.getElementById("tumblr-quote").href = tumblrLink;
+    document.getElementById("tumblr-quote").href = tumblrLink;
     }
 
 

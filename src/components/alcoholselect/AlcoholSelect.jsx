@@ -3,6 +3,23 @@ import { Link } from 'react-router-dom';
 import './alcoholselect.css';
 import styled, { keyframes } from 'styled-components';
 
+import imgUrlDefault from '../../assets/pexels-rachel-default.jpg';
+import imgUrlLime from '../../assets/pexels-lisa-f.jpg'
+import imgUrlOrange from '../../assets/pexels-j-lewis.jpg'
+import imgUrlLemon from '../../assets/pexels-lukas.jpg'
+import imgUrlColaUp from '../../assets/pexels-cola-up.jpg'
+// import imgUrlColaDown from '../src/assets/pexels-cola-down.jpg'
+import imgUrlBloodOrange from '../../assets/pexels-blood-orange-wedge.jpg'
+import imgUrlRedLemonSlice from '../../assets/pexels-red-lemon-slice.jpg'
+import imgUrlChampagneBot from '../../assets/pexels-champagne-bottles.jpg'
+import imgUrlMojito from '../../assets/pexels-lime-mint-drinks.jpg'
+import imgUrlScotchTopDown from '../../assets/pexels-scotch-topdown.jpg'
+import imgUrlOrangeSlices from '../../assets/pexels-orange-slices.jpg'
+import imgUrlWhiteWine from '../../assets/pexels-white-wine.jpg'
+import imgUrlRoseWine from '../../assets/pexels-polina-rose-over.jpg'
+import imgUrlRumGold from '../../assets/pexels-eva-gold.jpg'
+
+
 export const AlcoholSelect = ({ drinks, alcohol }) => {
 
   const [filteredDrink, setFilteredDrink ] = useState([])
@@ -41,82 +58,91 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
     alcohol = alcoholFirstLetterCap + alcoholFirstLetterRemainingLetters
   }
 
-  let imgUrlDefault = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-rachel-default.jpg') + ')'
-  let imgUrlLime = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-lisa-f.jpg') + ')'
-  let imgUrlOrange = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-j-lewis.jpg') + ')'
-  let imgUrlLemon = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-lukas.jpg')  + ')'
-  let imgUrlColaUp = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-cola-up.jpg') + ')'
-  let imgUrlColaDown = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-cola-down.jpg') + ')'
-  let imgUrlBloodOrange = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-blood-orange-wedge.jpg') + ')'
-  let imgUrlRedLemonSlice = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-red-lemon-slice.jpg') + ')'
-  let imgUrlChampagneBot = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-champagne-bottles.jpg') + ')'
-  let imgUrlMojito = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-lime-mint-drinks.jpg') + ')'
-  let imgUrlScotchTopDown = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-scotch-topdown.jpg') + ')'
-  let imgUrlOrangeSlices = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-orange-slices.jpg') + ')'
-  let imgUrlWhiteWine = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-white-wine.jpg') + ')'
-  let imgUrlRoseWine = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-polina-rose-over.jpg') + ')'
-  let imgUrlRumGold = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-eva-gold.jpg') + ')'
+
   
+  let picChoiceScotchTopDown = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlScotchTopDown})`;
+  let picChoiceBloodOrange = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlBloodOrange})`;
+  let picChoiceLime = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlLime})`;
+  let picChoiceLemon = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlLemon})`;
+  let picChoiceRedLemon = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlRedLemonSlice})`;
+  let picChoiceOrange = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlOrange})`;
+  let picChoiceOrangeSlice = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlOrangeSlices})`;
+  let picImageRoseWine = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlRoseWine})`;
+  let picImageColaUp = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlColaUp})`;
+  let picImageMojito = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlMojito})`;
+  let picImageRumGold = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlRumGold})`;
+  let picImageWhiteWine = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlWhiteWine})`;
+  let picImageChampagneBottle = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlChampagneBot})`;
+  let picImageDefault = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlDefault})`;
 
   let picByDrink = {
-    "Amaretto": [imgUrlScotchTopDown],
-    "Apéritif": [imgUrlBloodOrange],
+    "Amaretto": [picChoiceScotchTopDown],
+    "Apéritif": [picChoiceBloodOrange],
     "Aquavit": [imgUrlBloodOrange],
-    "Brandy": [imgUrlScotchTopDown],
-    "Bourbon": [imgUrlScotchTopDown],
-    "Cognac": [imgUrlScotchTopDown],
-    "Gin": [imgUrlLime, imgUrlLemon, imgUrlBloodOrange, imgUrlRedLemonSlice],
-    "Mezcal":[imgUrlOrangeSlices],
-    "Punt e Mes": [imgUrlOrange, imgUrlBloodOrange, imgUrlRedLemonSlice],
-    "Rosé Wine Apéritif": [imgUrlRoseWine],
-    "Rum": [imgUrlColaUp, imgUrlMojito],
-    "Rum (Dark)": [imgUrlColaUp],
-    "Rum (Gold)": [imgUrlRumGold],
-    "Rum (Light)": [imgUrlColaUp, imgUrlMojito],
-    "Scotch": [imgUrlScotchTopDown],
-    "Sloe Gin": [imgUrlBloodOrange, imgUrlRedLemonSlice],
-    "Tequila": [imgUrlLime, imgUrlOrange, imgUrlLemon],
-    "Vodka":[imgUrlLime, imgUrlOrange, imgUrlLemon],
-    "Vermouth": [imgUrlBloodOrange],
-    "Whiskey": [imgUrlScotchTopDown],
-    "White Wine Apéritif": [imgUrlWhiteWine, imgUrlChampagneBot],
+    "Brandy": [picChoiceScotchTopDown],
+    "Bourbon": [picChoiceScotchTopDown],
+    "Cognac": [picChoiceScotchTopDown],
+    "Gin": [picChoiceLime, picChoiceLemon, picChoiceBloodOrange, picChoiceRedLemon],
+    "Mezcal":[picChoiceOrangeSlice],
+    "Punt e Mes": [picChoiceOrange, picChoiceBloodOrange, picChoiceRedLemon],
+    "Rosé Wine Apéritif": [picImageRoseWine],
+    "Rum": [picImageColaUp, picImageMojito],
+    "Rum (Dark)": [picImageColaUp],
+    "Rum (Gold)": [picImageRumGold],
+    "Rum (Spiced)": [picImageRumGold],
+    "Rum (Light)": [picImageColaUp, picImageMojito],
+    "Scotch": [picChoiceScotchTopDown],
+    "Sloe Gin": [picChoiceBloodOrange, picChoiceRedLemon],
+    "Tequila": [picChoiceLime, picChoiceOrange, picChoiceLemon],
+    "Vodka":[picChoiceLime, picChoiceOrange, picChoiceLemon],
+    "Vermouth": [picChoiceBloodOrange],
+    "Whiskey": [picChoiceScotchTopDown],
+    "White Wine Apéritif": [picImageWhiteWine, picImageChampagneBottle],
   }
-
 
   const filterDrink = () => {
-    let sortedList = []
-    let fileDrinks = drinks.map((fd) => {
-      if(fd.base_alcohol[0] === alcohol){
-          if (fd.drink_name){
-            sortedList.push(fd.drink_name)
-          }
-        return fd.drink_name;
-      }
-    })
-    setFilteredDrink(sortedList.sort())
-
-  }
+    setFilteredDrink(prevFilteredDrink => {
+      const sortedList = drinks
+        .filter(fd => fd.base_alcohol[0] === alcohol && fd.drink_name)
+        .map(fd => fd.drink_name)
+        .sort();
+      return sortedList;
+    });
   
-
-  // const adjustFontSize = () => {
-  //   let baseAlcoholName = document.getElementById('baseAlcoholName').innerText
-  //   if (baseAlcoholName.length >= 20){
-  //     setAlcFontSize(115)
-  //   }else if(baseAlcoholName.length >= 18){
-  //     setAlcFontSize(120)
-  //   } else if (baseAlcoholName.length >= 12) {
-  //     setAlcFontSize(180)
-
-  //     } else {
-  //     setAlcFontSize(200)
-  //   }
-  // }
-
-
+    setBackgroundPic(prevBackgroundPic => {
+      const pic = picByDrink[alcohol] !== undefined
+        ? picByDrink[alcohol][Math.floor(Math.random() * picByDrink[alcohol].length)]
+        : picImageDefault;
+      return pic;
+    });
+  };
+  
   useEffect(() => {
-    filterDrink()
-    setBackgroundPic(picByDrink[alcohol] !== undefined ? picByDrink[alcohol][Math.floor(Math.random() * picByDrink[alcohol].length)]: imgUrlDefault)
-  },[alcohol])
+  filterDrink();
+
+  return () => {
+    filterDrink();
+  }
+  }, []);
+
+  
+  // const filterDrink = () => {
+  //   let sortedList = drinks
+  //     .filter((fd) => fd.base_alcohol[0] === alcohol && fd.drink_name)
+  //     .map((fd) => fd.drink_name)
+  //     .sort();
+  
+  //   setFilteredDrink(sortedList);
+  //   setBackgroundPic(picByDrink[alcohol] !== undefined ? picByDrink[alcohol][Math.floor(Math.random() * picByDrink[alcohol].length)]: picImageDefault)
+
+  // };
+
+
+
+  // useEffect(() => {
+  //   filterDrink()
+  // },[])
+  
 
   
   let scrollLength =  filteredDrink.length
@@ -168,3 +194,4 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
     
   )
 }
+

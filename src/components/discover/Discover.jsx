@@ -12,20 +12,23 @@ export const Discover = ({ drinks }) => {
     const [ discElementVisible, setDiscElementVisible ] = useState();
     const [ mainAlcohols, setMainAlcohols ] = useState([])
 
-    const allAlcohol = async () => {
-        let filteredBase = []
-        for (let d = 0; d < drinks.length; d++){
-        let base = await drinks.map((ba) => ba.base_alcohol)
-        for (let b = 0; b < base.length; b++){
-            let baseText = await base[b][0]
-            if (!filteredBase.includes(baseText)){
-                filteredBase.push(baseText)
-
+    useEffect(() => {
+        const allAlcohol = async () => {
+            let filteredBase = []
+            for (let d = 0; d < drinks.length; d++){
+            let base = await drinks.map((ba) => ba.base_alcohol)
+            for (let b = 0; b < base.length; b++){
+                let baseText = await base[b][0]
+                if (!filteredBase.includes(baseText)){
+                    filteredBase.push(baseText)
+    
+                }
+            }
+            setMainAlcohols(filteredBase.sort())
             }
         }
-        setMainAlcohols(filteredBase.sort())
-        }
-    }
+        allAlcohol()
+    },[])
 
 
     useEffect(() => {
@@ -35,7 +38,6 @@ export const Discover = ({ drinks }) => {
         
         })
         observer.observe(discoverRef.current)
-        allAlcohol()
     },[drinks])
 
     return (

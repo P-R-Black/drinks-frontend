@@ -1,5 +1,5 @@
 .discoverSection{
-    height: 100vh;
+    min-height: 100vh;
     overflow:hidden;
     position: relative;
     width: 100%;
@@ -14,6 +14,7 @@
 
 .discoverContainer{
     min-height: 100vh;
+    margin-bottom: 3rem;
 }
 
 
@@ -76,10 +77,10 @@
     grid-template-columns: repeat(6, 15%);
     margin-top: 3rem;
     overflow-y: scroll;
+    padding-bottom: 4rem;
     width: 100%;
-   
-    
 }
+
 
 
 

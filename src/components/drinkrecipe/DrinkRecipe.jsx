@@ -6,6 +6,10 @@ import  { AiOutlineMinus } from 'react-icons/ai'
 import { Share } from '../share/Share';
 import './drinkrecipe.css'
 
+import imgRecipeBG from '../../assets/pexels-kelly.jpg';
+
+
+
 export const DrinkRecipe = ({drinks, drinkRecipe}) => {
 
     const [ recipe, setRecipe ] = useState([])
@@ -16,25 +20,21 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
     let [ unitMeasure, setUnitMeasure ] = useState("oz")
 
     
-    
-    let imgRecipeBG = 'radial-gradient(#25236E82, #4A5ECB75),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-kelly.jpg') + ')'
-    let picByRecipe = [imgRecipeBG]
 
-    useEffect(() => {
-        getDrinkRecipe()
-        setBackgroundRecipePic(picByRecipe[Math.floor(Math.random() * picByRecipe.length)])
-        
-    },[backgroundRecipePic])
+    let picChoice = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgRecipeBG})`;
+    let picByRecipe = [picChoice]
+
+  
 
     // function to get drink recipe
-    const getDrinkRecipe = () => {
-        drinks.map((rec) => {
-            if (rec.drink_name.toLowerCase() === drinkRecipe || 
-                rec.drink_name.toLowerCase().replaceAll(" ", "") === drinkRecipe){
-                setRecipe([rec])
-            } 
-        })
-    }
+    // const getDrinkRecipe = () => {
+    //     drinks.map((rec) => {
+    //         if (rec.drink_name.toLowerCase() === drinkRecipe || 
+    //             rec.drink_name.toLowerCase().replaceAll(" ", "") === drinkRecipe){
+    //             setRecipe([rec])
+    //         } 
+    //     })
+    // }
 
     // removes zero before decimals
     const formatUnits = (unit) =>{
@@ -72,6 +72,29 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
         return newText
 
     }
+
+    useEffect(() => {
+        const getDrinkRecipe = () => {
+            drinks.forEach((rec) => {
+                if (
+                    rec.drink_name.toLowerCase() === drinkRecipe ||
+                    rec.drink_name.toLowerCase().replaceAll(" ", "") === drinkRecipe
+                ) {
+                    setRecipe([rec]);
+                }
+            });
+        };
+    
+        getDrinkRecipe();
+    }, [drinks, drinkRecipe, setRecipe]);
+    
+    useEffect(() => {
+        setBackgroundRecipePic(
+            picByRecipe[Math.floor(Math.random() * picByRecipe.length)]
+        );
+    }, [picByRecipe, setBackgroundRecipePic]);
+    
+    
 
 
 

@@ -4,6 +4,22 @@ import { Route } from 'react-router-dom';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import {createRoutesFromElements} from 'react-router-dom'
 
+import imgUrlDefault from '../src/assets/pexels-rachel-default.jpg';
+import imgUrlLime from '../src/assets/pexels-lisa-f.jpg'
+import imgUrlOrange from '../src/assets/pexels-j-lewis.jpg'
+import imgUrlLemon from '../src/assets/pexels-lukas.jpg'
+import imgUrlColaUp from '../src/assets/pexels-cola-up.jpg'
+// import imgUrlColaDown from '../src/assets/pexels-cola-down.jpg'
+import imgUrlBloodOrange from '../src/assets/pexels-blood-orange-wedge.jpg'
+import imgUrlRedLemonSlice from '../src/assets/pexels-red-lemon-slice.jpg'
+import imgUrlChampagneBot from '../src/assets/pexels-champagne-bottles.jpg'
+import imgUrlMojito from '../src/assets/pexels-lime-mint-drinks.jpg'
+import imgUrlScotchTopDown from '../src/assets/pexels-scotch-topdown.jpg'
+import imgUrlOrangeSlices from '../src/assets/pexels-orange-slices.jpg'
+import imgUrlWhiteWine from '../src/assets/pexels-white-wine.jpg'
+import imgUrlRoseWine from '../src/assets/pexels-polina-rose-over.jpg'
+import imgUrlRumGold from '../src/assets/pexels-eva-gold.jpg'
+
 import axios from 'axios'
 
 import { Home } from './pages/home/Home';
@@ -16,8 +32,10 @@ import { Contact } from './pages/contact/Contact'
 import { Terms } from './pages/terms/Terms';
 import { Privacy } from './pages/privacy/Privacy';
 
+
 // const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
 const API_ENDPOINT_TWO=process.env.REACT_APP_DRINKS_KEY
+
 
 
 
@@ -31,45 +49,44 @@ const App = () => {
   const [ navLinkText, setNavLinkText] = useState("")
 
 
-  let imgUrlDefault = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-rachel-default.jpg') + ')'
-  let imgUrlLime = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-lisa-f.jpg') + ')'
-  let imgUrlOrange = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-j-lewis.jpg') + ')'
-  let imgUrlLemon = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-lukas.jpg')  + ')'
-  let imgUrlColaUp = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-cola-up.jpg') + ')'
-  let imgUrlColaDown = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-cola-down.jpg') + ')'
-  let imgUrlBloodOrange = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-blood-orange-wedge.jpg') + ')'
-  let imgUrlRedLemonSlice = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-red-lemon-slice.jpg') + ')'
-  let imgUrlChampagneBot = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-champagne-bottles.jpg') + ')'
-  let imgUrlMojito = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-lime-mint-drinks.jpg') + ')'
-  let imgUrlScotchTopDown = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-scotch-topdown.jpg') + ')'
-  let imgUrlOrangeSlices = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-orange-slices.jpg') + ')'
-  let imgUrlWhiteWine = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-white-wine.jpg') + ')'
-  let imgUrlRoseWine = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-polina-rose-over.jpg') + ')'
-  let imgUrlRumGold = 'radial-gradient(#2e2c7c68, #4a5ecb5f),' + 'url(' + require ('/Users/paulblack/VS Code/DrinksApp/drinks-app/src/assets/pexels-eva-gold.jpg') + ')'
-
+  let picChoiceScotchTopDown = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlScotchTopDown})`;
+  let picChoiceBloodOrange = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlBloodOrange})`;
+  let picChoiceLime = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlLime})`;
+  let picChoiceLemon = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlLemon})`;
+  let picChoiceRedLemon = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlRedLemonSlice})`;
+  let picChoiceOrange = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlOrange})`;
+  let picChoiceOrangeSlice = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlOrangeSlices})`;
+  let picImageRoseWine = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlRoseWine})`;
+  let picImageColaUp = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlColaUp})`;
+  let picImageMojito = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlMojito})`;
+  let picImageRumGod = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlRumGold})`;
+  let picImageWhiteWine = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlWhiteWine})`;
+  let picImageChampagneBottle = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlChampagneBot})`;
+  let picImageDefault = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlDefault})`;
 
   let picByDrink = {
-    "Amaretto": [imgUrlScotchTopDown],
-    "Apéritif": [imgUrlBloodOrange],
-    "Aquavit": [imgUrlBloodOrange],
-    "Brandy": [imgUrlScotchTopDown],
-    "Bourbon": [imgUrlScotchTopDown],
-    "Cognac": [imgUrlScotchTopDown],
-    "Gin": [imgUrlLime, imgUrlLemon, imgUrlBloodOrange, imgUrlRedLemonSlice],
-    "Mezcal":[imgUrlOrangeSlices],
-    "Punt e Mes": [imgUrlOrange, imgUrlBloodOrange, imgUrlRedLemonSlice],
-    "Rosé Wine Apéritif": [imgUrlRoseWine],
-    "Rum": [imgUrlColaUp, imgUrlMojito],
-    "Rum (Dark)": [imgUrlColaUp],
-    "Rum (Gold)": [imgUrlRumGold],
-    "Rum (Light)": [imgUrlColaUp, imgUrlMojito],
-    "Scotch": [imgUrlScotchTopDown],
-    "Sloe Gin": [imgUrlBloodOrange, imgUrlRedLemonSlice],
-    "Tequila": [imgUrlLime, imgUrlOrange, imgUrlLemon],
-    "Vodka":[imgUrlLime, imgUrlOrange, imgUrlLemon],
-    "Vermouth": [imgUrlBloodOrange],
-    "Whiskey": [imgUrlScotchTopDown],
-    "White Wine Apéritif": [imgUrlWhiteWine, imgUrlChampagneBot],
+    "Amaretto": [picChoiceScotchTopDown],
+    "Apéritif": [picChoiceBloodOrange],
+    "Aquavit": [picChoiceBloodOrange],
+    "Brandy": [picChoiceScotchTopDown],
+    "Bourbon": [picChoiceScotchTopDown],
+    "Cognac": [picChoiceScotchTopDown],
+    "Gin": [picChoiceLime, picChoiceLemon, picChoiceBloodOrange, picChoiceRedLemon],
+    "Mezcal":[picChoiceOrangeSlice],
+    "Punt e Mes": [picChoiceOrange, picChoiceBloodOrange, picChoiceRedLemon],
+    "Rosé Wine Apéritif": [picImageRoseWine],
+    "Rum": [picImageColaUp, picImageMojito],
+    "Rum (Dark)": [picImageColaUp],
+    "Rum (Gold)": [picImageRumGod],
+    "Rum (Spiced)": [picImageRumGod],
+    "Rum (Light)": [picImageColaUp, picImageMojito],
+    "Scotch": [picChoiceScotchTopDown],
+    "Sloe Gin": [picChoiceBloodOrange, picChoiceRedLemon],
+    "Tequila": [picChoiceLime, picChoiceOrange, picChoiceLemon],
+    "Vodka":[picChoiceLime, picChoiceOrange, picChoiceLemon],
+    "Vermouth": [picChoiceBloodOrange],
+    "Whiskey": [picChoiceScotchTopDown],
+    "White Wine Apéritif": [picImageWhiteWine, picImageChampagneBottle],
   }
   
   useEffect(() => {
@@ -87,12 +104,16 @@ const App = () => {
       }
      
     }
-    navBarLinkText()
     fetchData();
-    fetchAlcoholType();
-    setAllDrknksBackgroundPic(picByDrink[baseAlcohol] !== undefined ? picByDrink[baseAlcohol][Math.floor(Math.random() * picByDrink[baseAlcohol].length)]: imgUrlDefault)
-   
-  }, []);
+    // navBarLinkText()
+    // fetchAlcoholType();
+    setAllDrknksBackgroundPic(picByDrink[baseAlcohol] !== undefined ? picByDrink[baseAlcohol][Math.floor(Math.random() * picByDrink[baseAlcohol].length)]: picImageDefault)
+    
+  },[]);
+
+  
+
+
 
 
 
@@ -121,6 +142,8 @@ const App = () => {
       })
     })
   }
+
+  
 
   const PageLoader = () => {
     if (loading){

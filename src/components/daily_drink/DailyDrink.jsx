@@ -49,7 +49,7 @@ export const DailyDrink = ({ currentDrink, generateCalendar, adjustMonth, date, 
                 {currentDrink.map((cd) => (
                   <>
                      <div key={cd.id} className="dailyDrink">{!dateLookup ? lastDrinkOfTheDay : cd.drink_name}</div>
-                     <Link className="recipeButton" to={`/${cd.base_alcohol}/${cd.drink_name.toLowerCase()}`}>
+                     <Link key={cd.drink_name} className="recipeButton" to={`/${cd.base_alcohol}/${cd.drink_name.toLowerCase()}`}>
                           Recipe
                       </Link>
                   </>
