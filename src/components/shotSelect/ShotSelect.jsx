@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './alcoholselect.css';
+import './shotselect.css';
 import styled, { keyframes } from 'styled-components';
 
 import imgUrlDefault from '../../assets/pexels-rachel-default.jpg';
@@ -20,7 +20,7 @@ import imgUrlRoseWine from '../../assets/pexels-polina-rose-over.jpg'
 import imgUrlRumGold from '../../assets/pexels-eva-gold.jpg'
 
 
-export const AlcoholSelect = ({ drinks, alcohol }) => {
+export const ShotSelect = ({ alcohol, allShots }) => {
 
   const [filteredDrink, setFilteredDrink ] = useState([])
   const [backgroundPic, setBackgroundPic] = useState()
@@ -106,7 +106,7 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
 
   const filterDrink = () => {
     setFilteredDrink(prevFilteredDrink => {
-      const sortedList = drinks
+      const sortedList = allShots
         .filter(fd => fd.base_alcohol[0] === alcohol && fd.drink_name)
         .map(fd => fd.drink_name)
         .sort();
@@ -129,23 +129,7 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
   }
   }, []);
 
-  
-  // const filterDrink = () => {
-  //   let sortedList = drinks
-  //     .filter((fd) => fd.base_alcohol[0] === alcohol && fd.drink_name)
-  //     .map((fd) => fd.drink_name)
-  //     .sort();
-  
-  //   setFilteredDrink(sortedList);
-  //   setBackgroundPic(picByDrink[alcohol] !== undefined ? picByDrink[alcohol][Math.floor(Math.random() * picByDrink[alcohol].length)]: picImageDefault)
 
-  // };
-
-
-
-  // useEffect(() => {
-  //   filterDrink()
-  // },[])
   
 
   
@@ -173,7 +157,7 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
         <div className="baseAlcoholContainer">
           <div className="baseAlcTitleContainer">
             <h1 id="baseAlcoholName">{alcohol}</h1>
-            <h2>Drinks & Cocktails</h2>
+            <h2>Shots</h2>
           </div>
           <div className="drinkListContainer">
             <ul className="drinkListUl">
@@ -188,7 +172,7 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
               
             </ul>
               <div className="moreDrinkLinkContainer">
-                <Link to={`/${alcohol.toLowerCase().replaceAll(" ","")}/all_drinks`} className="linktoRecipeLarge">All {alcohol} Drinks</Link>
+                <Link to={`/${alcohol.toLowerCase().replaceAll(" ","")}/all_shots`} className="linktoRecipeLarge">All {alcohol} Shots</Link>
               </div>
           </div>
         </div>

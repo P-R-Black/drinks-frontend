@@ -11,6 +11,11 @@ import { HashLink } from 'react-router-hash-link'
 
 export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe }) => {
     const [numofRecipes, setNumOfRecipes] = useState(0)
+
+    const dropDownSelection = [
+        'Bourbon', 'Brandy', 'Gin', 'Mezcal', 'Non-Alcoholic', 'Rum', 'Rum (Dark)', 'Rum (Gold)',
+        'Rum (Light)', 'Rum (Spiced)', 'Scotch', 'Sparkling White Wine', 'Tequila', 'Vodka', 'Whiskey'
+    ]
         
     const showNavMenu = () => {
 
@@ -76,7 +81,7 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                         <HashLink 
                             onClick={showNavMenu} 
                             to="/#discoverSection" 
-                            className="dodNav">Find Cocktail By Alcohol
+                            className="dodNav">Discover Cocktail By Alcohol
                         </HashLink>
                         <ul className="navDropdownByDrink" data-visible="false">
                             {baseAlcohol.map(ba => {
@@ -92,13 +97,20 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                             })}
                         </ul>
                         <hr className='navline'/>
-                        <NavLink  onClick={showNavMenu}  
+                        <HashLink  
+                            onClick={showNavMenu}
+                            to="/#mustKnowSection"
                             className="dodNav">Bartender Must Know Drinks
-                        </NavLink>
+                        </HashLink>
                         <hr className='navline'/>
                         <HashLink onClick={showNavMenu} 
                             to="/#mocktailSection" 
                             className="dodNav">Mocktails
+                        </HashLink>
+                        <hr className='navline'/>
+                        <HashLink onClick={showNavMenu} 
+                            to="/#mocktailSection" 
+                            className="dodNav">Shots
                         </HashLink>
                     </ul>
                 </div>
@@ -131,7 +143,7 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                     <HashLink 
                         onClick={showNavMenu} 
                         to="/#discoverSection" 
-                        className="dodNav">Find Cocktail By Alcohol
+                        className="dodNav">Discover Cocktail By Alcohol
                     </HashLink>
                     <ul className="navDropdownByDrink" data-visible="false">
                         {baseAlcohol.map(ba => {
@@ -147,13 +159,20 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                         })}
                     </ul>
                     <hr className='navline'/>
-                    <NavLink  onClick={showNavMenu}  
+                    <HashLink
+                        onClick={showNavMenu}  
+                        to="/#mustKnowSection"
                         className="dodNav">Bartender Must Know Drinks
-                    </NavLink>
+                    </HashLink>
                     <hr className='navline'/>
                     <HashLink onClick={showNavMenu} 
                         to="/#mocktailSection" 
                         className="dodNav">Mocktails
+                    </HashLink>
+                    <hr className='navline'/>
+                    <HashLink onClick={showNavMenu} 
+                        to="/" 
+                        className="dodNav">Shots
                     </HashLink>
                 </ul>
             </div>
@@ -184,7 +203,7 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                             <HashLink 
                                 onClick={showNavMenu} 
                                 to="/#discoverSection" 
-                                className="dodNav">Find Cocktail By Alcohol
+                                className="dodNav">Discover Cocktail By Alcohol
                             </HashLink>
                             <ul className="navDropdownByDrink" data-visible="false">
                                 {baseAlcohol.map(ba => {
@@ -200,13 +219,20 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                                 })}
                             </ul>
                             <hr className='navline'/>
-                            <NavLink  onClick={showNavMenu}  
+                            <HashLink
+                                onClick={showNavMenu}  
+                                to="/#mustKnowSection"
                                 className="dodNav">Bartender Must Know Drinks
-                            </NavLink>
+                            </HashLink>
                             <hr className='navline'/>
                             <HashLink onClick={showNavMenu} 
                                 to="/#mocktailSection" 
                                 className="dodNav">Mocktails
+                            </HashLink>
+                            <hr className='navline'/>
+                            <HashLink onClick={showNavMenu} 
+                                to="/#mocktailSection" 
+                                className="dodNav">Shots
                             </HashLink>
                         </ul>
                     </div>

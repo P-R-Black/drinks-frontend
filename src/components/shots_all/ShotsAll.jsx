@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ToolTip } from '../tooltip/ToolTip';
-import './drinks_all.css';
+import './shots_all.css';
 
-export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
+export const ShotsAll = ({ allShots, alcohol, allDrknksBackgroundPic }) => {
   const [alldrinks, setallDrinks ] = useState([])
 
+  console.log('allDrknksBackgroundPic', allDrknksBackgroundPic)
 
   // format alcohol name
   if (alcohol === "puntemes"){
@@ -35,7 +36,7 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
     } else if (alcohol === "crèmedementhe(green)"){
       alcohol = "Crème de Menthe (Green)"
     } else if (alcohol === "irishcreamliqueur"){
-      alcohol = "Irish Cream Liqueur"
+        alcohol = "Irish Cream Liqueur"
     } else {
       let alcoholFirstLetter = alcohol.charAt(0)
       let alcoholFirstLetterCap = alcoholFirstLetter.toUpperCase()
@@ -45,7 +46,7 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
 
   const getAllDrinks = () => {
     let sortedList = []
-    drinks.map((fd) => {
+    allShots.map((fd) => {
       if(fd.base_alcohol[0] === alcohol){
           if (fd.drink_name){
             sortedList.push(fd.drink_name)
@@ -71,7 +72,7 @@ export const DrinksAll = ({drinks, alcohol, allDrknksBackgroundPic}) => {
         <div className="allDrinksContainer">
           <div className="baseAlcTitleContainerTwo">
             <h1 id="baseAlcoholName">{alcohol}</h1>
-            <h2>Drinks & Cocktails</h2>
+            <h2>Shots</h2>
           </div>
           <div className="linksToDrinksContainer">
             {alldrinks.map((ad) => (

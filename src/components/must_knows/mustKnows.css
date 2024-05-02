@@ -1,0 +1,37 @@
+.mustKnowSection{
+    background-color: #000000;
+    min-height: 100vh;
+}
+
+.mustKnowContainer{
+    margin-bottom: 3rem;
+    min-height: 100vh;
+
+}
+
+.mustKnowTitleContainer{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 15rem;
+    margin-bottom: 10rem;
+}
+
+.mustKnowTitleContainerH1{
+    font-size: clamp(4rem, 9vw, 11vw);
+    margin-top: 4.5rem;
+}
+
+.mustKnowTitleContainerH1.hidden{
+    opacity: 0;
+    filter: blur(15px);
+    transition: all 1s;
+}
+
+.mustKnowTitleContainerH1.show{
+    filter: blur(0);
+    opacity: 1;
+    animation-duration: 2s;
+    animation-name: animated-mock-title;
+}
+

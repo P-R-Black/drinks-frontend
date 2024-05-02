@@ -15,21 +15,18 @@ export const Discover = ({ drinks }) => {
     useEffect(() => {
         const allAlcohol = async () => {
             let filteredBase = []
-            for (let d = 0; d < drinks.length; d++){
             let base = await drinks.map((ba) => ba.base_alcohol)
-            for (let b = 0; b < base.length; b++){
-                let baseText = await base[b][0]
-                if (!filteredBase.includes(baseText)){
-                    filteredBase.push(baseText)
-    
+            let base_two = await base.map((bw) => bw[0])
+            for (let b = 0; b < base_two.length; b++){
+                if (!filteredBase.includes(base_two[b])){
+                    filteredBase.push(base_two[b])
                 }
             }
+         
             setMainAlcohols(filteredBase.sort())
-            }
         }
         allAlcohol()
     },[])
-
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
@@ -44,13 +41,13 @@ export const Discover = ({ drinks }) => {
         <section id="discoverSection" className="discoverSection">
             <Parallax 
                 blur={5} 
-                bgImageAlt={discoverImage}
+                bgImageAlt={altImage}
                 strength={500}>
                 <Background>
                 <img src={discoverImage} 
                     className='parallaxImageDod' style={{position: "absolute", height: "100%", width: "100vw", 
                     backfaceVisibility: "hidden", transform: 'translate3d(-50%, -49.5868px, 0px)', left:"50%", 
-                    transformStyle: 'preserve-3d', backgroundSize: "cover"}} alt={altImage}
+                    transformStyle: 'preserve-3d', backgroundSize: "cover"}}
               />
                 </Background>
                 <div className="container">
@@ -61,8 +58,8 @@ export const Discover = ({ drinks }) => {
                         </div>
                         <div className="discLinksToDrinkContainer">
                             {mainAlcohols.map((ad) => (
-                            <>
-                                <ToolTip text={ad}>
+                                <>
+                                    <ToolTip text={ad}>
                                         <Link
                                             key={ad.toLowerCase()}
                                             className="linktoRecipeThree" 
@@ -70,8 +67,8 @@ export const Discover = ({ drinks }) => {
                                             > 
                                             {ad.length < 18 ? ad : ad.slice(0, 15) + "..."}
                                         </Link>
-                                </ToolTip> 
-                            </>
+                                    </ToolTip> 
+                                </>
                             ))}
                         </div>
                     </div>

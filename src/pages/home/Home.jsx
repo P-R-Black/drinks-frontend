@@ -7,13 +7,16 @@ import { MustKnows } from '../../components/must_knows/MustKnows';
 import { MidSection } from '../../components/midsection/MidSection';
 import { MidSectionTwo } from '../../components/midsection/MidSection';
 import { Discover } from '../../components/discover/Discover';
+import { DiscoverShots } from '../../components/discoverShots/DiscoverShots';
 import { Mocktails } from '../../components/mocktails/Mocktails';
+
 import { Footer } from '../../components/footer/Footer';
 
 import axios from 'axios'
 
 
-export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
+export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText, mustKnows, allShots}) => {
+
 
   var date = new Date()
   var year = date.getFullYear();
@@ -139,13 +142,14 @@ export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText}) => {
         dateLookup={dateLookup}
         months={months}
       />
-      <MidSectionTwo />
       <Discover 
-        drinks={drinks}
-      />
+        drinks={drinks}/>
+      <MidSectionTwo />
+      <DiscoverShots allShots={allShots}/>
       <Mocktails
          drinks={drinks}
       />
+      <MustKnows mustKnows={mustKnows}/>
       <Footer/>
     </>
   )

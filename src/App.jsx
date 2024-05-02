@@ -26,22 +26,31 @@ import { Home } from './pages/home/Home';
 import { Alcohol } from './pages/alcohol/Alcohol';
 import { Drinks } from './pages/drinks/Drinks';
 import { AllDrinks } from './pages/all_drinks/AllDrinks';
+import { Shots } from './pages/shots/Shots';
+import { AllShots } from './pages/all_shots/AllShots';
 import { PageNotFound } from './pages/notFound/NotFound';
 import { AboutUs } from './pages/about/About';
 import { Contact } from './pages/contact/Contact'
 import { Terms } from './pages/terms/Terms';
 import { Privacy } from './pages/privacy/Privacy';
+import { SuperUserPage } from './pages/superUserPage/SuperUserPage';
+import { DashboardPage } from './pages/dashboardPage/DashboardPage';
+
 
 
 // const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
 const API_ENDPOINT_TWO=process.env.REACT_APP_DRINKS_KEY
-
+const API_ENDPOINT_THREE=process.env.REACT_APP_MUST_KNOW_KEY
+const API_ENDPOINT_FOUR=process.env.REACT_APP_ALL_SHOTS_KEY
 
 
 
 const App = () => {
- 
+
+  
   const [ drinks, setDrinks ] = useState([])
+  const [ mustKnows, setMustKnows ] = useState([])
+  const [ allShots, setAllShots ] = useState([])
   const [ loading, setLoading ] = useState(false);
   const [ error, setError ] = useState()
   const [ baseAlcohol, setBaseAlcohol ] = useState([])
@@ -87,15 +96,21 @@ const App = () => {
     "Vermouth": [picChoiceBloodOrange],
     "Whiskey": [picChoiceScotchTopDown],
     "White Wine Apéritif": [picImageWhiteWine, picImageChampagneBottle],
+    
   }
   
-  useEffect(() => {
+  console.log('base_alc App.jsx', baseAlcohol)
 
+  useEffect(() => {
     const fetchData = async () =>{
       setLoading(true);
       try {
         const {data: response} = await axios.get(API_ENDPOINT_TWO);
+        const {data: responseThree} = await axios.get(API_ENDPOINT_THREE);
+        const {data: responseFour} = await axios.get(API_ENDPOINT_FOUR);
         setDrinks(response);
+        setMustKnows(responseThree)
+        setAllShots(responseFour)
       } catch (e) {
         setError(e)
         console.error(e.message);
@@ -112,11 +127,6 @@ const App = () => {
   },[]);
 
   
-
-
-
-
-
   const fetchAlcoholType = async () => {
     let filteredBase = []
     for (let d = 0; d < drinks.length; d++){
@@ -192,6 +202,8 @@ const App = () => {
           baseAlcohol={baseAlcohol} 
           fetchAlcoholType={fetchAlcoholType}
           navLinkText={navLinkText}
+          mustKnows={mustKnows}
+          allShots={allShots}
           />}
         />
         <Route
@@ -218,6 +230,30 @@ const App = () => {
             path="/:alcohol/all_drinks"
             element={<AllDrinks 
             drinks={drinks}
+            baseAlcohol={baseAlcohol} 
+            fetchAlcoholType={fetchAlcoholType}
+            navLinkText={navLinkText}
+            allDrknksBackgroundPic={allDrknksBackgroundPic}
+          />}
+        />
+
+        <Route
+            path="/:alcohol/shot"
+            element={<Shots 
+            drinks={drinks}
+            allShots={allShots}
+            baseAlcohol={baseAlcohol} 
+            fetchAlcoholType={fetchAlcoholType}
+            navLinkText={navLinkText}
+            allDrknksBackgroundPic={allDrknksBackgroundPic}
+          />}
+        />
+
+        <Route
+            path="/:alcohol/all_shots"
+            element={<AllShots
+            drinks={drinks}
+            allShots={allShots}
             baseAlcohol={baseAlcohol} 
             fetchAlcoholType={fetchAlcoholType}
             navLinkText={navLinkText}
@@ -264,6 +300,21 @@ const App = () => {
             drinks={drinks}
           />}
           />
+
+          <Route
+            path="/keep-user-admin"
+            element={ <SuperUserPage
+            drinks={drinks}
+            />}
+          />
+
+          <Route
+            path="/dashboard"
+            element={ <DashboardPage
+            drinks={drinks}
+            />}
+          />
+
 
         <Route 
               path="*" 

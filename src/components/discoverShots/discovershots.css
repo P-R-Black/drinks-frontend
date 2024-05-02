@@ -1,0 +1,61 @@
+.discoverShotsSection{
+    min-height: 100vh;
+    overflow:hidden;
+    position: relative;
+    width: 100%;
+
+    background-image: radial-gradient(#2e2c7c68, #4a5ecb5f), url('../../assets/pexels-shots.jpg');
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow-x: hidden;
+}
+
+.discoverShotsContainer{
+    min-height: 100vh;
+    margin-bottom: 3rem;
+}
+
+.linktoRecipeFour{
+    color: white;
+    font-size:  clamp(.75rem, 1.10vw, 5vw);
+}
+
+.discoverShotsTitleContainer{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 15rem;
+    margin-bottom: 10rem;
+}
+
+
+.discoverShotsTitleContainerH1{
+    font-size: clamp(4rem, 11vw, 13vw);
+    margin-top: 4.5rem;
+}
+
+.discoverShotsTitleContainerH1.hidden{
+    opacity: 0;
+    filter: blur(15px);
+    transition: all 1s;
+}
+
+.discoverShotsTitleContainerH1.show{
+    filter: blur(0);
+    opacity: 1;
+    animation-duration: 2s;
+    animation-name: animated-disc-title;
+}
+
+.discShotsLinksToDrinkContainer {
+    display: grid;
+    justify-content: space-evenly;
+    gap: .25rem;
+    grid-template-columns: repeat(6, 15%);
+    margin-top: 3rem;
+    overflow-y: scroll;
+    padding-bottom: 4rem;
+    width: 100%;
+}

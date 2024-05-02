@@ -1,0 +1,104 @@
+
+.signInSection{
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    justify-content: center;
+    display: flex;
+    min-height: 100vh;
+}
+
+.SigInContainer{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+
+.singInBox{
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 10px;
+
+    background: hsla(0, 0%, 100%, 0.379);
+    backdrop-filter: blur(2rem);
+    -webkit-background: hsl(0 0% 100% / 0.1);
+    -webkit-backdrop-filter: blur(3rem);
+
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: 1rem 0;
+    width: clamp(10rem, 30vw, 50vw);
+
+    box-shadow: rgba(255, 255, 255, 0.882) -1px 2px 5px 2px;;
+}
+
+.singInBox label{
+    color: var(--color-primary-font);
+}
+
+.singInBox input {
+   
+    width: clamp(7rem, 25vw, 40vw);
+}
+
+
+.singInBox input:focus {
+    outline: none;
+}
+
+input#email, input#password {
+    /* height: 40px; */
+    line-height: 20px;
+    padding: 20px 10px; 
+    line-height: 1.75rem;
+}
+
+.singInBox button {
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: clamp(.75rem, 1rem, 3.75vw);
+    font-weight: 400;
+    margin-top: 2rem;
+    outline: none;
+    text-align: center;
+    padding: .25rem;
+    width: clamp(5rem, 6rem, 15vw);
+}
+
+.singInBox button.disabled {
+    border: 2px solid  hsla(0, 0%, 100%, 0.379);
+    color:  hsla(0, 0%, 100%, 0.379);
+}
+
+
+
+.singInBox button:active {
+    transform: translateY(2px);
+}
+
+.singInBox button.disabled:active {
+    transform: translateY(0px);
+}
+
+.errorMessage {
+    color: red;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+   
+    
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
+
+}
