@@ -5,8 +5,9 @@ import { Parallax, Background } from 'react-parallax';
 import discoverImage from '../../assets/sergio-alves-santos-PeDrafNlY2Y-unsplash.jpg'
 import altImage from '../../assets/pexels-lime-mint-drinks.jpg'
 import { ToolTip } from '../tooltip/ToolTip';
+import slugify from 'react-slugify';
 
-export const Discover = ({ drinks }) => {
+export const Discover = ({ drinks, cocktails }) => {
 
     const discoverRef = useRef();
     const [ discElementVisible, setDiscElementVisible ] = useState();
@@ -15,7 +16,7 @@ export const Discover = ({ drinks }) => {
     useEffect(() => {
         const allAlcohol = async () => {
             let filteredBase = []
-            let base = await drinks.map((ba) => ba.base_alcohol)
+            let base = await cocktails.map((ba) => ba.base_alcohol)
             let base_two = await base.map((bw) => bw[0])
             for (let b = 0; b < base_two.length; b++){
                 if (!filteredBase.includes(base_two[b])){
@@ -63,7 +64,7 @@ export const Discover = ({ drinks }) => {
                                         <Link
                                             key={ad.toLowerCase()}
                                             className="linktoRecipeThree" 
-                                            to={`/${ad.toLowerCase().replaceAll(" ","")}`}
+                                            to={`/${slugify(ad)}`}
                                             > 
                                             {ad.length < 18 ? ad : ad.slice(0, 15) + "..."}
                                         </Link>

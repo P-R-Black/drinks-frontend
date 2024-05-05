@@ -7,14 +7,17 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaTumblr } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa";
 import { HashLink } from 'react-router-hash-link'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { PrivacyChoice } from '../user_privacy/PrivacyChoice';
 
 export const Footer = () => {
     const [ buttonPopUp, setButtonPopUp ] = useState(false);
+    var date = new Date()
+    var year = date.getFullYear();
 
   return (
-    <div className='footerSection'>
+    <>
+    <section className='footerSection'>
         <div className='footerContainer container'>
             <div className="footerLogoSocials">
                 <Logo/>
@@ -29,9 +32,10 @@ export const Footer = () => {
             <div className="mobileDivisionContainer">
                 <div className="footerSiteSections">
                     <HashLink to="/#dodSection">{"Drink of the Day"}</HashLink>
-                    <HashLink to="/#discoverSection">{"Discover"}</HashLink>
+                    <HashLink to="/#discoverSection">{"Discover Cocktails"}</HashLink>
+                    <HashLink to="/#discoverShotsSection">{"Discover Shots"}</HashLink>
                     <HashLink to="/#mocktailSection">{"Mocktails"}</HashLink>
-                    <HashLink to="">{"Bartender Must Knows"}</HashLink>
+                    <HashLink to="/#mustKnowSection">{"Bartender Must Knows"}</HashLink>
                 </div>
                 <div className="footerSiteInfo">
                     <NavLink to="/about-us">{"About Us"}</NavLink>
@@ -46,9 +50,10 @@ export const Footer = () => {
                 <>
                  <div className="footerSiteSections">
                     <HashLink to="/#dodSection">{"Drink of the Day"}</HashLink>
-                    <HashLink to="/#discoverSection">{"Discover"}</HashLink>
+                    <HashLink to="/#discoverSection">{"Discover Cocktails"}</HashLink>
+                    <HashLink to="/#discoverShotsSection">{"Discover Shots"}</HashLink>
                     <HashLink to="/#mocktailSection">{"Mocktails"}</HashLink>
-                    <HashLink to="">{"Bartender Must Knows"}</HashLink>
+                    <HashLink to="/#mustKnowSection">{"Bartender Must Knows"}</HashLink>
                 </div>
                 <div className="footerSiteInfo">
                     <NavLink to="/about-us">{"About Us"}</NavLink>
@@ -62,6 +67,26 @@ export const Footer = () => {
            )}
             
         </div> 
-    </div>
+    </section>
+    <section className='postFooter'>
+        <div className="container">
+            <div className="postFooterContainer">
+                <div className="createBySection">Created By: 
+                    <Link 
+                        className="createdBy" 
+                        to="https://paulrblack.com/"
+                        > Paul B
+                    </Link>
+                </div>
+                <div className="copyrightSection">
+                    <div className="copyrightYear">&copy; {year} Keep's Guide</div>
+                </div>
+                <div className="rightsReservedSection">
+                    <div className="rightsReserved">All Rights Reserved.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </>
   )
 }

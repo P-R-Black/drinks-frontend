@@ -39,23 +39,23 @@ import { DashboardPage } from './pages/dashboardPage/DashboardPage';
 
 
 // const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
-const API_ENDPOINT_TWO=process.env.REACT_APP_DRINKS_KEY
-const API_ENDPOINT_THREE=process.env.REACT_APP_MUST_KNOW_KEY
-const API_ENDPOINT_FOUR=process.env.REACT_APP_ALL_SHOTS_KEY
+const API_ENDPOINT_ALLDRINKS=process.env.REACT_APP_DRINKS_KEY
+const API_ENDPOINT_COCKTAILS=process.env.REACT_APP_COCKTAILS_KEY
+const API_ENDPOINT_MUST_KNOW=process.env.REACT_APP_MUST_KNOW_KEY
+const API_ENDPOINT_SHOTS=process.env.REACT_APP_ALL_SHOTS_KEY
 
 
 
 const App = () => {
-
   
   const [ drinks, setDrinks ] = useState([])
+  const [ cocktails, setCocktails ] = useState([])
   const [ mustKnows, setMustKnows ] = useState([])
   const [ allShots, setAllShots ] = useState([])
   const [ loading, setLoading ] = useState(false);
   const [ error, setError ] = useState()
   const [ baseAlcohol, setBaseAlcohol ] = useState([])
   const [ allDrknksBackgroundPic, setAllDrknksBackgroundPic] = useState()
-  const [ navLinkText, setNavLinkText] = useState("")
 
 
   let picChoiceScotchTopDown = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlScotchTopDown})`;
@@ -99,18 +99,20 @@ const App = () => {
     
   }
   
-  console.log('base_alc App.jsx', baseAlcohol)
 
   useEffect(() => {
     const fetchData = async () =>{
       setLoading(true);
       try {
-        const {data: response} = await axios.get(API_ENDPOINT_TWO);
-        const {data: responseThree} = await axios.get(API_ENDPOINT_THREE);
-        const {data: responseFour} = await axios.get(API_ENDPOINT_FOUR);
-        setDrinks(response);
+        const {data: response} = await axios.get(API_ENDPOINT_COCKTAILS);
+        const {data: responseThree} = await axios.get(API_ENDPOINT_MUST_KNOW);
+        const {data: responseFour} = await axios.get(API_ENDPOINT_SHOTS);
+        const {data: responseFive} = await axios.get(API_ENDPOINT_ALLDRINKS);
+
+        setCocktails(response);
         setMustKnows(responseThree)
         setAllShots(responseFour)
+        setDrinks(responseFive)
       } catch (e) {
         setError(e)
         console.error(e.message);
@@ -120,7 +122,6 @@ const App = () => {
      
     }
     fetchData();
-    // navBarLinkText()
     // fetchAlcoholType();
     setAllDrknksBackgroundPic(picByDrink[baseAlcohol] !== undefined ? picByDrink[baseAlcohol][Math.floor(Math.random() * picByDrink[baseAlcohol].length)]: picImageDefault)
     
@@ -129,8 +130,8 @@ const App = () => {
   
   const fetchAlcoholType = async () => {
     let filteredBase = []
-    for (let d = 0; d < drinks.length; d++){
-        let base = drinks.map((ba) => ba.base_alcohol)
+    for (let d = 0; d < cocktails.length; d++){
+        let base = cocktails.map((ba) => ba.base_alcohol)
         for (let b = 0; b < base.length; b++){
             let baseText = await base[b][0]
             if (!filteredBase.includes(baseText)){
@@ -143,17 +144,6 @@ const App = () => {
     
   }
 
-  const navBarLinkText = async () => {
-    let navvyLink = await document.querySelectorAll('.navbarLinks')
-    navvyLink.forEach(nl => {
-      nl.addEventListener('click', ()=> {
-        setNavLinkText(nl.innerHTML)
-        
-      })
-    })
-  }
-
-  
 
   const PageLoader = () => {
     if (loading){
@@ -165,7 +155,6 @@ const App = () => {
             <span></span>
             <span></span>
             <span></span>
-            
           </div>
           
       </>)
@@ -186,7 +175,6 @@ const App = () => {
 
                 </div>
             </div>
-            
           </section>)
   }
   
@@ -198,10 +186,10 @@ const App = () => {
         <Route 
           index 
           element={<Home
-          drinks={drinks} 
+          drinks={drinks}
+          cocktails={cocktails}
           baseAlcohol={baseAlcohol} 
           fetchAlcoholType={fetchAlcoholType}
-          navLinkText={navLinkText}
           mustKnows={mustKnows}
           allShots={allShots}
           />}
@@ -210,9 +198,9 @@ const App = () => {
           path="/:alcohol"
           element={<Alcohol  
           drinks={drinks} 
+          cocktails={cocktails}
           baseAlcohol={baseAlcohol} 
           fetchAlcoholType={fetchAlcoholType}
-          navLinkText={navLinkText}
           allDrknksBackgroundPic={allDrknksBackgroundPic}
           />}
         />
@@ -222,7 +210,6 @@ const App = () => {
           drinks={drinks}
           baseAlcohol={baseAlcohol} 
           fetchAlcoholType={fetchAlcoholType}
-          navLinkText={navLinkText}
           />}
         />
 
@@ -230,9 +217,9 @@ const App = () => {
             path="/:alcohol/all_drinks"
             element={<AllDrinks 
             drinks={drinks}
+            cocktails={cocktails}
             baseAlcohol={baseAlcohol} 
             fetchAlcoholType={fetchAlcoholType}
-            navLinkText={navLinkText}
             allDrknksBackgroundPic={allDrknksBackgroundPic}
           />}
         />
@@ -244,7 +231,6 @@ const App = () => {
             allShots={allShots}
             baseAlcohol={baseAlcohol} 
             fetchAlcoholType={fetchAlcoholType}
-            navLinkText={navLinkText}
             allDrknksBackgroundPic={allDrknksBackgroundPic}
           />}
         />
@@ -256,7 +242,6 @@ const App = () => {
             allShots={allShots}
             baseAlcohol={baseAlcohol} 
             fetchAlcoholType={fetchAlcoholType}
-            navLinkText={navLinkText}
             allDrknksBackgroundPic={allDrknksBackgroundPic}
           />}
         />
@@ -266,7 +251,6 @@ const App = () => {
             element={<AboutUs
             baseAlcohol={baseAlcohol} 
             fetchAlcoholType={fetchAlcoholType}
-            navLinkText={navLinkText}
             drinks={drinks}
             />}
           />
@@ -276,7 +260,6 @@ const App = () => {
             element={<Contact
             baseAlcohol={baseAlcohol} 
             fetchAlcoholType={fetchAlcoholType}
-            navLinkText={navLinkText}
             drinks={drinks}
             />}
           />
@@ -286,7 +269,6 @@ const App = () => {
             element={ <Terms
             baseAlcohol={baseAlcohol} 
             fetchAlcoholType={fetchAlcoholType}
-            navLinkText={navLinkText}
             drinks={drinks}
             />}
           />
@@ -296,7 +278,6 @@ const App = () => {
             element={ <Privacy
             baseAlcohol={baseAlcohol} 
             fetchAlcoholType={fetchAlcoholType}
-            navLinkText={navLinkText}
             drinks={drinks}
           />}
           />
@@ -321,7 +302,6 @@ const App = () => {
               element={<PageNotFound
               baseAlcohol={baseAlcohol} 
               fetchAlcoholType={fetchAlcoholType}
-              navLinkText={navLinkText}
               drinks={drinks}
             />}
           />

@@ -40,7 +40,7 @@ export const DiscoverShots = ({ allShots }) => {
 
 
   return (
-    <section className="discoverShotsSection">
+    <section className="discoverShotsSection" id="discoverShotsSection">
         <Parallax 
                 blur={5} 
                 bgImageAlt={altImage}

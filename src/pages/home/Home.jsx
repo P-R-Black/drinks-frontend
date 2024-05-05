@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import slugify from 'react-slugify';
 
 import { Navigation } from '../../components/navigation/Navigation';
 import { Hero } from '../../components/hero/Hero';
@@ -15,9 +16,11 @@ import { Footer } from '../../components/footer/Footer';
 import axios from 'axios'
 
 
-export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText, mustKnows, allShots}) => {
+export const Home = ({drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkText, mustKnows, allShots}) => {
 
-
+  let slugTest = slugify(baseAlcohol)
+  console.log('slugTest', slugTest)
+  
   var date = new Date()
   var year = date.getFullYear();
   var month = date.getMonth();
@@ -131,6 +134,7 @@ export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText, mustKn
         baseAlcohol={baseAlcohol} 
         fetchAlcoholType={fetchAlcoholType} 
         navLinkText={navLinkText} 
+        cocktails={cocktails}
         drinks={drinks}
       />
       <Hero/>
@@ -142,8 +146,7 @@ export const Home = ({drinks, baseAlcohol, fetchAlcoholType, navLinkText, mustKn
         dateLookup={dateLookup}
         months={months}
       />
-      <Discover 
-        drinks={drinks}/>
+      <Discover drinks={drinks} cocktails={cocktails}/>
       <MidSectionTwo />
       <DiscoverShots allShots={allShots}/>
       <Mocktails

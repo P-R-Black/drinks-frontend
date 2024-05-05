@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import slugify from 'react-slugify';
 import './navigation.css'
-// import './navtest.css'
+
 
 import { Logo } from '../logo/Logo';
 import { Search } from '../search/Search';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link'
 
 
@@ -16,6 +17,8 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
         'Bourbon', 'Brandy', 'Gin', 'Mezcal', 'Non-Alcoholic', 'Rum', 'Rum (Dark)', 'Rum (Gold)',
         'Rum (Light)', 'Rum (Spiced)', 'Scotch', 'Sparkling White Wine', 'Tequila', 'Vodka', 'Whiskey'
     ]
+
+
         
     const showNavMenu = () => {
 
@@ -65,7 +68,7 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                     </search>
                     <div className="navBarMenu" id="navBarMenu" aria-controls="navbar_menu" 
                         aria-expanded="false"
-                        onClick={()=> { showNavMenu(); fetchAlcoholType()}}>
+                        onClick={()=> {showNavMenu(); fetchAlcoholType()}}>
                         <span className="bar kg-only"></span>
                         <span className="bar kg-only"></span>
                         <span className="bar kg-only"></span>
@@ -84,12 +87,12 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                             className="dodNav">Discover Cocktail By Alcohol
                         </HashLink>
                         <ul className="navDropdownByDrink" data-visible="false">
-                            {baseAlcohol.map(ba => {
+                            {dropDownSelection.map(ba => {
                             return (
                                 <Link
-                                    key={ba.toLowerCase()}
+                                    key={slugify(ba)}
                                     className="navbarLinks" 
-                                    to={`/${ba.toLowerCase().replaceAll(" ", "")}`}
+                                    to={`/${slugify(ba)}`}
                                     onClick={showNavMenu}
                                     >{ba}
                                 </Link>
@@ -109,7 +112,7 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                         </HashLink>
                         <hr className='navline'/>
                         <HashLink onClick={showNavMenu} 
-                            to="/#mocktailSection" 
+                            to="/#discoverShotsSection" 
                             className="dodNav">Shots
                         </HashLink>
                     </ul>
@@ -146,12 +149,12 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                         className="dodNav">Discover Cocktail By Alcohol
                     </HashLink>
                     <ul className="navDropdownByDrink" data-visible="false">
-                        {baseAlcohol.map(ba => {
+                        {dropDownSelection.map(ba => {
                         return (
                             <Link
-                                key={ba.toLowerCase()}
+                                key={slugify(ba)}
                                 className="navbarLinks" 
-                                to={`/${ba.toLowerCase().replaceAll(" ", "")}`}
+                                to={`/${slugify(ba)}`}
                                 onClick={showNavMenu}
                                 >{ba}
                             </Link>
@@ -171,7 +174,7 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                     </HashLink>
                     <hr className='navline'/>
                     <HashLink onClick={showNavMenu} 
-                        to="/" 
+                        to="/#discoverShotsSection" 
                         className="dodNav">Shots
                     </HashLink>
                 </ul>
@@ -206,12 +209,12 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                                 className="dodNav">Discover Cocktail By Alcohol
                             </HashLink>
                             <ul className="navDropdownByDrink" data-visible="false">
-                                {baseAlcohol.map(ba => {
+                                {dropDownSelection.map(ba => {
                                 return (
                                     <Link
-                                        key={ba.toLowerCase()}
+                                        key={slugify(ba)}
                                         className="navbarLinks" 
-                                        to={`/${ba.toLowerCase().replaceAll(" ", "")}`}
+                                        to={`/${slugify(ba)}`}
                                         onClick={showNavMenu}
                                         >{ba}
                                     </Link>
@@ -231,7 +234,7 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                             </HashLink>
                             <hr className='navline'/>
                             <HashLink onClick={showNavMenu} 
-                                to="/#mocktailSection" 
+                                to="/#discoverShotsSection" 
                                 className="dodNav">Shots
                             </HashLink>
                         </ul>
@@ -243,163 +246,6 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
             </div>
         </>
     )}
-                
-        {/* <div className="bannerContainer">{numofRecipes}</div>
-            {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? (
-            <nav className="navbar">
-            <div className="navbarContainer container">
-                <div id="logoId">
-                    <Logo className="navbarLogo"></Logo>
-                </div>
-                <search className="searchId">
-                    <Search drinks={drinks} drinkRecipe={drinkRecipe} className="navSearch" />
-                </search>
-                
-                <div className="navbarItems">
-                    <div className="navDropdown">
-                        <HashLink onClick={showNavMenu} 
-                            to="/#dodSection" 
-                            className="dodNav">Drink of the Day
-                        </HashLink>
-                        <hr className='navline'/>
-                        <HashLink onClick={showNavMenu} 
-                            to="/#discoverSection" 
-                            className="dodNav">Find Cocktail By Alcohol
-                        </HashLink>
-                        <ul className="navDropdownByDrink" data-visible="false">
-                            {baseAlcohol.map(ba => {
-                            return (
-                                <Link
-                                    key={ba.toLowerCase()}
-                                    className="navbarLinks" 
-                                    to={`/${ba.toLowerCase().replaceAll(" ", "")}`}
-                                    onClick={showNavMenu}
-                                >{ba}
-                                </Link>
-                                )
-                            })}
-                        </ul>
-                        <hr className='navline'/>
-                        <NavLink  onClick={showNavMenu}  
-                            className="dodNav">Bartender Must Know Drinks
-                        </NavLink>
-                        <hr className='navline'/>
-                        <HashLink onClick={showNavMenu} 
-                            to="/#mocktailSection" 
-                            className="dodNav">Mocktails
-                        </HashLink>
-                    </div>
-                    <div className="navBarMenu" id="navBarMenu" aria-controls="navbar_menu" aria-expanded="false"
-                            onClick={()=> { showNavMenu(); fetchAlcoholType()}}>
-                        <span className="bar kg-only"></span>
-                        <span className="bar kg-only"></span>
-                        <span className="bar kg-only"></span>
-                        <span className="bar kg-only"></span>
-                    </div>
-                </div>
-            </div>
-        </nav>
-        ):(
-        <nav className="navbar">
-        <div className="navbarContainer container">
-            <div id="logoId">
-                <Logo className="navbarLogo"></Logo>
-            </div>
-            <search className="searchId">
-                <Search drinks={drinks} drinkRecipe={drinkRecipe} className="navSearch" />
-            </search>
-            
-            <div className="navbarItems">
-                <div className="navDropdown">
-                    <HashLink to="/#dodSection" className="dodNav">Drink of the Day</HashLink>
-                    <hr className='navline'/>
-                    <HashLink onClick={showNavMenu} 
-                            to="/#discoverSection" 
-                            className="dodNav">Find Cocktail By Alcohol
-                        </HashLink>
-                    <ul className="navDropdownByDrink" data-visible="false">
-                        {baseAlcohol.map(ba => {
-                        return (
-                            <Link
-                                key={ba.toLowerCase()}
-                                className="navbarLinks" 
-                                to={`/${ba.toLowerCase().replaceAll(" ", "")}`}
-                                onClick={showNavMenu}
-                            >{ba}
-                            </Link>
-                            )
-                        })}
-                    </ul>
-                    <hr className='navline'/>
-                    <NavLink className="dodNav">Bartender Must Know Drinks</NavLink>
-                    <hr className='navline'/>
-                        <HashLink onClick={showNavMenu} 
-                            to="/#mocktailSection" 
-                            className="dodNav">Mocktails
-                        </HashLink>
-                </div>
-                <div className="mobileNavBarMenu" id="mobileNavBarMenu" aria-controls="navbar_menu" aria-expanded="false"
-                        onClick={()=> { showNavMenu(); fetchAlcoholType()}}>
-                    <span className="bar kg-only"></span>
-                    <span className="bar kg-only"></span>
-                    <span className="bar kg-only"></span>
-                    <span className="bar kg-only"></span>
-                </div>
-            </div>
-        </div>
-        </nav>): (
-        <>
-            <nav className="navbar">
-            <div className="navbarContainer container">
-                <div id="logoId">
-                    <Logo className="navbarLogo"></Logo>
-                </div>
-                
-                <div className="navbarItems">
-                    <div className="navDropdown">
-                        <HashLink to="/#dodSection" className="dodNav">Drink of the Day</HashLink>
-                        <hr className='navline'/>
-                        <HashLink onClick={showNavMenu} 
-                            to="/#discoverSection" 
-                            className="dodNav">Find Cocktail By Alcohol
-                        </HashLink>
-                        <ul className="navDropdownByDrink" data-visible="false">
-                            {baseAlcohol.map(ba => {
-                            return (
-                                <Link
-                                    key={ba.toLowerCase()}
-                                    className="navbarLinks" 
-                                    to={`/${ba.toLowerCase().replaceAll(" ", "")}`}
-                                    onClick={showNavMenu}
-                                    >{ba}
-                                </Link>
-                                )
-                            })}
-                        </ul>
-                        <hr className='navline'/>
-                        <NavLink className="dodNav">Bartender Must Know Drinks</NavLink>
-                        <hr className='navline'/>
-                        <HashLink onClick={showNavMenu} 
-                            to="/#mocktailSection" 
-                            className="dodNav">Mocktails
-                        </HashLink>
-                    </div>
-                    <div className="mobileNavBarMenu" id="mobileNavBarMenu" aria-controls="navbar_menu" aria-expanded="false"
-                            onClick={()=> { showNavMenu(); fetchAlcoholType()}}>
-                        <span className="bar kg-only"></span>
-                        <span className="bar kg-only"></span>
-                        <span className="bar kg-only"></span>
-                        <span className="bar kg-only"></span>
-                    </div>
-                </div>
-            </div>
-        </nav>
-        <div className="mobileNavContainer">
-            <search className="searchId">
-                <Search drinks={drinks} drinkRecipe={drinkRecipe} className="navSearch" />
-            </search>
-        </div>
-        </>)} */}
     </>
     
   )

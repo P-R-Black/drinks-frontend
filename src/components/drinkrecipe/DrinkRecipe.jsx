@@ -7,6 +7,7 @@ import { Share } from '../share/Share';
 import './drinkrecipe.css'
 
 import imgRecipeBG from '../../assets/pexels-kelly.jpg';
+import slugify from 'react-slugify';
 
 
 
@@ -18,6 +19,8 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
     const [ toMl, setToMl ] = useState()
     let [ unitCount, setUnitCount ] = useState(1)
     let [ unitMeasure, setUnitMeasure ] = useState("oz")
+
+    console.log('recipe', recipe)
 
     
 
@@ -78,7 +81,7 @@ export const DrinkRecipe = ({drinks, drinkRecipe}) => {
             drinks.forEach((rec) => {
                 if (
                     rec.drink_name.toLowerCase() === drinkRecipe ||
-                    rec.drink_name.toLowerCase().replaceAll(" ", "") === drinkRecipe
+                    slugify(rec.drink_name) === drinkRecipe
                 ) {
                     setRecipe([rec]);
                 }

@@ -22,7 +22,7 @@
 
 .footerSocials{
     align-items: center;
-    color: white;
+    color: var(--color-primary-font);
     cursor: pointer;
     display: flex;
     font-size: clamp(1.5rem, 2vw, 5vw);
@@ -45,7 +45,7 @@
 
 
 .footerSiteSections a{
-    color: white;
+    color: var(--color-primary-font);
     cursor: pointer;
     width: auto;
 }
@@ -60,7 +60,7 @@
 }
 
 .footerSiteInfo a:hover{
-    color: white;
+    color: var(--color-primary-font);
 }
 
 
@@ -77,6 +77,35 @@
 }
 
 
+.postFooter{
+    background-color: #000000;
+    min-height: 3rem;
+}
+
+.postFooterContainer{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+    min-height: 3rem;
+}
+
+.createBySection{
+    cursor: pointer;
+}
+
+.createBySection, .copyrightYear, .rightsReserved{
+    color: var(--color-primary-font);
+    font-size: .75rem;
+    font-weight: 400;
+
+}
+
+.createdBy{
+    color: var(--color-primary-font);
+    font-size: .75rem;
+    font-weight: 700;
+}
 
 /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
 @media screen and (max-width: 1024px) {

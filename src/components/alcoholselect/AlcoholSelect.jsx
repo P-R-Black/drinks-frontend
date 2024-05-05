@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import slugify from 'react-slugify';
 import { Link } from 'react-router-dom';
 import './alcoholselect.css';
 import styled, { keyframes } from 'styled-components';
@@ -20,41 +21,47 @@ import imgUrlRoseWine from '../../assets/pexels-polina-rose-over.jpg'
 import imgUrlRumGold from '../../assets/pexels-eva-gold.jpg'
 
 
-export const AlcoholSelect = ({ drinks, alcohol }) => {
+export const AlcoholSelect = ({ cocktails, alcohol }) => {
 
   const [filteredDrink, setFilteredDrink ] = useState([])
   const [backgroundPic, setBackgroundPic] = useState()
+  const [ newFilter, setNewFilter ] = useState([])
 
-  
   // format alcohol name
-  if (alcohol === "puntemes"){
-      alcohol = "Punt e Mes"
-  } else if (alcohol === "elderflowerliqueur"){
-      alcohol = "Elderflower Liqueur"
-  } else if (alcohol === "sloegin"){
+  if (alcohol === "sloe-gin"){
       alcohol = "Sloe Gin"
-  } else if (alcohol === "whitewineapéritif"){
+  } else if (alcohol === "white-wine-aperitif"){
       alcohol = "White Wine Apéritif"
-  } else if (alcohol === "roséwineapéritif"){
+  } else if (alcohol === "rose-wine-aperitif"){
       alcohol = "Rosé Wine Apéritif"
-  } else if (alcohol === "rum(dark)"){
+  } else if (alcohol === "rum-dark"){
     alcohol = "Rum (Dark)"
-  } else if (alcohol === "rum(gold)"){
+  } else if (alcohol === "rum-gold"){
     alcohol = "Rum (Gold)"
-  } else if (alcohol === "rum(light)"){
+  } else if (alcohol === "rum-light"){
     alcohol = "Rum (Light)"
-  } else if (alcohol === "rum(spiced)"){
+  } else if (alcohol === "rum-spiced"){
     alcohol = "Rum (Spiced)"
   } else if (alcohol === "non-alcoholic"){
     alcohol = "Non-Alcoholic"
-  } else if (alcohol === "sparklingwhitewine"){
+  } else if (alcohol === "sparkling-white-wine"){
     alcohol = "Sparkling White Wine"
-  } else if (alcohol === "crèmedementhe(green)"){
-    alcohol = "Crème de Menthe (Green)"
-  } else if (alcohol === "irishcreamliqueur"){
+  } else if (alcohol === "irish-cream-liqueur"){
     alcohol = "Irish Cream Liqueur"
-  } else if (alcohol === "crèmedecacao(dark)"){
+  } else if (alcohol === "creme-de-cacao-dark"){
     alcohol = "Crème de Cacao (Dark)"
+  } else if (alcohol === "green-melon-liqueur"){
+    alcohol = "Green Melon Liqueur"
+  } else if (alcohol === "elderflower-liqueur"){
+    alcohol = "Elderflower Liqueur"
+  } else if (alcohol === "creme-de-menthe-green"){
+    alcohol = "Crème de Menthe (Green)"
+  } else if (alcohol === "jagermeister"){
+    alcohol = "Jägermeister"
+  } else if (alcohol === "butterscotchliqueur"){
+    alcohol = "Butterscotch Liqueur"
+  } else if (alcohol === "sweetherballiqueur"){
+    alcohol = "Sweet Herbal Liqueur"
   } else {
     let alcoholFirstLetter = alcohol.charAt(0)
     let alcoholFirstLetterCap = alcoholFirstLetter.toUpperCase()
@@ -103,22 +110,25 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
     "Whiskey": [picChoiceScotchTopDown],
     "White Wine Apéritif": [picImageWhiteWine, picImageChampagneBottle],
   }
+  
+  
 
   const filterDrink = () => {
     setFilteredDrink(prevFilteredDrink => {
-      const sortedList = drinks
-        .filter(fd => fd.base_alcohol[0] === alcohol && fd.drink_name)
+      const sortedList = cocktails
+        .filter(fd => fd.base_alcohol[0] === alcohol)
         .map(fd => fd.drink_name)
         .sort();
-      return sortedList;
+      return sortedList
     });
-  
+
     setBackgroundPic(prevBackgroundPic => {
       const pic = picByDrink[alcohol] !== undefined
         ? picByDrink[alcohol][Math.floor(Math.random() * picByDrink[alcohol].length)]
         : picImageDefault;
       return pic;
     });
+
   };
   
   useEffect(() => {
@@ -127,31 +137,12 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
   return () => {
     filterDrink();
   }
-  }, []);
-
-  
-  // const filterDrink = () => {
-  //   let sortedList = drinks
-  //     .filter((fd) => fd.base_alcohol[0] === alcohol && fd.drink_name)
-  //     .map((fd) => fd.drink_name)
-  //     .sort();
-  
-  //   setFilteredDrink(sortedList);
-  //   setBackgroundPic(picByDrink[alcohol] !== undefined ? picByDrink[alcohol][Math.floor(Math.random() * picByDrink[alcohol].length)]: picImageDefault)
-
-  // };
-
-
-
-  // useEffect(() => {
-  //   filterDrink()
-  // },[])
+  }, [alcohol]);
   
 
   
   let scrollLength =  filteredDrink.length
   let scrollDuration = (scrollLength * 100) / 18
-
 
   const drinkScroll = keyframes`
     0% { transform: translate3d(100%, 0, 0);}
@@ -181,14 +172,14 @@ export const AlcoholSelect = ({ drinks, alcohol }) => {
                 return (
                   <Scroll className="nameButtonContainer">
                     <li className="drinkListLi" key={fd.id}>{fd.length < 19 ? fd : fd.slice(0, 19) + "..."}</li>
-                    <Link to={`/${alcohol.toLowerCase().replaceAll(" ","")}/${fd.toLowerCase().replaceAll(" ","")}`} className="linktoRecipe">Recipe</Link>
+                    <Link to={`/${slugify(alcohol)}/${slugify(fd)}`} className="linktoRecipe">Recipe</Link>
                   </Scroll>
                 )
               })}
               
             </ul>
               <div className="moreDrinkLinkContainer">
-                <Link to={`/${alcohol.toLowerCase().replaceAll(" ","")}/all_drinks`} className="linktoRecipeLarge">All {alcohol} Drinks</Link>
+                <Link to={`/${slugify(alcohol)}/all_drinks`} className="linktoRecipeLarge">All {alcohol} Drinks</Link>
               </div>
           </div>
         </div>

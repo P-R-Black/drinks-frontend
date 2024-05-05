@@ -7,7 +7,7 @@ import { AlcoholSelect } from '../../components/alcoholselect/AlcoholSelect'
 import { Footer } from '../../components/footer/Footer'
 
 
-export const Alcohol = ({ drinks, baseAlcohol, fetchAlcoholType, navLinkText, allDrknksBackgroundPic }) => {
+export const Alcohol = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkText, allDrknksBackgroundPic }) => {
 
   let { alcohol} = useParams()
 
@@ -20,9 +20,10 @@ export const Alcohol = ({ drinks, baseAlcohol, fetchAlcoholType, navLinkText, al
           fetchAlcoholType={fetchAlcoholType}
           navLinkText={navLinkText}
           alcohol={alcohol}
+          cocktails={cocktails}
           />
         <AlcoholSelect 
-          drinks={drinks} 
+          cocktails={cocktails} 
           baseAlcohol={baseAlcohol} 
           navLinkText={navLinkText} 
           alcohol={alcohol}
