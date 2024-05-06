@@ -1,15 +1,19 @@
 .discoverShotsSection{
     min-height: 100vh;
-    overflow:hidden;
-    position: relative;
     width: 100%;
 
-    background-image: radial-gradient(#2e2c7c68, #4a5ecb5f), url('../../assets/pexels-shots.jpg');
+}
+
+.parallaxShotDod{
     background-size: cover;
     background-blend-mode: multiply;
     background-repeat: no-repeat;
     background-position: center;
     overflow-x: hidden;
+    width: 100vw;
+    min-height: 100vh;
+    filter:brightness(45%);
+    transform-style: preserve-3d;
 }
 
 .discoverShotsContainer{
@@ -17,10 +21,6 @@
     margin-bottom: 3rem;
 }
 
-.linktoRecipeFour{
-    color: white;
-    font-size:  clamp(.75rem, 1.10vw, 5vw);
-}
 
 .discoverShotsTitleContainer{
     align-items: center;
@@ -36,7 +36,7 @@
     margin-top: 4.5rem;
 }
 
-.discoverShotsTitleContainerH1.hidden{
+.discoverShotsTitleContainerH1.hidden {
     opacity: 0;
     filter: blur(15px);
     transition: all 1s;
@@ -46,7 +46,7 @@
     filter: blur(0);
     opacity: 1;
     animation-duration: 2s;
-    animation-name: animated-disc-title;
+    animation-name: animated-shot-title;
 }
 
 .discShotsLinksToDrinkContainer {
@@ -58,4 +58,67 @@
     overflow-y: scroll;
     padding-bottom: 4rem;
     width: 100%;
+}
+
+.discShotsLinksToDrinkContainer.hidden{
+    opacity: 0;
+    filter: blur(15px);
+    transition: all 1s;
+}
+
+
+.shotsAlcLinkContainer.hidden:nth-child(even) {
+    opacity: 0;
+    filter: blur(15px);
+    transition: all 1s;
+}
+
+.shotsAlcLinkContainer.hidden:nth-child(odd) {
+    opacity: 0;
+    filter: blur(15px);
+    transition: all 1s;
+}
+
+.shotsAlcLinkContainer.show:nth-child(odd){
+    filter: blur(0);
+    opacity: 1;
+    animation-duration: 2s;
+    animation-name: animated-shot-odd;
+
+}
+
+.shotsAlcLinkContainer.show:nth-child(even){
+    filter: blur(0);
+    opacity: 1;
+    animation-duration: 2s;
+    animation-name: animated-shot-even;
+
+}
+
+
+.linktoRecipeFour{
+    color: white;
+    font-size:  clamp(.75rem, 1.10vw, 5vw);
+}
+
+
+
+@keyframes animated-shot-odd{
+    0%{
+        transform: translateY(-300%) 
+    }
+
+    100%{
+        transform: translateY(0%)
+    }
+}
+
+@keyframes animated-shot-even{
+    0%{
+        transform: translateY(300%) 
+    }
+
+    100%{
+        transform: translateY(0%)
+    }
 }

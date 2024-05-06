@@ -5,6 +5,7 @@ import { Parallax, Background } from 'react-parallax';
 import discoverShotsImage from '../../assets/pexels-shots.jpg'
 import altImage from '../../assets/pexels-lime-mint-drinks.jpg'
 import { ToolTip } from '../tooltip/ToolTip';
+import slugify from 'react-slugify';
 
 
 export const DiscoverShots = ({ allShots }) => {
@@ -42,36 +43,33 @@ export const DiscoverShots = ({ allShots }) => {
   return (
     <section className="discoverShotsSection" id="discoverShotsSection">
         <Parallax 
-                blur={5} 
-                bgImageAlt={altImage}
+                
+                // bgImage={discoverShotsImage}
+                // bgImageAlt={altImage}
+                // blur={{ min: -15, max: 15 }}
                 strength={500}>
                 <Background>
-                    <img src={discoverShotsImage} 
-                        className='parallaxImageDod' style={{position: "absolute", height: "100%", width: "100vw", 
-                        backfaceVisibility: "hidden", transform: 'translate3d(-50%, -49.5868px, 0px)', left:"50%", 
-                        transformStyle: 'preserve-3d', backgroundSize: "cover"}}
-                    />
+                    <img src={discoverShotsImage} alt={altImage} className='parallaxShotDod'/>
                 </Background>
                 <div className="container">
                     <div className="discoverShotsContainer">
                         <div className="discoverShotsTitleContainer" ref={discoverShotRef}>
                             <h1 className={discElementVisible ? `discoverShotsTitleContainerH1 show` : `discoverShotsTitleContainerH1 hidden`} >Shots</h1>
                         </div>
-                        <div className="discShotsLinksToDrinkContainer">
+                        <div className={discElementVisible ? `discShotsLinksToDrinkContainer show` : `discShotsLinksToDrinkContainer hidden`}>
                             {shotBase.map((ad) => (
-                                    <>
-                                        <ToolTip text={ad}>
-                                            <Link
-                                                key={ad.toLowerCase()}
-                                                className="linktoRecipeFour" 
-                                                to={`/${ad.toLowerCase().replaceAll(" ","")}/shot`}
-                                                > 
-                                                {ad.length < 18 ? ad : ad.slice(0, 15) + "..."}
-                                            </Link>
-                                        </ToolTip> 
-                                    </>
-                                ))}
-                        
+                                <div className={discElementVisible ? `shotsAlcLinkContainer show` : `shotsAlcLinkContainer hidden`}>
+                                    <ToolTip text={ad}>
+                                        <Link
+                                            key={ad.toLowerCase()}
+                                            className="linktoRecipeFour" 
+                                            to={`/${slugify(ad)}/shot`}
+                                            > 
+                                            {ad.length < 18 ? ad : ad.slice(0, 15) + "..."}
+                                        </Link>
+                                    </ToolTip> 
+                                </div>
+                            ))}
                         </div> 
                     </div>
                 </div>

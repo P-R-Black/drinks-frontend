@@ -8,7 +8,8 @@ import { Footer } from '../../components/footer/Footer'
 
 export const AllDrinks = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkText, allDrknksBackgroundPic }) => {
     let { alcohol } = useParams()
-    console.log('alcohol, AllDrinks', alcohol)
+
+    console.log('alcohol, AllDrinks', alcohol, 'alcohol slugify:', slugify(alcohol))
     
     // format alcohol name
     if (alcohol === "sloe-gin"){

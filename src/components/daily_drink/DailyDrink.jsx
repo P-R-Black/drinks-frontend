@@ -3,6 +3,7 @@ import { Calendar } from '../calendar/Calendar'
 import './dailyDrink.css'
 
 import { Link } from 'react-router-dom'
+import slugify from 'react-slugify'
 
 import { Parallax } from 'react-parallax';
 import dodImage from '../../assets/pexels-ron-lach.jpg'
@@ -50,9 +51,9 @@ export const DailyDrink = ({ currentDrink, generateCalendar, adjustMonth, date, 
                         <>
                     
                         <div key={cd.id} className="dailyDrink">{!dateLookup ? lastDrinkOfTheDay : cd.drink_name}</div>
-                        <Link key={cd.drink_name} className="recipeButton" to={`/${cd.base_alcohol}/${cd.drink_name.toLowerCase()}`}>
+                        <Link key={cd.drink_name} className="recipeButton" to={`/${slugify(cd.base_alcohol)}/${slugify(cd.drink_name)}`}>
                              Recipe
-                         </Link>
+                        </Link>
                      </>
                 ) : (<h2>Loading</h2>)
             

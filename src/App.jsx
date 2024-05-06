@@ -141,7 +141,6 @@ const App = () => {
         }
         setBaseAlcohol(filteredBase.sort())
     }
-    
   }
 
 
@@ -172,7 +171,6 @@ const App = () => {
                     <h3 className="minorh3">{"or experiencing a technical problem"}</h3>
                     <h3>{"Refresh to Reopen"}</h3>
                   </div>
-
                 </div>
             </div>
           </section>)
@@ -214,7 +212,7 @@ const App = () => {
         />
 
         <Route
-            path="/:alcohol/all_drinks"
+            path="/:alcohol/drinks"
             element={<AllDrinks 
             drinks={drinks}
             cocktails={cocktails}
@@ -295,7 +293,6 @@ const App = () => {
             drinks={drinks}
             />}
           />
-
 
         <Route 
               path="*" 

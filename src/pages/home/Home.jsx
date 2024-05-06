@@ -149,9 +149,7 @@ export const Home = ({drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkT
       <Discover drinks={drinks} cocktails={cocktails}/>
       <MidSectionTwo />
       <DiscoverShots allShots={allShots}/>
-      <Mocktails
-         drinks={drinks}
-      />
+      <Mocktails drinks={drinks} />
       <MustKnows mustKnows={mustKnows}/>
       <Footer/>
     </>

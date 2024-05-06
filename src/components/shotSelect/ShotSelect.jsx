@@ -18,60 +18,22 @@ import imgUrlOrangeSlices from '../../assets/pexels-orange-slices.jpg'
 import imgUrlWhiteWine from '../../assets/pexels-white-wine.jpg'
 import imgUrlRoseWine from '../../assets/pexels-polina-rose-over.jpg'
 import imgUrlRumGold from '../../assets/pexels-eva-gold.jpg'
+import slugify from 'react-slugify';
 
 
-export const ShotSelect = ({ alcohol, allShots }) => {
+export const ShotSelect = ({ alcohol, allShots, displayName }) => {
 
   const [filteredDrink, setFilteredDrink ] = useState([])
   const [backgroundPic, setBackgroundPic] = useState()
 
-  
-  // format alcohol name
-  if (alcohol === "sloe-gin"){
-    alcohol = "Sloe Gin"
-} else if (alcohol === "white-wine-aperitif"){
-    alcohol = "White Wine Apéritif"
-} else if (alcohol === "rose-wine-aperitif"){
-    alcohol = "Rosé Wine Apéritif"
-} else if (alcohol === "rum-dark"){
-  alcohol = "Rum (Dark)"
-} else if (alcohol === "rum-gold"){
-  alcohol = "Rum (Gold)"
-} else if (alcohol === "rum-light"){
-  alcohol = "Rum (Light)"
-} else if (alcohol === "rum-spiced"){
-  alcohol = "Rum (Spiced)"
-} else if (alcohol === "non-alcoholic"){
-  alcohol = "Non-Alcoholic"
-} else if (alcohol === "sparkling-white-wine"){
-  alcohol = "Sparkling White Wine"
-} else if (alcohol === "irish-cream-liqueur"){
-  alcohol = "Irish Cream Liqueur"
-} else if (alcohol === "creme-de-cacao-dark"){
-  alcohol = "Crème de Cacao (Dark)"
-} else if (alcohol === "green-melon-liqueur"){
-  alcohol = "Green Melon Liqueur"
-} else if (alcohol === "elderflower-liqueur"){
-  alcohol = "Elderflower Liqueur"
-} else if (alcohol === "creme-de-menthe-green"){
-  alcohol = "Crème de Menthe (Green)"
-} else if (alcohol === "jagermeister"){
-  alcohol = "Jägermeister"
-} else if (alcohol === "butterscotchliqueur"){
-  alcohol = "Butterscotch Liqueur"
-} else if (alcohol === "sweetherballiqueur"){
-  alcohol = "Sweet Herbal Liqueur"
-} else if (alcohol === "irishcreamliqueur"){
-  alcohol = "Irish Cream Liqueur"
-} else {
-  let alcoholFirstLetter = alcohol.charAt(0)
-  let alcoholFirstLetterCap = alcoholFirstLetter.toUpperCase()
-  let alcoholFirstLetterRemainingLetters = alcohol.slice(1)
-  alcohol = alcoholFirstLetterCap + alcoholFirstLetterRemainingLetters
-}
+
+  // removes display name from array
+  let newDisplayName;
+  for (let i of displayName[0]){
+    newDisplayName = i[0]
+  }
 
 
-  
   let picChoiceScotchTopDown = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlScotchTopDown})`;
   let picChoiceBloodOrange = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlBloodOrange})`;
   let picChoiceLime = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlLime})`;
@@ -112,15 +74,17 @@ export const ShotSelect = ({ alcohol, allShots }) => {
     "White Wine Apéritif": [picImageWhiteWine, picImageChampagneBottle],
   }
 
-  const filterDrink = () => {
+
+  
+  const filterDrink = async () => {
+    // gets all drinks that share base alcohol and puts in array for scroll.
     setFilteredDrink(prevFilteredDrink => {
-      const sortedList = allShots
-        .filter(fd => fd.base_alcohol[0] === alcohol && fd.drink_name)
+      const sortedList = allShots.filter((fd) => fd.base_alcohol[0] === newDisplayName)
         .map(fd => fd.drink_name)
         .sort();
       return sortedList;
     });
-  
+    
     setBackgroundPic(prevBackgroundPic => {
       const pic = picByDrink[alcohol] !== undefined
         ? picByDrink[alcohol][Math.floor(Math.random() * picByDrink[alcohol].length)]
@@ -135,7 +99,7 @@ export const ShotSelect = ({ alcohol, allShots }) => {
   return () => {
     filterDrink();
   }
-  }, []);
+  }, [displayName]);
 
 
   
@@ -164,7 +128,7 @@ export const ShotSelect = ({ alcohol, allShots }) => {
       <div className="container">
         <div className="baseAlcoholContainer">
           <div className="baseAlcTitleContainer">
-            <h1 id="baseAlcoholName">{alcohol}</h1>
+            <h1 id="baseAlcoholName">{newDisplayName}</h1>
             <h2>Shots</h2>
           </div>
           <div className="drinkListContainer">
@@ -173,14 +137,14 @@ export const ShotSelect = ({ alcohol, allShots }) => {
                 return (
                   <Scroll className="nameButtonContainer">
                     <li className="drinkListLi" key={fd.id}>{fd.length < 19 ? fd : fd.slice(0, 19) + "..."}</li>
-                    <Link to={`/${alcohol.toLowerCase().replaceAll(" ","")}/${fd.toLowerCase().replaceAll(" ","")}`} className="linktoRecipe">Recipe</Link>
+                    <Link to={`/${slugify(alcohol)}/${slugify(fd)}`} className="linktoRecipe">Recipe</Link>
                   </Scroll>
                 )
               })}
               
             </ul>
               <div className="moreDrinkLinkContainer">
-                <Link to={`/${alcohol.toLowerCase().replaceAll(" ","")}/all_shots`} className="linktoRecipeLarge">All {alcohol} Shots</Link>
+                <Link to={`/${slugify(displayName)}/all_shots`} className="linktoRecipeLarge">All {displayName} Shots</Link>
               </div>
           </div>
         </div>

@@ -75,6 +75,7 @@ export const DrinksAll = ({cocktails, alcohol, allDrknksBackgroundPic}) => {
   
   },[]) //getAllDrinks, alcohol, alldrinks
 
+  console.log('alcohol, DrinksAll', alcohol, 'alcohol slugify:', slugify(alcohol))
 
   return (
     <section className="allDrinksBackground" style={{backgroundImage: allDrknksBackgroundPic}}>
