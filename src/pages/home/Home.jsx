@@ -16,10 +16,10 @@ import { Footer } from '../../components/footer/Footer';
 import axios from 'axios'
 
 
-export const Home = ({drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkText, mustKnows, allShots}) => {
+export const Home = ({drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkText, mustKnows, allShots, 
+  allDrinksBackgroundPic, updateBackgroundPicture
+}) => {
 
-  let slugTest = slugify(baseAlcohol)
-  console.log('slugTest', slugTest)
   
   var date = new Date()
   var year = date.getFullYear();
@@ -136,6 +136,7 @@ export const Home = ({drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkT
         navLinkText={navLinkText} 
         cocktails={cocktails}
         drinks={drinks}
+        allDrinksBackgroundPic={allDrinksBackgroundPic}
       />
       <Hero/>
       <MidSection/>
@@ -146,7 +147,12 @@ export const Home = ({drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkT
         dateLookup={dateLookup}
         months={months}
       />
-      <Discover drinks={drinks} cocktails={cocktails}/>
+      <Discover 
+        drinks={drinks} 
+        cocktails={cocktails} 
+        updateBackgroundPicture={updateBackgroundPicture}
+        allDrinksBackgroundPic={allDrinksBackgroundPic}
+      />
       <MidSectionTwo />
       <DiscoverShots allShots={allShots}/>
       <Mocktails drinks={drinks} />

@@ -29,7 +29,8 @@ export const ShotSelect = ({ alcohol, allShots, displayName }) => {
 
   // removes display name from array
   let newDisplayName;
-  for (let i of displayName[0]){
+
+  for (let i of displayName){
     newDisplayName = i[0]
   }
 

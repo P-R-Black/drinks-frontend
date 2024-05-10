@@ -103,6 +103,19 @@
 
 
 
+@keyframes animated-shot-title{
+    0%{
+        transform: translateX(-200%) 
+    }
+
+    100%{
+        transform: translateX(0%)
+    }
+
+
+}
+
+
 @keyframes animated-shot-odd{
     0%{
         transform: translateY(-300%) 
@@ -121,4 +134,47 @@
     100%{
         transform: translateY(0%)
     }
+}
+
+
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+
+    .discoverShotsContainer{
+        height: 8rem;
+    }
+
+    .discShotsLinksToDrinkContainer{
+        grid-template-columns: repeat(4, 20%);
+        height: 22rem;
+        overflow-y: scroll;
+        
+    }
+
+    .linktoRecipeFour{
+        margin: 0 0;
+        padding: 0 0;
+
+    }
+   
+    
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
+
+    .discoverShotsContainer{
+        padding-top: 4rem;
+    }
+
+    .discShotsLinksToDrinkContainer{
+        grid-template-columns: repeat(2, 40%);
+        gap: .25rem;
+        height: 24rem;
+        overflow-y: scroll;
+        margin-top: -5rem;
+    }
+    
 }

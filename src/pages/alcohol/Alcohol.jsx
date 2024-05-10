@@ -8,13 +8,12 @@ import { Footer } from '../../components/footer/Footer'
 import slugify from 'react-slugify';
 
 
-export const Alcohol = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkText, allDrknksBackgroundPic }) => {
+export const Alcohol = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkText, allDrinksBackgroundPic }) => {
 
   let { alcohol} = useParams()
 
-  console.log(`Alcohol -> alcohol: ${alcohol} |  alcohol slugify ${slugify(alcohol)}`)
-
   const [ displayName, setDisplayName ] = useState("")
+  const [ backgroundPic, setBackgroundPic ] = useState("")
   
   // gets base alcoohl as it appears from API
   const findParenthesis = (text) => {
@@ -66,6 +65,7 @@ export const Alcohol = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navL
           navLinkText={navLinkText}
           alcohol={alcohol}
           cocktails={cocktails}
+          allDrinksBackgroundPic={allDrinksBackgroundPic}
           />
         <AlcoholSelect 
           cocktails={cocktails} 
@@ -73,7 +73,7 @@ export const Alcohol = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navL
           navLinkText={navLinkText} 
           alcohol={alcohol}
           displayName={displayName}
-          allDrknksBackgroundPic={allDrknksBackgroundPic}
+          allDrinksBackgroundPic={allDrinksBackgroundPic}
         />
         <Footer/>
     </>

@@ -5,22 +5,24 @@ import './navigation.css'
 
 import { Logo } from '../logo/Logo';
 import { Search } from '../search/Search';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link'
 
 
 
-export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe }) => {
+export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
     const [numofRecipes, setNumOfRecipes] = useState(0)
+    const alcohol = useParams()
 
     const dropDownSelection = [
         'Bourbon', 'Brandy', 'Gin', 'Mezcal', 'Non-Alcoholic', 'Rum', 'Rum (Dark)', 'Rum (Gold)',
         'Rum (Light)', 'Rum (Spiced)', 'Scotch', 'Sparkling White Wine', 'Tequila', 'Vodka', 'Whiskey'
     ]
 
+ 
 
-        
     const showNavMenu = () => {
+           
 
         let navBarMenu = document.querySelector('.navBarMenu')
         let visibility = navBarMenu.getAttribute('data-visible')
@@ -35,7 +37,7 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
             navBarMenu.setAttribute('aria-expanded', 'false')
             navBarMenu.setAttribute('data-visible', 'false')
             navBarDropdown.classList.remove('show')
-        } 
+        }
         
     }
      
@@ -100,10 +102,9 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                             })}
                         </ul>
                         <hr className='navline'/>
-                        <HashLink  
-                            onClick={showNavMenu}
-                            to="/#mustKnowSection"
-                            className="dodNav">Bartender Must Know Drinks
+                        <HashLink onClick={showNavMenu} 
+                            to="/#discoverShotsSection" 
+                            className="dodNav">Discover Shots By Alcohol
                         </HashLink>
                         <hr className='navline'/>
                         <HashLink onClick={showNavMenu} 
@@ -111,10 +112,12 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                             className="dodNav">Mocktails
                         </HashLink>
                         <hr className='navline'/>
-                        <HashLink onClick={showNavMenu} 
-                            to="/#discoverShotsSection" 
-                            className="dodNav">Shots
+                        <HashLink  
+                            onClick={showNavMenu}
+                            to="/#mustKnowSection"
+                            className="dodNav">Bartender Must Know Drinks
                         </HashLink>
+                        
                     </ul>
                 </div>
             </div>
@@ -162,10 +165,9 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                         })}
                     </ul>
                     <hr className='navline'/>
-                    <HashLink
-                        onClick={showNavMenu}  
-                        to="/#mustKnowSection"
-                        className="dodNav">Bartender Must Know Drinks
+                    <HashLink onClick={showNavMenu} 
+                        to="/#discoverShotsSection" 
+                        className="dodNav">Discover Shots By Alcohol
                     </HashLink>
                     <hr className='navline'/>
                     <HashLink onClick={showNavMenu} 
@@ -173,10 +175,12 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                         className="dodNav">Mocktails
                     </HashLink>
                     <hr className='navline'/>
-                    <HashLink onClick={showNavMenu} 
-                        to="/#discoverShotsSection" 
-                        className="dodNav">Shots
+                    <HashLink
+                        onClick={showNavMenu}  
+                        to="/#mustKnowSection"
+                        className="dodNav">Bartender Must Know Drinks
                     </HashLink>
+                   
                 </ul>
             </div>
         </div>
@@ -222,10 +226,9 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                                 })}
                             </ul>
                             <hr className='navline'/>
-                            <HashLink
-                                onClick={showNavMenu}  
-                                to="/#mustKnowSection"
-                                className="dodNav">Bartender Must Know Drinks
+                            <HashLink onClick={showNavMenu} 
+                                to="/#discoverShotsSection" 
+                                className="dodNav">Discover Shots By Alcohol
                             </HashLink>
                             <hr className='navline'/>
                             <HashLink onClick={showNavMenu} 
@@ -233,9 +236,10 @@ export const Navigation = ({ baseAlcohol, fetchAlcoholType, drinks, drinkRecipe 
                                 className="dodNav">Mocktails
                             </HashLink>
                             <hr className='navline'/>
-                            <HashLink onClick={showNavMenu} 
-                                to="/#discoverShotsSection" 
-                                className="dodNav">Shots
+                            <HashLink
+                                onClick={showNavMenu}  
+                                to="/#mustKnowSection"
+                                className="dodNav">Bartender Must Know Drinks
                             </HashLink>
                         </ul>
                     </div>
