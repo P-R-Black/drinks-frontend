@@ -5,77 +5,83 @@ import { Link } from 'react-router-dom';
 import { ToolTip } from '../tooltip/ToolTip';
 import './drinks_all.css';
 
-export const DrinksAll = ({cocktails, alcohol, allDrknksBackgroundPic}) => {
+export const DrinksAll = ({ cocktails, alcohol, displayName, allDrinksBackgroundPic }) => {
 
-  const [alldrinks, setallDrinks ] = useState([])
+  const [alldrinks, setAllDrinks] = useState([])
 
+  // removes display name from array
+  let newDisplayName;
 
-
-  const getAllDrinks = () => {
-    let sortedList = []
-    cocktails.map((fd) => {
-      if(fd.base_alcohol[0] === alcohol){
-          if (fd.drink_name){
-            sortedList.push(fd.drink_name)
-          }
-        return fd.drink_name;
-      }
-    })
-    setallDrinks(sortedList.sort())
-
+  for (let i of displayName) {
+    newDisplayName = i[0]
   }
 
 
+  // const getAllDrinks = () => {
+  //   setAllDrinks(prevFilteredDrink => {
+  //     const sortedList = cocktails.filter((fd) => fd.base_alcohol[0] === newDisplayName)
+  //       .map(fd => fd.drink_name)
+  //       .sort();
+  //     return sortedList;
+  //   });
+
+  // }
 
   useEffect(() => {
-    getAllDrinks()
-  
-  },[]) //getAllDrinks, alcohol, alldrinks
+    setAllDrinks(prevFilteredDrink => {
+      const sortedList = cocktails.filter((fd) => fd.base_alcohol[0] === newDisplayName)
+        .map(fd => fd.drink_name)
+        .sort();
+      return sortedList;
+    });
+    // getAllDrinks()
+
+  }, [newDisplayName, cocktails])
 
   return (
-    <section className="allDrinksBackground" style={{backgroundImage: allDrknksBackgroundPic}}>
+    <section className="allDrinksBackground" style={{ backgroundImage: allDrinksBackgroundPic }}>
       <div className="container">
         <div className="allDrinksContainer">
           <div className="baseAlcTitleContainerTwo">
-            <h1 id="baseAlcoholName">{alcohol}</h1>
+            <h1 id="baseAlcoholName">{newDisplayName}</h1>
             <h2>Drinks & Cocktails</h2>
           </div>
           <div className="linksToDrinksContainer">
-            {alldrinks.map((ad) => (
-              <>
-                   {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? (
-                <>
+            {alldrinks.map((ad, adIdx) => (
+              <React.Fragment key={adIdx}>
+                {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? (
+                  <>
+                    <ToolTip text={ad}>
+                      <Link
+                        key={ad.id}
+                        className="linktoRecipeTwo"
+                        to={`/${slugify(alcohol)}/${slugify(ad)}`}>
+                        {ad.length < 16 && window.innerWidth > 1024 ? ad : ad.slice(0, 14) + "..."}
+                      </Link>
+                    </ToolTip>
+                  </>
+                ) : (<>
                   <ToolTip text={ad}>
                     <Link
-                      key={ad}
+                      key={ad.id}
                       className="linktoRecipeTwo"
                       to={`/${slugify(alcohol)}/${slugify(ad)}`}>
-                      {ad.length < 18 && window.innerWidth > 1024 ? ad : ad.slice(0, 11) + "..."}
+                      {ad.length < 13 && window.innerWidth > 601 ? ad : ad.slice(0, 11) + "..."}
                     </Link>
-                  </ToolTip> 
-                </>
-              ):(<>
-                <ToolTip text={ad}>
-                  <Link
-                    key={ad}
-                    className="linktoRecipeTwo"
-                    to={`/${slugify(alcohol)}/${slugify(ad)}`}>
-                    {ad.length < 13 && window.innerWidth > 601 ? ad : ad.slice(0, 11) + "..."}
-                  </Link>
-                </ToolTip> 
-              </>):(
-                <>
-                  <ToolTip text={ad}>
-                    <Link
-                      key={ad}
-                      className="linktoRecipeTwo"
-                      to={`/${slugify(alcohol)}/${slugify(ad)}`}>
-                      {ad.length < 11 && window.innerWidth < 601 ? ad : ad.slice(0, 11) + "..."}
-                    </Link>
-                  </ToolTip> 
-                </>
-              )}
-              </>
+                  </ToolTip>
+                </>) : (
+                  <>
+                    <ToolTip text={ad}>
+                      <Link
+                        key={ad.id}
+                        className="linktoRecipeTwo"
+                        to={`/${slugify(alcohol)}/${slugify(ad)}`}>
+                        {ad.length < 11 && window.innerWidth < 601 ? ad : ad.slice(0, 11) + "..."}
+                      </Link>
+                    </ToolTip>
+                  </>
+                )}
+              </React.Fragment>
             ))}
           </div>
         </div>

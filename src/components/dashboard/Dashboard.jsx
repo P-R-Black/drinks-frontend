@@ -7,7 +7,7 @@ import './dashboard.css'
 
 export const Dashboard = () => {
   const navigate = useNavigate()
-  let error = "There's an Error Here"
+  // let error = "There's an Error Here"
  
 
     const LogOut = () => {

@@ -1,18 +1,18 @@
-.ginBackground{
-    background-size: cover; 
-    
+.ginBackground {
+    background-size: cover;
+
     background-blend-mode: multiply;
     background-repeat: no-repeat;
     background-position: center;
     overflow-x: hidden;
-    
+
     height: 100vh;
     width: 100%;
     margin-top: -5rem;
-   
+
 }
 
-.baseAlcoholContainer{
+.baseAlcoholContainer {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -29,40 +29,71 @@
     justify-content: center;
     margin-top: 5rem;
     width: 100%;
-    
+
 }
 
-.baseAlcTitleContainer h1{
+.baseAlcTitleContainer h1 {
     font-size: clamp(3rem, 10vw, 14.5vw);
     text-align: center;
 }
 
-.baseAlcTitleContainer h2{
+.baseAlcTitleContainer h2 {
     font-size: clamp(1.5rem, 3.5vw, 6.5vw);
     line-height: 0%;
     margin-bottom: 2rem;
     margin-top: 2rem;
 }
 
-.drinkListContainer{
-    width: 100%;
+.drinkListContainer {
 
+    max-width: var(--container-width-lg);
 }
 
-.drinkListUl{
-    align-items: center;
+
+.drinkListContainer[data-animated="true"] {
+    overflow: hidden;
+    -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+}
+
+
+
+
+.drinkListUl {
+
+    animation: scroll linear infinite;
     display: flex;
-    height: 12rem;
-    overflow-y: scroll;
+    flex-wrap: nowrap;
+    gap: 2rem;
+    padding-block: 1rem;
+    width: max-content;
 }
 
-.drinkListLi{
+
+
+.drinkListUl:hover {
+    animation-play-state: paused;
+}
+
+
+.drinkListLi {
     color: var(--color-primary-font);
     font-size: clamp(1.25rem, 2rem, 5vw);
     font-weight: 500;
     text-align: center;
-    width: clamp(13rem, 24rem, 25vw);
+    min-width: clamp(13rem, 24rem, 25vw);
     text-shadow: var(--small-letter-shadow);
+
+
+    /* stock ticker vid */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    /* min-width: 24rem; */
+
+
 }
 
 .nameButtonContainer {
@@ -70,10 +101,11 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
+
 }
 
 
-.moreDrinkLinkContainer{
+.moreDrinkLinkContainer {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -82,7 +114,7 @@
 
 
 
-.linktoRecipe{
+.linktoRecipe {
     background-color: transparent;
     border: 3px solid white;
     border-radius: 10px;
@@ -95,9 +127,10 @@
     text-align: center;
     padding: .25rem;
     width: clamp(5rem, 6rem, 15vw);
+
 }
 
-.linktoRecipeLarge{
+.linktoRecipeLarge {
     background-color: transparent;
     border: 3px solid white;
     border-radius: 10px;
@@ -115,13 +148,24 @@
 }
 
 
+@keyframes scroll {
+    to {
+        /* transform: translate(calc(-70% - 1rem)); */
+        transform: translate(-100%);
+    }
+
+}
+
+
+
+
 /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
 @media screen and (max-width: 1024px) {
-    .baseAlcTitleContainer{
+    .baseAlcTitleContainer {
         margin-top: 0rem;
     }
 
-    .drinkListLi{
+    .drinkListLi {
         width: 25rem;
     }
 }
@@ -129,22 +173,22 @@
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
 
-    .ginBackground{
+    .ginBackground {
         margin-top: -7rem;
     }
 
-    .baseAlcTitleContainer{
+    .baseAlcTitleContainer {
         margin-top: 3rem;
     }
 
-    .baseAlcTitleContainer h2{
+    .baseAlcTitleContainer h2 {
         margin-top: 1rem;
 
     }
-    .drinkListLi{
+
+    .drinkListLi {
         font-weight: 400;
     }
 
 
 }
-

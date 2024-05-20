@@ -3,32 +3,31 @@ import { Link } from 'react-router-dom';
 import './discovershots.css'
 import { Parallax, Background } from 'react-parallax';
 import discoverShotsImage from '../../assets/pexels-shots.jpg'
-import altImage from '../../assets/pexels-lime-mint-drinks.jpg'
+import altImage from '../../assets/pexels-rachel-default.jpg'
 import { ToolTip } from '../tooltip/ToolTip';
 import slugify from 'react-slugify';
 
 
-export const DiscoverShots = ({ allShots }) => {
+export const DiscoverShots = ({ allShots, updateBackgroundPicture }) => {
 
     const discoverShotRef = useRef();
     const [ discElementVisible, setDiscElementVisible ] = useState();
     const [ shotBase, setShotBase ] = useState([])
 
+
     useEffect(() => {
-        const allAlcohol = async () => {
-            let filteredBase = []
-            let base = await allShots.map((ba) => ba.base_alcohol)
-            let base_two = await base.map((bw) => bw[0])
-            for (let b = 0; b < base_two.length; b++){
-                if (!filteredBase.includes(base_two[b])){
-                    filteredBase.push(base_two[b])
-                }
+        let filteredBase = []
+        let base = allShots.map((ba) => ba.base_alcohol)
+        let base_two = base.map((bw) => bw[0])
+        for (let b = 0; b < base_two.length; b++){
+            if (!filteredBase.includes(base_two[b])){
+                filteredBase.push(base_two[b])
             }
-         
-            setShotBase(filteredBase.sort())
         }
-        allAlcohol()
-    },[])
+     
+        setShotBase(filteredBase.sort())
+        
+    },[allShots])
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
@@ -58,12 +57,12 @@ export const DiscoverShots = ({ allShots }) => {
                         </div>
                         <div className={discElementVisible ? `discShotsLinksToDrinkContainer show` : `discShotsLinksToDrinkContainer hidden`}>
                             {shotBase.map((ad) => (
-                                <div className={discElementVisible ? `shotsAlcLinkContainer show` : `shotsAlcLinkContainer hidden`}>
+                                <div key={slugify(ad)} className={discElementVisible ? `shotsAlcLinkContainer show` : `shotsAlcLinkContainer hidden`}>
                                     <ToolTip text={ad}>
                                         <Link
-                                            key={ad.toLowerCase()}
                                             className="linktoRecipeFour" 
                                             to={`/${slugify(ad)}/shot`}
+                                            onClick={() => updateBackgroundPicture(slugify(ad))}
                                             > 
                                             {ad.length < 18 ? ad : ad.slice(0, 15) + "..."}
                                         </Link>

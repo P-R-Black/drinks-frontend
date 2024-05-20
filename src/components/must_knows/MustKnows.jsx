@@ -18,12 +18,11 @@ export const MustKnows = ({ mustKnows }) => {
           <div className="drinkGlassContainer">
             {mustKnows && mustKnows.sort((a, b) => a.drink_name > b.drink_name ? 1 : -1).map((mk) =>{
               return (
-                <div className="drinkGlass">
+                <div key={mk.id} className="drinkGlass">
                   <Link to={`/${slugify(mk.base_alcohol)}/${slugify(mk.drink_name)}`}>
                       <h2>{mk.drink_name}</h2>
                   </Link>
                 </div>
-
               )
             })}
          </div>

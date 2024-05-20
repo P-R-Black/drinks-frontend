@@ -1,6 +1,6 @@
 
 .dodSection{
-    height: 100vh;
+    min-height: 100vh;
     overflow:hidden;
     position: relative;
     width: 100%;
@@ -9,7 +9,7 @@
     /* background-image: url('../../assets/pexels-ron-lach.jpg'); */
 
     background-size: cover;
-    /* background-blend-mode: multiply; */
+    background-blend-mode: multiply;
     background-repeat: no-repeat;
     background-position: center;
 
@@ -48,7 +48,7 @@ h1.drinkOfDayTitle.show {
     display: flex;
     justify-content: space-around;
     margin-top: 2rem;
-    margin-bottom: 22rem;
+    margin-bottom: 22rem;  /* margin bottom very large to hide gap created during parallex effect */
 }
 
 

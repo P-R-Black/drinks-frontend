@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import './discover.css'
 import { Parallax, Background } from 'react-parallax';
-import discoverImage from '../../assets/sergio-alves-santos-PeDrafNlY2Y-unsplash.jpg'
 import altImage from '../../assets/pexels-rachel-default.jpg'
 import { ToolTip } from '../tooltip/ToolTip';
 import slugify from 'react-slugify';
@@ -29,7 +28,7 @@ export const Discover = ({ drinks, cocktails, updateBackgroundPicture, allDrinks
             setMainAlcohols(filteredBase.sort())
         }
         allAlcohol()
-    },[])
+    },[cocktails])
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
@@ -44,10 +43,10 @@ export const Discover = ({ drinks, cocktails, updateBackgroundPicture, allDrinks
         <section id="discoverSection" className="discoverSection">
             <Parallax 
                 blur={5} 
-                bgImageAlt={altImage}
+                // bgImageAlt={altImage}
                 strength={500}>
                 <Background>
-                <img src={allDrinksBackgroundPic} 
+                <img src={allDrinksBackgroundPic} alt={altImage}
                     className='parallaxImageDod' style={{position: "absolute", height: "100%", width: "100vw", 
                     backfaceVisibility: "hidden", transform: 'translate3d(-50%, -49.5868px, 0px)', left:"50%", 
                     transformStyle: 'preserve-3d', backgroundSize: "cover"}}
@@ -61,10 +60,9 @@ export const Discover = ({ drinks, cocktails, updateBackgroundPicture, allDrinks
                         </div>
                         <div className="discLinksToDrinkContainer">
                             {mainAlcohols.map((ad) => (
-                                <>
+                                <React.Fragment  key={`/${slugify(ad)}`}>
                                     <ToolTip text={ad}>
                                         <Link
-                                            key={ad.toLowerCase()}
                                             className="linktoRecipeThree" 
                                             to={`/${slugify(ad)}`}
                                             onClick={() => updateBackgroundPicture(slugify(ad))}
@@ -72,7 +70,7 @@ export const Discover = ({ drinks, cocktails, updateBackgroundPicture, allDrinks
                                             {ad.length < 18 ? ad : ad.slice(0, 15) + "..."}
                                         </Link>
                                     </ToolTip> 
-                                </>
+                                </React.Fragment>
                             ))}
                         </div>
                     </div>

@@ -4,91 +4,50 @@ import { ToolTip } from '../tooltip/ToolTip';
 import slugify from 'react-slugify';
 import './shots_all.css';
 
-export const ShotsAll = ({ allShots, alcohol, allDrknksBackgroundPic }) => {
-  const [alldrinks, setallDrinks ] = useState([])
+export const ShotsAll = ({ allShots, alcohol, displayName, allDrinksBackgroundPic  }) => {
+  const [allDrinks, setallDrinks ] = useState([])
 
-  console.log('allDrknksBackgroundPic', allDrknksBackgroundPic)
+   // removes display name from array
+   let newDisplayName;
 
-  // format alcohol name
-  if (alcohol === "sloe-gin"){
-    alcohol = "Sloe Gin"
-} else if (alcohol === "white-wine-aperitif"){
-    alcohol = "White Wine Apéritif"
-} else if (alcohol === "rose-wine-aperitif"){
-    alcohol = "Rosé Wine Apéritif"
-} else if (alcohol === "rum-dark"){
-  alcohol = "Rum (Dark)"
-} else if (alcohol === "rum-gold"){
-  alcohol = "Rum (Gold)"
-} else if (alcohol === "rum-light"){
-  alcohol = "Rum (Light)"
-} else if (alcohol === "rum-spiced"){
-  alcohol = "Rum (Spiced)"
-} else if (alcohol === "non-alcoholic"){
-  alcohol = "Non-Alcoholic"
-} else if (alcohol === "sparkling-white-wine"){
-  alcohol = "Sparkling White Wine"
-} else if (alcohol === "irish-cream-liqueur"){
-  alcohol = "Irish Cream Liqueur"
-} else if (alcohol === "creme-de-cacao-dark"){
-  alcohol = "Crème de Cacao (Dark)"
-} else if (alcohol === "green-melon-liqueur"){
-  alcohol = "Green Melon Liqueur"
-} else if (alcohol === "elderflower-liqueur"){
-  alcohol = "Elderflower Liqueur"
-} else if (alcohol === "creme-de-menthe-green"){
-  alcohol = "Crème de Menthe (Green)"
-} else if (alcohol === "jagermeister"){
-  alcohol = "Jägermeister"
-} else if (alcohol === "butterscotch-liqueur"){
-  alcohol = "Butterscotch Liqueur"
-} else if (alcohol === "sweetherballiqueur"){
-  alcohol = "Sweet Herbal Liqueur"
-} else if (alcohol === "irishcreamliqueur"){
-  alcohol = "Irish Cream Liqueur"
-} else if (alcohol === "peach-liqueur"){
-  alcohol = "Peach Liqueur"
-} else {
-  let alcoholFirstLetter = alcohol.charAt(0)
-  let alcoholFirstLetterCap = alcoholFirstLetter.toUpperCase()
-  let alcoholFirstLetterRemainingLetters = alcohol.slice(1)
-  alcohol = alcoholFirstLetterCap + alcoholFirstLetterRemainingLetters
-}
+   for (let i of displayName){
+      newDisplayName = i[0]
+      break
+   }
 
+  // const getAllDrinks = () => {
 
-  const getAllDrinks = () => {
-    let sortedList = []
-    allShots.map((fd) => {
-      if(fd.base_alcohol[0] === alcohol){
-          if (fd.drink_name){
-            sortedList.push(fd.drink_name)
-          }
-        return fd.drink_name;
-      }
-    })
-    setallDrinks(sortedList.sort())
-
-  }
+  //   setallDrinks(preSetDrinks => {
+  //     const sortedList = allShots.filter((sl) => sl.base_alcohol[0] === newDisplayName)
+  //     .map(fd => fd.drink_name).sort();
+  //     return sortedList
+  //   })
+  // }
 
 
 
   useEffect(() => {
-    getAllDrinks()
+    setallDrinks(preSetDrinks => {
+      const sortedList = allShots.filter((sl) => sl.base_alcohol[0] === newDisplayName)
+      .map(fd => fd.drink_name).sort();
+      return sortedList
+    })
+    // getAllDrinks()
   
-  },[]) //getAllDrinks, alcohol, alldrinks
+  },[newDisplayName, allShots])
 
 
   return (
-    <section className="allDrinksBackground" style={{backgroundImage: allDrknksBackgroundPic}}>
+    <section className="allDrinksBackground" style={{backgroundImage: allDrinksBackgroundPic}}>
       <div className="container">
         <div className="allDrinksContainer">
           <div className="baseAlcTitleContainerTwo">
-            <h1 id="baseAlcoholName">{alcohol}</h1>
+            <h1 id="baseAlcoholName">{newDisplayName}</h1>
             <h2>Shots</h2>
           </div>
           <div className="linksToDrinksContainer">
-            {alldrinks.map((ad) => (
-              <>
+            {allDrinks.map((ad, adIdx) => (
+              <React.Fragment key={adIdx}>
                    {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? (
                 <>
                   <ToolTip text={ad}>
@@ -121,7 +80,7 @@ export const ShotsAll = ({ allShots, alcohol, allDrknksBackgroundPic }) => {
                   </ToolTip> 
                 </>
               )}
-              </>
+              </React.Fragment>
             ))}
           </div>
         </div>

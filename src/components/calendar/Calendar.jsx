@@ -54,7 +54,7 @@ export const Calendar = ({ date, year, month}) => {
     
     useEffect(() => {
         generateCalendar()
-    }, [calendarYear, calendarMonth])
+    })
     
 
 

@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from 'react'
-import './search.css'
+import React, { useRef, useEffect } from 'react';
+import slugify from 'react-slugify';
+import './search.css';
 
 export const SearchResults = ({ results, selectedItem }) => {
 
@@ -22,12 +23,12 @@ export const SearchResults = ({ results, selectedItem }) => {
        {results.map((result, index) =>{
             return(
                 <li key={result.id}>
-                  <a href={`/${result.base_alcohol[0].toLowerCase().replaceAll(" ","")}/${result.drink_name.toLowerCase().replaceAll(" ","")}`} 
+                  <a href={`/${slugify(result.base_alcohol[0])}/${slugify(result.drink_name)}`} 
                       className={selectedItem === index ? "searchResultList active" : "searchResultList"}
                       >
                       {result.drink_name}
                     </a>
-                  </li>         
+                </li>         
             )
        })}
       </ul>   

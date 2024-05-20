@@ -8,7 +8,7 @@ import { IoMdClose } from "react-icons/io"
 export const Search = ({ drinks }) => {
   const [ input, setInput ] = useState("")
   const [ selectedItem, setSelectedItem ] = useState(-1)
-  const [results, setResults] = useState([])
+  const [ results, setResults ] = useState([])
 
 
   const handleKeyDown = (e) => {
@@ -49,7 +49,7 @@ export const Search = ({ drinks }) => {
       setResults([])
     }
 
-  }, [input])
+  }, [input, drinks])
 
   const handleChange = (e) => {
     setInput(e.target.value)

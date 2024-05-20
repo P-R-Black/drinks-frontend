@@ -1,8 +1,9 @@
 import React from 'react'
 import './errorpage.css'
+import imgUrlError from '../../assets/pexels-cottonbro-studio-7191423.jpg'
 
 export const ErrorPage = () => {
-    let image404 = 'radial-gradient(#25236E82, #4A5ECB75),' + 'url(' + require ('../../assets/pexels-cottonbro-studio-7191423.jpg') + ')'
+    let image404 = `radial-gradient(#25236E82, #4A5ECB75), url(${imgUrlError})`;
 
   return (
     <section className='section404' style={{backgroundImage: image404}}>

@@ -5,30 +5,30 @@ import './navigation.css'
 
 import { Logo } from '../logo/Logo';
 import { Search } from '../search/Search';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link'
 
 
 
 export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
     const [numofRecipes, setNumOfRecipes] = useState(0)
-    const alcohol = useParams()
 
     const dropDownSelection = [
         'Bourbon', 'Brandy', 'Gin', 'Mezcal', 'Non-Alcoholic', 'Rum', 'Rum (Dark)', 'Rum (Gold)',
-        'Rum (Light)', 'Rum (Spiced)', 'Scotch', 'Sparkling White Wine', 'Tequila', 'Vodka', 'Whiskey'
+        'Rum (Light)', 'Rum (Spiced)', 'Scotch', 'Sparkling White Wine', 'Tequila', 'Vermouth',
+        'Vodka', 'Whiskey'
     ]
 
- 
+
 
     const showNavMenu = () => {
-           
+
 
         let navBarMenu = document.querySelector('.navBarMenu')
         let visibility = navBarMenu.getAttribute('data-visible')
         let navBarDropdown = document.querySelector('.navDropdown');
 
-        if (visibility === "false" || visibility == null){
+        if (visibility === "false" || visibility == null) {
             navBarMenu.setAttribute('aria-expanded', 'true')
             navBarMenu.setAttribute('data-visible', 'true')
             navBarDropdown.classList.add('show')
@@ -38,221 +38,220 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
             navBarMenu.setAttribute('data-visible', 'false')
             navBarDropdown.classList.remove('show')
         }
-        
+
     }
-     
+
 
     useEffect(() => {
         const drinksCount = () => {
-        let recipeLengthRounded = Math.round(drinks.length / 5) * 5;
-        if (drinks.length % 5 <= 5) {
-            setNumOfRecipes(`Over ${recipeLengthRounded} recipes, with more added daily`)
-        } else {
-            setNumOfRecipes(`Nearly ${recipeLengthRounded} recipes, with more added daily`)
-        }
-        
+            let recipeLengthRounded = Math.round(drinks.length / 5) * 5;
+            if (drinks.length % 5 <= 5) {
+                setNumOfRecipes(`Over ${recipeLengthRounded} recipes, with more added daily`)
+            } else {
+                setNumOfRecipes(`Nearly ${recipeLengthRounded} recipes, with more added daily`)
+            }
+
         }
         drinksCount()
-    },[drinks.length])
+    }, [drinks.length])
 
-  return (
-    <>  
-        <div className="bannerContainer">{numofRecipes}</div>
-        {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? (
-            <nav className="navbar">
-            <div className="container">
-                    <div className="navbarContainer">
-                    <div id="logoId">
-                        <Logo className="navbarLogo"></Logo>
-                    </div>
-                    <search className="searchId">
-                        <Search drinks={drinks} drinkRecipe={drinkRecipe} className="navSearch" />
-                    </search>
-                    <div className="navBarMenu" id="navBarMenu" aria-controls="navbar_menu" 
-                        aria-expanded="false"
-                        onClick={()=> {showNavMenu(); fetchAlcoholType()}}>
-                        <span className="bar kg-only"></span>
-                        <span className="bar kg-only"></span>
-                        <span className="bar kg-only"></span>
-                        <span className="bar kg-only"></span>
-                    </div>
-                    <ul className="navDropdown">
-                        <HashLink 
-                            onClick={showNavMenu} 
-                            to="/#dodSection" 
-                            className="dodNav">Drink of the Day
-                        </HashLink>
-                        <hr className='navline'/>
-                        <HashLink 
-                            onClick={showNavMenu} 
-                            to="/#discoverSection" 
-                            className="dodNav">Discover Cocktail By Alcohol
-                        </HashLink>
-                        <ul className="navDropdownByDrink" data-visible="false">
-                            {dropDownSelection.map(ba => {
-                            return (
-                                <Link
-                                    key={slugify(ba)}
-                                    className="navbarLinks" 
-                                    to={`/${slugify(ba)}`}
-                                    onClick={showNavMenu}
-                                    >{ba}
-                                </Link>
-                                )
-                            })}
-                        </ul>
-                        <hr className='navline'/>
-                        <HashLink onClick={showNavMenu} 
-                            to="/#discoverShotsSection" 
-                            className="dodNav">Discover Shots By Alcohol
-                        </HashLink>
-                        <hr className='navline'/>
-                        <HashLink onClick={showNavMenu} 
-                            to="/#mocktailSection" 
-                            className="dodNav">Mocktails
-                        </HashLink>
-                        <hr className='navline'/>
-                        <HashLink  
-                            onClick={showNavMenu}
-                            to="/#mustKnowSection"
-                            className="dodNav">Bartender Must Know Drinks
-                        </HashLink>
-                        
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        ):(<nav className="navbar">
-        <div className="container">
-            <div className="navbarContainer">
-                <div id="logoId">
-                    <Logo className="navbarLogo"></Logo>
-                </div>
-                <search className="searchId">
-                    <Search drinks={drinks} drinkRecipe={drinkRecipe} className="navSearch" />
-                </search>
-                <div className="navBarMenu" id="navBarMenu" aria-controls="navbar_menu" 
-                    aria-expanded="false"
-                    onClick={()=> { showNavMenu(); fetchAlcoholType()}}>
-                    <span className="bar kg-only"></span>
-                    <span className="bar kg-only"></span>
-                    <span className="bar kg-only"></span>
-                    <span className="bar kg-only"></span>
-                </div>
-                <ul className="navDropdown">
-                    <HashLink 
-                        onClick={showNavMenu} 
-                        to="/#dodSection" 
-                        className="dodNav">Drink of the Day
-                    </HashLink>
-                    <hr className='navline'/>
-                    <HashLink 
-                        onClick={showNavMenu} 
-                        to="/#discoverSection" 
-                        className="dodNav">Discover Cocktail By Alcohol
-                    </HashLink>
-                    <ul className="navDropdownByDrink" data-visible="false">
-                        {dropDownSelection.map(ba => {
-                        return (
-                            <Link
-                                key={slugify(ba)}
-                                className="navbarLinks" 
-                                to={`/${slugify(ba)}`}
-                                onClick={showNavMenu}
-                                >{ba}
-                            </Link>
-                            )
-                        })}
-                    </ul>
-                    <hr className='navline'/>
-                    <HashLink onClick={showNavMenu} 
-                        to="/#discoverShotsSection" 
-                        className="dodNav">Discover Shots By Alcohol
-                    </HashLink>
-                    <hr className='navline'/>
-                    <HashLink onClick={showNavMenu} 
-                        to="/#mocktailSection" 
-                        className="dodNav">Mocktails
-                    </HashLink>
-                    <hr className='navline'/>
-                    <HashLink
-                        onClick={showNavMenu}  
-                        to="/#mustKnowSection"
-                        className="dodNav">Bartender Must Know Drinks
-                    </HashLink>
-                   
-                </ul>
-            </div>
-        </div>
-    </nav>):(
+    return (
         <>
-            <nav className="navbar">
+            <div className="bannerContainer">{numofRecipes}</div>
+            {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? (
+                <nav className="navbar">
+                    <div className="container">
+                        <div className="navbarContainer">
+                            <div id="logoId">
+                                <Logo className="navbarLogo"></Logo>
+                            </div>
+                            <search className="searchId">
+                                <Search drinks={drinks} drinkRecipe={drinkRecipe} className="navSearch" />
+                            </search>
+                            <div className="navBarMenu" id="navBarMenu" aria-controls="navbar_menu"
+                                aria-expanded="false"
+                                onClick={() => { showNavMenu(); fetchAlcoholType() }}>
+                                <span className="bar kg-only"></span>
+                                <span className="bar kg-only"></span>
+                                <span className="bar kg-only"></span>
+                                <span className="bar kg-only"></span>
+                            </div>
+                            <ul className="navDropdown">
+                                <HashLink
+                                    onClick={showNavMenu}
+                                    to="/#dodSection"
+                                    className="dodNav">Drink of the Day
+                                </HashLink>
+                                <hr className='navline' />
+                                <HashLink
+                                    onClick={showNavMenu}
+                                    to="/#discoverSection"
+                                    className="dodNav">Discover Cocktail By Alcohol
+                                </HashLink>
+                                <ul className="navDropdownByDrink" data-visible="false">
+                                    {dropDownSelection.map(ba => {
+                                        return (
+                                            <Link
+                                                key={slugify(ba)}
+                                                className="navbarLinks"
+                                                to={`/${slugify(ba)}`}
+                                                onClick={showNavMenu}
+                                            >{ba}
+                                            </Link>
+                                        )
+                                    })}
+                                </ul>
+                                <hr className='navline' />
+                                <HashLink onClick={showNavMenu}
+                                    to="/#discoverShotsSection"
+                                    className="dodNav">Discover Shots By Alcohol
+                                </HashLink>
+                                <hr className='navline' />
+                                <HashLink onClick={showNavMenu}
+                                    to="/#mocktailSection"
+                                    className="dodNav">Mocktails
+                                </HashLink>
+                                <hr className='navline' />
+                                <HashLink
+                                    onClick={showNavMenu}
+                                    to="/#mustKnowSection"
+                                    className="dodNav">Bartender Must Know Drinks
+                                </HashLink>
+
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            ) : (<nav className="navbar">
                 <div className="container">
                     <div className="navbarContainer">
                         <div id="logoId">
                             <Logo className="navbarLogo"></Logo>
                         </div>
-                        <div className="navBarMenu" id="navBarMenu" aria-controls="navbar_menu" 
+                        <search className="searchId">
+                            <Search drinks={drinks} drinkRecipe={drinkRecipe} className="navSearch" />
+                        </search>
+                        <div className="navBarMenu" id="navBarMenu" aria-controls="navbar_menu"
                             aria-expanded="false"
-                            onClick={()=> { showNavMenu(); fetchAlcoholType()}}>
+                            onClick={() => { showNavMenu(); fetchAlcoholType() }}>
                             <span className="bar kg-only"></span>
                             <span className="bar kg-only"></span>
                             <span className="bar kg-only"></span>
                             <span className="bar kg-only"></span>
                         </div>
                         <ul className="navDropdown">
-                            <HashLink 
-                                onClick={showNavMenu} 
-                                to="/#dodSection" 
+                            <HashLink
+                                onClick={showNavMenu}
+                                to="/#dodSection"
                                 className="dodNav">Drink of the Day
                             </HashLink>
-                            <hr className='navline'/>
-                            <HashLink 
-                                onClick={showNavMenu} 
-                                to="/#discoverSection" 
+                            <hr className='navline' />
+                            <HashLink
+                                onClick={showNavMenu}
+                                to="/#discoverSection"
                                 className="dodNav">Discover Cocktail By Alcohol
                             </HashLink>
                             <ul className="navDropdownByDrink" data-visible="false">
                                 {dropDownSelection.map(ba => {
-                                return (
-                                    <Link
-                                        key={slugify(ba)}
-                                        className="navbarLinks" 
-                                        to={`/${slugify(ba)}`}
-                                        onClick={showNavMenu}
+                                    return (
+                                        <Link
+                                            key={slugify(ba)}
+                                            className="navbarLinks"
+                                            to={`/${slugify(ba)}`}
+                                            onClick={showNavMenu}
                                         >{ba}
-                                    </Link>
+                                        </Link>
                                     )
                                 })}
                             </ul>
-                            <hr className='navline'/>
-                            <HashLink onClick={showNavMenu} 
-                                to="/#discoverShotsSection" 
+                            <hr className='navline' />
+                            <HashLink onClick={showNavMenu}
+                                to="/#discoverShotsSection"
                                 className="dodNav">Discover Shots By Alcohol
                             </HashLink>
-                            <hr className='navline'/>
-                            <HashLink onClick={showNavMenu} 
-                                to="/#mocktailSection" 
+                            <hr className='navline' />
+                            <HashLink onClick={showNavMenu}
+                                to="/#mocktailSection"
                                 className="dodNav">Mocktails
                             </HashLink>
-                            <hr className='navline'/>
+                            <hr className='navline' />
                             <HashLink
-                                onClick={showNavMenu}  
+                                onClick={showNavMenu}
                                 to="/#mustKnowSection"
                                 className="dodNav">Bartender Must Know Drinks
                             </HashLink>
+
                         </ul>
                     </div>
                 </div>
-            </nav>
-            <div className="mobileNavContainer">
-            <Search drinks={drinks} drinkRecipe={drinkRecipe} className="navSearch" />
-            </div>
+            </nav>) : (
+                <>
+                    <nav className="navbar">
+                        <div className="container">
+                            <div className="navbarContainer">
+                                <div id="logoId">
+                                    <Logo className="navbarLogo"></Logo>
+                                </div>
+                                <div className="navBarMenu" id="navBarMenu" aria-controls="navbar_menu"
+                                    aria-expanded="false"
+                                    onClick={() => { showNavMenu(); fetchAlcoholType() }}>
+                                    <span className="bar kg-only"></span>
+                                    <span className="bar kg-only"></span>
+                                    <span className="bar kg-only"></span>
+                                    <span className="bar kg-only"></span>
+                                </div>
+                                <ul className="navDropdown">
+                                    <HashLink
+                                        onClick={showNavMenu}
+                                        to="/#dodSection"
+                                        className="dodNav">Drink of the Day
+                                    </HashLink>
+                                    <hr className='navline' />
+                                    <HashLink
+                                        onClick={showNavMenu}
+                                        to="/#discoverSection"
+                                        className="dodNav">Discover Cocktail By Alcohol
+                                    </HashLink>
+                                    <ul className="navDropdownByDrink" data-visible="false">
+                                        {dropDownSelection.map(ba => {
+                                            return (
+                                                <Link
+                                                    key={slugify(ba)}
+                                                    className="navbarLinks"
+                                                    to={`/${slugify(ba)}`}
+                                                    onClick={showNavMenu}
+                                                >{ba}
+                                                </Link>
+                                            )
+                                        })}
+                                    </ul>
+                                    <hr className='navline' />
+                                    <HashLink onClick={showNavMenu}
+                                        to="/#discoverShotsSection"
+                                        className="dodNav">Discover Shots By Alcohol
+                                    </HashLink>
+                                    <hr className='navline' />
+                                    <HashLink onClick={showNavMenu}
+                                        to="/#mocktailSection"
+                                        className="dodNav">Mocktails
+                                    </HashLink>
+                                    <hr className='navline' />
+                                    <HashLink
+                                        onClick={showNavMenu}
+                                        to="/#mustKnowSection"
+                                        className="dodNav">Bartender Must Know Drinks
+                                    </HashLink>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <div className="mobileNavContainer">
+                        <Search drinks={drinks} drinkRecipe={drinkRecipe} className="navSearch" />
+                    </div>
+                </>
+            )}
         </>
-    )}
-    </>
-    
-  )
+
+    )
 }
 
-  

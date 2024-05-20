@@ -70,7 +70,7 @@ export const Share = ({ recipeInPlay, ingredientInPlay, garnishInPlay, direction
                 <FaSquareXTwitter className='shareIcons' id="xShare"/>
             </TwitterShareButton>
             
-            <a href="https://www.tumblr.com/widgets/share/tool" class="button" id="tumblr-quote" 
+            <a href="https://www.tumblr.com/widgets/share/tool" className="button" id="tumblr-quote" 
                 title="post this quote" target="_blank" rel="noopener noreferrer">
                 <FaTumblrSquare className='shareIcons' id="tmblrShare"
                 onClick={getTumbElement}/>

@@ -48,13 +48,13 @@ export const DailyDrink = ({ currentDrink, generateCalendar, adjustMonth, date, 
               <div className={dodElementVisible ? `dodLeftSide show`: `dodLeftSide hidden`}>
                 <h2 className="todaysDrink">{!dateLookup || dateLookup === today ? "Today's Drink": dateLookup}</h2>
                 {currentDrink.map((cd) => ( cd ? (
-                        <>
+                      <React.Fragment key={cd.id}>
                     
-                        <div key={cd.id} className="dailyDrink">{!dateLookup ? lastDrinkOfTheDay : cd.drink_name}</div>
+                        <div  className="dailyDrink">{!dateLookup ? lastDrinkOfTheDay : cd.drink_name}</div>
                         <Link key={cd.drink_name} className="recipeButton" to={`/${slugify(cd.base_alcohol)}/${slugify(cd.drink_name)}`}>
                              Recipe
                         </Link>
-                     </>
+                     </React.Fragment>
                 ) : (<h2>Loading</h2>)
             
                 ))}

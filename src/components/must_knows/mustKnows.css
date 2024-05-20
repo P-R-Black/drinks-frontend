@@ -2,6 +2,7 @@
     background-color: #000000;
     min-height: 100vh;
     padding-bottom: 2rem;
+    
 }
 
 .mustKnowContainer{
@@ -16,6 +17,7 @@
     flex-direction: column;
     height: 15rem;
     margin-bottom: 10rem;
+    
 }
 
 .mustKnowTitleContainerH1{
@@ -43,9 +45,14 @@
 
 .drinkGlassContainer{
     display: grid;
-    grid-template-columns: repeat(5, 20%);
+    height: 85vh;
     gap:1rem;
-
+    grid-template-columns: repeat(5, 20%);
+    margin-top: 3rem;
+    overflow-y: scroll;
+    padding-bottom: 4rem;
+    width: 100%;
+   
 }
 
 .drinkGlass h2{

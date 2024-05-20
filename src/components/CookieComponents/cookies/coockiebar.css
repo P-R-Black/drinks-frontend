@@ -1,0 +1,43 @@
+.cookieBarSection {
+    background-color: var(--color-primary-font);
+    border: 2px solid rgb(0, 0, 0);
+    position: fixed;
+    z-index: 999;
+    bottom: 10%;
+
+}
+
+.cookieBarContainer {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.cookieBarContainerTextBox {
+    width: 70%;
+}
+
+.cookieBarContainer p {
+    color: rgba(0, 0, 0, 0.841);
+    font-size: .90rem;
+    text-align: justify;
+}
+
+.cookieBarContainerButtonBox {
+    display: flex;
+    gap: 2rem;
+}
+
+.cookieBarContainerButtonBox button {
+
+    background-color: rgba(20, 20, 141, 0.845);
+    border-radius: 1px;
+    color: var(--color-primary-font);
+    cursor: pointer;
+    padding: .5rem 1rem;
+}
+
+.cookieBarContainerButtonBox button:active {
+    transform: translateY(2px);
+}

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import slugify from 'react-slugify';
 
 import { Navigation } from '../../components/navigation/Navigation';
 import { Hero } from '../../components/hero/Hero';
@@ -10,17 +9,23 @@ import { MidSectionTwo } from '../../components/midsection/MidSection';
 import { Discover } from '../../components/discover/Discover';
 import { DiscoverShots } from '../../components/discoverShots/DiscoverShots';
 import { Mocktails } from '../../components/mocktails/Mocktails';
+import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
 
 import { Footer } from '../../components/footer/Footer';
 
 import axios from 'axios'
 
+const DB_ENDPOINT = process.env.REACT_APP_DB_GET_KEY
+const DB_LAST_ENTRY = process.env.REACT_APP_DB_LAST_KEY
 
-export const Home = ({drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkText, mustKnows, allShots, 
-  allDrinksBackgroundPic, updateBackgroundPicture
+export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkText, mustKnows,
+  allShots, allDrinksBackgroundPic, updateBackgroundPicture, isCookieSet, cookiesAccept,
+  coockiesDeclined, showCookieBanner
 }) => {
 
-  
+
+
+
   var date = new Date()
   var year = date.getFullYear();
   var month = date.getMonth();
@@ -28,23 +33,22 @@ export const Home = ({drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkT
   var dd = String(day).padStart(2, '0');
   var mm = String(month + 1).padStart(2, '0'); //January is 0!
 
-  const [ drinkOfTheDay, setDrinkOfTheDay ] = useState([])
-  const [ lastDrinkOfTheDay, setLastDrinkOfTheDay ] = useState([])
-  const [ currentDrink, setCurrentDrink ] = useState([])
+  const [drinkOfTheDay, setDrinkOfTheDay] = useState([])
+  const [lastDrinkOfTheDay, setLastDrinkOfTheDay] = useState([])
+  const [currentDrink, setCurrentDrink] = useState([])
 
-  const [ calendarYear, setCalendarYear ] = useState(year)
-  const [ calendarMonth, setCalendarMonth ] = useState(month)
-  const [ calendarHTML, setCalendarHTML ] = useState("")
+  const calendarYear = year
+  const calendarMonth = month
 
-  const [ dateLookup, setDateLookup ] = useState()
-  const [ drinkLookup, setDrinkLookup ] = useState()
+  // const [ calendarHTML, setCalendarHTML ] = useState("")
+
+  const [dateLookup, setDateLookup] = useState()
+  const [drinkLookup, setDrinkLookup] = useState()
 
 
-  const DB_ENDPOINT=process.env.REACT_APP_DB_GET_KEY
-  const DB_LAST_ENTRY=process.env.REACT_APP_DB_LAST_KEY
 
   const months = [
-    "January", "February", "March", "April", "May", "June", 
+    "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "Novenber", "December"
   ];
 
@@ -52,7 +56,7 @@ export const Home = ({drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkT
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const {data: response} = await axios.get(DB_ENDPOINT)
+        const { data: response } = await axios.get(DB_ENDPOINT)
         setDrinkOfTheDay(response)
       } catch (error) {
         console.error(error.message)
@@ -62,31 +66,31 @@ export const Home = ({drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkT
 
     const fetchLastRecord = async () => {
       try {
-        const {data: resp} = await axios.get(DB_LAST_ENTRY)
+        const { data: resp } = await axios.get(DB_LAST_ENTRY)
         setLastDrinkOfTheDay(resp['name'])
         getFullDrinkInfo(resp['name'])
-      } catch (error){
+      } catch (error) {
         console.error(error.message)
       }
     }
 
     fetchData()
     fetchLastRecord()
-  },[])
+  }, [DB_ENDPOINT, DB_LAST_ENTRY])
 
   const eventMap = {};
   drinkOfTheDay.forEach(event => {
     const date = event.theDate.split('T')[0];
     eventMap[date] = event.name;
-    
+
   });
-  
-    
+
+
   const handleDateClick = async (date) => {
     const event = await eventMap[String(date)];
     if (event) {
-        setDrinkLookup(event)
-        getFullDrinkInfo(event)
+      setDrinkLookup(event)
+      getFullDrinkInfo(event)
     }
   };
 
@@ -99,25 +103,25 @@ export const Home = ({drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkT
       let clickedYear = await calendarYear
       let clickedMonth;
 
-      if (getClassNames.includes('lastMonthDays')){
-          clickedMonth = calendarMonth
-      } else if (getClassNames.includes('nextMonthDays')){
-          clickedMonth = calendarMonth + 2
+      if (getClassNames.includes('lastMonthDays')) {
+        clickedMonth = calendarMonth
+      } else if (getClassNames.includes('nextMonthDays')) {
+        clickedMonth = calendarMonth + 2
       } else {
-          clickedMonth = calendarMonth + 1
+        clickedMonth = calendarMonth + 1
       }
 
-      if (String(clickedMonth).length < 2){
+      if (String(clickedMonth).length < 2) {
         clickedMonth = "0" + String(clickedMonth)
-    }
-    
-    let clickedDate = `${calendarYear}-${clickedMonth}-${cd.innerHTML.length === 1 ? '0'+cd.innerHTML : cd.innerHTML}`
-    let monthInText = months[Number(clickedMonth - 1)]
+      }
 
-    handleDateClick(clickedDate)
-    let changedDate = `${monthInText} ${clickedDay}, ${clickedYear}`
-    setDateLookup(changedDate)
-    
+      let clickedDate = `${calendarYear}-${clickedMonth}-${cd.innerHTML.length === 1 ? '0' + cd.innerHTML : cd.innerHTML}`
+      let monthInText = months[Number(clickedMonth - 1)]
+
+      handleDateClick(clickedDate)
+      let changedDate = `${monthInText} ${clickedDay}, ${clickedYear}`
+      setDateLookup(changedDate)
+
     })
   })
 
@@ -127,37 +131,52 @@ export const Home = ({drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkT
     setCurrentDrink([ldod])
   }
 
-  
+
+
   return (
     <>
-      <Navigation 
-        baseAlcohol={baseAlcohol} 
-        fetchAlcoholType={fetchAlcoholType} 
-        navLinkText={navLinkText} 
+      <Navigation
+        baseAlcohol={baseAlcohol}
+        fetchAlcoholType={fetchAlcoholType}
+        navLinkText={navLinkText}
         cocktails={cocktails}
         drinks={drinks}
         allDrinksBackgroundPic={allDrinksBackgroundPic}
       />
-      <Hero/>
-      <MidSection/>
-      <DailyDrink 
+      <Hero />
+      <MidSection />
+      <DailyDrink
         drinks={drinks} date={date} year={year} month={month} dd={dd} mm={mm}
         lastDrinkOfTheDay={lastDrinkOfTheDay}
         currentDrink={currentDrink}
+        drinkLookup={drinkLookup}
         dateLookup={dateLookup}
         months={months}
       />
-      <Discover 
-        drinks={drinks} 
-        cocktails={cocktails} 
+      <Discover
+        drinks={drinks}
+        cocktails={cocktails}
         updateBackgroundPicture={updateBackgroundPicture}
         allDrinksBackgroundPic={allDrinksBackgroundPic}
       />
       <MidSectionTwo />
-      <DiscoverShots allShots={allShots}/>
-      <Mocktails drinks={drinks} />
-      <MustKnows mustKnows={mustKnows}/>
-      <Footer/>
+      <DiscoverShots
+        allShots={allShots}
+        updateBackgroundPicture={updateBackgroundPicture}
+        allDrinksBackgroundPic={allDrinksBackgroundPic}
+      />
+      <Mocktails
+        drinks={drinks}
+        updateBackgroundPicture={updateBackgroundPicture}
+      />
+      <MustKnows mustKnows={mustKnows} />
+      <CoockieBar
+        showCookieBanner={showCookieBanner}
+        isCookieSet={isCookieSet}
+        cookiesAccept={cookiesAccept}
+        coockiesDeclined={coockiesDeclined}
+      />
+      <Footer />
     </>
   )
 }
