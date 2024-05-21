@@ -7,86 +7,88 @@ import slugify from 'react-slugify';
 
 export const ShotSelect = ({ alcohol, allShots, displayName, allDrinksBackgroundPic }) => {
 
-  const [filteredDrink, setFilteredDrink ] = useState([])
+  const [filteredDrink, setFilteredDrink] = useState([])
 
   // removes display name from array
   let newDisplayName;
-
-  for (let i of displayName){
+  for (let i of displayName) {
     newDisplayName = i[0]
   }
 
-  
+
   const filterDrink = () => {
-   //  gets all drinks that share base alcohol and puts in array for scroll.
+    //  gets all drinks that share base alcohol and puts in array for scroll.
     setFilteredDrink(prevFilteredDrink => {
       const sortedList = allShots.filter((fd) => fd.base_alcohol[0] === newDisplayName)
         .map(fd => fd.drink_name)
         .sort();
       return sortedList;
     });
-
-
   };
-  
-  useEffect(() => {
-  filterDrink();
 
+
+  useEffect(() => {
+    filterDrink();
 
   }, [displayName]);
-  
-
-  
-  let scrollLength =  filteredDrink.length
-  let scrollDuration = (scrollLength * 100) / 18
 
 
-  const drinkScroll = keyframes`
-    0% { transform: translate3d(100%, 0, 0);}
-  100% { transform: translate3d(${scrollLength * -100}%, 0, 0); }`
 
-  const Scroll = styled.div`
-   animation: ${drinkScroll} ${scrollDuration}s linear infinite;
+  const scrollers = document.querySelectorAll('.shotListContainer')
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    addAnimation();
+  }
 
-    &:hover{
-      animation-play-state: paused;
-      color: yellow;
-    }
 
-   `;
+  function addAnimation() {
+    scrollers.forEach(scroller => {
+      let test = scroller.getAttribute("data-animated")
 
+      if (test != 'true') {
+        scroller.setAttribute("data-animated", true)
+        const scrollerInner = scroller.querySelector('.shotListUl');
+        const scrollerContent = Array.from(scrollerInner.children);
+        scrollerContent.forEach((item) => {
+          const duplicateItem = item.cloneNode(true);
+          duplicateItem.setAttribute("aria-hidden", true);
+          scrollerInner.appendChild(duplicateItem)
+        })
+      }
+    });
+  }
+
+  console.log('allDrinksBackgroundPic', allDrinksBackgroundPic)
 
   return (
-    <section className="ginBackground" style={{backgroundImage: allDrinksBackgroundPic}}>
+    <section className="shotSelectBackground" style={{ backgroundImage: allDrinksBackgroundPic }}>
       <div className="container">
-        <div className="baseAlcoholContainer">
-          <div className="baseAlcTitleContainer">
-            <h1 id="baseAlcoholName">{newDisplayName}</h1>
+        <div className="baseShotAlcoholContainer">
+          <div className="baseShotAlcTitleContainer">
+            <h1 id="baseShotAlcoholName">{newDisplayName}</h1>
             <h2>Shots</h2>
           </div>
-          <div className="drinkListContainer">
-            <ul className="drinkListUl">
+          <div className="shotListContainer">
+            <ul className="shotListUl" style={{ animationDuration: `${(filteredDrink.length * 100) / 20}s` }}>
               {filteredDrink.map((fd, idx) => {
                 return (
                   <React.Fragment key={idx}>
-                    <Scroll className="nameButtonContainer" key={fd.id}>
-                      <li className="drinkListLi">{fd.length < 19 ? fd : fd.slice(0, 19) + "..."}</li>
-                      <Link to={`/${slugify(alcohol)}/${slugify(fd)}`} className="linktoRecipe">Recipe</Link>
-                    </Scroll>
+                    <li className="shotListLi">{fd.length < 19 ? fd : fd.slice(0, 19) + "..."}
+                      <Link to={`/${slugify(alcohol)}/${slugify(fd)}`} className="ShotlinktoRecipe">Recipe</Link>
+                    </li>
                   </React.Fragment>
                 )
               })}
-              
+
             </ul>
-              <div className="moreDrinkLinkContainer">
-                <Link to={`/${slugify(displayName[0])}/all_shots`} className="linktoRecipeLarge">All {displayName[0]} Shots</Link>
-              </div>
+            <div className="moreShotLinkContainer">
+              <Link to={`/${slugify(displayName[0])}/all_shots`} className="linktoRecipeLarge">All {displayName[0]} Shots</Link>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    
+
   )
 }
 

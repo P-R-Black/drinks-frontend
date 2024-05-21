@@ -17,14 +17,12 @@ export const AlcoholSelect = ({ cocktails, alcohol, displayName, allDrinksBackgr
 
 
   const filterDrink = async () => {
-
     setFilteredDrink(prevFilteredDrink => {
       const sortedList = cocktails.filter((fd) => fd.base_alcohol[0] === newDisplayName)
         .map(fd => fd.drink_name)
         .sort();
       return sortedList;
     });
-
   };
 
   useEffect(() => {

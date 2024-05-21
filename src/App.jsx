@@ -294,7 +294,7 @@ const App = () => {
     }
     fetchData();
     // fetchAlcoholType();    
-  }, []);
+  }, [allDrinksBackgroundPic]);
 
 
   const fetchAlcoholType = async () => {
