@@ -70,7 +70,6 @@ export const Alcohol = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navL
         navLinkText={navLinkText}
         alcohol={alcohol}
         cocktails={cocktails}
-        allDrinksBackgroundPic={allDrinksBackgroundPic}
       />
       <AlcoholSelect
         cocktails={cocktails}
@@ -78,7 +77,6 @@ export const Alcohol = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navL
         navLinkText={navLinkText}
         alcohol={alcohol}
         displayName={displayName}
-        allDrinksBackgroundPic={allDrinksBackgroundPic}
       />
       {!isCookieSet ? (
         <CoockieBar

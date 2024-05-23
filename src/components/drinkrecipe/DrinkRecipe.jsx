@@ -22,6 +22,7 @@ export const DrinkRecipe = ({ drinks, drinkRecipe }) => {
 
 
     let picChoice = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgRecipeBG})`;
+
     let picByRecipe = [picChoice]
 
 
@@ -117,9 +118,6 @@ export const DrinkRecipe = ({ drinks, drinkRecipe }) => {
             picByRecipe[Math.floor(Math.random() * picByRecipe.length)]
         );
     }, [picByRecipe, setBackgroundRecipePic]);
-
-
-
 
 
     return (

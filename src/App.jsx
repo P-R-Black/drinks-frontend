@@ -1,26 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import './index.css'
 import { Route, createBrowserRouter, RouterProvider, createRoutesFromElements } from 'react-router-dom';
-import slugify from 'react-slugify';
 
 import Cookies from 'js-cookie';
 import ReactGA from 'react-ga';
-
-import imgUrlDefault from '../src/assets/pexels-rachel-default.jpg';
-import imgUrlLime from '../src/assets/pexels-lisa-f.jpg'
-import imgUrlOrange from '../src/assets/pexels-j-lewis.jpg'
-import imgUrlLemon from '../src/assets/pexels-lukas.jpg'
-import imgUrlColaUp from '../src/assets/pexels-cola-up.jpg'
-// import imgUrlColaDown from '../src/assets/pexels-cola-down.jpg'
-import imgUrlBloodOrange from '../src/assets/pexels-blood-orange-wedge.jpg'
-import imgUrlRedLemonSlice from '../src/assets/pexels-red-lemon-slice.jpg'
-import imgUrlChampagneBot from '../src/assets/pexels-champagne-bottles.jpg'
-import imgUrlMojito from '../src/assets/pexels-lime-mint-drinks.jpg'
-import imgUrlScotchTopDown from '../src/assets/pexels-scotch-topdown.jpg'
-import imgUrlOrangeSlices from '../src/assets/pexels-orange-slices.jpg'
-import imgUrlWhiteWine from '../src/assets/pexels-white-wine.jpg'
-import imgUrlRoseWine from '../src/assets/pexels-polina-rose-over.jpg'
-import imgUrlRumGold from '../src/assets/pexels-eva-gold.jpg'
 
 
 import axios from 'axios'
@@ -38,9 +21,6 @@ import { Terms } from './pages/terms/Terms';
 import { Privacy } from './pages/privacy/Privacy';
 import { SuperUserPage } from './pages/superUserPage/SuperUserPage';
 import { DashboardPage } from './pages/dashboardPage/DashboardPage';
-import { CoockieBar } from './components/CookieComponents/cookies/CoockieBar';
-
-
 
 
 // const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
@@ -62,7 +42,6 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState()
   const [baseAlcohol, setBaseAlcohol] = useState([])
-  const [allDrinksBackgroundPic, setAllDrinksBackgroundPic] = useState()
 
   const [showCookieBanner, setShowCookieBanner] = useState(false)
   // const [isCookieSet, setCookie] = useState(Cookies.get("cookiesConsent", false));
@@ -72,8 +51,6 @@ const App = () => {
   const [hasConsetValue, setHasConsentValue] = useState(false)
 
 
-  console.log('showCookieBanner', showCookieBanner)
-
   useEffect(() => {
     setHasConsentValue(!!isCookieSet)
     if (isCookieSet === "true") {
@@ -81,7 +58,6 @@ const App = () => {
     }
   }, [])
 
-  console.log('isCookieSet', isCookieSet)
 
   const loadGoogleAnalytics = () => {
     setHasConsentValue(true)
@@ -126,149 +102,6 @@ const App = () => {
     setShowCookieBanner(true)
   }
 
-  // Gets Inner HTML From Navbar Click for Photo
-  const linkInnerText = document.querySelectorAll('.navbarLinks');
-  linkInnerText.forEach((lit) => {
-    lit.addEventListener('click', () => {
-      updateBackgroundPicture(slugify(lit.innerHTML))
-    })
-  })
-
-  // Gets Inner HTML From Discover Alc Section for Photo
-  const discoverInnerText = document.querySelectorAll('.linktoRecipeThree');
-  discoverInnerText.forEach((dit) => {
-    dit.addEventListener('click', () => {
-      updateBackgroundPicture(slugify(dit.innerHTML))
-    })
-  })
-
-  const discoverShotInnerText = document.querySelectorAll('.linktoRecipeFour');
-  discoverShotInnerText.forEach((dsi) => {
-    dsi.addEventListener('click', () => {
-      updateBackgroundPicture(slugify(dsi.innerHTML))
-    })
-  })
-
-
-
-
-  const updateBackgroundPicture = async (alc) => {
-    let new_alc = await alc
-
-    let picChoiceScotchTopDown = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlScotchTopDown})`;
-    let picChoiceBloodOrange = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlBloodOrange})`;
-    let picChoiceLime = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlLime})`;
-    let picChoiceLemon = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlLemon})`;
-    let picChoiceRedLemon = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlRedLemonSlice})`;
-    let picChoiceOrange = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlOrange})`;
-    let picChoiceOrangeSlice = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlOrangeSlices})`;
-    let picImageRoseWine = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlRoseWine})`;
-    let picImageColaUp = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlColaUp})`;
-    let picImageMojito = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlMojito})`;
-    let picImageRumGold = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlRumGold})`;
-    let picImageWhiteWine = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlWhiteWine})`;
-    let picImageChampagneBottle = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlChampagneBot})`;
-    let picImageDefault = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgUrlDefault})`;
-
-
-    let gin = [picChoiceLime, picChoiceLemon, picChoiceBloodOrange, picChoiceRedLemon];
-    let rum = [picImageColaUp, picImageMojito];
-    let tequila = [picChoiceLime, picChoiceOrange, picChoiceLemon];
-    let whiteWine = [picImageWhiteWine, picImageChampagneBottle];
-    let sloeGin = [picChoiceBloodOrange, picChoiceRedLemon];
-
-
-    let backgroundImage;
-    switch (new_alc) {
-      case "absinthe" || "Absinthe":
-        backgroundImage = picChoiceLemon;
-        break;
-      case "amaretto" || "Amaretto":
-        backgroundImage = picChoiceScotchTopDown;
-        break;
-      case "aquavit" || "Aquavit":
-        backgroundImage = picChoiceBloodOrange;
-        break;
-      case "bourbon" || "Bourbon":
-        backgroundImage = picChoiceScotchTopDown;
-        break;
-      case "brandy" || "Brandy":
-        backgroundImage = picChoiceScotchTopDown;
-        break;
-      case "cachaca" || "Cachaca":
-        backgroundImage = picChoiceLime;
-        break;
-      case "champagne" || "Champagne":
-        backgroundImage = picImageChampagneBottle;
-        break;
-      case "cognac" || "Cognac":
-        backgroundImage = picChoiceScotchTopDown;
-        break;
-      case "creme-de-menthe" || "Creme-de-menthe":
-        backgroundImage = picChoiceScotchTopDown;
-        break;
-      case "gin" || "Gin":
-        backgroundImage = gin[Math.floor(Math.random() * gin.length)];
-        break;
-      case "mezcal" || "Mezcal":
-        backgroundImage = picChoiceOrangeSlice;
-        break;
-      case "non-alcoholic" || "Non-Alcoholic":
-        backgroundImage = picImageDefault; // update 
-        break;
-      case "rose-wine-aperitif" || "Rose-Wine-Aperitif":
-        backgroundImage = picImageRoseWine;
-        break;
-      case "rum" || "Rum":
-        backgroundImage = rum[Math.floor(Math.random() * rum.length)];
-        break;
-      case "rum-dark" || "Rum-Dark":
-        backgroundImage = picImageColaUp;
-        break;
-      case "rum-gold" || "Rum-Gold":
-        backgroundImage = picImageRumGold;
-        break;
-      case "rum-light" || "Rum-Light":
-        backgroundImage = rum[Math.floor(Math.random() * rum.length)];
-        break;
-      case "rum-spiced" || "Rum-Spiced":
-        backgroundImage = picImageRumGold;
-        break;
-      case "scotch" || "Scotch":
-        backgroundImage = picChoiceScotchTopDown;
-        break;
-      case "sloe-gin" || "Sloe-Gin":
-        backgroundImage = sloeGin[Math.floor(Math.random() * sloeGin.length)];
-        break;
-      case "sparkling-white-wine" || "Sparkling-White-Wine":
-        backgroundImage = whiteWine[Math.floor(Math.random() * whiteWine.length)];
-        break;
-      case "tequila" || "Tequila":
-        backgroundImage = tequila[Math.floor(Math.random() * tequila.length)];
-        break;
-      case "vermouth" || "Vermouth":
-        backgroundImage = picChoiceScotchTopDown;
-        break;
-      case "vodka" || "Vodka":
-        backgroundImage = tequila[Math.floor(Math.random() * tequila.length)];
-        break;
-      case "whiskey" || "Whiskey":
-        backgroundImage = picChoiceScotchTopDown;
-        break;
-      case "white-wine-aperitif" || "White-Wine-Aperitif":
-        backgroundImage = whiteWine[Math.floor(Math.random() * whiteWine.length)];
-        break;
-      default:
-        backgroundImage = picImageDefault;
-
-    }
-
-    setAllDrinksBackgroundPic(backgroundImage)
-
-  }
-
-
-
 
 
   useEffect(() => {
@@ -294,7 +127,7 @@ const App = () => {
     }
     fetchData();
     // fetchAlcoholType();    
-  }, [allDrinksBackgroundPic]);
+  }, []);
 
 
   const fetchAlcoholType = async () => {
@@ -364,8 +197,6 @@ const App = () => {
             fetchAlcoholType={fetchAlcoholType}
             mustKnows={mustKnows}
             allShots={allShots}
-            allDrinksBackgroundPic={allDrinksBackgroundPic}
-            updateBackgroundPicture={updateBackgroundPicture}
             needToShowCookiesBanner={needToShowCookiesBanner}
             isCookieSet={isCookieSet}
             showCookieBanner={showCookieBanner}
@@ -379,7 +210,6 @@ const App = () => {
             drinks={drinks}
             cocktails={cocktails}
             baseAlcohol={baseAlcohol}
-            allDrinksBackgroundPic={allDrinksBackgroundPic}
             fetchAlcoholType={fetchAlcoholType}
             showCookieBanner={showCookieBanner}
             isCookieSet={isCookieSet}
@@ -408,7 +238,6 @@ const App = () => {
             baseAlcohol={baseAlcohol}
             fetchAlcoholType={fetchAlcoholType}
             showCookieBanner={showCookieBanner}
-            allDrinksBackgroundPic={allDrinksBackgroundPic}
             isCookieSet={isCookieSet}
             cookiesAccept={cookiesAccept}
             coockiesDeclined={coockiesDeclined}
@@ -422,7 +251,6 @@ const App = () => {
             allShots={allShots}
             baseAlcohol={baseAlcohol}
             fetchAlcoholType={fetchAlcoholType}
-            allDrinksBackgroundPic={allDrinksBackgroundPic}
             showCookieBanner={showCookieBanner}
             isCookieSet={isCookieSet}
             cookiesAccept={cookiesAccept}
@@ -437,7 +265,6 @@ const App = () => {
             allShots={allShots}
             baseAlcohol={baseAlcohol}
             fetchAlcoholType={fetchAlcoholType}
-            allDrinksBackgroundPic={allDrinksBackgroundPic}
             showCookieBanner={showCookieBanner}
             isCookieSet={isCookieSet}
             cookiesAccept={cookiesAccept}

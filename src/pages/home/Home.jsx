@@ -40,8 +40,6 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
   const calendarYear = year
   const calendarMonth = month
 
-  // const [ calendarHTML, setCalendarHTML ] = useState("")
-
   const [dateLookup, setDateLookup] = useState()
   const [drinkLookup, setDrinkLookup] = useState()
 
@@ -76,7 +74,7 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
 
     fetchData()
     fetchLastRecord()
-  }, [DB_ENDPOINT, DB_LAST_ENTRY])
+  }, [])
 
   const eventMap = {};
   drinkOfTheDay.forEach(event => {

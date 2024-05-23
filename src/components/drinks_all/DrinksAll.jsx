@@ -4,14 +4,14 @@ import slugify from 'react-slugify';
 import { Link } from 'react-router-dom';
 import { ToolTip } from '../tooltip/ToolTip';
 import './drinks_all.css';
+import { BackgroundPics } from '../../BackgroundPics';
 
-export const DrinksAll = ({ cocktails, alcohol, displayName, allDrinksBackgroundPic }) => {
+export const DrinksAll = ({ cocktails, alcohol, displayName }) => {
 
   const [alldrinks, setAllDrinks] = useState([])
 
   // removes display name from array
   let newDisplayName;
-
   for (let i of displayName) {
     newDisplayName = i[0]
   }
@@ -39,7 +39,7 @@ export const DrinksAll = ({ cocktails, alcohol, displayName, allDrinksBackground
   }, [newDisplayName, cocktails])
 
   return (
-    <section className="allDrinksBackground" style={{ backgroundImage: allDrinksBackgroundPic }}>
+    <section className="allDrinksBackground" style={{ backgroundImage: BackgroundPics(slugify(newDisplayName)) }}>
       <div className="container">
         <div className="allDrinksContainer">
           <div className="baseAlcTitleContainerTwo">

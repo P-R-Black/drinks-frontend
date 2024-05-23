@@ -8,47 +8,47 @@ import { ToolTip } from '../tooltip/ToolTip';
 import slugify from 'react-slugify';
 
 
-export const DiscoverShots = ({ allShots, updateBackgroundPicture }) => {
+export const DiscoverShots = ({ allShots }) => {
 
     const discoverShotRef = useRef();
-    const [ discElementVisible, setDiscElementVisible ] = useState();
-    const [ shotBase, setShotBase ] = useState([])
+    const [discElementVisible, setDiscElementVisible] = useState();
+    const [shotBase, setShotBase] = useState([])
 
 
     useEffect(() => {
         let filteredBase = []
         let base = allShots.map((ba) => ba.base_alcohol)
         let base_two = base.map((bw) => bw[0])
-        for (let b = 0; b < base_two.length; b++){
-            if (!filteredBase.includes(base_two[b])){
+        for (let b = 0; b < base_two.length; b++) {
+            if (!filteredBase.includes(base_two[b])) {
                 filteredBase.push(base_two[b])
             }
         }
-     
+
         setShotBase(filteredBase.sort())
-        
-    },[allShots])
+
+    }, [allShots])
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
-        const entry = entries[0]
-        setDiscElementVisible(entry.isIntersecting)
-        
+            const entry = entries[0]
+            setDiscElementVisible(entry.isIntersecting)
+
         })
         observer.observe(discoverShotRef.current)
-    },[])
+    }, [])
 
 
-  return (
-    <section className="discoverShotsSection" id="discoverShotsSection">
-        <Parallax 
-                
+    return (
+        <section className="discoverShotsSection" id="discoverShotsSection">
+            <Parallax
+
                 // bgImage={discoverShotsImage}
                 // bgImageAlt={altImage}
                 // blur={{ min: -15, max: 15 }}
                 strength={500}>
                 <Background>
-                    <img src={discoverShotsImage} alt={altImage} className='parallaxShotDod'/>
+                    <img src={discoverShotsImage} alt={altImage} className='parallaxShotDod' />
                 </Background>
                 <div className="container">
                     <div className="discoverShotsContainer">
@@ -60,19 +60,18 @@ export const DiscoverShots = ({ allShots, updateBackgroundPicture }) => {
                                 <div key={slugify(ad)} className={discElementVisible ? `shotsAlcLinkContainer show` : `shotsAlcLinkContainer hidden`}>
                                     <ToolTip text={ad}>
                                         <Link
-                                            className="linktoRecipeFour" 
+                                            className="linktoRecipeFour"
                                             to={`/${slugify(ad)}/shot`}
-                                            onClick={() => updateBackgroundPicture(slugify(ad))}
-                                            > 
+                                        >
                                             {ad.length < 18 ? ad : ad.slice(0, 15) + "..."}
                                         </Link>
-                                    </ToolTip> 
+                                    </ToolTip>
                                 </div>
                             ))}
-                        </div> 
+                        </div>
                     </div>
                 </div>
-        </Parallax>
-    </section>
-  )
+            </Parallax>
+        </section>
+    )
 }

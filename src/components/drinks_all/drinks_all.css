@@ -1,18 +1,18 @@
-.allDrinksBackground{
-    background-size: cover; 
+.allDrinksBackground {
+    background-size: cover;
     background-blend-mode: multiply;
     background-repeat: no-repeat;
     background-position: center;
     overflow-x: hidden;
-    
-    
+
+
     height: 100vh;
     margin-top: -5rem;
     width: 100%;
-   
+
 }
 
-.allDrinksContainer{
+.allDrinksContainer {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -22,7 +22,7 @@
 
 }
 
-.baseAlcTitleContainerTwo{
+.baseAlcTitleContainerTwo {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -32,13 +32,13 @@
 }
 
 
-.baseAlcTitleContainerTwo h1{
-     font-size: clamp(3rem, 10vw, 14.5vw);
+.baseAlcTitleContainerTwo h1 {
+    font-size: clamp(3rem, 10vw, 14.5vw);
     text-align: center;
     text-transform: capitalize;
 }
 
-.baseAlcTitleContainerTwo h2{
+.baseAlcTitleContainerTwo h2 {
     font-size: clamp(1.5rem, 3.5vw, 6.5vw);
     font-weight: 600;
     line-height: 0%;
@@ -47,13 +47,13 @@
 }
 
 
-.linktoRecipeTwo{
+.linktoRecipeTwo {
     color: white;
-    
+
     /* background-color: transparent;
     border: 1px solid white;
     border-radius: 10px;  */
-    
+
     /* cursor: pointer;
     font-size: 1rem;
     font-weight: 500;
@@ -65,7 +65,7 @@
     /* width: 11rem; */
 }
 
-.linksToDrinksContainer{
+.linksToDrinksContainer {
     align-items: center;
     display: grid;
     justify-content: center;
@@ -74,38 +74,38 @@
 
     margin-top: 3rem;
     overflow-y: scroll;
-    padding: 0 0 2rem 0;
-    width: 100%; 
+    padding-bottom: 4rem;
+    width: 100%;
 
 }
 
 /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
 @media screen and (max-width: 1024px) {
-   
 
-    .linksToDrinksContainer{
+
+    .linksToDrinksContainer {
         grid-template-columns: repeat(4, 20%);
 
     }
- 
+
 }
 
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
-    .allDrinksBackground{  
+    .allDrinksBackground {
         margin-top: -7rem;
     }
 
-    .baseAlcTitleContainerTwo{
+    .baseAlcTitleContainerTwo {
         margin-top: 6rem;
     }
 
-    .linksToDrinksContainer{
+    .linksToDrinksContainer {
         grid-template-columns: repeat(2, 40%);
         gap: .5rem;
 
     }
 
-  
+
 
 }

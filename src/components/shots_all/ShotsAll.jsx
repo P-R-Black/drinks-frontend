@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ToolTip } from '../tooltip/ToolTip';
+import { BackgroundPics } from '../../BackgroundPics';
 import slugify from 'react-slugify';
 import './shots_all.css';
 
-export const ShotsAll = ({ allShots, alcohol, displayName, allDrinksBackgroundPic  }) => {
-  const [allDrinks, setallDrinks ] = useState([])
+export const ShotsAll = ({ allShots, alcohol, displayName }) => {
+  const [allDrinks, setallDrinks] = useState([])
 
-   // removes display name from array
-   let newDisplayName;
+  // removes display name from array
+  let newDisplayName;
 
-   for (let i of displayName){
-      newDisplayName = i[0]
-      break
-   }
+  for (let i of displayName) {
+    newDisplayName = i[0]
+    break
+  }
 
   // const getAllDrinks = () => {
 
@@ -29,16 +30,16 @@ export const ShotsAll = ({ allShots, alcohol, displayName, allDrinksBackgroundPi
   useEffect(() => {
     setallDrinks(preSetDrinks => {
       const sortedList = allShots.filter((sl) => sl.base_alcohol[0] === newDisplayName)
-      .map(fd => fd.drink_name).sort();
+        .map(fd => fd.drink_name).sort();
       return sortedList
     })
     // getAllDrinks()
-  
-  },[newDisplayName, allShots])
+
+  }, [newDisplayName, allShots])
 
 
   return (
-    <section className="allDrinksBackground" style={{backgroundImage: allDrinksBackgroundPic}}>
+    <section className="allDrinksBackground" style={{ backgroundImage: BackgroundPics(slugify(newDisplayName)) }}>
       <div className="container">
         <div className="allDrinksContainer">
           <div className="baseAlcTitleContainerTwo">
@@ -48,38 +49,38 @@ export const ShotsAll = ({ allShots, alcohol, displayName, allDrinksBackgroundPi
           <div className="linksToDrinksContainer">
             {allDrinks.map((ad, adIdx) => (
               <React.Fragment key={adIdx}>
-                   {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? (
-                <>
+                {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? (
+                  <>
+                    <ToolTip text={ad}>
+                      <Link
+                        key={ad}
+                        className="linktoRecipeTwo"
+                        to={`/${slugify(alcohol)}/${slugify(ad)}`}>
+                        {ad.length < 18 && window.innerWidth > 1024 ? ad : ad.slice(0, 11) + "..."}
+                      </Link>
+                    </ToolTip>
+                  </>
+                ) : (<>
                   <ToolTip text={ad}>
                     <Link
                       key={ad}
                       className="linktoRecipeTwo"
                       to={`/${slugify(alcohol)}/${slugify(ad)}`}>
-                      {ad.length < 18 && window.innerWidth > 1024 ? ad : ad.slice(0, 11) + "..."}
+                      {ad.length < 13 && window.innerWidth > 601 ? ad : ad.slice(0, 11) + "..."}
                     </Link>
-                  </ToolTip> 
-                </>
-              ):(<>
-                <ToolTip text={ad}>
-                  <Link
-                    key={ad}
-                    className="linktoRecipeTwo"
-                    to={`/${slugify(alcohol)}/${slugify(ad)}`}>
-                    {ad.length < 13 && window.innerWidth > 601 ? ad : ad.slice(0, 11) + "..."}
-                  </Link>
-                </ToolTip> 
-              </>):(
-                <>
-                  <ToolTip text={ad}>
-                    <Link
-                      key={ad}
-                      className="linktoRecipeTwo"
-                      to={`/${slugify(alcohol)}/${slugify(ad)}`}>
-                      {ad.length < 11 && window.innerWidth < 601 ? ad : ad.slice(0, 11) + "..."}
-                    </Link>
-                  </ToolTip> 
-                </>
-              )}
+                  </ToolTip>
+                </>) : (
+                  <>
+                    <ToolTip text={ad}>
+                      <Link
+                        key={ad}
+                        className="linktoRecipeTwo"
+                        to={`/${slugify(alcohol)}/${slugify(ad)}`}>
+                        {ad.length < 11 && window.innerWidth < 601 ? ad : ad.slice(0, 11) + "..."}
+                      </Link>
+                    </ToolTip>
+                  </>
+                )}
               </React.Fragment>
             ))}
           </div>

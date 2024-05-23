@@ -10,8 +10,7 @@ import slugify from 'react-slugify';
 
 
 export const Shots = ({ drinks, allShots, baseAlcohol, fetchAlcoholType, navLinkText,
-  allDrinksBackgroundPic, updateBackgroundPicture, showCookieBanner, isCookieSet,
-  cookiesAccept, coockiesDeclined }) => {
+  showCookieBanner, isCookieSet, cookiesAccept, coockiesDeclined }) => {
 
   let { alcohol } = useParams()
 
@@ -76,8 +75,6 @@ export const Shots = ({ drinks, allShots, baseAlcohol, fetchAlcoholType, navLink
         baseAlcohol={baseAlcohol}
         navLinkText={navLinkText}
         alcohol={alcohol}
-        allDrinksBackgroundPic={allDrinksBackgroundPic}
-        updateBackgroundPicture={updateBackgroundPicture}
         displayName={displayName}
       />
       {!isCookieSet ? (

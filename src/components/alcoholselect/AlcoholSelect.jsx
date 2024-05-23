@@ -1,34 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import slugify from 'react-slugify';
 import { Link } from 'react-router-dom';
 import './alcoholselect.css';
 
+import { BackgroundPics } from '../../BackgroundPics';
 
 
-export const AlcoholSelect = ({ cocktails, alcohol, displayName, allDrinksBackgroundPic }) => {
+export const AlcoholSelect = ({ cocktails, alcohol, displayName }) => {
 
   const [filteredDrink, setFilteredDrink] = useState([])
 
+
+
   // removes display name from array
   let newDisplayName;
+
   for (let i of displayName) {
     newDisplayName = i[0]
   }
 
 
-  const filterDrink = async () => {
-    setFilteredDrink(prevFilteredDrink => {
-      const sortedList = cocktails.filter((fd) => fd.base_alcohol[0] === newDisplayName)
-        .map(fd => fd.drink_name)
-        .sort();
-      return sortedList;
-    });
-  };
+  const filterDrink = useCallback(() => {
+    const sortedList = cocktails
+      .filter((fd) => fd.base_alcohol[0] === newDisplayName)
+      .map((fd) => fd.drink_name)
+      .sort();
+    setFilteredDrink(sortedList);
+  }, [cocktails, newDisplayName]);
 
   useEffect(() => {
-    filterDrink();
+    filterDrink()
+  }, [filterDrink]);
 
-  }, [newDisplayName]);
 
 
   const scrollers = document.querySelectorAll('.drinkListContainer')
@@ -40,7 +43,7 @@ export const AlcoholSelect = ({ cocktails, alcohol, displayName, allDrinksBackgr
     scrollers.forEach(scroller => {
       let test = scroller.getAttribute("data-animated")
 
-      if (test != 'true') {
+      if (test !== 'true') {
         scroller.setAttribute("data-animated", true)
         const scrollerInner = scroller.querySelector('.drinkListUl');
         const scrollerContent = Array.from(scrollerInner.children);
@@ -56,7 +59,7 @@ export const AlcoholSelect = ({ cocktails, alcohol, displayName, allDrinksBackgr
 
 
   return (
-    <section className="ginBackground" style={{ backgroundImage: allDrinksBackgroundPic }}>
+    <section className="ginBackground" style={{ backgroundImage: BackgroundPics(slugify(newDisplayName)) }}>
       <div className="container">
         <div className="baseAlcoholContainer">
           <div className="baseAlcTitleContainer">
@@ -68,7 +71,7 @@ export const AlcoholSelect = ({ cocktails, alcohol, displayName, allDrinksBackgr
               {filteredDrink.map((fd, fdIdx) => {
                 return (
                   <React.Fragment key={fdIdx}>
-                    <li className="drinkListLi">{fd.length < 16 ? fd : fd.slice(0, 16) + "..."}
+                    <li className="drinkListLi">{fd}
                       <Link to={`/${slugify(alcohol)}/${slugify(fd)}`} className="linktoRecipe">Recipe</Link>
                     </li>
                   </React.Fragment>

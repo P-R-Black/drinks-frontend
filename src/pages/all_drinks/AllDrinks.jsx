@@ -9,7 +9,7 @@ import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar
 import { Footer } from '../../components/footer/Footer'
 
 export const AllDrinks = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkText,
-  allDrinksBackgroundPic, isCookieSet, cookiesAccept, coockiesDeclined }) => {
+  isCookieSet, cookiesAccept, coockiesDeclined, showCookieBanner }) => {
 
 
   let { alcohol } = useParams()
@@ -69,11 +69,11 @@ export const AllDrinks = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, na
       <DrinksAll
         alcohol={alcohol}
         cocktails={cocktails}
-        allDrinksBackgroundPic={allDrinksBackgroundPic}
         displayName={displayName}
       />
       {!isCookieSet ? (
         <CoockieBar
+          showCookieBanner={showCookieBanner}
           isCookieSet={isCookieSet}
           cookiesAccept={cookiesAccept}
           coockiesDeclined={coockiesDeclined}

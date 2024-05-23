@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import './shotselect.css';
-import styled, { keyframes } from 'styled-components';
 import slugify from 'react-slugify';
+import { BackgroundPics } from '../../BackgroundPics';
 
 
-export const ShotSelect = ({ alcohol, allShots, displayName, allDrinksBackgroundPic }) => {
+export const ShotSelect = ({ alcohol, allShots, displayName }) => {
 
   const [filteredDrink, setFilteredDrink] = useState([])
 
@@ -16,21 +16,18 @@ export const ShotSelect = ({ alcohol, allShots, displayName, allDrinksBackground
   }
 
 
-  const filterDrink = () => {
-    //  gets all drinks that share base alcohol and puts in array for scroll.
-    setFilteredDrink(prevFilteredDrink => {
-      const sortedList = allShots.filter((fd) => fd.base_alcohol[0] === newDisplayName)
-        .map(fd => fd.drink_name)
-        .sort();
-      return sortedList;
-    });
-  };
 
+  const filterDrink = useCallback(() => {
+    const sortedList = allShots
+      .filter((fd) => fd.base_alcohol[0] === newDisplayName)
+      .map((fd) => fd.drink_name)
+      .sort();
+    setFilteredDrink(sortedList);
+  }, [allShots, newDisplayName]);
 
   useEffect(() => {
-    filterDrink();
-
-  }, [displayName]);
+    filterDrink()
+  }, [filterDrink]);
 
 
 
@@ -44,7 +41,7 @@ export const ShotSelect = ({ alcohol, allShots, displayName, allDrinksBackground
     scrollers.forEach(scroller => {
       let test = scroller.getAttribute("data-animated")
 
-      if (test != 'true') {
+      if (test !== 'true') {
         scroller.setAttribute("data-animated", true)
         const scrollerInner = scroller.querySelector('.shotListUl');
         const scrollerContent = Array.from(scrollerInner.children);
@@ -57,10 +54,9 @@ export const ShotSelect = ({ alcohol, allShots, displayName, allDrinksBackground
     });
   }
 
-  console.log('allDrinksBackgroundPic', allDrinksBackgroundPic)
 
   return (
-    <section className="shotSelectBackground" style={{ backgroundImage: allDrinksBackgroundPic }}>
+    <section className="shotSelectBackground" style={{ backgroundImage: BackgroundPics(slugify(newDisplayName)) }}>
       <div className="container">
         <div className="baseShotAlcoholContainer">
           <div className="baseShotAlcTitleContainer">
@@ -72,7 +68,7 @@ export const ShotSelect = ({ alcohol, allShots, displayName, allDrinksBackground
               {filteredDrink.map((fd, idx) => {
                 return (
                   <React.Fragment key={idx}>
-                    <li className="shotListLi">{fd.length < 19 ? fd : fd.slice(0, 19) + "..."}
+                    <li className="shotListLi">{fd}
                       <Link to={`/${slugify(alcohol)}/${slugify(fd)}`} className="ShotlinktoRecipe">Recipe</Link>
                     </li>
                   </React.Fragment>
