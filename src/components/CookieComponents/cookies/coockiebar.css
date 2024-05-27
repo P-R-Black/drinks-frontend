@@ -3,7 +3,7 @@
     border: 2px solid rgb(0, 0, 0);
     position: fixed;
     z-index: 999;
-    bottom: 10%;
+    bottom: 5%;
 
 }
 
@@ -40,4 +40,42 @@
 
 .cookieBarContainerButtonBox button:active {
     transform: translateY(2px);
+}
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+
+    .cookieBarContainer {
+        flex-direction: column;
+    }
+
+
+    .cookieBarSection {
+        position: fixed;
+        bottom: 20%;
+    }
+
+
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
+    .cookieBarContainer {
+        flex-direction: column;
+    }
+
+    .cookieBarContainerTextBox {
+        margin-bottom: 1rem;
+        width: 90%;
+    }
+
+    .cookieBarContainer p {
+        font-size: .75rem;
+    }
+
+    .cookieBarContainerButtonBox button {
+        font-size: .75rem;
+    }
+
 }

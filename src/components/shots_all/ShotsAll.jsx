@@ -39,14 +39,14 @@ export const ShotsAll = ({ allShots, alcohol, displayName }) => {
 
 
   return (
-    <section className="allDrinksBackground" style={{ backgroundImage: BackgroundPics(slugify(newDisplayName)) }}>
+    <section className="allShotsBackground" style={{ backgroundImage: BackgroundPics(slugify(newDisplayName)) }}>
       <div className="container">
-        <div className="allDrinksContainer">
-          <div className="baseAlcTitleContainerTwo">
-            <h1 id="baseAlcoholName">{newDisplayName}</h1>
+        <div className="allShotsContainer">
+          <div className="baseShotTitleContainerTwo">
+            <h1 id="baseShotName">{newDisplayName}</h1>
             <h2>Shots</h2>
           </div>
-          <div className="linksToDrinksContainer">
+          <div className="linksToShotContainer">
             {allDrinks.map((ad, adIdx) => (
               <React.Fragment key={adIdx}>
                 {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? (
@@ -54,7 +54,7 @@ export const ShotsAll = ({ allShots, alcohol, displayName }) => {
                     <ToolTip text={ad}>
                       <Link
                         key={ad}
-                        className="linktoRecipeTwo"
+                        className="linktoShotRecipeTwo"
                         to={`/${slugify(alcohol)}/${slugify(ad)}`}>
                         {ad.length < 18 && window.innerWidth > 1024 ? ad : ad.slice(0, 11) + "..."}
                       </Link>
@@ -64,7 +64,7 @@ export const ShotsAll = ({ allShots, alcohol, displayName }) => {
                   <ToolTip text={ad}>
                     <Link
                       key={ad}
-                      className="linktoRecipeTwo"
+                      className="linktoShotRecipeTwo"
                       to={`/${slugify(alcohol)}/${slugify(ad)}`}>
                       {ad.length < 13 && window.innerWidth > 601 ? ad : ad.slice(0, 11) + "..."}
                     </Link>
@@ -74,7 +74,7 @@ export const ShotsAll = ({ allShots, alcohol, displayName }) => {
                     <ToolTip text={ad}>
                       <Link
                         key={ad}
-                        className="linktoRecipeTwo"
+                        className="linktoShotRecipeTwo"
                         to={`/${slugify(alcohol)}/${slugify(ad)}`}>
                         {ad.length < 11 && window.innerWidth < 601 ? ad : ad.slice(0, 11) + "..."}
                       </Link>

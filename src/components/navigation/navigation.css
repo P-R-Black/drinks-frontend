@@ -1,4 +1,4 @@
-.bannerContainer{
+.bannerContainer {
     background-color: red;
     border: solid red 3px;
     color: var(--color-primary-font);
@@ -7,15 +7,14 @@
     font-size: 2rem;
     font-weight: 400;
     height: 3rem;
-    padding: 0 1rem 0 1rem;
     position: relative;
     text-align: center;
-    transition: var( --transition-in);
+    transition: var(--transition-in);
     width: 100vw;
 }
 
 
-.navbar{
+.navbar {
 
     align-items: center;
     background-color: rgba(16, 14, 14, 0.727);
@@ -25,39 +24,40 @@
     position: sticky;
     top: 0;
     width: 100vw;
-    z-index:300;
+    z-index: 300;
 }
 
 
-.navbarContainer{
+.navbarContainer {
     align-items: center;
     display: flex;
     justify-content: space-between;
 }
 
 
-.navBarMenu{
+.navBarMenu {
     color: black;
     cursor: pointer;
-    z-index: 50;;
+    z-index: 50;
+    ;
 }
 
-.navBarMenu[aria-expanded="true"] .bar:nth-child(1){
+.navBarMenu[aria-expanded="true"] .bar:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
     margin-left: .5rem;
     width: 1.25rem;
-   
+
 
 }
 
-.navBarMenu[aria-expanded="true"] .bar:nth-child(2){
+.navBarMenu[aria-expanded="true"] .bar:nth-child(2) {
     margin-left: 1.5rem;
     transform: translateY(-1px) translateX(-1px) rotate(-45deg);
     width: 1.25rem;
 }
 
 
-.navBarMenu[aria-expanded="true"] .bar:nth-child(3){
+.navBarMenu[aria-expanded="true"] .bar:nth-child(3) {
     margin-left: .99rem;
     margin-top: 1.35rem;
     transform: translateY(-9px) rotate(90deg);
@@ -65,15 +65,15 @@
 }
 
 
-.navBarMenu[aria-expanded="true"] .bar:nth-child(4){
+.navBarMenu[aria-expanded="true"] .bar:nth-child(4) {
     margin-top: -.35rem;
     margin-left: .95rem;
     transform: translateY(-1px) rotate(0deg);
     width: 1.25rem;
-} 
+}
 
 
-.bar{
+.bar {
     background-color: var(--color-primary-font);
     display: block;
     height: 3px;
@@ -82,7 +82,7 @@
 }
 
 
-.navDropdown{
+.navDropdown {
     background: hsl(0 0% 100% / 0.1);
     backdrop-filter: blur(2rem);
     -webkit-background: hsl(0 0% 100% / 0.1);
@@ -92,13 +92,13 @@
 
     opacity: 0;
     padding: min(11vh, 10rem) 1rem;
-    
+
     z-index: -100;
 
     animation: fadeOut 1s;
     -webkit-animation: fadeOut 1s;
     transition: var(--transition-out);
-    
+
 }
 
 
@@ -118,22 +118,22 @@
     right: 0;
     top: 0;
     z-index: 10;
-   
+
 }
 
-.dodNav{
+.dodNav {
     color: var(--color-primary-font);
-    font-size: clamp(1.25rem, 2vw, 2rem);   
+    font-size: clamp(1.25rem, 2vw, 2rem);
     font-weight: 700;
     text-shadow: var(--small-letter-shadow);
 }
 
-.dodNav:last-child{
+.dodNav:last-child {
     margin-bottom: -3rem;
 }
 
 
-.navbarLinks{
+.navbarLinks {
     color: var(--color-primary-font);
     font-size: clamp(1rem, 1.4vw, 2rem);
     font-weight: 400;
@@ -143,7 +143,9 @@
 
 
 
-.navbarLinks:hover, .dodNav:hover, .navDropdown h2:hover{
+.navbarLinks:hover,
+.dodNav:hover,
+.navDropdown h2:hover {
     color: red;
 }
 
@@ -151,9 +153,9 @@
     border-top: 3px solid var(--color-primary-font);
 }
 
-.navDropdownByDrink{
+.navDropdownByDrink {
     display: grid;
-    grid-template-columns:  1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 
@@ -162,49 +164,67 @@
 
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-  
-  @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity:1 ;}
-  }
+    from {
+        opacity: 0;
+    }
 
-  @-webkit-keyframes fadeOut {
-    from {opacity: 1;}
-    to {opacity: 0;}
-  }
-  
-  @keyframes fadeOut {
-    from {opacity: 1;}
-    to {opacity:0 ;}
-  }
-  
-
-  /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
-@media screen and (max-width: 1024px) {
-    
-    
+    to {
+        opacity: 1;
+    }
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {}
 
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
- 
-    .bannerContainer{
+
+    .bannerContainer {
         display: none;
     }
 
-
-
-    .mobileNavContainer{
+    .mobileNavContainer {
         /* align-items: center; */
         display: flex;
         justify-content: center;
         position: sticky;
         top: 13%;
-
         z-index: 200;
-        
     }
+
+    .navDropdown.show {
+        margin-top: 0rem;
+    }
+
 }

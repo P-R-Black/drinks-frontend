@@ -1,93 +1,94 @@
-.mustKnowSection{
+.mustKnowSection {
     background-color: #000000;
     min-height: 100vh;
     padding-bottom: 2rem;
-    
+
 }
 
-.mustKnowContainer{
+.mustKnowContainer {
     margin-bottom: 3rem;
     min-height: 100vh;
 
 }
 
-.mustKnowTitleContainer{
+.mustKnowTitleContainer {
     align-items: center;
     display: flex;
     flex-direction: column;
     height: 15rem;
     margin-bottom: 10rem;
-    
+
 }
 
-.mustKnowTitleContainerH1{
+.mustKnowTitleContainerH1 {
     font-size: clamp(4rem, 11vw, 13vw);
     margin-top: 4.5rem;
 }
 
-.mustKnowTitleContainerH1.hidden{
+.mustKnowTitleContainerH1.hidden {
     opacity: 0;
     filter: blur(15px);
     transition: all 1s;
 }
 
-.mustKnowTitleContainerH1.show{
+.mustKnowTitleContainerH1.show {
     filter: blur(0);
     opacity: 1;
     animation-duration: 2s;
     animation-name: animated-mock-title;
 }
 
-.mustKnowTitleContainerH2{
+.mustKnowTitleContainerH2 {
     font-size: clamp(1.5rem, 3vw, 6vw);
     line-height: 0%;
+
 }
 
-.drinkGlassContainer{
+.drinkGlassContainer {
     display: grid;
     height: 85vh;
-    gap:1rem;
-    grid-template-columns: repeat(5, 20%);
+    gap: 1rem;
+    grid-template-columns: repeat(5, 18%);
+    justify-content: center;
     margin-top: 3rem;
     overflow-y: scroll;
     padding-bottom: 4rem;
-    width: 100%;
-   
+
 }
 
-.drinkGlass h2{
-    font-size: 1.25rem;
+.drinkGlass h2 {
+    font-size: clamp(.95rem, 1.25rem, 3.75vw);
     padding: 1rem .50rem;
     text-align: center;
 }
 
 
-.drinkGlass{
+.drinkGlass {
     border: 3px solid var(--color-primary-font);
-    height: 10.125rem; /* 13.125 */
-    width: 10rem;  /* 13.75 */
+    height: clamp(8.125rem, 10.125rem, 20vw);
+    width: clamp(8rem, 10rem, 20vw);
     position: relative;
     border-radius: 15px 15px 40px 40px;
-   
-  }
-  
 
-  .drinkGlass:after {
-    animation: drinks 4s infinite linear; 
+}
+
+
+.drinkGlass:after {
+    animation: drinks 4s infinite linear;
     background: url("../../assets/wave(3).svg"), url("../../assets/wave(6).svg");
     background-position: 0 0, 0 0;
     background-repeat: repeat-x;
     border-radius: 15px 15px 40px 40px;
     bottom: -1.5px;
     content: "";
-    height: 50px;
+    height: clamp(16px, 48px, 20vw);
     left: 0px;
     position: absolute;
-    width: 9.65rem;
-    
-  }
+    width: clamp(7.65rem, 9.65rem, 19.65vw);
 
-  @keyframes drinks {
+}
+
+@keyframes drinks {
     100% {
         background-position: -100% 0, -100% 0;
     }
@@ -95,4 +96,52 @@
     50% {
         background-position: 100% 0, 100% 0;
     }
-  }
+}
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+    .drinkGlassContainer {
+        grid-template-columns: repeat(3, 30%);
+    }
+
+    .drinkGlass:after {
+        border-radius: 15px 15px 900px 900px;
+        bottom: -2.5px;
+        left: -.05rem;
+
+    }
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
+    .mustKnowSection {
+        margin-top: -3rem;
+    }
+
+    .mustKnowContainer {
+        padding-top: 8rem;
+    }
+
+    .mustKnowTitleContainerH2 {
+        line-height: 1.5rem;
+        text-align: center;
+    }
+
+    .drinkGlassContainer {
+        margin-top: -5.5rem;
+
+    }
+
+    .drinkGlassContainer {
+        grid-template-columns: repeat(2, 40%);
+    }
+
+
+    .drinkGlass:after {
+        border-radius: 15px 15px 900px 900px;
+        bottom: -7.95px;
+        left: -auto;
+    }
+
+}

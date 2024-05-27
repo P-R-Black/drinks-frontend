@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 
 import { Navigation } from '../../components/navigation/Navigation';
 import { Hero } from '../../components/hero/Hero';
@@ -36,19 +36,22 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
   const [drinkOfTheDay, setDrinkOfTheDay] = useState([])
   const [lastDrinkOfTheDay, setLastDrinkOfTheDay] = useState([])
   const [currentDrink, setCurrentDrink] = useState([])
-
-  const calendarYear = year
-  const calendarMonth = month
-
   const [dateLookup, setDateLookup] = useState()
   const [drinkLookup, setDrinkLookup] = useState()
 
-
+  const calendarYear = year
+  const calendarMonth = month
 
   const months = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "Novenber", "December"
   ];
+
+
+  const getFullDrinkInfo = useCallback(async (theLastDod) => {
+    let ldod = await drinks.find((drink) => drink.drink_name === theLastDod)
+    setCurrentDrink([ldod])
+  }, [drinks]);
 
 
   useEffect(() => {
@@ -74,7 +77,7 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
 
     fetchData()
     fetchLastRecord()
-  }, [])
+  }, [getFullDrinkInfo]);
 
   const eventMap = {};
   drinkOfTheDay.forEach(event => {
@@ -124,10 +127,10 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
   })
 
 
-  const getFullDrinkInfo = async (theLastDod) => {
-    let ldod = await drinks.find((drink) => drink.drink_name === theLastDod)
-    setCurrentDrink([ldod])
-  }
+  // const getFullDrinkInfo = async (theLastDod) => {
+  //   let ldod = await drinks.find((drink) => drink.drink_name === theLastDod)
+  //   setCurrentDrink([ldod])
+  // }
 
 
 

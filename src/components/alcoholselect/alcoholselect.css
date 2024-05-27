@@ -45,7 +45,6 @@
 }
 
 .drinkListContainer {
-
     max-width: var(--container-width-lg);
 }
 
@@ -57,10 +56,7 @@
 }
 
 
-
-
 .drinkListUl {
-
     animation: scroll linear infinite;
     display: flex;
     flex-wrap: nowrap;
@@ -166,7 +162,7 @@
     }
 
     .drinkListLi {
-        width: 25rem;
+        width: auto;
     }
 }
 
@@ -188,7 +184,7 @@
 
     .drinkListLi {
         font-weight: 400;
+        width: auto;
     }
-
 
 }

@@ -1,29 +1,33 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import './search.css'
 import { SearchResults } from '../search/SearchResults';
 import { IoMdSearch } from "react-icons/io";
 import { IoMdClose } from "react-icons/io"
-
+import { useNavigate } from 'react-router-dom';
+import slugify from 'react-slugify';
 
 export const Search = ({ drinks }) => {
-  const [ input, setInput ] = useState("")
-  const [ selectedItem, setSelectedItem ] = useState(-1)
-  const [ results, setResults ] = useState([])
+  const [input, setInput] = useState("")
+  const [selectedItem, setSelectedItem] = useState(-1)
+  const [results, setResults] = useState([])
+  const navigate = useNavigate();
 
 
   const handleKeyDown = (e) => {
-    const selectedItemLink = document.getElementsByClassName('searchResultList active')
-    if (selectedItem < results.length){
-        if (e.key === "ArrowUp" && selectedItem > 0){
-            setSelectedItem((prev) => prev - 1);
-        } else if (e.key === "ArrowDown" && selectedItem < results.length - 1){
-            setSelectedItem((prev) => prev + 1);
-        } else if (e.key === "Enter" && selectedItem >= 0){
-          window.location.href = selectedItemLink[0].getAttribute('href')
-        }
+    if (selectedItem < results.length) {
+      if (e.key === "ArrowUp" && selectedItem > 0) {
+        setSelectedItem((prev) => prev - 1);
+      } else if (e.key === "ArrowDown" && selectedItem < results.length - 1) {
+        setSelectedItem((prev) => prev + 1);
+      } else if (e.key === "Enter" && selectedItem >= 0) {
+        const link = `/${slugify(results[selectedItem].base_alcohol[0])}/${slugify(results[selectedItem].drink_name)}`;
+        handleClose()
+        e.preventDefault()
+        navigate(link);
+      }
 
     } else {
-        setSelectedItem(-1)
+      setSelectedItem(-1)
     }
   };
 
@@ -36,10 +40,10 @@ export const Search = ({ drinks }) => {
 
 
   useEffect(() => {
-    if (input !== ""){
+    if (input !== "") {
       const results = drinks.filter((drink) => {
         return (
-          drink.base_alcohol[0].toLowerCase().includes(input.toLowerCase()) || 
+          drink.base_alcohol[0].toLowerCase().includes(input.toLowerCase()) ||
           drink.drink_name.toLowerCase().includes(input.toLowerCase()) ||
           drink.ingredient_name.join(" ").toLowerCase().includes(input.toLowerCase())
         );
@@ -56,28 +60,28 @@ export const Search = ({ drinks }) => {
   }
 
 
-  
+
   return (
     <section className='searchSection'>
       <div className="searchInputDiv">
-          <input
-            id="search" 
-            className="searchBar"
-            type="text"
-            placeholder="Search Drink by Name, Alcohol, or Ingredient"
-            value={input}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-          />
-          <div className="searchIcons">
-            {
-              input === "" ? (<IoMdSearch/>) : (<IoMdClose onClick={handleClose}/>)
-            }
-          </div>
-        <SearchResults  results={results} selectedItem={selectedItem} />
+        <input
+          id="search"
+          className="searchBar"
+          type="text"
+          placeholder="Search Drink by Name, Alcohol, or Ingredient"
+          value={input}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+        />
+        <div className="searchIcons">
+          {
+            input === "" ? (<IoMdSearch />) : (<IoMdClose onClick={handleClose} />)
+          }
+        </div>
+        <SearchResults results={results} selectedItem={selectedItem} handleClose={handleClose} />
 
       </div>
     </section>
-    
+
   )
 }

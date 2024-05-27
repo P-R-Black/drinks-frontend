@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import './discovershots.css'
 import { Parallax, Background } from 'react-parallax';
-import discoverShotsImage from '../../assets/pexels-shots.jpg'
+// import discoverShotsImage from '../../assets/pexels-shots.jpg'
 import altImage from '../../assets/pexels-rachel-default.jpg'
 import { ToolTip } from '../tooltip/ToolTip';
 import slugify from 'react-slugify';
@@ -42,14 +42,9 @@ export const DiscoverShots = ({ allShots }) => {
     return (
         <section className="discoverShotsSection" id="discoverShotsSection">
             <Parallax
-
-                // bgImage={discoverShotsImage}
-                // bgImageAlt={altImage}
-                // blur={{ min: -15, max: 15 }}
-                strength={500}>
-                <Background>
-                    <img src={discoverShotsImage} alt={altImage} className='parallaxShotDod' />
-                </Background>
+                blur={5}
+                strength={500}
+            >
                 <div className="container">
                     <div className="discoverShotsContainer">
                         <div className="discoverShotsTitleContainer" ref={discoverShotRef}>

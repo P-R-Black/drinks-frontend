@@ -12,6 +12,7 @@ export const Drinks = ({ drinks, baseAlcohol, fetchAlcoholType, navLinkText,
   showCookieBanner, isCookieSet, cookiesAccept, coockiesDeclined }) => {
   let { drinkRecipe } = useParams()
 
+
   return (
     <>
       <Navigation

@@ -48,34 +48,21 @@
 
 
 .linktoRecipeTwo {
-    color: white;
+    color: var(--color-primary-font);
 
-    /* background-color: transparent;
-    border: 1px solid white;
-    border-radius: 10px;  */
-
-    /* cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
-    margin-top: 2rem;
-    outline: none;
-    text-align: center;
-    padding: .25rem; */
-    /* transition: var(--transition) */
-    /* width: 11rem; */
 }
 
 .linksToDrinksContainer {
-    align-items: center;
+    /* align-items: center; */
     display: grid;
-    justify-content: center;
-    gap: .25rem;
+    justify-content: space-between;
+    /* gap: .25rem; */
     grid-template-columns: repeat(6, 15%);
 
     margin-top: 3rem;
     overflow-y: scroll;
     padding-bottom: 4rem;
-    width: 100%;
+    width: 95%;
 
 }
 
@@ -84,7 +71,7 @@
 
 
     .linksToDrinksContainer {
-        grid-template-columns: repeat(4, 20%);
+        grid-template-columns: repeat(3, 26%);
 
     }
 
@@ -96,12 +83,16 @@
         margin-top: -7rem;
     }
 
+    .allDrinksContainer {
+        margin-top: 10rem;
+    }
+
     .baseAlcTitleContainerTwo {
-        margin-top: 6rem;
+        margin-top: 1rem;
     }
 
     .linksToDrinksContainer {
-        grid-template-columns: repeat(2, 40%);
+        grid-template-columns: repeat(2, 41%);
         gap: .5rem;
 
     }

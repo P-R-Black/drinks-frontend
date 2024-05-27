@@ -4,9 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 
 
-export const CoockieBar = ({ cookiesAccept, coockiesDeclined, isCookieSet, showCookieBanner }) => {
-
-
+export const CoockieBar = ({ cookiesAccept, coockiesDeclined, showCookieBanner }) => {
 
     // function getCookie(name) {
     //     const value = `; ${document.cookie}`;
@@ -20,8 +18,6 @@ export const CoockieBar = ({ cookiesAccept, coockiesDeclined, isCookieSet, showC
     // }
 
     // console.log('getCookie', getCookie())
-
-
 
 
     return (

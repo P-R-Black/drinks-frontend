@@ -166,7 +166,7 @@
     }
 
     .shotListLi {
-        width: 25rem;
+        width: auto;
     }
 }
 
@@ -188,6 +188,7 @@
 
     .shotListLi {
         font-weight: 400;
+        width: auto;
     }
 
 

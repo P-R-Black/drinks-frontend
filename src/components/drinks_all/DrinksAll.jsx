@@ -43,7 +43,7 @@ export const DrinksAll = ({ cocktails, alcohol, displayName }) => {
       <div className="container">
         <div className="allDrinksContainer">
           <div className="baseAlcTitleContainerTwo">
-            <h1 id="baseAlcoholName">{newDisplayName}</h1>
+            <h1 id="baseAhotName">{newDisplayName}</h1>
             <h2>Drinks & Cocktails</h2>
           </div>
           <div className="linksToDrinksContainer">

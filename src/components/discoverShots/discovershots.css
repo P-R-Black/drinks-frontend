@@ -1,10 +1,18 @@
-.discoverShotsSection{
+.discoverShotsSection {
     min-height: 100vh;
+    overflow: hidden;
+    position: relative;
     width: 100%;
 
+    background-image: radial-gradient(#2e2c7c68, #4a5ecb5f), url('../../assets/pexels-shots.jpg');
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow-x: hidden;
 }
 
-.parallaxShotDod{
+.parallaxShotDod {
     background-size: cover;
     background-blend-mode: multiply;
     background-repeat: no-repeat;
@@ -12,17 +20,17 @@
     overflow-x: hidden;
     width: 100vw;
     min-height: 100vh;
-    filter:brightness(45%);
+    filter: brightness(45%);
     transform-style: preserve-3d;
 }
 
-.discoverShotsContainer{
+.discoverShotsContainer {
     min-height: 100vh;
     margin-bottom: 3rem;
 }
 
 
-.discoverShotsTitleContainer{
+.discoverShotsTitleContainer {
     align-items: center;
     display: flex;
     justify-content: center;
@@ -31,7 +39,7 @@
 }
 
 
-.discoverShotsTitleContainerH1{
+.discoverShotsTitleContainerH1 {
     font-size: clamp(4rem, 11vw, 13vw);
     margin-top: 4.5rem;
 }
@@ -42,7 +50,7 @@
     transition: all 1s;
 }
 
-.discoverShotsTitleContainerH1.show{
+.discoverShotsTitleContainerH1.show {
     filter: blur(0);
     opacity: 1;
     animation-duration: 2s;
@@ -60,7 +68,7 @@
     width: 100%;
 }
 
-.discShotsLinksToDrinkContainer.hidden{
+.discShotsLinksToDrinkContainer.hidden {
     opacity: 0;
     filter: blur(15px);
     transition: all 1s;
@@ -79,7 +87,7 @@
     transition: all 1s;
 }
 
-.shotsAlcLinkContainer.show:nth-child(odd){
+.shotsAlcLinkContainer.show:nth-child(odd) {
     filter: blur(0);
     opacity: 1;
     animation-duration: 2s;
@@ -87,7 +95,7 @@
 
 }
 
-.shotsAlcLinkContainer.show:nth-child(even){
+.shotsAlcLinkContainer.show:nth-child(even) {
     filter: blur(0);
     opacity: 1;
     animation-duration: 2s;
@@ -96,19 +104,19 @@
 }
 
 
-.linktoRecipeFour{
+.linktoRecipeFour {
     color: white;
-    font-size:  clamp(.75rem, 1.10vw, 5vw);
+    font-size: clamp(.75rem, 1.10vw, 5vw);
 }
 
 
 
-@keyframes animated-shot-title{
-    0%{
-        transform: translateX(-200%) 
+@keyframes animated-shot-title {
+    0% {
+        transform: translateX(-200%)
     }
 
-    100%{
+    100% {
         transform: translateX(0%)
     }
 
@@ -116,22 +124,22 @@
 }
 
 
-@keyframes animated-shot-odd{
-    0%{
-        transform: translateY(-300%) 
+@keyframes animated-shot-odd {
+    0% {
+        transform: translateY(-300%)
     }
 
-    100%{
+    100% {
         transform: translateY(0%)
     }
 }
 
-@keyframes animated-shot-even{
-    0%{
-        transform: translateY(300%) 
+@keyframes animated-shot-even {
+    0% {
+        transform: translateY(300%)
     }
 
-    100%{
+    100% {
         transform: translateY(0%)
     }
 }
@@ -141,40 +149,40 @@
 /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
 @media screen and (max-width: 1024px) {
 
-    .discoverShotsContainer{
+    .discoverShotsContainer {
         height: 8rem;
     }
 
-    .discShotsLinksToDrinkContainer{
+    .discShotsLinksToDrinkContainer {
         grid-template-columns: repeat(4, 20%);
         height: 22rem;
         overflow-y: scroll;
-        
+
     }
 
-    .linktoRecipeFour{
+    .linktoRecipeFour {
         margin: 0 0;
         padding: 0 0;
 
     }
-   
-    
+
+
 }
 
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
 
 
-    .discoverShotsContainer{
-        padding-top: 4rem;
+    .discoverShotsContainer {
+        padding-top: 2rem;
     }
 
-    .discShotsLinksToDrinkContainer{
+    .discShotsLinksToDrinkContainer {
         grid-template-columns: repeat(2, 40%);
         gap: .25rem;
         height: 24rem;
         overflow-y: scroll;
-        margin-top: -5rem;
+        margin-top: -8rem;
     }
-    
+
 }

@@ -44,12 +44,8 @@ const App = () => {
   const [baseAlcohol, setBaseAlcohol] = useState([])
 
   const [showCookieBanner, setShowCookieBanner] = useState(false)
-  // const [isCookieSet, setCookie] = useState(Cookies.get("cookiesConsent", false));
   const [isCookieSet, setCookie] = useState(false);
-
-
   const [hasConsetValue, setHasConsentValue] = useState(false)
-
 
   useEffect(() => {
     setHasConsentValue(!!isCookieSet)
@@ -351,10 +347,6 @@ const App = () => {
     )
 
   )
-
-
-
-
 
 
   return (

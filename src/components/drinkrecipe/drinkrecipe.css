@@ -1,6 +1,6 @@
-.recipeBackground{
+.recipeBackground {
     background-color: rgb(0, 0, 0, .50);
-    background-size: cover; 
+    background-size: cover;
     background-blend-mode: multiply;
     background-repeat: no-repeat;
     background-position: center;
@@ -10,9 +10,9 @@
     width: 100;
 }
 
-.recipeContainer{
+.recipeContainer {
     align-items: center;
-   
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,7 +22,7 @@
     width: 100%;
 }
 
-.recipeTitle{
+.recipeTitle {
     color: var(--color-primary-font);
     font-size: clamp(.9rem, 8rem, 10vw);
     font-weight: 900;
@@ -31,7 +31,7 @@
 
 }
 
-.likesAndShare{
+.likesAndShare {
     align-items: center;
     display: flex;
     gap: clamp(3rem, 11vw, 10rem);
@@ -42,7 +42,7 @@
 
 
 
-.ingredientInstructionContainer{
+.ingredientInstructionContainer {
     align-items: flex-start;
     display: grid;
     grid-template-columns: repeat(3, 29%);
@@ -54,7 +54,7 @@
 
 
 
-.ingredientInstructionContainer h3{
+.ingredientInstructionContainer h3 {
     color: var(--color-primary-font);
     font-size: 1.5rem;
     text-decoration: underline;
@@ -62,21 +62,22 @@
 
 }
 
-.ingredientInstructionContainer h4, .ingredientInstructionContainer ul li{
+.ingredientInstructionContainer h4,
+.ingredientInstructionContainer ul li {
     color: var(--color-primary-font);
     font-size: 1.15rem;
     font-weight: 300;
 
 }
 
-.garnishAndGlassContainer{
+.garnishAndGlassContainer {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
 
-.instructions{
+.instructions {
     color: var(--color-primary-font);
     font-size: 1.15rem;
     line-height: 1.50;
@@ -86,7 +87,7 @@
 }
 
 
-.incrementUnit{
+.incrementUnit {
     align-items: center;
     display: flex;
     justify-content: flex-start;
@@ -95,7 +96,7 @@
     width: 7rem;
 }
 
-.unitMeasure{
+.unitMeasure {
     margin-top: 2rem;
 }
 
@@ -105,7 +106,7 @@
 
 
 
-.buttonContainer{
+.buttonContainer {
     border: 3px solid var(--color-primary-font);
     border-radius: 25px;
     display: flex;
@@ -126,22 +127,22 @@
     outline: none;
 }
 
-.plusButton:active, 
-.minusButton:active{
+.plusButton:active,
+.minusButton:active {
     transform: translateY(2px);
 }
 
-.plusButton{
+.plusButton {
     padding-top: .25rem;
 }
 
 .minusButton {
-    padding-top: .25rem; 
+    padding-top: .25rem;
 
 }
 
 
-.measureButtonContainer{
+.measureButtonContainer {
     border: 3px solid var(--color-primary-font);
     border-radius: 25px;
     display: flex;
@@ -150,21 +151,20 @@
     height: 2.5rem;
     margin-top: .15rem;
     width: 6rem;
-
-
 }
 
 .measureButtonContainer.oz {
-    background: linear-gradient(to right,  #968686aa 50%, transparent 50%);
+    background: linear-gradient(to right, #968686aa 50%, transparent 50%);
 
 }
 
 .measureButtonContainer.ml {
-    background: linear-gradient(to right, transparent 50%,  #968686aa 50%);
+    background: linear-gradient(to right, transparent 50%, #968686aa 50%);
 
 }
 
-.ozButton, .mlButton{
+.ozButton,
+.mlButton {
     background-color: transparent;
     color: var(--color-primary-font);
     cursor: pointer;
@@ -179,38 +179,48 @@
 
 
 /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
-@media screen and (max-width: 1024px) {
-   
- 
-}
+@media screen and (max-width: 1024px) {}
 
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
 
-    .recipeBackground{
+    .recipeBackground {
         margin-top: -7rem;
     }
-    
-    .ingredientInstructionContainer{
+
+    .recipeContainer {
+        margin-top: 8rem;
+    }
+
+
+
+    .ingredientInstructionContainer {
         align-items: center;
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        margin-left: .5rem; 
+        margin-left: .5rem;
         margin-top: 5rem;
     }
 
 
-    .ingredientTitle, .garnishTitle, .glassTitle, .servingSize, .instructionTitle{
+    .ingredientTitle,
+    .garnishTitle,
+    .glassTitle,
+    .servingSize,
+    .instructionTitle {
         margin-bottom: .75rem;
         text-align: center;
     }
-    
-    .ingredients, .garnish, .glass{
+
+    .ingredients,
+    .garnish,
+    .glass {
         text-align: center;
     }
 
-    .servingAmountContainer, .measureContainer{
+    .servingAmountContainer,
+    .measureContainer {
         align-items: center;
         display: flex;
         flex-direction: column;

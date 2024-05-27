@@ -1,4 +1,4 @@
-.mocktailSection{
+.mocktailSection {
     /* min-height: 100vh;
     position: relative;
     width: 100%;
@@ -9,34 +9,35 @@
     background-repeat: no-repeat;
     background-position: center;
     */
+
 }
 
 
-.mocktailContainer{
+.mocktailContainer {
     margin-bottom: 3rem;
     min-height: 100vh;
 }
 
-.mocktailTitleContainer{
+.mocktailTitleContainer {
     align-items: center;
     display: flex;
     flex-direction: column;
     height: 15rem;
-    margin-bottom: 10rem;
+    margin-bottom: 8rem;
 }
 
-.mocktailTitleH1{
+.mocktailTitleH1 {
     font-size: clamp(4rem, 11vw, 13vw);
     margin-top: 4.5rem;
 }
 
-.mocktailTitleH1.hidden{
+.mocktailTitleH1.hidden {
     opacity: 0;
     filter: blur(15px);
     transition: all 1s;
 }
 
-.mocktailTitleH1.show{
+.mocktailTitleH1.show {
     filter: blur(0);
     opacity: 1;
     animation-duration: 2s;
@@ -44,7 +45,7 @@
 }
 
 
-.mocktailTitleH2{
+.mocktailTitleH2 {
     font-size: clamp(1.5rem, 3vw, 6vw);
     line-height: 0%;
 }
@@ -63,20 +64,20 @@
     opacity: 1;
     animation-duration: 2s;
     animation-name: animated-mock-sub-text;
-  
-} 
+
+}
 
 
 
 
-.MockLinksToDrinksContainerCard{
+.MockLinksToDrinksContainerCard {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
 }
 
-.linktoRecipeThreeCard{
+.linktoRecipeThreeCard {
     align-items: center;
     color: var(--color-primary-font);
     font-size: clamp(1.15rem, 2.25vw, 5.25vw);
@@ -84,13 +85,13 @@
 
     display: flex;
     flex-direction: column;
-    
+
     justify-content: space-between;
     padding: 0 .5rem 0 .5rem;
 
 }
 
-.linktoRecipe{
+.linktoRecipe {
     margin-bottom: .5rem;
 }
 
@@ -98,10 +99,10 @@
     filter: blur(15px);
     opacity: 0;
     transition: all 2s;
-    
+
 }
 
-.mocktailMore.show{
+.mocktailMore.show {
     animation-name: slide-card;
     background-color: #000000b6;
     border: 1px solid var(--color-primary-font);
@@ -112,29 +113,28 @@
     font-size: clamp(1rem, 2vw, 5vw);
     font-weight: 600;
     height: 3rem;
-    padding-top: .15rem;
     text-align: center;
     width: clamp(5rem, 10rem, 12vw);
 
 
 }
 
-ol.mockIngredientContainer li{
-    list-style-type:decimal;
+ol.mockIngredientContainer li {
+    list-style-type: decimal;
 }
 
 
-.mockIngredientContainer{
+.mockIngredientContainer {
     color: white;
-    text-align: left; 
+    text-align: left;
 }
 
-.mockIngredients{
+.mockIngredients {
     font-size: clamp(.75rem, 1vw, 4.25vw);
 }
 
 
-.toolTipCards.hidden{
+.toolTipCards.hidden {
     filter: blur(15px);
     opacity: 0;
     transition: all 2s;
@@ -154,43 +154,43 @@ ol.mockIngredientContainer li{
     flex-direction: column;
     height: 20rem;
     justify-content: space-between;
-    padding: .5rem 0 .5rem 0 ;
+    padding: .5rem 0 .5rem 0;
     position: relative;
     text-align: center;
-    width: clamp(9rem, 17rem, 19vw);    
+    width: clamp(9rem, 17rem, 19vw);
 }
 
 
-.toolTipCards.show:nth-child(1){
+.toolTipCards.show:nth-child(1) {
     animation-duration: 1s;
     transition-delay: 300ms;
 
 }
 
-.toolTipCards.show:nth-child(2){
+.toolTipCards.show:nth-child(2) {
     animation-duration: 2s;
     transition-delay: 700ms;
 
 }
 
-.toolTipCards.show:nth-child(3){
+.toolTipCards.show:nth-child(3) {
     animation-duration: 2.5s;
     transition-delay: 1000ms;
 }
 
-.mocktailMore{
+.mocktailMore {
     animation-duration: 2.75s;
     transition-delay: 1200ms;
 }
 
 
-@keyframes slide-card{
-    0%{
+@keyframes slide-card {
+    0% {
         transform: translateX(-300px);
         opacity: 0;
     }
 
-    100%{
+    100% {
         transform: translateX(0px);
         opacity: 1;
     }
@@ -200,12 +200,12 @@ ol.mockIngredientContainer li{
 
 
 
-@keyframes animated-mock-title{
-    0%{
+@keyframes animated-mock-title {
+    0% {
         transform: translateY(-200%);
     }
 
-    100%{
+    100% {
         transform: translateY(0%);
     }
 
@@ -213,13 +213,13 @@ ol.mockIngredientContainer li{
 }
 
 
-@keyframes animated-mock-sub-text{
-    0%{
+@keyframes animated-mock-sub-text {
+    0% {
         transform: translateY(200px);
         opacity: 0;
     }
 
-    100%{
+    100% {
         transform: translateY(0px);
         opacity: 1;
     }
@@ -231,12 +231,17 @@ ol.mockIngredientContainer li{
 /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
 @media screen and (max-width: 1024px) {
 
-    .mocktailTitleContainer{
+    /* To prevent gap during scroll with parallex */
+    .mocktailContainer {
+        margin-bottom: -8rem;
+    }
+
+    .mocktailTitleContainer {
         margin-bottom: 3rem;
     }
 
-    .mocktailMore.show{
-        padding-top: .6rem;
+    .mocktailMore.show {
+        padding-top: .8rem;
     }
 
 
@@ -245,24 +250,27 @@ ol.mockIngredientContainer li{
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
 
-    .mocktailContainer{
+
+    .mocktailContainer {
         padding-top: 4rem;
     }
 
 
-    .MockLinksToDrinksContainerCard{
+    .MockLinksToDrinksContainerCard {
         flex-direction: column;
+        margin-bottom: 3rem;
         margin-top: -5.5rem;
+
     }
 
-    .MockLinksToDrinksContainer{
+    .MockLinksToDrinksContainer {
         grid-template-columns: repeat(2, 40%);
         gap: .25rem;
         overflow-y: scroll;
 
     }
 
-    .mockIngredientContainer{
+    .mockIngredientContainer {
         display: grid;
         grid-template-columns: repeat(2, 45%);
         justify-content: center;
@@ -270,15 +278,19 @@ ol.mockIngredientContainer li{
         width: 90%;
     }
 
-    
-    .toolTipCards.show:nth-child(3){
-        display: none;
-    } 
 
-    .toolTipCards.show{
+    .toolTipCards.show:nth-child(3) {
+        display: none;
+    }
+
+    .toolTipCards.show {
         height: 10rem;
         margin-bottom: 1rem;
         width: 20rem;
+    }
+
+    .mocktailMore {
+        margin-bottom: 6rem;
     }
 
 }

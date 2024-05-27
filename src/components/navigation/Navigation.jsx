@@ -57,7 +57,11 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
 
     return (
         <>
-            <div className="bannerContainer">{numofRecipes}</div>
+            <div className="bannerContainer">
+                <div className="container">
+                    <div className="bannerContainerTitle">{numofRecipes}</div>
+                </div>
+            </div>
             {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? (
                 <nav className="navbar">
                     <div className="container">
@@ -66,7 +70,11 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
                                 <Logo className="navbarLogo"></Logo>
                             </div>
                             <search className="searchId">
-                                <Search drinks={drinks} drinkRecipe={drinkRecipe} className="navSearch" />
+                                <Search
+                                    drinks={drinks}
+                                    drinkRecipe={drinkRecipe}
+                                    className="navSearch"
+                                />
                             </search>
                             <div className="navBarMenu" id="navBarMenu" aria-controls="navbar_menu"
                                 aria-expanded="false"

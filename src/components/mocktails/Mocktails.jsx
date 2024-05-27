@@ -5,6 +5,8 @@ import './mocktails.css'
 import { Parallax, Background } from 'react-parallax';
 import mocktailImage from '../../assets/pexels-mocktails.jpg'
 import altImage from '../../assets/pexels-lime-mint-drinks.jpg'
+import slugify from 'react-slugify';
+
 
 export const Mocktails = ({ drinks, updateBackgroundPicture }) => {
 
@@ -41,12 +43,7 @@ export const Mocktails = ({ drinks, updateBackgroundPicture }) => {
 
     }, [nonAlcoholicDrinks])
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    // useEffect(() => {
-    //     nonAlcoholicDrinks();
-
-    // },[])
-
+    console.log('mocktails', mocktails)
 
     // normal screen => medium screen => small screen
     return (
@@ -90,7 +87,7 @@ export const Mocktails = ({ drinks, updateBackgroundPicture }) => {
                                 <div ref={tooTipCardRef} className={toolTipCardVisible ? `toolTipCards show` : `toolTipCards hidden`} key={mt.id}>
 
                                     <Link className="linktoRecipeThreeCard"
-                                        to={`/${mt.base_alcohol}/${mt.drink_name.toLowerCase().replaceAll(" ", "")}`}>
+                                        to={`/${slugify(mt.base_alcohol)}/${slugify(mt.drink_name)}`}>
                                         {mt.drink_name}
                                     </Link>
                                     <ol className="mockIngredientContainer">
@@ -101,13 +98,12 @@ export const Mocktails = ({ drinks, updateBackgroundPicture }) => {
                                         ))}
                                     </ol>
 
-                                    <Link className="linktoRecipe" to={`/${mt.base_alcohol}/${mt.drink_name.toLowerCase().replaceAll(" ", "")}`}>
+                                    <Link className="linktoRecipe" to={`/${slugify(mt.base_alcohol)}/${slugify(mt.drink_name)}`}>
                                         Recipe</Link>
 
                                 </div >
                             ))}
                             <Link className={toolTipCardVisible ? `mocktailMore show` : `mocktailMore hidden`}
-                                onClick={() => updateBackgroundPicture("non-alcoholic")}
                                 to={"/non-alcoholic"}>
                                 More
                             </Link>
