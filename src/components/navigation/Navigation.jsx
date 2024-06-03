@@ -125,7 +125,12 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
                                     to="/#mustKnowSection"
                                     className="dodNav">Bartender Must Know Drinks
                                 </HashLink>
-
+                                <hr className='navline' />
+                                <Link
+                                    onClick={showNavMenu}
+                                    to="/build-drink"
+                                    className="dodNav">Build A Drink
+                                </Link>
                             </ul>
                         </div>
                     </div>
@@ -188,6 +193,12 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
                                 to="/#mustKnowSection"
                                 className="dodNav">Bartender Must Know Drinks
                             </HashLink>
+                            <hr className='navline' />
+                            <Link
+                                onClick={showNavMenu}
+                                to="/build-drink"
+                                className="dodNav">Build A Drink
+                            </Link>
 
                         </ul>
                     </div>
@@ -249,6 +260,12 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
                                         to="/#mustKnowSection"
                                         className="dodNav">Bartender Must Know Drinks
                                     </HashLink>
+                                    <hr className='navline' />
+                                    <Link
+                                        onClick={showNavMenu}
+                                        to="/build-drink"
+                                        className="dodNav">Build A Drink
+                                    </Link>
                                 </ul>
                             </div>
                         </div>

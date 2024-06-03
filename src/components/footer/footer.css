@@ -95,7 +95,8 @@
 
 .createBySection,
 .copyrightYear,
-.rightsReserved {
+.rightsReserved,
+.apiBy {
     color: var(--color-primary-font);
     font-size: .75rem;
     font-weight: 400;
@@ -106,6 +107,11 @@
     color: var(--color-primary-font);
     font-size: .75rem;
     font-weight: 700;
+}
+
+.createdBy:hover,
+.apiBy:hover {
+    color: #ef4c3a;
 }
 
 /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */

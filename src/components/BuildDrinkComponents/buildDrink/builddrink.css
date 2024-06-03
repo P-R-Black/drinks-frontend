@@ -1,0 +1,189 @@
+.buildDrinkSection {
+
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow-x: hidden;
+    height: 100vh;
+    width: 100%;
+
+    margin-top: -7rem;
+}
+
+.buildADrinkTitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 5rem;
+}
+
+.buildADrinkTitle h1 {
+    font-size: clamp(4rem, 11vw, 13vw);
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.buildADrinkTitle h2 {
+    font-size: clamp(1rem, 2.5vw, 6vw);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.innerMovingText {
+    margin-left: .5rem;
+}
+
+
+#allContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 70%);
+    margin-top: 3rem;
+}
+
+.chooseAlcTitle h3,
+.chooseIngTitle h3,
+.resultsTitle h3 {
+    font-size: clamp(1rem, 2.5vw, 7rem);
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+
+
+.alcSelection {
+    color: var(--color-primary-font);
+    display: grid;
+    font-weight: 500;
+    gap: .50rem;
+    grid-template-columns: repeat(4, 25%);
+    height: 35vh;
+    overflow-y: scroll;
+
+}
+
+.alcSelectionContainer,
+.ingSelectionContainer {
+    height: 50vh;
+    border-right: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+
+.ingSelectionContainer {
+    margin-top: 1rem;
+}
+
+
+.alcSelection label {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+
+
+}
+
+
+input.checkBoxField {
+    width: 1rem;
+}
+
+.resultsContainer {
+    height: 100vh;
+    width: 42.75%;
+    padding-left: .25rem;
+}
+
+.resultsTitle {
+    padding-left: 2rem;
+
+}
+
+.resultSection {
+    background-color: rgb(0, 0, 0, .7);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(.90rem, 1.25rem, 4vw);
+    justify-content: flex-start;
+    max-height: 75vh;
+    overflow-y: scroll;
+
+    padding: .5rem 0 1rem 2rem;
+
+}
+
+.drinkNameResults {
+    color: var(--color-primary-font);
+    font-weight: 500;
+    margin-bottom: .10rem;
+
+}
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+    .buildDrinkSection {
+        margin-top: -7rem;
+    }
+
+    .buildADrinkTitle {
+        margin-top: 7rem;
+    }
+
+    #allContainer {
+        grid-template-columns: repeat(2, 60%);
+    }
+
+    .alcSelection {
+        color: var(--color-primary-font);
+        display: grid;
+        font-weight: 500;
+        gap: .50rem;
+        grid-template-columns: repeat(2, 50%);
+        height: 35vh;
+        overflow-y: scroll;
+
+    }
+
+    .alcSelection label {
+        align-items: center;
+        justify-content: baseline;
+        flex-direction: column;
+        text-align: center;
+        gap: .25rem;
+
+
+    }
+
+    .resultsContainer {
+        width: 65.75%;
+
+    }
+
+
+    .resultsTitle {
+        padding-left: 1rem;
+    }
+
+    .resultSection {
+        font-size: clamp(1rem, 1.25rem, 4vw);
+        justify-content: flex-start;
+        max-height: 100vh;
+        overflow-y: scroll;
+
+        padding: .5rem 0 1rem .5rem;
+
+    }
+
+    .drinkNameResults {
+        color: var(--color-primary-font);
+        font-weight: 400;
+        margin-bottom: .10rem;
+
+    }
+
+}

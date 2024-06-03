@@ -17,39 +17,39 @@
     z-index: 999;
 }
 
-.logoDiv{
+.logoDiv {
     align-items: center;
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
-.closeButton{
- color: var(--color-primary-font);
- cursor: pointer;
- background-color: transparent;
- font-size: 1.5rem;
- margin-right: 1rem;
+.closeButton {
+    color: var(--color-primary-font);
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 1.5rem;
+    margin-right: 1rem;
 }
 
 
-.privacyChoiceContainer{
+.privacyChoiceContainer {
     margin: 2rem 0 1rem 0;
 }
 
-.privacyChoiceContainer p{
+.privacyChoiceContainer p {
     font-weight: 400;
     margin-top: 1rem;
-}   
+}
 
 
-.privacyChoiceContainer a{
+.privacyChoiceContainer a {
     text-align: center;
     color: red;
     border: 2px solid green;
-} 
+}
 
-.privacyChoiceConfirmChoice{
+.privacyChoiceConfirmChoice {
     background-color: transparent;
     border: 3px solid var(--color-primary-font);
     border-radius: 10px;
@@ -65,13 +65,13 @@
 
 }
 
-.privacyChoiceConfirmChoice:active{
+.privacyChoiceConfirmChoice:active {
     transform: translateY(.5rem);
 }
 
 
 /* = = = = = = = = = END OF Privvacy Choice CSS = = = = = = = = = */
-.privacyPolicySection{
+.privacyPolicySection {
     align-items: center;
     background-color: black;
     display: flex;
@@ -81,7 +81,7 @@
     width: 100%;
 }
 
-.privacyPolicyTitle h1{
+.privacyPolicyTitle h1 {
     font-size: clamp(4rem, 4vw, 6vw);
     margin-top: 10rem;
     text-align: center;
@@ -90,14 +90,14 @@
 
 
 
-.privacyContainer{
-    color: var(--color-primary-font);  
+.privacyContainer {
+    color: var(--color-primary-font);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.privacyParagraphsContainer{
+.privacyParagraphsContainer {
     margin-top: 3rem;
     margin-bottom: 3rem;
     align-items: center;
@@ -110,7 +110,7 @@
 }
 
 
-.privacyParagraphsContainer p{
+.privacyParagraphsContainer p {
     font-size: clamp(1rem, 1.25vw, 3vw);
     text-align: justify;
 }
@@ -124,16 +124,28 @@
 
 
 
-ol.privacyOrderedList li{
-    list-style-type:decimal;
+ol.privacyOrderedList li {
+    list-style-type: decimal;
 }
 
-ol.privacyBulletListInner li{
-    list-style-type:disc;
+ol.privacyBulletListInner li {
+    list-style-type: disc;
 }
 
 .sitePhoneNumber span,
 .siteEmail span,
 .siteAddress span {
-    font-weight:bold;
+    font-weight: bold;
+}
+
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+    .privacyPolicySection {
+        margin-top: -7rem;
+
+    }
 }

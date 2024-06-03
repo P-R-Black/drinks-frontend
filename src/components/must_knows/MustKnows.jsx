@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 export const MustKnows = ({ mustKnows }) => {
 
 
- 
+
   return (
     <section id="mustKnowSection" className="mustKnowSection">
       <div className="container">
@@ -16,18 +16,20 @@ export const MustKnows = ({ mustKnows }) => {
             <h2 className='mustKnowTitleContainerH2'>Must Know Drinks For Bartenders</h2>
           </div>
           <div className="drinkGlassContainer">
-            {mustKnows && mustKnows.sort((a, b) => a.drink_name > b.drink_name ? 1 : -1).map((mk) =>{
+            {mustKnows && mustKnows.sort((a, b) => a.drink_name > b.drink_name ? 1 : -1).map((mk) => {
               return (
                 <div key={mk.id} className="drinkGlass">
                   <Link to={`/${slugify(mk.base_alcohol)}/${slugify(mk.drink_name)}`}>
-                      <h2>{mk.drink_name}</h2>
+                    <h2>{mk.drink_name}</h2>
                   </Link>
                 </div>
               )
             })}
-         </div>
+          </div>
         </div>
       </div>
     </section>
   )
 }
+
+

@@ -17,16 +17,6 @@ export const DrinksAll = ({ cocktails, alcohol, displayName }) => {
   }
 
 
-  // const getAllDrinks = () => {
-  //   setAllDrinks(prevFilteredDrink => {
-  //     const sortedList = cocktails.filter((fd) => fd.base_alcohol[0] === newDisplayName)
-  //       .map(fd => fd.drink_name)
-  //       .sort();
-  //     return sortedList;
-  //   });
-
-  // }
-
   useEffect(() => {
     setAllDrinks(prevFilteredDrink => {
       const sortedList = cocktails.filter((fd) => fd.base_alcohol[0] === newDisplayName)

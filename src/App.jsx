@@ -14,6 +14,7 @@ import { Drinks } from './pages/drinks/Drinks';
 import { AllDrinks } from './pages/all_drinks/AllDrinks';
 import { Shots } from './pages/shots/Shots';
 import { AllShots } from './pages/all_shots/AllShots';
+import { BuildDrinkPage } from './pages/buildDrinkPage/BuildDrinkPage';
 import { PageNotFound } from './pages/notFound/NotFound';
 import { AboutUs } from './pages/about/About';
 import { Contact } from './pages/contact/Contact'
@@ -257,6 +258,19 @@ const App = () => {
         <Route
           path="/:alcohol/all_shots"
           element={<AllShots
+            drinks={drinks}
+            allShots={allShots}
+            baseAlcohol={baseAlcohol}
+            fetchAlcoholType={fetchAlcoholType}
+            showCookieBanner={showCookieBanner}
+            isCookieSet={isCookieSet}
+            cookiesAccept={cookiesAccept}
+            coockiesDeclined={coockiesDeclined}
+          />}
+        />
+        <Route
+          path="/build-drink"
+          element={<BuildDrinkPage
             drinks={drinks}
             allShots={allShots}
             baseAlcohol={baseAlcohol}

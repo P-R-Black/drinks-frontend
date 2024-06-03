@@ -1,4 +1,4 @@
-.aboutSection{
+.aboutSection {
     align-items: center;
     background-color: black;
     display: flex;
@@ -9,11 +9,11 @@
 }
 
 
-.aboutContainer{
-    color: var(--color-primary-font);    
+.aboutContainer {
+    color: var(--color-primary-font);
 }
 
-.aboutTitleContainer{
+.aboutTitleContainer {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -22,19 +22,19 @@
 
 }
 
-.aboutTitleContainer h1{
+.aboutTitleContainer h1 {
     font-size: clamp(4rem, 11vw, 13vw);
     margin-top: 4.5rem;
 
 }
 
-.aboutTitleContainer h2{
+.aboutTitleContainer h2 {
     font-size: clamp(1.5rem, 3.5vw, 6.5vw);
     line-height: 0%;
 
 }
 
-.aboutParagraphContainer{
+.aboutParagraphContainer {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -45,25 +45,28 @@
     width: 100%;
 }
 
-.aboutParagraphContainer p{
+.aboutParagraphContainer p {
     font-size: clamp(1rem, 1.25vw, 3vw);
     text-align: justify;
     width: 80%;
 }
 
 /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
-@media screen and (max-width: 1024px) {
-   
-    
-}
+@media screen and (max-width: 1024px) {}
 
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
-    .aboutTitleContainer{
-       margin-top: 4.5rem;
-    
+
+    .aboutSection {
+        margin-top: -7rem;
     }
 
-   
-    
+
+    .aboutTitleContainer {
+        margin-top: 4.5rem;
+
+    }
+
+
+
 }
