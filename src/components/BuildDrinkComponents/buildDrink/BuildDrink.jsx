@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { ToolTipTwo } from '../../tooltip/ToolTip';
 import { Link } from 'react-router-dom';
 import slugify from 'react-slugify';
 import '../../BuildDrinkComponents/buildDrink/builddrink.css';
@@ -10,17 +11,15 @@ let picBuldDrinkBGPic = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${buldDrinkB
 export const BuildDrink = ({ drinks, showCookieBanner, isCookieSet, cookiesAccept,
     coockiesDeclined }) => {
 
-    console.log('picBuldDrinkBGPic', picBuldDrinkBGPic)
-    console.log('buldDrinkBGPic', buldDrinkBGPic)
-
-    const [selectedBaseAlcohols, setSelectedBaseAlcohols] = useState([]);
-    const [selectedIngredients, setSelectedIngredients] = useState([])
+    const [selectedBaseAlcohols, setSelectedBaseAlcohols] = useState([""]);
+    const [selectedIngredients, setSelectedIngredients] = useState([""])
+    const [alcoholText, setAlcoholText] = useState('Rum');
+    const [ingredientText, setIngredientText] = useState('Cranberry Juice');
 
     const all_ingredient_list = []
     const all_alcohols_list = []
 
-    const [alcoholText, setAlcoholText] = useState('...');
-    const [ingredientText, setIngredientText] = useState('...');
+
 
     const fishYatesShuffle = (arr) => {
         for (let i = arr.length - 1; i > 0; i--) {
@@ -30,6 +29,7 @@ export const BuildDrink = ({ drinks, showCookieBanner, isCookieSet, cookiesAccep
         return arr
     }
 
+    // randomly selects a base_alcohol and ingredient from API to populate h2
     const findRandom = async (alcNames, ingredNames) => {
         if (alcNames.length === 0) return null;
         if (ingredNames.length === 0) return null;
@@ -42,14 +42,15 @@ export const BuildDrink = ({ drinks, showCookieBanner, isCookieSet, cookiesAccep
     useEffect(() => {
         let interval = setInterval(() => {
             findRandom(all_alcohols_list, extractMainIngredients(all_ingredient_list))
-        }, 15000)
+        }, 5000)
         return () => {
             clearInterval(interval)
         }
 
-    }, [alcoholText])
+    }, [alcoholText, all_ingredient_list, all_alcohols_list])
 
 
+    // Goes through drinks API and gets a list of all base_alcohol names
     const getAllAlcohols = () => {
         let alcohols = drinks.map((dr) => dr.base_alcohol)
         let filteredAlcohol = alcohols.filter((alc) => alc)
@@ -60,10 +61,10 @@ export const BuildDrink = ({ drinks, showCookieBanner, isCookieSet, cookiesAccep
                     all_alcohols_list.push(filteredAlcohol[i][j])
             }
         }
-    }
+    };
 
+    // Goes through drinks API and gets a list of all ingredients listed
     const getAllIngredients = () => {
-
         let ingredients = drinks.map((dr) => dr.ingredient_name)
         let filteredIngredients = ingredients.filter((ing) => ing)
 
@@ -73,26 +74,29 @@ export const BuildDrink = ({ drinks, showCookieBanner, isCookieSet, cookiesAccep
                     all_ingredient_list.push(filteredIngredients[i][j])
             }
         }
-    }
+    };
 
     getAllAlcohols()
     getAllIngredients()
 
+    // clean ingredient names: turns "2.00 oz Orange Juice" to "Orange Juice"
     const extractMainIngredients = (ingredientsList) => {
         return ingredientsList.map(ingredient => {
             // Regular expression to remove the quantity and measurement units
-            return ingredient.replace(/^[\d.]+\s*(oz|quarter|quarters|drops|drop|slices|slice|dashes|dash|cups|tbsp|tsp|can|cup|whole|spoon|barspoon|bottle|wedges|wedge|drop|cl|dl|parts|part|quart|pint|gallon|liter|litre|handful|piece|pieces|sprigs|sprig|spritz|stick|sticks|packet|packets|head|heads|slice|slices|pinch|clove|cloves|stalks|stalk|chunk|chunks|bulb|bulbs|drop|drops|splash|splashes|dash|dashes|bunch|bunches|leaf|leaves|segment|segments|ring|rings|cube|cubes|ear|ears|fillet|fillets|piece|pieces|rasher|rashers|sprig|sprigs|strip|strips|spear|spears|bag|bags|bar|bars|block|blocks|drizzle|drizzles|knob|knobs|scoop|scoops|sheet|sheets|slice|slices|tin|tins|tube|tubes|slice|slices|piece|pieces|pinch|pinches|splash|splashes|quarter|quarters|halves|half|-|)\s*/, "").trim();
+            return ingredient.replace(/^[\d.]+\s*(oz|quarters|quarter|drops|drop|slices|slice|dashes|dash|cups|cup|tbsp|tsp|can|Can|fresh|whole|spoon|barspoon|bottle|wedges|wedge|cl|dl|parts|part|quart|pint|gallon|liter|litre|handful|piece|pieces|sprigs|sprig|spritz|stick|sticks|packet|packets|head|heads|clove|cloves|stalks|stalk|chunk|chunks|bulb|bulbs|splash|splashes|dash|dashes|bunch|bunches|leaf|leaves|segments|segment|rings|ring|cubes|cube|ear|ears|fillet|fillets|rasher|rashers|sprig|sprigs|strip|strips|spear|spears|bag|bags|bar|bars|block|blocks|drizzle|drizzles|knob|knobs|scoop|scoops|sheets|sheet|tins|tin|tubes|tube|pinches|pinch|splashes|splash|halves|half|-|)\s*/, "").trim();
         });
     };
 
     const mainIngredients = extractMainIngredients(all_ingredient_list);
-    // console.log(mainIngredients.sort())
 
-
+    // sorts all the base_alcohols pulled from api "drinks"
     const uniqueAlcohols = [...new Set(all_alcohols_list.sort())]
+
+    // gets rid of any duplicates and sorts all the ingredient names pulled from api "drinks"
     const uniqueIngredients = [...new Set(mainIngredients.sort())]
 
 
+    // Filter's Drinks based on Alcohol and Ingredients Selected
     const filterDrinks = (drinks, selectedBaseAlcohols, selectedIngredients) => {
         return drinks.filter(drink => {
             // Check if any of the selected base alcohols are in the drink's base alcohol list
@@ -111,44 +115,51 @@ export const BuildDrink = ({ drinks, showCookieBanner, isCookieSet, cookiesAccep
         }).map(drink => drink.drink_name);
     };
 
+    // Gets Alcohol Selected and adds to list
     const handleCheckboxChange = (bal) => {
         setSelectedBaseAlcohols((prevSelected) => {
-            if (prevSelected.includes(bal)) {
+            const updatedSelection = prevSelected.filter((item) => item !== "");
+            if (updatedSelection.includes(bal)) {
                 // If already selected, remove it
-                return prevSelected.filter((item) => item !== bal);
+                const newSelection = updatedSelection.filter((item) => item !== bal);
+                return newSelection.length === 0 ? [""] : newSelection;
             } else {
                 // If not selected, add it
-                return [...prevSelected, bal];
+                return [...updatedSelection, bal];
             }
         });
     };
 
+
+    // Gets Ingredients Selected and adds to list
     const handleIngredientboxChange = (bal) => {
         setSelectedIngredients((prevSelected) => {
-            if (prevSelected.includes(bal)) {
+            const updatedSelection = prevSelected.filter((item) => item !== "");
+            if (updatedSelection.includes(bal)) {
                 // If already selected, remove it
-                return prevSelected.filter((item) => item !== bal);
+                const newSelection = updatedSelection.filter((item) => item !== bal);
+                return newSelection.length === 0 ? [""] : newSelection;
             } else {
                 // If not selected, add it
-                return [...prevSelected, bal];
+                return [...updatedSelection, bal];
             }
         });
     };
 
-    // const selectedBaseAlcohols = ["Gin", "Brandy"];
-    // const selectedIngredients = ["Orange Juice", "Blood Orange Juice"];
-    console.log('selectedBaseAlcohols', selectedBaseAlcohols, 'selectedIngredients', selectedIngredients)
-    const filteredDrinkNames = filterDrinks(drinks, selectedBaseAlcohols, selectedIngredients);
-    console.log('filteredDrinkNames', filteredDrinkNames);
 
+    // calls filterDrinks function
+    const filteredDrinkNames = filterDrinks(drinks, selectedBaseAlcohols, selectedIngredients);
+
+    // adds drink names based on alcohol and ingredients selected. If "gin" and "orange juice" selected
+    // this list "filteredDrinksList" should return all drinks that contain "gin" and "orange juice"
     let filteredDrinksList = []
-    let findFullRecipe = filteredDrinkNames.forEach((fdn) => {
+    filteredDrinkNames.forEach((fdn) => {
         for (let d = 0; d < drinks.length; d++) {
             if (fdn === drinks[d].drink_name) {
                 filteredDrinksList.push(drinks[d])
             }
         }
-    })
+    });
 
 
 
@@ -169,7 +180,7 @@ export const BuildDrink = ({ drinks, showCookieBanner, isCookieSet, cookiesAccep
                     <div className="selectionContainer">
                         <div className="alcSelectionContainer">
                             <div className="chooseAlcTitle">
-                                <h3>Alcohol</h3>
+                                <h3>Select an Alcohol</h3>
                             </div>
                             <div className="alcSelection">
                                 {uniqueAlcohols.map((bal, balIdx) => (
@@ -186,7 +197,7 @@ export const BuildDrink = ({ drinks, showCookieBanner, isCookieSet, cookiesAccep
                         </div>
                         <div className="ingSelectionContainer">
                             <div className="chooseIngTitle">
-                                <h3>Ingredients</h3>
+                                <h3>Select an Ingredient</h3>
                             </div>
                             <div className="alcSelection">
                                 {uniqueIngredients.map((bal, idx) => (
@@ -207,15 +218,20 @@ export const BuildDrink = ({ drinks, showCookieBanner, isCookieSet, cookiesAccep
                             <h3>Results</h3>
                         </div>
                         <div className={`${filteredDrinksList.length >= 1 ? "resultSection" : ""}`}>
-                            {filteredDrinksList.map((fd) => (
-                                <Link
-                                    key={fd}
-                                    className="drinkNameResults"
-                                    to={`/${slugify(fd.base_alcohol)}/${slugify(fd.drink_name)}`}
-                                >   {fd.drink_name}
-                                </Link>
-
-                            ))}
+                            {filteredDrinksList && filteredDrinksList.sort((a, b) => a.drink_name > b.drink_name ? 1 : -1).map((fd) => {
+                                return (
+                                    <ToolTipTwo key={fd.id} text={fd.ingredient_name.map((min, minIndex) => (
+                                        <li key={minIndex}>{min.replace(min.split(" ")[0], "").replace(min.split(" ")[1], "").trim()}</li>
+                                    ))}>
+                                        <Link
+                                            key={fd.id}
+                                            className="drinkNameResults"
+                                            to={`/${slugify(fd.base_alcohol)}/${slugify(fd.drink_name)}`}
+                                        >   {fd.drink_name}
+                                        </Link>
+                                    </ToolTipTwo>
+                                )
+                            })}
                         </div>
                     </div>
                 </div>

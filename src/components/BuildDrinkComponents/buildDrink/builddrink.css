@@ -4,11 +4,11 @@
     background-blend-mode: multiply;
     background-repeat: no-repeat;
     background-position: center;
-    overflow-x: hidden;
     height: 100vh;
+    margin-top: -7rem;
+    overflow-x: hidden;
     width: 100%;
 
-    margin-top: -7rem;
 }
 
 .buildADrinkTitle {
@@ -26,10 +26,12 @@
 
 .buildADrinkTitle h2 {
     font-size: clamp(1rem, 2.5vw, 6vw);
-    text-align: center;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    height: 6rem;
+    justify-content: center;
+    padding-bottom: 5rem;
+    text-align: center;
 }
 
 .innerMovingText {
@@ -40,7 +42,8 @@
 #allContainer {
     display: grid;
     grid-template-columns: repeat(2, 70%);
-    margin-top: 3rem;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
 }
 
 .chooseAlcTitle h3,
@@ -92,11 +95,10 @@ input.checkBoxField {
 .resultsContainer {
     height: 100vh;
     width: 42.75%;
-    padding-left: .25rem;
 }
 
 .resultsTitle {
-    padding-left: 2rem;
+    padding-left: 1rem;
 
 }
 
@@ -110,7 +112,8 @@ input.checkBoxField {
     max-height: 75vh;
     overflow-y: scroll;
 
-    padding: .5rem 0 1rem 2rem;
+    padding: .5rem 0 1rem .5rem;
+    margin-left: 1rem;
 
 }
 
@@ -118,11 +121,45 @@ input.checkBoxField {
     color: var(--color-primary-font);
     font-weight: 500;
     margin-bottom: .10rem;
+    animation: fadeInTwo 0.4s ease-in-out;
+}
+
+.drinkNameResults:hover {
+    color: #ef4c3a;
+}
+
+
+
+@keyframes fadeInTwo {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: .25;
+    }
+
+    50% {
+        opacity: .5;
+    }
+
+    100% {
+        opacity: 1;
+    }
 
 }
 
 /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
-@media screen and (max-width: 1024px) {}
+@media screen and (max-width: 1024px) {
+    .buildADrinkTitle {
+        margin-top: 7rem;
+    }
+
+    .alcSelection {
+        grid-template-columns: repeat(3, 30%);
+    }
+
+}
 
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {

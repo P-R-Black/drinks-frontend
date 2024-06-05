@@ -43,7 +43,6 @@ export const Mocktails = ({ drinks, updateBackgroundPicture }) => {
 
     }, [nonAlcoholicDrinks])
 
-    console.log('mocktails', mocktails)
 
     // normal screen => medium screen => small screen
     return (

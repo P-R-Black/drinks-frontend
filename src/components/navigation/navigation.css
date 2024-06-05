@@ -38,8 +38,10 @@
 .navBarMenu {
     color: black;
     cursor: pointer;
+    width: 4rem;
+    padding-left: .5rem;
     z-index: 50;
-    ;
+
 }
 
 .navBarMenu[aria-expanded="true"] .bar:nth-child(1) {
@@ -99,6 +101,8 @@
     -webkit-animation: fadeOut 1s;
     transition: var(--transition-out);
 
+
+
 }
 
 
@@ -117,7 +121,9 @@
     position: absolute;
     right: 0;
     top: 0;
+
     z-index: 10;
+
 
 }
 

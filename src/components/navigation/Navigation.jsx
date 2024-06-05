@@ -53,7 +53,7 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
 
         }
         drinksCount()
-    }, [drinks.length])
+    }, [drinks])
 
     return (
         <>
@@ -62,6 +62,7 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
                     <div className="bannerContainerTitle">{numofRecipes}</div>
                 </div>
             </div>
+
             {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? (
                 <nav className="navbar">
                     <div className="container">
@@ -97,10 +98,10 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
                                     className="dodNav">Discover Cocktail By Alcohol
                                 </HashLink>
                                 <ul className="navDropdownByDrink" data-visible="false">
-                                    {dropDownSelection.map(ba => {
+                                    {dropDownSelection.map((ba, idx) => {
                                         return (
                                             <Link
-                                                key={slugify(ba)}
+                                                key={slugify(idx)}
                                                 className="navbarLinks"
                                                 to={`/${slugify(ba)}`}
                                                 onClick={showNavMenu}
@@ -165,10 +166,10 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
                                 className="dodNav">Discover Cocktail By Alcohol
                             </HashLink>
                             <ul className="navDropdownByDrink" data-visible="false">
-                                {dropDownSelection.map(ba => {
+                                {dropDownSelection.map((ba, idx) => {
                                     return (
                                         <Link
-                                            key={slugify(ba)}
+                                            key={slugify(idx)}
                                             className="navbarLinks"
                                             to={`/${slugify(ba)}`}
                                             onClick={showNavMenu}
@@ -232,10 +233,10 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
                                         className="dodNav">Discover Cocktail By Alcohol
                                     </HashLink>
                                     <ul className="navDropdownByDrink" data-visible="false">
-                                        {dropDownSelection.map(ba => {
+                                        {dropDownSelection.map((ba, idx) => {
                                             return (
                                                 <Link
-                                                    key={slugify(ba)}
+                                                    key={slugify(idx)}
                                                     className="navbarLinks"
                                                     to={`/${slugify(ba)}`}
                                                     onClick={showNavMenu}
@@ -276,7 +277,6 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
                 </>
             )}
         </>
-
     )
 }
 

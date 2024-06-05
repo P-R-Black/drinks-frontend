@@ -1,8 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import './discovershots.css'
-import { Parallax, Background } from 'react-parallax';
-// import discoverShotsImage from '../../assets/pexels-shots.jpg'
+import { Parallax } from 'react-parallax';
 import altImage from '../../assets/pexels-rachel-default.jpg'
 import { ToolTip } from '../tooltip/ToolTip';
 import slugify from 'react-slugify';
@@ -44,6 +43,7 @@ export const DiscoverShots = ({ allShots }) => {
             <Parallax
                 blur={5}
                 strength={500}
+                bgImageAlt={altImage}
             >
                 <div className="container">
                     <div className="discoverShotsContainer">

@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import './discover.css'
 import { Parallax } from 'react-parallax';  //Background
-// import altImage from '../../assets/pexels-rachel-default.jpg'
+import altImage from '../../assets/pexels-rachel-default.jpg'
 import { ToolTip } from '../tooltip/ToolTip';
 import slugify from 'react-slugify';
 
@@ -42,17 +42,9 @@ export const Discover = ({ drinks, cocktails }) => {
         <section id="discoverSection" className="discoverSection">
             <Parallax
                 blur={5}
-                // bgImageAlt={altImage}
+                bgImageAlt={altImage}
                 strength={500}>
-                {/* <Background>
-                    <img src={altImage} alt={altImage}
-                        className='parallaxImageDod' style={{
-                            position: "absolute", height: "100%", width: "100vw",
-                            backfaceVisibility: "hidden", transform: 'translate3d(-50%, -49.5868px, 0px)', left: "50%",
-                            transformStyle: 'preserve-3d', backgroundSize: "cover"
-                        }}
-                    />
-                </Background> */}
+
                 <div className="container">
                     <div className="discoverContainer">
                         <div className="discoverTitleContainer" ref={discoverRef} >

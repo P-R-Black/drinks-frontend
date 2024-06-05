@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-
+import axios from 'axios';
 import { Navigation } from '../../components/navigation/Navigation';
 import { Hero } from '../../components/hero/Hero';
 import { DailyDrink } from '../../components/daily_drink/DailyDrink';
@@ -13,7 +13,7 @@ import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar
 
 import { Footer } from '../../components/footer/Footer';
 
-import axios from 'axios'
+
 
 const DB_ENDPOINT = process.env.REACT_APP_DB_GET_KEY
 const DB_LAST_ENTRY = process.env.REACT_APP_DB_LAST_KEY

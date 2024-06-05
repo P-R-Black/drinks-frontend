@@ -1,12 +1,11 @@
 import React from 'react'
 import './logo.css'
-import { HashLink } from 'react-router-hash-link'
-
+import { Link } from 'react-router-dom';
 export const Logo = () => {
-    
+
   return (
-      <HashLink to="/">
-        <div className="logoName">{"Keep's Guide"}</div>
-      </HashLink>
-    )
+    <Link to="/">
+      <div data-testid="button" className="logoName">{"Keep's Guide"}</div>
+    </Link>
+  )
 }

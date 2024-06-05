@@ -1,4 +1,4 @@
-.tooltip_container{
+.tooltip_container {
     position: relative;
     display: inline-block;
     background-color: transparent;
@@ -15,7 +15,7 @@
     width: clamp(8.5rem, 11rem, 12vw);
 }
 
-.tooltip{
+.tooltip {
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     color: rgb(0, 0, 0);
@@ -29,20 +29,41 @@
 }
 
 
+.tooltip_two {
+    border: 2px solid #566573;
+    border-radius: 10px;
+    color: #abb2b9;
+    font-size: clamp(.85rem, 1rem, 40vw);
+
+    margin: .25rem 0;
+    padding: .25rem .50rem;
+    transition: var(--transition-out);
+    width: 90%;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
 
 
 /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
-@media screen and (max-width: 1024px) {
-   
-    
-}
+@media screen and (max-width: 1024px) {}
 
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
 
-    .tooltip_container{
+    .tooltip_container {
         padding: .2rem;
         margin-top: 1rem;
-        
-    } 
+
+    }
 }

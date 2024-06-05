@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 import ReactGA from 'react-ga';
 
 
-import axios from 'axios'
+import axios from 'axios';
 
 import { Home } from './pages/home/Home';
 import { Alcohol } from './pages/alcohol/Alcohol';
