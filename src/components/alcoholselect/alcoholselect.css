@@ -9,7 +9,6 @@
     height: 100vh;
     width: 100%;
     margin-top: -5rem;
-
 }
 
 .baseAlcoholContainer {
@@ -46,6 +45,7 @@
 
 .drinkListContainer {
     max-width: var(--container-width-lg);
+    margin-bottom: -2rem;
 }
 
 

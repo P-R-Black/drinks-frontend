@@ -4,7 +4,7 @@ import './footer.css'
 import { Logo } from '../logo/Logo'
 import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { FaTumblr } from "react-icons/fa";
+import { FaSquareInstagram } from "react-icons/fa6";
 import { FaTiktok } from "react-icons/fa";
 import { HashLink } from 'react-router-hash-link'
 import { NavLink, Link } from 'react-router-dom';
@@ -22,10 +22,35 @@ export const Footer = () => {
                     <div className="footerLogoSocials">
                         <Logo />
                         <div className="footerSocials">
-                            <FaFacebookF />
-                            <FaXTwitter />
-                            <FaTumblr />
-                            <FaTiktok />
+                            <Link
+                                className="footerSocials"
+                                to="https://www.facebook.com/profile.php?id=61560894480981"
+                                target="_blank"
+                            > <FaFacebookF />
+                            </Link>
+                            <Link
+                                className="footerSocials"
+                                to="https://www.instagram.com/keeps_guide?igsh=MXd6MnZva2VpemxsYQ%3D%3D&utm_source=qr"
+                                target="_blank"
+                            >
+                                <FaSquareInstagram />
+                            </Link>
+                            <Link
+                                className="footerSocials"
+                                to="https://x.com/KeepsGuide"
+                                target="_blank"
+                            >
+                                <FaXTwitter />
+                            </Link>
+
+                            <Link
+                                className="footerSocials"
+                                to="https://www.tiktok.com/@keeps.guide?_t=8n7xviIyRTj&_r=1"
+                                target="_blank"
+                            >
+                                <FaTiktok />
+                            </Link>
+
                         </div>
                     </div>
                     {window.innerWidth < 601 ? (

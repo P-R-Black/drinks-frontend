@@ -14,7 +14,6 @@ import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar
 import { Footer } from '../../components/footer/Footer';
 
 
-
 const DB_ENDPOINT = process.env.REACT_APP_DB_GET_KEY
 const DB_LAST_ENTRY = process.env.REACT_APP_DB_LAST_KEY
 
@@ -22,8 +21,6 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
   allShots, allDrinksBackgroundPic, updateBackgroundPicture, isCookieSet, cookiesAccept,
   coockiesDeclined, showCookieBanner
 }) => {
-
-
 
 
   var date = new Date()

@@ -23,6 +23,8 @@ import { Privacy } from './pages/privacy/Privacy';
 import { SuperUserPage } from './pages/superUserPage/SuperUserPage';
 import { DashboardPage } from './pages/dashboardPage/DashboardPage';
 
+import { Query, QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
+
 
 // const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
 const API_ENDPOINT_ALLDRINKS = process.env.REACT_APP_DRINKS_KEY
@@ -44,9 +46,12 @@ const App = () => {
   const [error, setError] = useState()
   const [baseAlcohol, setBaseAlcohol] = useState([])
 
-  const [showCookieBanner, setShowCookieBanner] = useState(false)
+  const [showCookieBanner, setShowCookieBanner] = useState(false);
   const [isCookieSet, setCookie] = useState(false);
-  const [hasConsetValue, setHasConsentValue] = useState(false)
+  const [hasConsetValue, setHasConsentValue] = useState(false);
+
+
+
 
   useEffect(() => {
     setHasConsentValue(!!isCookieSet)
@@ -183,8 +188,8 @@ const App = () => {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route>
 
+      <Route>
         <Route
           index
           element={<Home
@@ -366,10 +371,12 @@ const App = () => {
   return (
     <div className="app">
 
-      {loading ? (<PageLoader />) : (<RouterProvider router={router} />)}
-      {/* <RouterProvider router={router} /> */}
-    </div>
+      {loading ? (<PageLoader />) : (<RouterProvider router={router} />)
+      }
+    </div >
   )
 }
 
 export default App
+
+

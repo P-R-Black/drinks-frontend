@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^3.10.0",
+    "@tanstack/react-query": "^5.40.1",
     "axios": "^1.5.1",
     "js-cookie": "^3.0.5",
     "node-cron": "^3.0.2",
@@ -15,7 +16,7 @@
     "react-parallax": "^3.5.1",
     "react-router-dom": "^6.16.0",
     "react-router-hash-link": "^2.4.3",
-    "react-scripts": "^3.0.1",
+    "react-scripts": "^5.0.1",
     "react-share": "^5.0.3",
     "react-slugify": "^3.0.3",
     "redis": "^4.6.13",
@@ -48,9 +49,8 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.24.6",
-    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^16.0.0",
-    "@testing-library/user-event": "^14.5.2",
-    "@types/jest": "^29.5.12"
+    "@testing-library/user-event": "^14.5.2"
   }
 }
