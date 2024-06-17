@@ -15,9 +15,17 @@ export const AlcoholSelect = ({ cocktails, alcohol, displayName }) => {
   // removes display name from array
   let newDisplayName;
 
-  for (let i of displayName) {
-    newDisplayName = i[0]
+  if (displayName?.length === 1) {
+    newDisplayName = displayName
+  } else {
+    if (displayName !== undefined) {
+      for (let i of displayName) {
+        newDisplayName = i[0]
+      }
+    }
+
   }
+
 
 
   const filterDrink = useCallback(() => {
@@ -41,9 +49,9 @@ export const AlcoholSelect = ({ cocktails, alcohol, displayName }) => {
 
   function addAnimation() {
     scrollers.forEach(scroller => {
-      let test = scroller.getAttribute("data-animated")
+      let scrolls = scroller.getAttribute("data-animated")
 
-      if (test !== 'true') {
+      if (scrolls !== 'true') {
         scroller.setAttribute("data-animated", true)
         const scrollerInner = scroller.querySelector('.drinkListUl');
         const scrollerContent = Array.from(scrollerInner.children);
@@ -67,10 +75,10 @@ export const AlcoholSelect = ({ cocktails, alcohol, displayName }) => {
             <h2>Drinks & Cocktails</h2>
           </div>
           <div className="drinkListContainer">
-            <ul className="drinkListUl" style={{ animationDuration: `${(filteredDrink.length * 100) / 20}s` }}>
+            <ul data-testid="buttonTest" className="drinkListUl" style={{ animationDuration: `${(filteredDrink.length * 100) / 20}s` }}>
               {filteredDrink.map((fd, fdIdx) => {
                 return (
-                  <React.Fragment key={fdIdx}>
+                  <React.Fragment key={fdIdx} >
                     <li className="drinkListLi">{fd}
                       <Link to={`/${slugify(alcohol)}/${slugify(fd)}`} className="linktoRecipe">Recipe</Link>
                     </li>

@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import axios from 'axios';
 import { Navigation } from '../../components/navigation/Navigation';
-import { Hero } from '../../components/hero/Hero';
-import { DailyDrink } from '../../components/daily_drink/DailyDrink';
-import { MustKnows } from '../../components/must_knows/MustKnows';
+import { Hero } from '../../components/homePageComponents/hero/Hero';
+import { DailyDrink } from '../../components/homePageComponents/daily_drink/DailyDrink';
+import { MustKnows } from '../../components/homePageComponents/must_knows/MustKnows';
 import { MidSection } from '../../components/midsection/MidSection';
 import { MidSectionTwo } from '../../components/midsection/MidSection';
-import { Discover } from '../../components/discover/Discover';
-import { DiscoverShots } from '../../components/discoverShots/DiscoverShots';
-import { Mocktails } from '../../components/mocktails/Mocktails';
+import { Discover } from '../../components/homePageComponents/discover/Discover';
+import { DiscoverShots } from '../../components/homePageComponents/discoverShots/DiscoverShots';
+import { Mocktails } from '../../components/homePageComponents/mocktails/Mocktails';
 import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
 
 import { Footer } from '../../components/footer/Footer';
+
 
 
 const DB_ENDPOINT = process.env.REACT_APP_DB_GET_KEY
@@ -86,6 +87,7 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
 
   const handleDateClick = async (date) => {
     const event = await eventMap[String(date)];
+    console.log('handleDateClick', handleDateClick)
     if (event) {
       setDrinkLookup(event)
       getFullDrinkInfo(event)
@@ -96,9 +98,10 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
   const calDate = document.querySelectorAll('.calDate')
   calDate.forEach((cd) => {
     cd.addEventListener('click', async () => {
-      let getClassNames = await cd.getAttribute('class')
-      let clickedDay = await cd.innerHTML
-      let clickedYear = await calendarYear
+
+      let getClassNames = cd.getAttribute('class')
+      let clickedDay = cd.innerHTML
+      let clickedYear = calendarYear
       let clickedMonth;
 
       if (getClassNames.includes('lastMonthDays')) {
@@ -109,25 +112,23 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
         clickedMonth = calendarMonth + 1
       }
 
+
+
       if (String(clickedMonth).length < 2) {
         clickedMonth = "0" + String(clickedMonth)
       }
 
-      let clickedDate = `${calendarYear}-${clickedMonth}-${cd.innerHTML.length === 1 ? '0' + cd.innerHTML : cd.innerHTML}`
+      // let clickedOnDate = `${calendarYear}-${clickedMonth}-${cd.innerHTML.length === 1 ? '0' + cd.innerHTML : cd.innerHTML}`
       let monthInText = months[Number(clickedMonth - 1)]
 
-      handleDateClick(clickedDate)
+      // handleDateClick(clickedOnDate)
+
       let changedDate = `${monthInText} ${clickedDay}, ${clickedYear}`
       setDateLookup(changedDate)
 
     })
   })
 
-
-  // const getFullDrinkInfo = async (theLastDod) => {
-  //   let ldod = await drinks.find((drink) => drink.drink_name === theLastDod)
-  //   setCurrentDrink([ldod])
-  // }
 
 
 
@@ -144,12 +145,18 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
       <Hero />
       <MidSection />
       <DailyDrink
-        drinks={drinks} date={date} year={year} month={month} dd={dd} mm={mm}
+        drinks={drinks}
+        date={date}
+        year={year}
+        month={month}
+        dd={dd}
+        mm={mm}
         lastDrinkOfTheDay={lastDrinkOfTheDay}
         currentDrink={currentDrink}
         drinkLookup={drinkLookup}
         dateLookup={dateLookup}
         months={months}
+        handleDateClick={handleDateClick}
       />
       <Discover
         drinks={drinks}
@@ -174,6 +181,7 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
         cookiesAccept={cookiesAccept}
         coockiesDeclined={coockiesDeclined}
       />
+
       <Footer />
     </>
   )

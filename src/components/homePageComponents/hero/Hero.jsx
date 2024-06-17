@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import './hero.css'
 import { Parallax } from 'react-parallax';
 
-import altImage from '../../assets/pexels-lime-mint-drinks.jpg'
+import altImage from '../../../assets/pexels-lime-mint-drinks.jpg'
 
 export const Hero = () => {
 
@@ -26,7 +26,7 @@ export const Hero = () => {
       {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? (
         <section id="heroSection" className="indexBackground"> {/* normal screen size*/}
           <Parallax blur={{ min: -15, max: 15 }} strength={500}
-            bgImage={require('../../assets/pexels-chris-f-1283219.jpeg')}
+            bgImage={require('../../../assets/pexels-chris-f-1283219.jpeg')}
             bgImageAlt={altImage}
           >
             <div className="container">
@@ -43,7 +43,7 @@ export const Hero = () => {
         </section>) : (
         <section id="heroSection" className="indexBackground">  {/* medium screen size*/}
           <Parallax blur={{ min: -15, max: 15 }} strength={500}
-            bgImage={require('../../assets/pexels-chris-f-1283219.jpeg')}
+            bgImage={require('../../../assets/pexels-chris-f-1283219.jpeg')}
           >
             <div className="container">
               <div className="homePageContainer">
@@ -60,7 +60,7 @@ export const Hero = () => {
         </section>) : (
         <section id="heroSection" className="indexBackground"> {/* small screen size*/}
           <Parallax blur={{ min: -15, max: 15 }} strength={500}
-            bgImage={require('../../assets/pexels-chris-f-1283219.jpeg')}
+            bgImage={require('../../../assets/pexels-chris-f-1283219.jpeg')}
           >
             <div className="container">
               <div className="homePageContainer">

@@ -2,8 +2,8 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import './discover.css'
 import { Parallax } from 'react-parallax';  //Background
-import altImage from '../../assets/pexels-rachel-default.jpg'
-import { ToolTip } from '../tooltip/ToolTip';
+import altImage from '../../../assets/pexels-rachel-default.jpg'
+import { ToolTip } from '../../tooltip/ToolTip';
 import slugify from 'react-slugify';
 
 export const Discover = ({ drinks, cocktails }) => {

@@ -75,19 +75,11 @@ test('renders logo', () => {
 
 
 
-// working test from quiz app
-// test("buttons render", () => {
-//     render(<AnswerBoxes answers={['test1', 'test2', 'test3', 'test4']} />);
-//     var button = screen.getAllByTestId("buttonTest")
-//     expect(button).toBeTruthy()
-// }) 
-// <button data-testid="buttonTest" id="btn" key={idx}></button>
-
 
 
 // screen methods
 // getByText -> to get element that has text in () screen.getByText(/lear react/i)
-// explect(linkElement)
+// expect(linkElement)
 
 // .toContaininHTML('p') || .toContaininHTML('h3') <- assertion to verify valid p tag || assertion to very valid h3 tag 
 // toHaveTextContent("Keep's Guide")

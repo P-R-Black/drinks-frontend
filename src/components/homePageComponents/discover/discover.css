@@ -4,7 +4,7 @@
     position: relative;
     width: 100%;
 
-    background-image: radial-gradient(#2e2c7c68, #4a5ecb5f), url('../../assets/sergio-alves-santos-PeDrafNlY2Y-unsplash.jpg');
+    background-image: radial-gradient(#2e2c7c68, #4a5ecb5f), url('../../../assets/sergio-alves-santos-PeDrafNlY2Y-unsplash.jpg');
     background-size: cover;
     background-blend-mode: multiply;
     background-repeat: no-repeat;

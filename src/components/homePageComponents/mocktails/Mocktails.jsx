@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 import './mocktails.css'
 import { Parallax, Background } from 'react-parallax';
-import mocktailImage from '../../assets/pexels-mocktails.jpg'
-import altImage from '../../assets/pexels-lime-mint-drinks.jpg'
+import mocktailImage from '../../../assets/pexels-mocktails.jpg'
+import altImage from '../../../assets/pexels-lime-mint-drinks.jpg'
 import slugify from 'react-slugify';
 
 

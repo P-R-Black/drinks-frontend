@@ -75,7 +75,7 @@
 
 .drinkGlass:after {
     animation: drinks 4s infinite linear;
-    background: url("../../assets/wave(3).svg"), url("../../assets/wave(6).svg");
+    background: url("../../../assets/wave(3).svg"), url("../../../assets/wave(6).svg");
     background-position: 0 0, 0 0;
     background-repeat: repeat-x;
     border-radius: 15px 15px 40px 40px;

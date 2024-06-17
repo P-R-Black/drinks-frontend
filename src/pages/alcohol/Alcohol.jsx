@@ -21,7 +21,7 @@ export const Alcohol = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navL
 
   const convertAlcoholName = useCallback((alcohol) => {
 
-    // gets base alcoohl as it appears from API
+    // gets base alcohol as it appears from API
     const findParenthesis = (text) => {
       let findAlcohol = cocktails.filter((as) => slugify(text) === alcohol)
         .map((fd) => fd.base_alcohol)

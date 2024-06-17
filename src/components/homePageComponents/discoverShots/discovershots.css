@@ -4,7 +4,7 @@
     position: relative;
     width: 100%;
 
-    background-image: radial-gradient(#2e2c7c68, #4a5ecb5f), url('../../assets/pexels-shots.jpg');
+    background-image: radial-gradient(#2e2c7c68, #4a5ecb5f), url('../../../assets/pexels-shots.jpg');
     background-size: cover;
     background-blend-mode: multiply;
     background-repeat: no-repeat;
@@ -22,6 +22,7 @@
     min-height: 100vh;
     filter: brightness(45%);
     transform-style: preserve-3d;
+
 }
 
 .discoverShotsContainer {
@@ -66,12 +67,18 @@
     overflow-y: scroll;
     padding-bottom: 4rem;
     width: 100%;
+
+
+
+
+
 }
 
 .discShotsLinksToDrinkContainer.hidden {
     opacity: 0;
     filter: blur(15px);
     transition: all 1s;
+
 }
 
 
@@ -105,10 +112,9 @@
 
 
 .linktoRecipeFour {
-    color: white;
+    color: var(--color-primary-font);
     font-size: clamp(.75rem, 1.10vw, 5vw);
 }
-
 
 
 @keyframes animated-shot-title {
