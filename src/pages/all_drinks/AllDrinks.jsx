@@ -2,11 +2,11 @@ import React, { useState, useEffect, useCallback } from 'react'
 import slugify from 'react-slugify';
 import { useParams } from 'react-router-dom';
 
-import { Navigation } from '../../components/navigation/Navigation'
+import { Navigation } from '../../components/LogoNavFooterPageComponents/navigation/Navigation'
 import { DrinksAll } from '../../components/drinks_all/DrinksAll';
 import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
 
-import { Footer } from '../../components/footer/Footer'
+import { Footer } from '../../components/LogoNavFooterPageComponents/footer/Footer'
 
 export const AllDrinks = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkText,
   isCookieSet, cookiesAccept, coockiesDeclined, showCookieBanner }) => {

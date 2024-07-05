@@ -65,7 +65,7 @@ export const BuildDrink = ({ drinks, showCookieBanner, isCookieSet, cookiesAccep
 
     // Goes through drinks API and gets a list of all ingredients listed
     const getAllIngredients = () => {
-        let ingredients = drinks.map((dr) => dr.ingredient_name)
+        let ingredients = drinks.map((dr) => dr.ingredients)
         let filteredIngredients = ingredients.filter((ing) => ing)
 
         for (let i = 0; i < filteredIngredients.length; i++) {
@@ -104,7 +104,7 @@ export const BuildDrink = ({ drinks, showCookieBanner, isCookieSet, cookiesAccep
 
             // Check if any of the selected ingredients are in the drink's ingredient list
             const hasSelectedIngredient = selectedIngredients.some(ingredient =>
-                drink.ingredient_name.some(drinkIngredient => drinkIngredient.toLowerCase().includes(ingredient.toLowerCase()))
+                drink.ingredients.some(drinkIngredient => drinkIngredient.toLowerCase().includes(ingredient.toLowerCase()))
             );
 
             // Return true if the drink has both a selected base alcohol and a selected ingredient
@@ -220,7 +220,7 @@ export const BuildDrink = ({ drinks, showCookieBanner, isCookieSet, cookiesAccep
                         <div className={`${filteredDrinksList.length >= 1 ? "resultSection" : ""}`}>
                             {filteredDrinksList && filteredDrinksList.sort((a, b) => a.drink_name > b.drink_name ? 1 : -1).map((fd) => {
                                 return (
-                                    <ToolTipTwo key={fd.id} text={fd.ingredient_name.map((min, minIndex) => (
+                                    <ToolTipTwo key={fd.id} text={fd.ingredients.map((min, minIndex) => (
                                         <li key={minIndex}>{min.replace(min.split(" ")[0], "").replace(min.split(" ")[1], "").trim()}</li>
                                     ))}>
                                         <Link

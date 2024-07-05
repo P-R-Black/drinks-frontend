@@ -26,13 +26,33 @@ import { DashboardPage } from './pages/dashboardPage/DashboardPage';
 import { Query, QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 
 
-// const API_ENDPOINT=process.env.REACT_APP_PUBLIC_KEY
-const API_ENDPOINT_ALLDRINKS = process.env.REACT_APP_DRINKS_KEY
-const API_ENDPOINT_COCKTAILS = process.env.REACT_APP_COCKTAILS_KEY
-const API_ENDPOINT_MUST_KNOW = process.env.REACT_APP_MUST_KNOW_KEY
-const API_ENDPOINT_SHOTS = process.env.REACT_APP_ALL_SHOTS_KEY
+const drinksApi = process.env.REACT_APP_PRODUCTION_DRINK_PUBLIC_KEY
+const mustKnowApi = process.env.REACT_APP_MUST_KNOW_KEY
+const allShotsEndpoint = process.env.REACT_APP_ALL_SHOTS_KEY
+const allCocktailsEndpoint = process.env.REACT_APP_COCKTAILS_KEY
+const drinksAPIKeyProduction = process.env.REACT_APP_PRODUCTION_KEY
 const GA_UA_ID = process.env.REACT_APP_GOOGLE_UA_ID; // OUR_TRACKING_ID
 const GA_ANALYTICS = process.env.REACT_APP_GOOGLE_MEASUREMENT_ID;
+
+
+const fetchPaginatedData = async (url, headers) => {
+  let results = [];
+  let nextUrl = url;
+
+  while (nextUrl) {
+    try {
+      const response = await axios.get(nextUrl, { headers });
+      results = [...results, ...response.data.results];
+      nextUrl = response.data.next;
+
+    } catch (error) {
+      console.error("Error fetching paginated data", error);
+      nextUrl = null
+    }
+
+  }
+  return results
+}
 
 
 
@@ -104,32 +124,35 @@ const App = () => {
     setShowCookieBanner(true)
   }
 
-
-
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const { data: response } = await axios.get(API_ENDPOINT_COCKTAILS);
-        const { data: responseThree } = await axios.get(API_ENDPOINT_MUST_KNOW);
-        const { data: responseFour } = await axios.get(API_ENDPOINT_SHOTS);
-        const { data: responseFive } = await axios.get(API_ENDPOINT_ALLDRINKS);
-
-        setCocktails(response);
-        setMustKnows(responseThree)
-        setAllShots(responseFour)
-        setDrinks(responseFive)
-      } catch (e) {
-        setError(e)
-        console.error(e.message);
-      } finally {
-        setLoading(false);
+    const fetchDrinks = async () => {
+      setLoading(true)
+      const headers = {
+        'Authorization': `Api-Key ${drinksAPIKeyProduction}`,
+        'Content-type': 'application/json'
       }
+      try {
+        const drinksData = await fetchPaginatedData(drinksApi, headers)
+        const mustKnowDaa = await fetchPaginatedData(mustKnowApi.toString(), headers)
+        const allShotsData = await fetchPaginatedData(allShotsEndpoint.toString(), headers)
+        const cocktailsData = await fetchPaginatedData(allCocktailsEndpoint, headers)
+        setDrinks(drinksData);
+        setMustKnows(mustKnowDaa);
+        setAllShots(allShotsData);
+        setCocktails(cocktailsData);
+        setLoading(false)
 
-    }
-    fetchData();
-    // fetchAlcoholType();    
-  }, []);
+      } catch (error) {
+        console.error('Error details:', {
+          message: error.message,
+          stack: error.stack,
+          config: error.config,
+          code: error.code,
+        });
+      }
+    };
+    fetchDrinks()
+  }, [drinksApi, mustKnowApi, allShotsEndpoint, allCocktailsEndpoint, drinksAPIKeyProduction]);
 
 
   const fetchAlcoholType = async () => {
@@ -370,9 +393,10 @@ const App = () => {
 
   return (
     <div className="app">
-
-      {loading ? (<PageLoader />) : (<RouterProvider router={router} />)
+      {
+        loading ? (<PageLoader />) : (<RouterProvider router={router} />)
       }
+
     </div >
   )
 }

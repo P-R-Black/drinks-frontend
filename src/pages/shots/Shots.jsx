@@ -2,10 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import { Navigation } from '../../components/navigation/Navigation';
+import { Navigation } from '../../components/LogoNavFooterPageComponents/navigation/Navigation';
 import { ShotSelect } from '../../components/shotSelect/ShotSelect';
 import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
-import { Footer } from '../../components/footer/Footer';
+import { Footer } from '../../components/LogoNavFooterPageComponents/footer/Footer';
 import slugify from 'react-slugify';
 
 

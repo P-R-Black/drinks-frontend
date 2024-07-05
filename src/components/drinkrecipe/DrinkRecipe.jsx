@@ -49,7 +49,7 @@ export const DrinkRecipe = ({ drinks, drinkRecipe }) => {
     // Convert Ingredient Ounces to Milliliters 
     const convertUnitMeasurements = () => {
 
-        let ingredients = recipe.map((ing) => ing['ingredient_name'])
+        let ingredients = recipe.map((ing) => ing['ingredients'])
         ingredients.map((ings) => {
             let testing = ings.map((is) => is.split(" "))
             for (let i = 0; i < testing.length; i++) {
@@ -72,7 +72,7 @@ export const DrinkRecipe = ({ drinks, drinkRecipe }) => {
     // Convert Ingredient Ounces to Milliliters - ChatGPT, doesn't work when chaning to ML
     // const convertUnitMeasurements = () => {
     //     let newIngredients = recipe.map((ing) => {
-    //         return ing['ingredient_name'].map((is) => {
+    //         return ing['ingredients'].map((is) => {
     //             let splitIngredient = is.split(" ");
     //             let ingredientUnits = splitIngredient[0];
     //             let ingredientMeasurement = splitIngredient[1];
@@ -130,7 +130,7 @@ export const DrinkRecipe = ({ drinks, drinkRecipe }) => {
                                 <h2 id="recipeTitle" className="recipeTitle">{dr.drink_name}</h2>
                                 <div className="likesAndShare" style={{ color: "white" }}>
                                     <Share recipeInPlay={dr.drink_name}
-                                        ingredientInPlay={dr.ingredient_name}
+                                        ingredientInPlay={dr.ingredients}
                                         garnishInPlay={dr.garnish}
                                         directionsInPlay={dr.mixing_direction}
                                         glassInPlay={dr.serving_glass}
@@ -158,7 +158,7 @@ export const DrinkRecipe = ({ drinks, drinkRecipe }) => {
                                         </>
                                     ) : (
                                         <ul>
-                                            {dr.ingredient_name.map((im, imIndex) => {
+                                            {dr.ingredients.map((im, imIndex) => {
                                                 return (
                                                     <li className="ingredients" key={imIndex}>
                                                         <span className="ingredientUnit">{formatUnits(im)} </span>

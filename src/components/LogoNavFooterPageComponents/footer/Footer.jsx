@@ -8,7 +8,7 @@ import { FaSquareInstagram } from "react-icons/fa6";
 import { FaTiktok } from "react-icons/fa";
 import { HashLink } from 'react-router-hash-link'
 import { NavLink, Link } from 'react-router-dom';
-import { PrivacyChoice } from '../user_privacy/PrivacyChoice';
+import { PrivacyChoice } from '../../user_privacy/PrivacyChoice';
 
 export const Footer = () => {
     const [buttonPopUp, setButtonPopUp] = useState(false);
@@ -110,7 +110,7 @@ export const Footer = () => {
                             <div className="rightsReserved">All Rights Reserved.</div>
                         </div>
                         <div className="rightsReservedSection">
-                            <Link className="apiBy" to="http://127.0.0.1:8000/">API</Link>
+                            <Link className="apiBy" to="https://www.drinksapi.paulrblack.com/">API</Link>
                         </div>
                     </div>
                 </div>

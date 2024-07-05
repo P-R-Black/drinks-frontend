@@ -4,9 +4,7 @@ import slugify from 'react-slugify'
 import { Link } from 'react-router-dom'
 
 export const MustKnows = ({ mustKnows }) => {
-
-
-
+  console.log('mustKnows mustKnows.jsx', mustKnows)
   return (
     <section id="mustKnowSection" className="mustKnowSection">
       <div className="container">

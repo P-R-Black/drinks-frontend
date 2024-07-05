@@ -1,8 +1,8 @@
 import React from 'react'
 import { ContactUs } from '../../components/contactUs/ContactUs'
 import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
-import { Footer } from '../../components/footer/Footer'
-import { Navigation } from '../../components/navigation/Navigation'
+import { Footer } from '../../components/LogoNavFooterPageComponents/footer/Footer'
+import { Navigation } from '../../components/LogoNavFooterPageComponents/navigation/Navigation'
 
 
 export const Contact = ({ drinks, baseAlcohol, fetchAlcoholType, navLinkText,

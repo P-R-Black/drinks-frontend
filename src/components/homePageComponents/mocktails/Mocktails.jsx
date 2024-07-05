@@ -18,7 +18,7 @@ export const Mocktails = ({ drinks, updateBackgroundPicture }) => {
 
 
     const nonAlcoholicDrinks = useCallback(async () => {
-        let nonAlcBase = await drinks.filter((nab) => nab.base_alcohol[0] === "Non-Alcoholic")
+        let nonAlcBase = await drinks.filter((nab) => nab.base_alcohol[0] === "non-alcoholic")
         setMocktails(nonAlcBase.sort().slice(0, 3));
     }, [drinks, setMocktails])
 
@@ -90,7 +90,7 @@ export const Mocktails = ({ drinks, updateBackgroundPicture }) => {
                                         {mt.drink_name}
                                     </Link>
                                     <ol className="mockIngredientContainer">
-                                        {mt.ingredient_name.map((min, minIndex) => (
+                                        {mt.ingredients.map((min, minIndex) => (
                                             <li key={minIndex} className="mockIngredients">
                                                 {min.replace(min.split(" ")[0], "").replace(min.split(" ")[1], "")
                                                     .trim()}</li>

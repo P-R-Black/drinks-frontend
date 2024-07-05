@@ -1,11 +1,11 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
 
-import { Navigation } from '../../components/navigation/Navigation'
+import { Navigation } from '../../components/LogoNavFooterPageComponents/navigation/Navigation'
 import { DrinkRecipe } from '../../components/drinkrecipe/DrinkRecipe';
 import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
 
-import { Footer } from '../../components/footer/Footer'
+import { Footer } from '../../components/LogoNavFooterPageComponents/footer/Footer'
 
 
 export const Drinks = ({ drinks, baseAlcohol, fetchAlcoholType, navLinkText,

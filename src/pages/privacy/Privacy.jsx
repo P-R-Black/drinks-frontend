@@ -1,8 +1,8 @@
 import React from 'react'
-import { Navigation } from '../../components/navigation/Navigation';
+import { Navigation } from '../../components/LogoNavFooterPageComponents/navigation/Navigation';
 import { PrivacyPolicy } from '../../components/user_privacy/PrivacyPolicy';
 import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
-import { Footer } from '../../components/footer/Footer';
+import { Footer } from '../../components/LogoNavFooterPageComponents/footer/Footer';
 
 
 export const Privacy = ({ drinks, baseAlcohol, fetchAlcoholType, navLinkText,

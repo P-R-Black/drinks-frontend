@@ -36,6 +36,7 @@
 
 .innerMovingText {
     margin-left: .5rem;
+    text-transform: capitalize;
 }
 
 
@@ -83,13 +84,15 @@
     display: flex;
     align-items: center;
     gap: .5rem;
-
+    text-transform: capitalize;
 
 }
 
 
 input.checkBoxField {
     width: 1rem;
+
+
 }
 
 .resultsContainer {

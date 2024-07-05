@@ -77,6 +77,12 @@
 }
 
 
+.glass {
+    text-transform: capitalize;
+
+}
+
+
 .instructions {
     color: var(--color-primary-font);
     font-size: 1.15rem;
@@ -218,6 +224,7 @@
     .glass {
         text-align: center;
     }
+
 
     .servingAmountContainer,
     .measureContainer {

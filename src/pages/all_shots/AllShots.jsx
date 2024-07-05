@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useParams } from 'react-router-dom';
 import slugify from 'react-slugify';
-import { Navigation } from '../../components/navigation/Navigation'
+import { Navigation } from '../../components/LogoNavFooterPageComponents/navigation/Navigation'
 import { ShotsAll } from '../../components/shots_all/ShotsAll'
 import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
-import { Footer } from '../../components/footer/Footer'
+import { Footer } from '../../components/LogoNavFooterPageComponents/footer/Footer'
 
 export const AllShots = ({ drinks, allShots, baseAlcohol, fetchAlcoholType, navLinkText,
   allDrinksBackgroundPic, updateBackgroundPicture, showCookieBanner,

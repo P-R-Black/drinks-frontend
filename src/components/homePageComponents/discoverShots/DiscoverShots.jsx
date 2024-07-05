@@ -9,6 +9,8 @@ import slugify from 'react-slugify';
 
 export const DiscoverShots = ({ allShots }) => {
 
+    console.log('allShots DiscoverShots.jsx', allShots)
+
     const discoverShotRef = useRef();
     const [discElementVisible, setDiscElementVisible] = useState();
     const [shotBase, setShotBase] = useState([])

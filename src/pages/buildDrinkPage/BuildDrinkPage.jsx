@@ -1,9 +1,9 @@
 import React from 'react'
 import { BuildDrink } from '../../components/BuildDrinkComponents/buildDrink/BuildDrink'
 import { useParams } from 'react-router-dom';
-import { Navigation } from '../../components/navigation/Navigation'
+import { Navigation } from '../../components/LogoNavFooterPageComponents/navigation/Navigation'
 import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
-import { Footer } from '../../components/footer/Footer'
+import { Footer } from '../../components/LogoNavFooterPageComponents/footer/Footer'
 import { buldDrinkBGPic } from '../../../src/assets/pexels-overhead.jpg'
 
 

@@ -64,7 +64,25 @@ export const AlcoholSelect = ({ cocktails, alcohol, displayName }) => {
     });
   }
 
+  const newScrollers = document.querySelectorAll('.scroller')
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    addAnimationTwo();
+  }
 
+  function addAnimationTwo() {
+    newScrollers.forEach((scroller) => {
+      scroller.setAttribute("data-animated", true);
+
+      const scrollerInnerTwo = scroller.querySelector(".scroller__inner")
+      const scrollerContent = Array.from(scrollerInnerTwo.children);
+
+      scrollerContent.forEach((item) => {
+        const duplicatedItem = item.cloneNode(true);
+        duplicatedItem.setAttribute('aria-hidden', true);
+        scrollerInnerTwo.appendChild(duplicatedItem)
+      })
+    })
+  }
 
   return (
     <section className="ginBackground" style={{ backgroundImage: BackgroundPics(slugify(newDisplayName)) }}>
@@ -83,6 +101,17 @@ export const AlcoholSelect = ({ cocktails, alcohol, displayName }) => {
                       <Link to={`/${slugify(alcohol)}/${slugify(fd)}`} className="linktoRecipe">Recipe</Link>
                     </li>
                   </React.Fragment>
+
+                )
+              })}
+              {filteredDrink.map((fd, fdIdx) => {
+                return (
+                  <React.Fragment key={fdIdx} >
+                    <li className="drinkListLi">{fd}
+                      <Link to={`/${slugify(alcohol)}/${slugify(fd)}`} className="linktoRecipe">Recipe</Link>
+                    </li>
+                  </React.Fragment>
+
                 )
               })}
 
@@ -93,7 +122,21 @@ export const AlcoholSelect = ({ cocktails, alcohol, displayName }) => {
           </div>
         </div>
       </div>
-    </section>
+      {/* <div className="scrollerTempBox">
+        <div className="scroller">
+          <ul className="tag_list scroller__inner">
+            {filteredDrink.map((fdf, fdfIdx) => (
+              <li key={fdfIdx}>{fdf}</li>
+            ))}
+            <li>{"Vodka Martini"}</li>
+            <li>{"Pornstar Martini"}</li>
+            <li>{"RedBull and Vodka"}</li>
+            <li>{"Russian Kiss"}</li>
+          </ul>
+        </div>
+      </div> */}
+
+    </section >
 
   )
 }

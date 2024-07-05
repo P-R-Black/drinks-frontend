@@ -1,5 +1,5 @@
 import React from 'react'
-import { Logo } from '../../components/logo/Logo'
+import { Logo } from '../../components/LogoNavFooterPageComponents/logo/Logo'
 import './user_privacy.css'
 
 export const PrivacyChoice = (props) => {

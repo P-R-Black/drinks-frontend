@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import axios from 'axios';
-import { Navigation } from '../../components/navigation/Navigation';
+import { Navigation } from '../../components/LogoNavFooterPageComponents/navigation/Navigation';
 import { Hero } from '../../components/homePageComponents/hero/Hero';
 import { DailyDrink } from '../../components/homePageComponents/daily_drink/DailyDrink';
 import { MustKnows } from '../../components/homePageComponents/must_knows/MustKnows';
@@ -11,7 +11,7 @@ import { DiscoverShots } from '../../components/homePageComponents/discoverShots
 import { Mocktails } from '../../components/homePageComponents/mocktails/Mocktails';
 import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
 
-import { Footer } from '../../components/footer/Footer';
+import { Footer } from '../../components/LogoNavFooterPageComponents/footer/Footer';
 
 
 
@@ -56,6 +56,7 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
     const fetchData = async () => {
       try {
         const { data: response } = await axios.get(DB_ENDPOINT)
+        console.log('response', response)
         setDrinkOfTheDay(response)
       } catch (error) {
         console.error(error.message)
@@ -66,6 +67,7 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
     const fetchLastRecord = async () => {
       try {
         const { data: resp } = await axios.get(DB_LAST_ENTRY)
+        console.log('resp', resp)
         setLastDrinkOfTheDay(resp['name'])
         getFullDrinkInfo(resp['name'])
       } catch (error) {

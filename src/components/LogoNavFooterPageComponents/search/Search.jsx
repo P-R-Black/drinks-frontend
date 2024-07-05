@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './search.css'
-import { SearchResults } from '../search/SearchResults';
+import { SearchResults } from './SearchResults';
 import { IoMdSearch } from "react-icons/io";
 import { IoMdClose } from "react-icons/io"
 import { useNavigate } from 'react-router-dom';
