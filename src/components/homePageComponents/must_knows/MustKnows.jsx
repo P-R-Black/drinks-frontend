@@ -4,13 +4,18 @@ import slugify from 'react-slugify'
 import { Link } from 'react-router-dom'
 
 export const MustKnows = ({ mustKnows }) => {
-  console.log('mustKnows mustKnows.jsx', mustKnows)
+
+  if (!mustKnows) {
+    <>...Loading</>
+  }
+
+
   return (
     <section id="mustKnowSection" className="mustKnowSection">
       <div className="container">
         <div className="mustKnowContainer">
           <div className="mustKnowTitleContainer">
-            <h1 className='mustKnowTitleContainerH1'>{mustKnows.length}</h1>
+            <h1 className='mustKnowTitleContainerH1'>{mustKnows?.length}</h1>
             <h2 className='mustKnowTitleContainerH2'>Must Know Drinks For Bartenders</h2>
           </div>
           <div className="drinkGlassContainer">

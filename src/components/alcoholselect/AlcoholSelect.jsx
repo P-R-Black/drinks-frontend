@@ -122,20 +122,6 @@ export const AlcoholSelect = ({ cocktails, alcohol, displayName }) => {
           </div>
         </div>
       </div>
-      {/* <div className="scrollerTempBox">
-        <div className="scroller">
-          <ul className="tag_list scroller__inner">
-            {filteredDrink.map((fdf, fdfIdx) => (
-              <li key={fdfIdx}>{fdf}</li>
-            ))}
-            <li>{"Vodka Martini"}</li>
-            <li>{"Pornstar Martini"}</li>
-            <li>{"RedBull and Vodka"}</li>
-            <li>{"Russian Kiss"}</li>
-          </ul>
-        </div>
-      </div> */}
-
     </section >
 
   )

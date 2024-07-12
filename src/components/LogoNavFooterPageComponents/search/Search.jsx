@@ -45,7 +45,7 @@ export const Search = ({ drinks }) => {
         return (
           drink.base_alcohol[0].toLowerCase().includes(input.toLowerCase()) ||
           drink.drink_name.toLowerCase().includes(input.toLowerCase()) ||
-          drink.ingredient_name.join(" ").toLowerCase().includes(input.toLowerCase())
+          drink.ingredients.join(" ").toLowerCase().includes(input.toLowerCase())
         );
       })
       setResults(results.sort())

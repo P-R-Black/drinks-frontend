@@ -8,10 +8,9 @@ import { Search } from '../search/Search';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link'
 
-
-
 export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
     const [numofRecipes, setNumOfRecipes] = useState(0)
+
 
     const dropDownSelection = [
         'Bourbon', 'Brandy', 'Gin', 'Mezcal', 'Non-Alcoholic', 'Rum', 'Rum (Dark)', 'Rum (Gold)',
@@ -44,14 +43,15 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
 
     useEffect(() => {
         const drinksCount = () => {
-            let recipeLengthRounded = Math.round(drinks.length / 5) * 5;
-            if (drinks.length % 5 <= 5) {
+            let recipeLengthRounded = Math.round(drinks?.length / 5) * 5;
+            if (drinks?.length % 5 <= 5) {
                 setNumOfRecipes(`Over ${recipeLengthRounded} recipes, with more added daily`)
             } else {
                 setNumOfRecipes(`Nearly ${recipeLengthRounded} recipes, with more added daily`)
             }
 
         }
+
         drinksCount()
     }, [drinks])
 

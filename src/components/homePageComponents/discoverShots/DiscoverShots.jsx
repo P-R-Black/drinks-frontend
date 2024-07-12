@@ -9,8 +9,6 @@ import slugify from 'react-slugify';
 
 export const DiscoverShots = ({ allShots }) => {
 
-    console.log('allShots DiscoverShots.jsx', allShots)
-
     const discoverShotRef = useRef();
     const [discElementVisible, setDiscElementVisible] = useState();
     const [shotBase, setShotBase] = useState([])
@@ -18,9 +16,9 @@ export const DiscoverShots = ({ allShots }) => {
 
     useEffect(() => {
         let filteredBase = []
-        let base = allShots.map((ba) => ba.base_alcohol)
-        let base_two = base.map((bw) => bw[0])
-        for (let b = 0; b < base_two.length; b++) {
+        let base = allShots?.map((ba) => ba.base_alcohol)
+        let base_two = base?.map((bw) => bw[0])
+        for (let b = 0; b < base_two?.length; b++) {
             if (!filteredBase.includes(base_two[b])) {
                 filteredBase.push(base_two[b])
             }

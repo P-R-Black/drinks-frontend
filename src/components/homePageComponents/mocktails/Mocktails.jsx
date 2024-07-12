@@ -8,7 +8,7 @@ import altImage from '../../../assets/pexels-lime-mint-drinks.jpg'
 import slugify from 'react-slugify';
 
 
-export const Mocktails = ({ drinks, updateBackgroundPicture }) => {
+export const Mocktails = ({ drinks }) => {
 
     const mocktailTitleRef = useRef();
     const tooTipCardRef = useRef();

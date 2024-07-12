@@ -16,9 +16,9 @@ export const Discover = ({ drinks, cocktails }) => {
     useEffect(() => {
         const allAlcohol = async () => {
             let filteredBase = []
-            let base = await cocktails.map((ba) => ba.base_alcohol)
-            let base_two = await base.map((bw) => bw[0])
-            for (let b = 0; b < base_two.length; b++) {
+            let base = await cocktails?.map((ba) => ba.base_alcohol)
+            let base_two = await base?.map((bw) => bw[0])
+            for (let b = 0; b < base_two?.length; b++) {
                 if (!filteredBase.includes(base_two[b])) {
                     filteredBase.push(base_two[b])
                 }

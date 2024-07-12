@@ -6,8 +6,6 @@ import Cookies from 'js-cookie';
 import ReactGA from 'react-ga';
 
 
-import axios from 'axios';
-
 import { Home } from './pages/home/Home';
 import { Alcohol } from './pages/alcohol/Alcohol';
 import { Drinks } from './pages/drinks/Drinks';
@@ -23,36 +21,16 @@ import { Privacy } from './pages/privacy/Privacy';
 import { SuperUserPage } from './pages/superUserPage/SuperUserPage';
 import { DashboardPage } from './pages/dashboardPage/DashboardPage';
 
-import { Query, QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
+
+import { DrinksAPI } from './api/allDrinksApi/DrinksAPI'
+import { MustKnowAPI } from './api/mustKnowApi/MustKnowAPI';
+import { CocktailsAPI } from './api/cocktailApi/CocktailAPI';
+import { ShotsAPI } from './api/shotsApi/ShotsAPI';
 
 
-const drinksApi = process.env.REACT_APP_PRODUCTION_DRINK_PUBLIC_KEY
-const mustKnowApi = process.env.REACT_APP_MUST_KNOW_KEY
-const allShotsEndpoint = process.env.REACT_APP_ALL_SHOTS_KEY
-const allCocktailsEndpoint = process.env.REACT_APP_COCKTAILS_KEY
-const drinksAPIKeyProduction = process.env.REACT_APP_PRODUCTION_KEY
 const GA_UA_ID = process.env.REACT_APP_GOOGLE_UA_ID; // OUR_TRACKING_ID
 const GA_ANALYTICS = process.env.REACT_APP_GOOGLE_MEASUREMENT_ID;
 
-
-const fetchPaginatedData = async (url, headers) => {
-  let results = [];
-  let nextUrl = url;
-
-  while (nextUrl) {
-    try {
-      const response = await axios.get(nextUrl, { headers });
-      results = [...results, ...response.data.results];
-      nextUrl = response.data.next;
-
-    } catch (error) {
-      console.error("Error fetching paginated data", error);
-      nextUrl = null
-    }
-
-  }
-  return results
-}
 
 
 
@@ -71,14 +49,21 @@ const App = () => {
   const [hasConsetValue, setHasConsentValue] = useState(false);
 
 
+  const { data: allDrinks } = DrinksAPI()
 
+  const { data: mustKnowDrinks } = MustKnowAPI()
+
+  const { data: allCocktails } = CocktailsAPI()
+
+  const { data: allShotsData } = ShotsAPI()
 
   useEffect(() => {
     setHasConsentValue(!!isCookieSet)
     if (isCookieSet === "true") {
       loadGoogleAnalytics();
     }
-  }, [])
+
+  }, [isCookieSet])
 
 
   const loadGoogleAnalytics = () => {
@@ -115,7 +100,6 @@ const App = () => {
       page: window.location.pathname,
 
     });
-
   }
 
   const coockiesDeclined = () => {
@@ -124,35 +108,25 @@ const App = () => {
     setShowCookieBanner(true)
   }
 
-  useEffect(() => {
-    const fetchDrinks = async () => {
-      setLoading(true)
-      const headers = {
-        'Authorization': `Api-Key ${drinksAPIKeyProduction}`,
-        'Content-type': 'application/json'
-      }
-      try {
-        const drinksData = await fetchPaginatedData(drinksApi, headers)
-        const mustKnowDaa = await fetchPaginatedData(mustKnowApi.toString(), headers)
-        const allShotsData = await fetchPaginatedData(allShotsEndpoint.toString(), headers)
-        const cocktailsData = await fetchPaginatedData(allCocktailsEndpoint, headers)
-        setDrinks(drinksData);
-        setMustKnows(mustKnowDaa);
-        setAllShots(allShotsData);
-        setCocktails(cocktailsData);
-        setLoading(false)
 
-      } catch (error) {
-        console.error('Error details:', {
-          message: error.message,
-          stack: error.stack,
-          config: error.config,
-          code: error.code,
-        });
-      }
+  useEffect(() => {
+    if (!drinks) {
+      setLoading(true)
+    } else {
+      setLoading(false)
+    }
+
+
+    const fetchDrinks = async () => {
+
+      setDrinks(allDrinks)
+      setMustKnows(mustKnowDrinks)
+      setCocktails(allCocktails)
+      setAllShots(allShotsData)
     };
+
     fetchDrinks()
-  }, [drinksApi, mustKnowApi, allShotsEndpoint, allCocktailsEndpoint, drinksAPIKeyProduction]);
+  }, [drinks, allDrinks, mustKnowDrinks, allCocktails, allShotsData]);
 
 
   const fetchAlcoholType = async () => {
@@ -394,9 +368,8 @@ const App = () => {
   return (
     <div className="app">
       {
-        loading ? (<PageLoader />) : (<RouterProvider router={router} />)
+        !drinks ? (<PageLoader />) : (<RouterProvider router={router} />)
       }
-
     </div >
   )
 }
