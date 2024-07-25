@@ -10,8 +10,6 @@ export const AlcoholSelect = ({ cocktails, alcohol, displayName }) => {
 
   const [filteredDrink, setFilteredDrink] = useState([])
 
-
-
   // removes display name from array
   let newDisplayName;
 
@@ -30,11 +28,11 @@ export const AlcoholSelect = ({ cocktails, alcohol, displayName }) => {
 
   const filterDrink = useCallback(() => {
     const sortedList = cocktails
-      .filter((fd) => fd.base_alcohol[0] === newDisplayName)
+      .filter((fd) => slugify(fd.base_alcohol[0]) === alcohol)
       .map((fd) => fd.drink_name)
       .sort();
     setFilteredDrink(sortedList);
-  }, [cocktails, newDisplayName]);
+  }, [alcohol, cocktails]);
 
   useEffect(() => {
     filterDrink()

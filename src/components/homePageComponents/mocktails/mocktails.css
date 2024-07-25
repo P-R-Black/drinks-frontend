@@ -233,9 +233,7 @@ ol.mockIngredientContainer li {
 @media screen and (max-width: 1024px) {
 
     /* To prevent gap during scroll with parallex */
-    .mocktailContainer {
-        margin-bottom: -8rem;
-    }
+
 
     .mocktailTitleContainer {
         margin-bottom: 3rem;

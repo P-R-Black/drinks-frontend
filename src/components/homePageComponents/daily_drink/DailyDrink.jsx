@@ -11,7 +11,7 @@ import altImage from '../../../assets/pexels-lime-mint-drinks.jpg'
 import debounce from 'lodash.debounce';
 
 export const DailyDrink = ({ drinks, date, year, month, dd, mm, lastDrinkOfTheDay, currentDrink,
-  drinkLookup, dateLookup, months, handleDateClick }) => {
+  drinkLookup, dateLookup, months, handleDateClick, drinkOfTheDay }) => {
 
   const titleRefTwo = useRef();
   const [dodElementVisible, setDodElementVisible] = useState();
@@ -66,6 +66,7 @@ export const DailyDrink = ({ drinks, date, year, month, dd, mm, lastDrinkOfTheDa
                 year={year}
                 month={month}
                 handleDateClick={handleDateClick}
+                drinkOfTheDay={drinkOfTheDay}
               // generateCalendar={generateCalendar}
               // adjustMonth={adjustMonth}
               />

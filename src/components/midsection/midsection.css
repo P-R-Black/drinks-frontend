@@ -52,11 +52,12 @@
 @media screen and (max-width: 1024px) {
     #midSection {
         font-size: 2rem;
-        height: 20vh;
+        height: 26vh;
+
     }
 
     #midSectionTwo {
-        height: 20vh;
+        height: 26vh;
         margin-bottom: -2rem;
     }
 

@@ -61,6 +61,7 @@ export const Footer = () => {
                                 <HashLink to="/#discoverShotsSection">{"Discover Shots"}</HashLink>
                                 <HashLink to="/#mocktailSection">{"Mocktails"}</HashLink>
                                 <HashLink to="/#mustKnowSection">{"Bartender Must Knows"}</HashLink>
+                                <NavLink to="/build-drink">{"Build A Drink"}</NavLink>
                             </div>
                             <div className="footerSiteInfo">
                                 <NavLink to="/about-us">{"About Us"}</NavLink>
@@ -74,11 +75,17 @@ export const Footer = () => {
                     ) : (
                         <>
                             <div className="footerSiteSections">
-                                <HashLink to="/#dodSection">{"Drink of the Day"}</HashLink>
-                                <HashLink to="/#discoverSection">{"Discover Cocktails"}</HashLink>
-                                <HashLink to="/#discoverShotsSection">{"Discover Shots"}</HashLink>
-                                <HashLink to="/#mocktailSection">{"Mocktails"}</HashLink>
-                                <HashLink to="/#mustKnowSection">{"Bartender Must Knows"}</HashLink>
+                                <div className="footerSiteSectionsLeft">
+                                    <HashLink to="/#dodSection">{"Drink of the Day"}</HashLink>
+                                    <HashLink to="/#discoverSection">{"Discover Cocktails"}</HashLink>
+                                    <HashLink to="/#discoverShotsSection">{"Discover Shots"}</HashLink>
+                                </div>
+                                <div className="footerSiteSectionsRight">
+                                    <HashLink to="/#mocktailSection">{"Mocktails"}</HashLink>
+                                    <HashLink to="/#mustKnowSection">{"Bartender Must Knows"}</HashLink>
+                                    <NavLink to="/build-drink">{"Build A Drink"}</NavLink>
+
+                                </div>
                             </div>
                             <div className="footerSiteInfo">
                                 <NavLink to="/about-us">{"About Us"}</NavLink>
@@ -109,9 +116,9 @@ export const Footer = () => {
                         <div className="rightsReservedSection">
                             <div className="rightsReserved">All Rights Reserved.</div>
                         </div>
-                        <div className="rightsReservedSection">
+                        {/* <div className="rightsReservedSection">
                             <Link className="apiBy" to="https://www.drinksapi.paulrblack.com/">API</Link>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </section>

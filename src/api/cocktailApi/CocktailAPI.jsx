@@ -1,5 +1,3 @@
-import React from 'react'
-import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { FetchPaginatedData } from '../allDrinksApi/DrinksAPI';
 
@@ -17,9 +15,8 @@ export const CocktailsAPI = () => {
     return useQuery({
         queryKey: ['cocktailsApiData', headers],
         queryFn: async () => {
-            const mustKnowData = await FetchPaginatedData({ queryKey: [allCocktailsEndpoint, headers] })
-            console.log('cocktailsApiData', allCocktailsEndpoint)
-            return mustKnowData
+            const cocktailApiData = await FetchPaginatedData({ queryKey: [allCocktailsEndpoint, headers] })
+            return cocktailApiData
         }
 
 

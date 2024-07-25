@@ -5,11 +5,6 @@ import { Link } from 'react-router-dom'
 
 export const MustKnows = ({ mustKnows }) => {
 
-  if (!mustKnows) {
-    <>...Loading</>
-  }
-
-
   return (
     <section id="mustKnowSection" className="mustKnowSection">
       <div className="container">

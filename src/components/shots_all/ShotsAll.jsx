@@ -12,38 +12,28 @@ export const ShotsAll = ({ allShots, alcohol, displayName }) => {
   let newDisplayName;
 
   for (let i of displayName) {
-    newDisplayName = i[0]
+    newDisplayName = i
     break
   }
-
-  // const getAllDrinks = () => {
-
-  //   setallDrinks(preSetDrinks => {
-  //     const sortedList = allShots.filter((sl) => sl.base_alcohol[0] === newDisplayName)
-  //     .map(fd => fd.drink_name).sort();
-  //     return sortedList
-  //   })
-  // }
 
 
 
   useEffect(() => {
     setallDrinks(preSetDrinks => {
-      const sortedList = allShots.filter((sl) => sl.base_alcohol[0] === newDisplayName)
+      const sortedList = allShots.filter((sl) => slugify(sl.base_alcohol[0]) === alcohol)
         .map(fd => fd.drink_name).sort();
       return sortedList
     })
-    // getAllDrinks()
 
-  }, [newDisplayName, allShots])
+  }, [displayName, allShots, alcohol])
 
 
   return (
-    <section className="allShotsBackground" style={{ backgroundImage: BackgroundPics(slugify(newDisplayName)) }}>
+    <section className="allShotsBackground" style={{ backgroundImage: BackgroundPics(slugify(displayName)) }}>
       <div className="container">
         <div className="allShotsContainer">
           <div className="baseShotTitleContainerTwo">
-            <h1 id="baseShotName">{newDisplayName}</h1>
+            <h1 id="baseShotName">{displayName}</h1>
             <h2>Shots</h2>
           </div>
           <div className="linksToShotContainer">

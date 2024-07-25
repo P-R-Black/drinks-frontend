@@ -26,6 +26,7 @@ import { DrinksAPI } from './api/allDrinksApi/DrinksAPI'
 import { MustKnowAPI } from './api/mustKnowApi/MustKnowAPI';
 import { CocktailsAPI } from './api/cocktailApi/CocktailAPI';
 import { ShotsAPI } from './api/shotsApi/ShotsAPI';
+import { isError } from 'lodash';
 
 
 const GA_UA_ID = process.env.REACT_APP_GOOGLE_UA_ID; // OUR_TRACKING_ID
@@ -48,8 +49,14 @@ const App = () => {
   const [isCookieSet, setCookie] = useState(false);
   const [hasConsetValue, setHasConsentValue] = useState(false);
 
+  const [isFirstPageLoaded, setIsFirstPageLoaded] = useState(false)
 
-  const { data: allDrinks } = DrinksAPI()
+
+  // const { data: allDrinks } = DrinksAPI()
+
+
+  const { data: allDrinks, isLoading } = DrinksAPI()
+
 
   const { data: mustKnowDrinks } = MustKnowAPI()
 
@@ -110,29 +117,33 @@ const App = () => {
 
 
   useEffect(() => {
-    if (!drinks) {
-      setLoading(true)
-    } else {
-      setLoading(false)
-    }
-
+    // if (!drinks) {
+    //   setLoading(true)
+    // } else {
+    //   setLoading(false)
+    // }
 
     const fetchDrinks = async () => {
 
-      setDrinks(allDrinks)
-      setMustKnows(mustKnowDrinks)
+      if (allDrinks && allDrinks.length > 0) {
+        setDrinks(allDrinks)
+        setIsFirstPageLoaded(true)
+
+      }
       setCocktails(allCocktails)
+      setMustKnows(mustKnowDrinks)
+
       setAllShots(allShotsData)
     };
 
+    fetchAlcoholType()
     fetchDrinks()
-  }, [drinks, allDrinks, mustKnowDrinks, allCocktails, allShotsData]);
-
+  }, [drinks, allDrinks, mustKnowDrinks, allCocktails, allShotsData, cocktails]);
 
   const fetchAlcoholType = async () => {
     let filteredBase = []
-    for (let d = 0; d < cocktails.length; d++) {
-      let base = cocktails.map((ba) => ba.base_alcohol)
+    for (let d = 0; d < cocktails?.length; d++) {
+      let base = cocktails?.map((ba) => ba.base_alcohol)
       for (let b = 0; b < base.length; b++) {
         let baseText = await base[b][0]
         if (!filteredBase.includes(baseText)) {
@@ -145,8 +156,9 @@ const App = () => {
   }
 
 
+
   const PageLoader = () => {
-    if (loading) {
+    if (isLoading && !isFirstPageLoaded) {
       return (
         <>
           <div className="bannerContainer">{"Fetching A New Bottle"}</div>
@@ -368,7 +380,7 @@ const App = () => {
   return (
     <div className="app">
       {
-        !drinks ? (<PageLoader />) : (<RouterProvider router={router} />)
+        isFirstPageLoaded ? (<RouterProvider router={router} />) : (<PageLoader />)
       }
     </div >
   )

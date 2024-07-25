@@ -3,7 +3,7 @@ import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import debounce from 'lodash/debounce';
 import './calendar.css'
 
-export const Calendar = ({ date, year, month, handleDateClick }) => {
+export const Calendar = ({ date, year, month, handleDateClick, drinkOfTheDay }) => {
     const [calendarYear, setCalendarYear] = useState(year);
     const [calendarMonth, setCalendarMonth] = useState(month);
     const [calendarData, setCalendarData] = useState([]);
@@ -21,6 +21,9 @@ export const Calendar = ({ date, year, month, handleDateClick }) => {
 
         let dates = [];
 
+        const drinkDates = drinkOfTheDay.map(drink => drink.theDate.split('T')[0]);
+
+
         // Add the last dates of the previous month
         for (let i = dayOne; i > 0; i--) {
             dates.push({ date: monthLastDate - i + 1, inactive: true, type: 'lastMonthDays' });
@@ -29,7 +32,9 @@ export const Calendar = ({ date, year, month, handleDateClick }) => {
         // Add the dates of the current month
         for (let i = 1; i <= lastDate; i++) {
             const isToday = i === date.getDate() && calendarMonth === new Date().getMonth() && calendarYear === new Date().getFullYear();
-            dates.push({ date: i, inactive: false, isToday, type: '' });
+            const currentDate = `${calendarYear}-${String(calendarMonth + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+            const hasDrink = drinkDates.includes(currentDate);
+            dates.push({ date: i, inactive: false, isToday, hasDrink, type: '' });
         }
 
         // Add the first dates of the next month
@@ -68,9 +73,7 @@ export const Calendar = ({ date, year, month, handleDateClick }) => {
     const onDateClick = useCallback(debounce((e) => {
         e.preventDefault()
         e.stopPropagation()
-        console.log('onDateClick clicked', date)
         const clickedDate = e.target.getAttribute('data-date');
-        console.log('onDateClick clicked', clickedDate)
         if (clickedDate) {
             handleDateClick(clickedDate)
         }
@@ -123,7 +126,9 @@ export const Calendar = ({ date, year, month, handleDateClick }) => {
                                 // onClick={onDateClick(`${calendarYear}-${String(calendarMonth + 1).padStart(2, '0')}-${String(day.date).padStart(2, '0')}`)}
                                 onClick={onDateClick}
                                 // className={getClassNames(day)}
-                                className={`${day.inactive ? 'inactive ' : ''}${day.isToday ? 'active ' : ''} calDate ${day.type}`}
+                                // className={`${day.inactive ? 'inactive ' : ''}${day.isToday ? 'active ' : ''} calDate ${day.type}`}
+                                // data-date={`${calendarYear}-${String(calendarMonth + 1).padStart(2, '0')}-${String(day.date).padStart(2, '0')}`}
+                                className={`${day.inactive ? 'inactive ' : ''}${day.isToday ? 'active ' : ''}${day.hasDrink ? 'has-drink ' : ''} calDate ${day.type}`}
                                 data-date={`${calendarYear}-${String(calendarMonth + 1).padStart(2, '0')}-${String(day.date).padStart(2, '0')}`}
                             >
                                 {day.date}

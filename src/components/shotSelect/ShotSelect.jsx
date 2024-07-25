@@ -15,15 +15,21 @@ export const ShotSelect = ({ alcohol, allShots, displayName }) => {
     newDisplayName = i[0]
   }
 
+  console.log(' ShotSelect.jsx, alcohol', alcohol) // butterscotch-liqueur
+  // console.log(' ShotSelect.jsx, slugify(alcohol)', slugify(alcohol)) // butterscotch-liqueur
 
+  // console.log(' ShotSelect.jsx, displayName', displayName) // displayName Butterscotch Liqueur
+  // console.log(' ShotSelect.jsx, newDisplayName', newDisplayName) // newDisplayName r
+  // console.log(' ShotSelect.jsx, allShots', allShots)
 
   const filterDrink = useCallback(() => {
     const sortedList = allShots
-      .filter((fd) => fd.base_alcohol[0] === newDisplayName)
+      .filter((fd) => slugify(fd.base_alcohol[0]) === slugify(alcohol))
       .map((fd) => fd.drink_name)
       .sort();
+    console.log('sortedList', sortedList)
     setFilteredDrink(sortedList);
-  }, [allShots, newDisplayName]);
+  }, [allShots, alcohol]);
 
   useEffect(() => {
     filterDrink()
@@ -56,11 +62,11 @@ export const ShotSelect = ({ alcohol, allShots, displayName }) => {
 
 
   return (
-    <section className="shotSelectBackground" style={{ backgroundImage: BackgroundPics(slugify(newDisplayName)) }}>
+    <section className="shotSelectBackground" style={{ backgroundImage: BackgroundPics(slugify(displayName)) }}>
       <div className="container">
         <div className="baseShotAlcoholContainer">
           <div className="baseShotAlcTitleContainer">
-            <h1 id="baseShotAlcoholName">{newDisplayName}</h1>
+            <h1 id="baseShotAlcoholName">{displayName}</h1>
             <h2>Shots</h2>
           </div>
           <div className="shotListContainer">
@@ -74,10 +80,19 @@ export const ShotSelect = ({ alcohol, allShots, displayName }) => {
                   </React.Fragment>
                 )
               })}
+              {filteredDrink.map((fd, idx) => {
+                return (
+                  <React.Fragment key={idx}>
+                    <li className="shotListLi">{fd}
+                      <Link to={`/${slugify(alcohol)}/${slugify(fd)}`} className="ShotlinktoRecipe">Recipe</Link>
+                    </li>
+                  </React.Fragment>
+                )
+              })}
 
             </ul>
             <div className="moreShotLinkContainer">
-              <Link to={`/${slugify(displayName[0])}/all_shots`} className="linktoRecipeLarge">All {displayName[0]} Shots</Link>
+              <Link to={`/${slugify(displayName)}/all_shots`} className="linktoRecipeLarge">All {displayName} Shots</Link>
             </div>
           </div>
         </div>

@@ -45,7 +45,7 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
     "July", "August", "September", "October", "Novenber", "December"
   ];
 
-
+  // gets the drink of the day from index.js file in server directory
   const getFullDrinkInfo = useCallback(async (theLastDod) => {
     let ldod = await drinks.find((drink) => drink.drink_name === theLastDod)
     setCurrentDrink([ldod])
@@ -53,6 +53,7 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
 
 
   useEffect(() => {
+    // returns past drinks of teh date and their date
     const fetchData = async () => {
       try {
         const { data: response } = await axios.get(DB_ENDPOINT)
@@ -64,10 +65,10 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
       }
     }
 
+    // gets today's Dod
     const fetchLastRecord = async () => {
       try {
         const { data: resp } = await axios.get(DB_LAST_ENTRY)
-        console.log('resp', resp)
         setLastDrinkOfTheDay(resp['name'])
         getFullDrinkInfo(resp['name'])
       } catch (error) {
@@ -84,17 +85,19 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
     const date = event.theDate.split('T')[0];
     eventMap[date] = event.name;
 
+
   });
 
 
   const handleDateClick = async (date) => {
     const event = await eventMap[String(date)];
-    console.log('handleDateClick', handleDateClick)
     if (event) {
       setDrinkLookup(event)
       getFullDrinkInfo(event)
     }
+
   };
+
 
 
   const calDate = document.querySelectorAll('.calDate')
@@ -124,12 +127,15 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
       let monthInText = months[Number(clickedMonth - 1)]
 
       // handleDateClick(clickedOnDate)
-
       let changedDate = `${monthInText} ${clickedDay}, ${clickedYear}`
       setDateLookup(changedDate)
 
     })
+
   })
+
+  console.log('drinkOfTheDay', drinkOfTheDay)
+  console.log('drinkLookup', drinkLookup, 'dateLookUp', dateLookup)
 
 
 
@@ -159,6 +165,7 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
         dateLookup={dateLookup}
         months={months}
         handleDateClick={handleDateClick}
+        drinkOfTheDay={drinkOfTheDay}
       />
       <Discover
         drinks={drinks}

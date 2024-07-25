@@ -6,8 +6,7 @@ import { ShotsAll } from '../../components/shots_all/ShotsAll'
 import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
 import { Footer } from '../../components/LogoNavFooterPageComponents/footer/Footer'
 
-export const AllShots = ({ drinks, allShots, baseAlcohol, fetchAlcoholType, navLinkText,
-  allDrinksBackgroundPic, updateBackgroundPicture, showCookieBanner,
+export const AllShots = ({ drinks, allShots, baseAlcohol, fetchAlcoholType, navLinkText, showCookieBanner,
   isCookieSet, cookiesAccept, coockiesDeclined }) => {
 
   let { alcohol } = useParams()
@@ -19,6 +18,7 @@ export const AllShots = ({ drinks, allShots, baseAlcohol, fetchAlcoholType, navL
     const findParenthesis = (text) => {
       let findAlcohol = allShots.filter((as) => slugify(text) === alcohol)
         .map((fd) => fd.base_alcohol)
+      findAlcohol = findAlcohol.length > 1 ? findAlcohol[0] : findAlcohol
       var regExp = /\(([^)]+)\)/;
       if (regExp.test(findAlcohol)) {
         return true

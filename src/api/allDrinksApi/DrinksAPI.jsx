@@ -1,7 +1,6 @@
-import React from 'react'
 import axios from 'axios';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 
 
@@ -31,6 +30,8 @@ export const DrinksAPI = () => {
 	const drinksApi = process.env.REACT_APP_PRODUCTION_DRINK_PUBLIC_KEY
 	const drinksAPIKeyProduction = process.env.REACT_APP_PRODUCTION_KEY
 
+	const QueryClient = useQueryClient()
+
 	const headers = {
 		'Authorization': `Api-Key ${drinksAPIKeyProduction}`,
 		'Content-type': 'application/json'
@@ -41,12 +42,17 @@ export const DrinksAPI = () => {
 		queryKey: ['newData', { headers }],
 		queryFn: async () => {
 			const newData = await FetchPaginatedData({ queryKey: [drinksApi, headers] })
-			console.log('newData', newData)
+
 			return newData
-		}
-
-
+		},
+		refetchOnWindowFocus: false,
 	})
+
+	// onSuccess: () => { QueryClient.setQueryData(['newData'], (oldData) => [...oldData, newData ]) }
+	// staleTime: 6000 (6000 = 6 seconds)
+	// refrechInterval: 4000 (refetches data every four seconds)
+	// can add staleTime universily in index.jsx  | const queryClient = new QueryClient({defaultOptions: {queries:{staletime: 6000}},});
+	// can include garbage collection time | const queryClient = new QueryClient({defaultOptions: {queries:{staletime: 6000}}, gcTime: 10 * (60 * 1000 )},);
 
 
 }

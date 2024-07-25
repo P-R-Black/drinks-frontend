@@ -6,7 +6,7 @@ import altImage from '../../../assets/pexels-rachel-default.jpg'
 import { ToolTip } from '../../tooltip/ToolTip';
 import slugify from 'react-slugify';
 
-export const Discover = ({ drinks, cocktails }) => {
+export const Discover = ({ cocktails }) => {
 
     const discoverRef = useRef();
     const [discElementVisible, setDiscElementVisible] = useState();
@@ -36,7 +36,7 @@ export const Discover = ({ drinks, cocktails }) => {
 
         })
         observer.observe(discoverRef.current)
-    }, [drinks])
+    })
 
     return (
         <section id="discoverSection" className="discoverSection">

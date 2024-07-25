@@ -4,8 +4,7 @@ import App from './App'
 import './index.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-const queryClient = new QueryClient();
-
+const queryClient = new QueryClient({ defaultOptions: { queries: { staleTime: 86400 } }, });
 
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));

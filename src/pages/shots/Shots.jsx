@@ -13,16 +13,21 @@ export const Shots = ({ drinks, allShots, baseAlcohol, fetchAlcoholType, navLink
   showCookieBanner, isCookieSet, cookiesAccept, coockiesDeclined }) => {
 
   let { alcohol } = useParams()
+  console.log('alcohol Shots.jsx', alcohol)
 
   const [displayName, setDisplayName] = useState("")
 
 
   const convertAlcoholName = useCallback((alcohol) => {
 
-    // gets base alcoohl as it appears from API
+    // gets base alcohol as it appears from API
     const findParenthesis = (text) => {
-      let findAlcohol = allShots.filter((as) => slugify(text) === alcohol)
+      console.log('text', text)
+      // let findAlcohol = allShots.filter((as) => slugify(text) === alcohol)
+      //   .map((fd) => fd.base_alcohol)
+      let findAlcohol = allShots.filter((as) => as.base_alcohol[0] === text.toLowerCase())
         .map((fd) => fd.base_alcohol)
+      findAlcohol = findAlcohol.length > 1 ? findAlcohol[0] : findAlcohol
       var regExp = /\(([^)]+)\)/;
       if (regExp.test(findAlcohol)) {
         return true
@@ -51,8 +56,9 @@ export const Shots = ({ drinks, allShots, baseAlcohol, fetchAlcoholType, navLink
     } else {
       setDisplayName(alcoholConvert)
     }
-  }, [allShots])
 
+    console.log('displayName', displayName)
+  }, [allShots, displayName])
 
   useEffect(() => {
     convertAlcoholName(alcohol)
