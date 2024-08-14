@@ -121,6 +121,7 @@
 @media screen and (max-width: 1024px) {
     .drinkGlassContainer {
         grid-template-columns: repeat(3, 30%);
+        margin-top: -6.5rem;
     }
 
     .drinkGlass {

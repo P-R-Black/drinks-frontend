@@ -2,18 +2,18 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import { Navigation } from '../../components/LogoNavFooterPageComponents/navigation/Navigation';
 import { ShotSelect } from '../../components/shotSelect/ShotSelect';
 import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
-import { Footer } from '../../components/LogoNavFooterPageComponents/footer/Footer';
+import { useOutletContext } from 'react-router-dom';
 import slugify from 'react-slugify';
+import { useCookies } from '../../providers/cookiesProvider/CookiesProvider';
 
 
-export const Shots = ({ drinks, allShots, baseAlcohol, fetchAlcoholType, navLinkText,
-  showCookieBanner, isCookieSet, cookiesAccept, coockiesDeclined }) => {
+export const Shots = () => {
+  const { cookiesConsent, acceptCookies, declineCookies, showCookieBanner } = useCookies();
 
   let { alcohol } = useParams()
-  console.log('alcohol Shots.jsx', alcohol)
+  const { allShots } = useOutletContext()
 
   const [displayName, setDisplayName] = useState("")
 
@@ -22,9 +22,6 @@ export const Shots = ({ drinks, allShots, baseAlcohol, fetchAlcoholType, navLink
 
     // gets base alcohol as it appears from API
     const findParenthesis = (text) => {
-      console.log('text', text)
-      // let findAlcohol = allShots.filter((as) => slugify(text) === alcohol)
-      //   .map((fd) => fd.base_alcohol)
       let findAlcohol = allShots.filter((as) => as.base_alcohol[0] === text.toLowerCase())
         .map((fd) => fd.base_alcohol)
       findAlcohol = findAlcohol.length > 1 ? findAlcohol[0] : findAlcohol
@@ -36,7 +33,6 @@ export const Shots = ({ drinks, allShots, baseAlcohol, fetchAlcoholType, navLink
       }
     }
 
-    // console.log('getOrigTest', findParenthesis("Creme de Cacao Dark"))
     const convertText = (text) => {
       let needsToBeConverted = slugify(text)
       let findAlcohol = allShots.filter((as) => needsToBeConverted === slugify(as.base_alcohol) ? as.base_alcohol : "")
@@ -57,7 +53,6 @@ export const Shots = ({ drinks, allShots, baseAlcohol, fetchAlcoholType, navLink
       setDisplayName(alcoholConvert)
     }
 
-    console.log('displayName', displayName)
   }, [allShots, displayName])
 
   useEffect(() => {
@@ -67,31 +62,17 @@ export const Shots = ({ drinks, allShots, baseAlcohol, fetchAlcoholType, navLink
 
   return (
     <>
-      <Navigation
-        drinks={drinks}
-        baseAlcohol={baseAlcohol}
-        fetchAlcoholType={fetchAlcoholType}
-        navLinkText={navLinkText}
-        alcohol={alcohol}
-        displayName={displayName}
-      />
       <ShotSelect
-        drinks={drinks}
         allShots={allShots}
-        baseAlcohol={baseAlcohol}
-        navLinkText={navLinkText}
         alcohol={alcohol}
         displayName={displayName}
       />
-      {!isCookieSet ? (
-        <CoockieBar
-          showCookieBanner={showCookieBanner}
-          isCookieSet={isCookieSet}
-          cookiesAccept={cookiesAccept}
-          coockiesDeclined={coockiesDeclined}
-        />
-      ) : ""}
-      <Footer />
+      <CoockieBar
+        showCookieBanner={showCookieBanner}
+        cookiesConsent={cookiesConsent}
+        acceptCookies={acceptCookies}
+        declineCookies={declineCookies}
+      />
     </>
   )
 }

@@ -2,22 +2,22 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import { Navigation } from '../../components/LogoNavFooterPageComponents/navigation/Navigation';
 import { AlcoholSelect } from '../../components/alcoholselect/AlcoholSelect';
 import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
+import { useOutletContext } from 'react-router-dom';
+import { useCookies } from '../../providers/cookiesProvider/CookiesProvider';
 
-import { Footer } from '../../components/LogoNavFooterPageComponents/footer/Footer';
+
 import slugify from 'react-slugify';
 
 
-export const Alcohol = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkText,
-  allDrinksBackgroundPic, isCookieSet, cookiesAccept, coockiesDeclined, showCookieBanner
-}) => {
+export const Alcohol = () => {
+  const { cookiesConsent, acceptCookies, declineCookies, showCookieBanner } = useCookies();
+
 
   let { alcohol } = useParams()
-
   const [displayName, setDisplayName] = useState("")
-
+  const { cocktails } = useOutletContext()
 
   const convertAlcoholName = useCallback((alcohol) => {
 
@@ -63,30 +63,18 @@ export const Alcohol = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navL
 
   return (
     <>
-      <Navigation
-        drinks={drinks}
-        baseAlcohol={baseAlcohol}
-        fetchAlcoholType={fetchAlcoholType}
-        navLinkText={navLinkText}
-        alcohol={alcohol}
-        cocktails={cocktails}
-      />
       <AlcoholSelect
         cocktails={cocktails}
-        baseAlcohol={baseAlcohol}
-        navLinkText={navLinkText}
         alcohol={alcohol}
         displayName={displayName}
       />
-      {!isCookieSet ? (
-        <CoockieBar
-          showCookieBanner={showCookieBanner}
-          isCookieSet={isCookieSet}
-          cookiesAccept={cookiesAccept}
-          coockiesDeclined={coockiesDeclined}
-        />
-      ) : ""}
-      <Footer />
+
+      <CoockieBar
+        showCookieBanner={showCookieBanner}
+        cookiesConsent={cookiesConsent}
+        acceptCookies={acceptCookies}
+        declineCookies={declineCookies}
+      />
     </>
   )
 }

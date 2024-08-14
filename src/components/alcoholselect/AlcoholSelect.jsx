@@ -26,6 +26,7 @@ export const AlcoholSelect = ({ cocktails, alcohol, displayName }) => {
 
 
 
+
   const filterDrink = useCallback(() => {
     const sortedList = cocktails
       .filter((fd) => slugify(fd.base_alcohol[0]) === alcohol)
@@ -62,25 +63,6 @@ export const AlcoholSelect = ({ cocktails, alcohol, displayName }) => {
     });
   }
 
-  const newScrollers = document.querySelectorAll('.scroller')
-  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    addAnimationTwo();
-  }
-
-  function addAnimationTwo() {
-    newScrollers.forEach((scroller) => {
-      scroller.setAttribute("data-animated", true);
-
-      const scrollerInnerTwo = scroller.querySelector(".scroller__inner")
-      const scrollerContent = Array.from(scrollerInnerTwo.children);
-
-      scrollerContent.forEach((item) => {
-        const duplicatedItem = item.cloneNode(true);
-        duplicatedItem.setAttribute('aria-hidden', true);
-        scrollerInnerTwo.appendChild(duplicatedItem)
-      })
-    })
-  }
 
   return (
     <section className="ginBackground" style={{ backgroundImage: BackgroundPics(slugify(newDisplayName)) }}>

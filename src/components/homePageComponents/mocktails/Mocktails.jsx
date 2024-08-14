@@ -8,7 +8,7 @@ import altImage from '../../../assets/pexels-lime-mint-drinks.jpg'
 import slugify from 'react-slugify';
 
 
-export const Mocktails = ({ drinks }) => {
+export const Mocktails = ({ cocktails }) => {
 
     const mocktailTitleRef = useRef();
     const tooTipCardRef = useRef();
@@ -18,10 +18,9 @@ export const Mocktails = ({ drinks }) => {
 
 
     const nonAlcoholicDrinks = useCallback(async () => {
-        let nonAlcBase = await drinks.filter((nab) => nab.base_alcohol[0] === "non-alcoholic")
+        let nonAlcBase = await cocktails.filter((nab) => nab.base_alcohol[0] === "non-alcoholic")
         setMocktails(nonAlcBase.sort().slice(0, 3));
-    }, [drinks, setMocktails])
-
+    }, [cocktails, setMocktails])
 
 
     useEffect(() => {
@@ -106,6 +105,7 @@ export const Mocktails = ({ drinks }) => {
                                 to={"/non-alcoholic"}>
                                 More
                             </Link>
+
                         </div>
                     </div>
                 </div>

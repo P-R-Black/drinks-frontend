@@ -68,10 +68,10 @@
     padding-bottom: 4rem;
     width: 100%;
 
+}
 
-
-
-
+.shotsAlcLinkContainer:hover {
+    z-index: 999;
 }
 
 .discShotsLinksToDrinkContainer.hidden {

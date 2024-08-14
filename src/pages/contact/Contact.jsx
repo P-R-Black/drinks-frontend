@@ -1,30 +1,23 @@
 import React from 'react'
 import { ContactUs } from '../../components/contactUs/ContactUs'
 import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
-import { Footer } from '../../components/LogoNavFooterPageComponents/footer/Footer'
-import { Navigation } from '../../components/LogoNavFooterPageComponents/navigation/Navigation'
+import { useCookies } from '../../providers/cookiesProvider/CookiesProvider';
 
 
-export const Contact = ({ drinks, baseAlcohol, fetchAlcoholType, navLinkText,
-  isCookieSet, cookiesAccept, coockiesDeclined }) => {
+
+export const Contact = () => {
+  const { cookiesConsent, acceptCookies, declineCookies, showCookieBanner } = useCookies();
 
   return (
     <>
-      <Navigation
-        baseAlcohol={baseAlcohol}
-        fetchAlcoholType={fetchAlcoholType}
-        navLinkText={navLinkText}
-        drinks={drinks}
-      />
+
       <ContactUs />
-      {!isCookieSet ? (
-        <CoockieBar
-          isCookieSet={isCookieSet}
-          cookiesAccept={cookiesAccept}
-          coockiesDeclined={coockiesDeclined}
-        />
-      ) : ""}
-      < Footer />
+      <CoockieBar
+        showCookieBanner={showCookieBanner}
+        cookiesConsent={cookiesConsent}
+        acceptCookies={acceptCookies}
+        declineCookies={declineCookies}
+      />
     </>
   )
 }

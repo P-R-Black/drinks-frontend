@@ -1,17 +1,20 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useParams } from 'react-router-dom';
-import slugify from 'react-slugify';
-import { Navigation } from '../../components/LogoNavFooterPageComponents/navigation/Navigation'
+
 import { ShotsAll } from '../../components/shots_all/ShotsAll'
 import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
-import { Footer } from '../../components/LogoNavFooterPageComponents/footer/Footer'
+import slugify from 'react-slugify';
+import { useOutletContext } from 'react-router-dom';
+import { useCookies } from '../../providers/cookiesProvider/CookiesProvider';
 
-export const AllShots = ({ drinks, allShots, baseAlcohol, fetchAlcoholType, navLinkText, showCookieBanner,
-  isCookieSet, cookiesAccept, coockiesDeclined }) => {
+
+
+export const AllShots = () => {
+  const { cookiesConsent, acceptCookies, declineCookies, showCookieBanner } = useCookies();
 
   let { alcohol } = useParams()
   const [displayName, setDisplayName] = useState("")
-
+  const { allShots } = useOutletContext()
 
   const convertAlcoholName = useCallback((alcohol) => {
     // gets base alcoohl as it appears from API
@@ -56,27 +59,18 @@ export const AllShots = ({ drinks, allShots, baseAlcohol, fetchAlcoholType, navL
 
   return (
     <>
-      <Navigation
-        drinks={drinks}
-        baseAlcohol={baseAlcohol}
-        fetchAlcoholType={fetchAlcoholType}
-        navLinkText={navLinkText}
-        alcohol={alcohol}
-      />
+
       <ShotsAll
         alcohol={alcohol}
         allShots={allShots}
         displayName={displayName}
       />
-      {!isCookieSet ? (
-        <CoockieBar
-          showCookieBanner={showCookieBanner}
-          isCookieSet={isCookieSet}
-          cookiesAccept={cookiesAccept}
-          coockiesDeclined={coockiesDeclined}
-        />
-      ) : ""}
-      <Footer />
+      <CoockieBar
+        showCookieBanner={showCookieBanner}
+        cookiesConsent={cookiesConsent}
+        acceptCookies={acceptCookies}
+        declineCookies={declineCookies}
+      />
     </>
   )
 }

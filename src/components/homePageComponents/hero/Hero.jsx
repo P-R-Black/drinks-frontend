@@ -24,10 +24,10 @@ export const Hero = () => {
   return (
     <>
       {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? (
-        <section id="heroSection" className="indexBackground"> {/* normal screen size*/}
+        <header id="heroSection" className="indexBackground"> {/* normal screen size*/}
           <Parallax blur={{ min: -15, max: 15 }} strength={500}
             bgImage={require('../../../assets/pexels-chris-f-1283219.jpeg')}
-            bgImageAlt={altImage}
+            bgImageAlt={"background picture of bottles of alcohol on two bar shelves."}
           >
             <div className="container">
               <div className="homePageContainer">
@@ -40,10 +40,11 @@ export const Hero = () => {
             </div>
             <div className="custom_bg" />
           </Parallax>
-        </section>) : (
-        <section id="heroSection" className="indexBackground">  {/* medium screen size*/}
+        </header>) : (
+        <header id="heroSection" className="indexBackground">  {/* medium screen size*/}
           <Parallax blur={{ min: -15, max: 15 }} strength={500}
             bgImage={require('../../../assets/pexels-chris-f-1283219.jpeg')}
+            bgImageAlt={"background picture of bottles of alcohol on two bar shelves."}
           >
             <div className="container">
               <div className="homePageContainer">
@@ -57,10 +58,11 @@ export const Hero = () => {
 
             <div className="custom_bg" />
           </Parallax>
-        </section>) : (
-        <section id="heroSection" className="indexBackground"> {/* small screen size*/}
+        </header>) : (
+        <header id="heroSection" className="indexBackground"> {/* small screen size*/}
           <Parallax blur={{ min: -15, max: 15 }} strength={500}
             bgImage={require('../../../assets/pexels-chris-f-1283219.jpeg')}
+            bgImageAlt={"background picture of bottles of alcohol on two bar shelves."}
           >
             <div className="container">
               <div className="homePageContainer">
@@ -73,7 +75,7 @@ export const Hero = () => {
             </div>
             <div className="custom_bg" />
           </Parallax>
-        </section>
+        </header>
       )}
 
     </>

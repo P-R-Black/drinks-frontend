@@ -21,6 +21,7 @@
 .linktoRecipeThree {
     color: white;
     font-size: clamp(.75rem, 1.10vw, 5vw);
+    z-index: 1;
 }
 
 .discoverTitleContainer {
@@ -81,6 +82,10 @@
     width: 100%;
 
 
+}
+
+.discAlcLinkContainer:hover {
+    z-index: 999;
 }
 
 

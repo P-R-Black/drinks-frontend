@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react'
 import slugify from 'react-slugify';
 import './navigation.css'
 
-
 import { Logo } from '../logo/Logo';
 import { Search } from '../search/Search';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link'
 
-export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
+export const Navigation = ({ drinks }) => {
+
     const [numofRecipes, setNumOfRecipes] = useState(0)
+
 
 
     const dropDownSelection = [
@@ -18,10 +19,7 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
         'Vodka', 'Whiskey'
     ]
 
-
-
     const showNavMenu = () => {
-
 
         let navBarMenu = document.querySelector('.navBarMenu')
         let visibility = navBarMenu.getAttribute('data-visible')
@@ -32,6 +30,10 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
             navBarMenu.setAttribute('data-visible', 'true')
             navBarDropdown.classList.add('show')
 
+            // move focust to the first link in the dropdown.
+            const firstLink = navBarDropdown.querySelector('a');
+            if (firstLink) firstLink.focus();
+
         } else {
             navBarMenu.setAttribute('aria-expanded', 'false')
             navBarMenu.setAttribute('data-visible', 'false')
@@ -40,8 +42,34 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
 
     }
 
+    const handleEscapeKey = (event) => {
+        if (event.key === 'Escape') {
+            // Close the dropdown menu
+            let navBarMenu = document.querySelector('.navBarMenu');
+            let navBarDropdown = document.querySelector('.navDropdown');
+
+            navBarMenu.setAttribute('aria-expanded', 'false');
+            navBarMenu.setAttribute('data-visible', 'false');
+            navBarDropdown.classList.remove('show');
+
+            // Return focus to the button that opened the menu
+            navBarMenu.focus();
+        }
+    };
 
     useEffect(() => {
+        // Add event listener for keydown
+        document.addEventListener('keydown', handleEscapeKey);
+
+        // Cleanup event listener on unmount
+        return () => {
+            document.removeEventListener('keydown', handleEscapeKey);
+        };
+    }, []);
+
+
+    useEffect(() => {
+
         const drinksCount = () => {
             let recipeLengthRounded = Math.round(drinks?.length / 5) * 5;
             if (drinks?.length % 5 <= 5) {
@@ -51,9 +79,28 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
             }
 
         }
-
+        const navBarLogo = document.querySelector('#logoId');
+        navBarLogo.focus()
         drinksCount()
     }, [drinks])
+
+    const fetchAlcoholType = async () => {
+        let filteredBase = []
+        for (let d = 0; d < drinks?.length; d++) {
+            let base = drinks?.map((ba) => ba.base_alcohol)
+            for (let b = 0; b < base.length; b++) {
+                let baseText = await base[b][0]
+                if (!filteredBase.includes(baseText)) {
+                    filteredBase.push(baseText)
+
+                }
+            }
+            return filteredBase.sort()
+        }
+    }
+
+
+
 
     return (
         <>
@@ -70,21 +117,20 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
                             <div id="logoId">
                                 <Logo className="navbarLogo"></Logo>
                             </div>
-                            <search className="searchId">
+                            <form className="searchId">
                                 <Search
                                     drinks={drinks}
-                                    drinkRecipe={drinkRecipe}
                                     className="navSearch"
                                 />
-                            </search>
-                            <div className="navBarMenu" id="navBarMenu" aria-controls="navbar_menu"
+                            </form>
+                            <button className="navBarMenu" id="navBarMenu" aria-controls="navBarMenu"
                                 aria-expanded="false"
                                 onClick={() => { showNavMenu(); fetchAlcoholType() }}>
                                 <span className="bar kg-only"></span>
                                 <span className="bar kg-only"></span>
                                 <span className="bar kg-only"></span>
                                 <span className="bar kg-only"></span>
-                            </div>
+                            </button>
                             <ul className="navDropdown">
                                 <HashLink
                                     onClick={showNavMenu}
@@ -142,17 +188,20 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
                         <div id="logoId">
                             <Logo className="navbarLogo"></Logo>
                         </div>
-                        <search className="searchId">
-                            <Search drinks={drinks} drinkRecipe={drinkRecipe} className="navSearch" />
-                        </search>
-                        <div className="navBarMenu" id="navBarMenu" aria-controls="navbar_menu"
+                        <form className="searchId">
+                            <Search
+                                drinks={drinks}
+                                className="navSearch"
+                            />
+                        </form>
+                        <button className="navBarMenu" id="navBarMenu" aria-controls="navBarMenu"
                             aria-expanded="false"
                             onClick={() => { showNavMenu(); fetchAlcoholType() }}>
                             <span className="bar kg-only"></span>
                             <span className="bar kg-only"></span>
                             <span className="bar kg-only"></span>
                             <span className="bar kg-only"></span>
-                        </div>
+                        </button>
                         <ul className="navDropdown">
                             <HashLink
                                 onClick={showNavMenu}
@@ -212,14 +261,14 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
                                 <div id="logoId">
                                     <Logo className="navbarLogo"></Logo>
                                 </div>
-                                <div className="navBarMenu" id="navBarMenu" aria-controls="navbar_menu"
+                                <button className="navBarMenu" id="navBarMenu" aria-controls="navBarMenu"
                                     aria-expanded="false"
                                     onClick={() => { showNavMenu(); fetchAlcoholType() }}>
                                     <span className="bar kg-only"></span>
                                     <span className="bar kg-only"></span>
                                     <span className="bar kg-only"></span>
                                     <span className="bar kg-only"></span>
-                                </div>
+                                </button>
                                 <ul className="navDropdown">
                                     <HashLink
                                         onClick={showNavMenu}
@@ -271,9 +320,11 @@ export const Navigation = ({ fetchAlcoholType, drinks, drinkRecipe }) => {
                             </div>
                         </div>
                     </nav>
-                    <div className="mobileNavContainer">
-                        <Search drinks={drinks} drinkRecipe={drinkRecipe} className="navSearch" />
-                    </div>
+                    <form className="mobileNavContainer">
+                        <Search
+                            drinks={drinks}
+                            className="navSearch" />
+                    </form>
                 </>
             )}
         </>

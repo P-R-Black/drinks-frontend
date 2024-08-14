@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import axios from 'axios';
-import { Navigation } from '../../components/LogoNavFooterPageComponents/navigation/Navigation';
+
 import { Hero } from '../../components/homePageComponents/hero/Hero';
 import { DailyDrink } from '../../components/homePageComponents/daily_drink/DailyDrink';
 import { MustKnows } from '../../components/homePageComponents/must_knows/MustKnows';
@@ -10,19 +9,21 @@ import { Discover } from '../../components/homePageComponents/discover/Discover'
 import { DiscoverShots } from '../../components/homePageComponents/discoverShots/DiscoverShots';
 import { Mocktails } from '../../components/homePageComponents/mocktails/Mocktails';
 import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
+import { useOutletContext } from 'react-router-dom';
+import { useCookies } from '../../providers/cookiesProvider/CookiesProvider';
 
-import { Footer } from '../../components/LogoNavFooterPageComponents/footer/Footer';
+
+export const Home = () => {
+
+  const { cookiesConsent, acceptCookies, declineCookies, showCookieBanner } = useCookies();
 
 
-
-const DB_ENDPOINT = process.env.REACT_APP_DB_GET_KEY
-const DB_LAST_ENTRY = process.env.REACT_APP_DB_LAST_KEY
-
-export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkText, mustKnows,
-  allShots, allDrinksBackgroundPic, updateBackgroundPicture, isCookieSet, cookiesAccept,
-  coockiesDeclined, showCookieBanner
-}) => {
-
+  const { drinks } = useOutletContext()
+  const { cocktails } = useOutletContext()
+  const { allShots } = useOutletContext()
+  const { mustKnows } = useOutletContext()
+  const { backendApi } = useOutletContext()
+  const { currDrinkOfTheDay } = useOutletContext()
 
   var date = new Date()
   var year = date.getFullYear();
@@ -45,32 +46,35 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
     "July", "August", "September", "October", "Novenber", "December"
   ];
 
-  // gets the drink of the day from index.js file in server directory
+
+  // gets the drink of the day info file in server directory:
   const getFullDrinkInfo = useCallback(async (theLastDod) => {
-    let ldod = await drinks.find((drink) => drink.drink_name === theLastDod)
+    let ldod = await drinks?.find((drink) => drink?.drink_name === theLastDod)
     setCurrentDrink([ldod])
   }, [drinks]);
 
 
+
   useEffect(() => {
-    // returns past drinks of teh date and their date
+    // returns past drinks of the date and their date
     const fetchData = async () => {
       try {
-        const { data: response } = await axios.get(DB_ENDPOINT)
-        console.log('response', response)
-        setDrinkOfTheDay(response)
+        setDrinkOfTheDay(backendApi)
       } catch (error) {
         console.error(error.message)
 
       }
     }
 
+
+
+
+
     // gets today's Dod
     const fetchLastRecord = async () => {
       try {
-        const { data: resp } = await axios.get(DB_LAST_ENTRY)
-        setLastDrinkOfTheDay(resp['name'])
-        getFullDrinkInfo(resp['name'])
+        setLastDrinkOfTheDay(currDrinkOfTheDay['name'])
+        getFullDrinkInfo(currDrinkOfTheDay['name'])
       } catch (error) {
         console.error(error.message)
       }
@@ -78,7 +82,9 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
 
     fetchData()
     fetchLastRecord()
-  }, [getFullDrinkInfo]);
+  }, [backendApi, currDrinkOfTheDay, drinks]);
+
+
 
   const eventMap = {};
   drinkOfTheDay.forEach(event => {
@@ -97,7 +103,6 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
     }
 
   };
-
 
 
   const calDate = document.querySelectorAll('.calDate')
@@ -134,26 +139,13 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
 
   })
 
-  console.log('drinkOfTheDay', drinkOfTheDay)
-  console.log('drinkLookup', drinkLookup, 'dateLookUp', dateLookup)
-
-
 
 
   return (
     <>
-      <Navigation
-        baseAlcohol={baseAlcohol}
-        fetchAlcoholType={fetchAlcoholType}
-        navLinkText={navLinkText}
-        cocktails={cocktails}
-        drinks={drinks}
-        allDrinksBackgroundPic={allDrinksBackgroundPic}
-      />
       <Hero />
       <MidSection />
       <DailyDrink
-        drinks={drinks}
         date={date}
         year={year}
         month={month}
@@ -161,37 +153,33 @@ export const Home = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLink
         mm={mm}
         lastDrinkOfTheDay={lastDrinkOfTheDay}
         currentDrink={currentDrink}
-        drinkLookup={drinkLookup}
         dateLookup={dateLookup}
+        drinkLookup={drinkLookup}
         months={months}
         handleDateClick={handleDateClick}
         drinkOfTheDay={drinkOfTheDay}
       />
       <Discover
-        drinks={drinks}
         cocktails={cocktails}
-        updateBackgroundPicture={updateBackgroundPicture}
-        allDrinksBackgroundPic={allDrinksBackgroundPic}
       />
       <MidSectionTwo />
       <DiscoverShots
         allShots={allShots}
-        updateBackgroundPicture={updateBackgroundPicture}
-        allDrinksBackgroundPic={allDrinksBackgroundPic}
       />
       <Mocktails
-        drinks={drinks}
-        updateBackgroundPicture={updateBackgroundPicture}
+        cocktails={cocktails}
       />
       <MustKnows mustKnows={mustKnows} />
       <CoockieBar
         showCookieBanner={showCookieBanner}
-        isCookieSet={isCookieSet}
-        cookiesAccept={cookiesAccept}
-        coockiesDeclined={coockiesDeclined}
+        cookiesConsent={cookiesConsent}
+        acceptCookies={acceptCookies}
+        declineCookies={declineCookies}
       />
-
-      <Footer />
     </>
   )
 }
+
+
+
+

@@ -36,10 +36,9 @@
 
 
 .navBarMenu {
+    background-color: transparent;
     color: black;
     cursor: pointer;
-    width: 4rem;
-    padding-left: .5rem;
     z-index: 50;
 
 }

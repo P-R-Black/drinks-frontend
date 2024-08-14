@@ -1,40 +1,32 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
 
-import { Navigation } from '../../components/LogoNavFooterPageComponents/navigation/Navigation'
 import { DrinkRecipe } from '../../components/drinkrecipe/DrinkRecipe';
 import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
+import { useOutletContext } from 'react-router-dom';
+import { useCookies } from '../../providers/cookiesProvider/CookiesProvider';
 
-import { Footer } from '../../components/LogoNavFooterPageComponents/footer/Footer'
 
 
-export const Drinks = ({ drinks, baseAlcohol, fetchAlcoholType, navLinkText,
-  showCookieBanner, isCookieSet, cookiesAccept, coockiesDeclined }) => {
+export const Drinks = () => {
+  const { cookiesConsent, acceptCookies, declineCookies, showCookieBanner } = useCookies();
+
   let { drinkRecipe } = useParams()
-
+  const { drinks } = useOutletContext()
 
   return (
     <>
-      <Navigation
-        baseAlcohol={baseAlcohol}
-        fetchAlcoholType={fetchAlcoholType}
-        navLinkText={navLinkText}
-        drinks={drinks}
-        drinkRecipe={drinkRecipe}
-      />
+
       <DrinkRecipe
         drinks={drinks}
         drinkRecipe={drinkRecipe}
       />
-      {!isCookieSet ? (
-        <CoockieBar
-          showCookieBanner={showCookieBanner}
-          isCookieSet={isCookieSet}
-          cookiesAccept={cookiesAccept}
-          coockiesDeclined={coockiesDeclined}
-        />
-      ) : ""}
-      <Footer />
+      <CoockieBar
+        showCookieBanner={showCookieBanner}
+        cookiesConsent={cookiesConsent}
+        acceptCookies={acceptCookies}
+        declineCookies={declineCookies}
+      />
     </>
   )
 }

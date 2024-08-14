@@ -7,7 +7,7 @@ export const Logo = () => {
 
   return (
     <Link to="/">
-      <div className="logoName">{"Keep's Guide"}</div>
+      <div className="logoName" alt="Keep's Guide">{"Keep's Guide"}</div>
     </Link>
   )
 }

@@ -20,7 +20,6 @@ export const MustKnowAPI = () => {
         queryKey: ['mustKnowData', headers],
         queryFn: async () => {
             const mustKnowData = await FetchPaginatedData({ queryKey: [mustKnowApi, headers] })
-            console.log('mustKnowData', mustKnowData)
             return mustKnowData
         }
 

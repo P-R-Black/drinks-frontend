@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './share.css';
 import { BiShareAlt } from 'react-icons/bi';
 import { FaFacebookSquare } from 'react-icons/fa';
@@ -14,17 +15,15 @@ import {
     WhatsappShareButton
 } from 'react-share';
 
-const FB_APP_ID = process.env.REACT_APP_FB_APP_ID
 
 
 
 
-export const Share = ({ recipeInPlay, ingredientInPlay, garnishInPlay, directionsInPlay, glassInPlay }) => {
+export const Share = ({ recipeInPlay, ingredientInPlay, garnishInPlay, directionsInPlay, glassInPlay, shareUrl }) => {
 
-    let cocktailGlass = "/Users/paulblack/VS Code/drinks-app/src/assets/CocktailGlassTingPng.png"
 
-    const urlShare = window.location.href;
-    console.log('urlShare', urlShare)
+    const currentPageUrl = encodeURI(window.location.href)
+    const fbAppId = process.env.REACT_APP_FB_APP_ID
 
     const showShareMenu = () => {
         let shareBarMenu = document.querySelector('.shareIcon')
@@ -43,55 +42,13 @@ export const Share = ({ recipeInPlay, ingredientInPlay, garnishInPlay, direction
         }
     }
 
-
-    const getFacebookElement = () => {
-        console.log('getFacebookElement Called');
-        let sourceTag = "https://connect.facebook.net/en_US/sdk.js`"
-        const metaUrlTag = document.createElement('meta');
-        metaUrlTag.async = true;
-        metaUrlTag.src = sourceTag;
-
-        document.head.appendChild(metaUrlTag)
-        metaUrlTag.setAttribute('property', 'og:url')
-        metaUrlTag.content = urlShare
-        console.log('metaUrlTag', metaUrlTag)
-
-        const metaTypeTag = document.createElement('meta');
-        metaTypeTag.async = true;
-        metaTypeTag.src = sourceTag;
-
-        document.head.appendChild(metaTypeTag)
-        metaTypeTag.setAttribute('property', 'og:type')
-        metaTypeTag.content = 'recipe'
-        console.log('metaTypeTag', metaTypeTag)
-
-        const metaTitleTag = document.createElement('meta');
-        metaTitleTag.async = true;
-        metaTitleTag.src = sourceTag;
-
-        document.head.appendChild(metaTitleTag)
-        metaTitleTag.setAttribute('property', 'og:title')
-        metaTitleTag.content = recipeInPlay
-        console.log('metaTitleTag', metaTitleTag)
-
-        const metaDescriptionTag = document.createElement('meta');
-        metaDescriptionTag.async = true;
-        metaDescriptionTag.src = sourceTag;
-
-        document.head.appendChild(metaDescriptionTag)
-        metaDescriptionTag.setAttribute('property', 'og:description')
-        metaDescriptionTag.content = `How to make a ${recipeInPlay}`
-        console.log('metaDescriptionTag', metaDescriptionTag)
-
-        const metaImageTag = document.createElement('meta');
-        metaImageTag.async = true;
-        metaImageTag.src = sourceTag;
-
-        document.head.appendChild(metaImageTag);
-        metaImageTag.setAttribute('property', 'og:image');
-        metaImageTag.content = cocktailGlass;
-        console.log('metaImageTag', metaImageTag);
-
+    function titleCase(str) {
+        if (str.includes("-")) {
+            str = str.replace('-', ' ')
+        }
+        return str.toLowerCase().split(' ').map(function (word) {
+            return (word.charAt(0).toUpperCase() + word.slice(1));
+        }).join(' ').replaceAll(" ", "");
     }
 
 
@@ -110,7 +67,7 @@ export const Share = ({ recipeInPlay, ingredientInPlay, garnishInPlay, direction
             "<b>Serving Glass:</b>" + `<ul><li>${encodeURIComponent(glassInPlay)}</li></ul>` +
             "<b> Mixing Instructions:</b>" +
             `<ol>${drinkInstructions.map(dip => `<li>${encodeURIComponent(dip.replace(/[0-9]./, "").trim())}</li>`).join('')}</ol>` +
-            `<b>Find More at <a>${encodeURIComponent(urlShare)}</a></b>` +
+            `<b>Find More at <a>${encodeURIComponent(shareUrl)}</a></b>` +
             "&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button";
         document.getElementById("tumblr-quote").href = tumblrLink;
     }
@@ -125,34 +82,45 @@ export const Share = ({ recipeInPlay, ingredientInPlay, garnishInPlay, direction
 
 
             <div className="shareDropDown">
-                <FacebookShareButton url={"http://www.paulrblack.com"}>
-                    <FaFacebookSquare
-                        className='shareIcons'
-                        id="facebookShare"
-                        onClick={getFacebookElement}
-                    />
+                <FacebookShareButton
+                    url={currentPageUrl}
+                    hashtag={`#${titleCase(recipeInPlay)}`}
+                >
+                    <FaFacebookSquare className='shareIcons' id="facebookShare" />
                 </FacebookShareButton>
 
-
-                <TwitterShareButton>
-                    <FaSquareXTwitter className='shareIcons' id="xShare" />
-                </TwitterShareButton>
-
-                <a href="https://www.tumblr.com/widgets/share/tool" className="button" id="tumblr-quote"
-                    title="post this recipe" target="_blank" rel="noopener noreferrer">
-                    <FaTumblrSquare className='shareIcons' id="tmblrShare"
-                        onClick={getTumbElement} />
-                </a>
-
-                <FacebookMessengerShareButton>
+                <FacebookMessengerShareButton
+                    url={currentPageUrl}
+                    appId={fbAppId}
+                    redirectUri={shareUrl}>
                     <FaFacebookMessenger className='shareIcons' id="messengerShare" />
                 </FacebookMessengerShareButton>
 
-                <WhatsappShareButton>
+                <TwitterShareButton
+                    url={`\n${currentPageUrl}`}
+                    quote="drink recipes"
+                    hashtag={`#${titleCase(recipeInPlay)}`}
+                    title={`How to make a ${recipeInPlay}`}
+                >
+                    <FaSquareXTwitter className='shareIcons' id="xShare" />
+                </TwitterShareButton>
+
+                <Link to="https://www.tumblr.com/widgets/share/tool" className="button" id="tumblr-quote"
+                    title="post this recipe" target="_blank" rel="noopener noreferrer">
+                    <FaTumblrSquare className='shareIcons' id="tmblrShare"
+                        onClick={getTumbElement} />
+                </Link>
+
+                <WhatsappShareButton
+                    // title={`How to make a ${recipeInPlay}`}
+                    quote={`How to make a ${recipeInPlay}`}
+                    url={`\n${shareUrl}`}
+                    hashtag={`#${titleCase(recipeInPlay)}`}
+                >
                     <FaWhatsappSquare className='shareIcons' id="whatsAppShare" />
                 </WhatsappShareButton>
 
-                <a href={`mailto:email@mail.com?subject=Keep's Guide's recipe for a ${recipeInPlay}&body=Check out the recipe at http://www.keepsguide.com.`}
+                <a href={`mailto:?subject=Keep's Guide's recipe for a ${recipeInPlay}&body=Check out the recipe at ${shareUrl}`}
                     title="Share by Email" target="_blank" rel="noopener noreferrer">
                     <HiOutlineMail className='shareIcons' id="emailShare" />
                 </a>

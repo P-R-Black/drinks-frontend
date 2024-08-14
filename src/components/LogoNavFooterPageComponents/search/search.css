@@ -35,7 +35,10 @@ input.searchBar {
     width: 26rem;
 }
 
-.searchIcons {
+
+
+
+button.searchIcons {
     align-items: center;
     background-color: transparent;
     color: white;

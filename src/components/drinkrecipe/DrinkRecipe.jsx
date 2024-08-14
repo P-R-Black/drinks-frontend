@@ -23,19 +23,9 @@ export const DrinkRecipe = ({ drinks, drinkRecipe }) => {
 
     let picChoice = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgRecipeBG})`;
 
+    let shareUrl = window.location.href;
+
     let picByRecipe = [picChoice]
-
-
-
-    // function to get drink recipe
-    // const getDrinkRecipe = () => {
-    //     drinks.map((rec) => {
-    //         if (rec.drink_name.toLowerCase() === drinkRecipe || 
-    //             rec.drink_name.toLowerCase().replaceAll(" ", "") === drinkRecipe){
-    //             setRecipe([rec])
-    //         } 
-    //     })
-    // }
 
     // removes zero before decimals
     const formatUnits = (unit) => {
@@ -129,11 +119,13 @@ export const DrinkRecipe = ({ drinks, drinkRecipe }) => {
                             <div className="titleAndLikes">
                                 <h2 id="recipeTitle" className="recipeTitle">{dr.drink_name}</h2>
                                 <div className="likesAndShare" style={{ color: "white" }}>
-                                    <Share recipeInPlay={dr.drink_name}
+                                    <Share
+                                        recipeInPlay={dr.drink_name}
                                         ingredientInPlay={dr.ingredients}
                                         garnishInPlay={dr.garnish}
                                         directionsInPlay={dr.mixing_direction}
                                         glassInPlay={dr.serving_glass}
+                                        shareUrl={shareUrl}
                                     />
                                 </div>
                             </div>

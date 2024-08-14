@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import './discover.css'
-import { Parallax } from 'react-parallax';  //Background
+import { Parallax } from 'react-parallax';
 import altImage from '../../../assets/pexels-rachel-default.jpg'
 import { ToolTip } from '../../tooltip/ToolTip';
 import slugify from 'react-slugify';
@@ -11,6 +11,7 @@ export const Discover = ({ cocktails }) => {
     const discoverRef = useRef();
     const [discElementVisible, setDiscElementVisible] = useState();
     const [mainAlcohols, setMainAlcohols] = useState([])
+
 
 
     useEffect(() => {

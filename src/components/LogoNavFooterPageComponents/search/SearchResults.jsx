@@ -19,10 +19,8 @@ export const SearchResults = ({ results, selectedItem, handleClose }) => {
   }, [selectedItem]);
 
   const closeResults = () => {
-    console.log('closeResults called')
     let resultsList = document.querySelector('.results_list')
     resultsList.setAttribute('className', '.hidden')
-    console.log('resultsList', resultsList)
   }
 
   return (

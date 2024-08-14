@@ -31,7 +31,8 @@ export const Search = ({ drinks }) => {
     }
   };
 
-  const handleClose = () => {
+  const handleClose = (e) => {
+    e.preventDefault()
     setInput("")
     setResults([])
     setSelectedItem(-1)
@@ -65,6 +66,7 @@ export const Search = ({ drinks }) => {
     <section className='searchSection'>
       <div className="searchInputDiv">
         <input
+          alt="search box"
           id="search"
           className="searchBar"
           type="text"
@@ -73,11 +75,11 @@ export const Search = ({ drinks }) => {
           onChange={handleChange}
           onKeyDown={handleKeyDown}
         />
-        <div className="searchIcons">
+        <button className="searchIcons">
           {
             input === "" ? (<IoMdSearch />) : (<IoMdClose onClick={handleClose} />)
           }
-        </div>
+        </button>
         <SearchResults results={results} selectedItem={selectedItem} handleClose={handleClose} />
 
       </div>

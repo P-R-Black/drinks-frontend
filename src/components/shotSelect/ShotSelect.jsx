@@ -15,19 +15,12 @@ export const ShotSelect = ({ alcohol, allShots, displayName }) => {
     newDisplayName = i[0]
   }
 
-  console.log(' ShotSelect.jsx, alcohol', alcohol) // butterscotch-liqueur
-  // console.log(' ShotSelect.jsx, slugify(alcohol)', slugify(alcohol)) // butterscotch-liqueur
-
-  // console.log(' ShotSelect.jsx, displayName', displayName) // displayName Butterscotch Liqueur
-  // console.log(' ShotSelect.jsx, newDisplayName', newDisplayName) // newDisplayName r
-  // console.log(' ShotSelect.jsx, allShots', allShots)
 
   const filterDrink = useCallback(() => {
     const sortedList = allShots
       .filter((fd) => slugify(fd.base_alcohol[0]) === slugify(alcohol))
       .map((fd) => fd.drink_name)
       .sort();
-    console.log('sortedList', sortedList)
     setFilteredDrink(sortedList);
   }, [allShots, alcohol]);
 

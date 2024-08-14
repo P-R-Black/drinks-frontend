@@ -10,8 +10,8 @@ import dodImage from '../../../assets/pexels-ron-lach.jpg'
 import altImage from '../../../assets/pexels-lime-mint-drinks.jpg'
 import debounce from 'lodash.debounce';
 
-export const DailyDrink = ({ drinks, date, year, month, dd, mm, lastDrinkOfTheDay, currentDrink,
-  drinkLookup, dateLookup, months, handleDateClick, drinkOfTheDay }) => {
+export const DailyDrink = ({ date, year, month, dd, mm, lastDrinkOfTheDay, currentDrink,
+  dateLookup, months, handleDateClick, drinkOfTheDay }) => {
 
   const titleRefTwo = useRef();
   const [dodElementVisible, setDodElementVisible] = useState();
@@ -46,17 +46,14 @@ export const DailyDrink = ({ drinks, date, year, month, dd, mm, lastDrinkOfTheDa
           <div className="dodContainer">
             <div className={dodElementVisible ? `dodLeftSide show` : `dodLeftSide hidden`}>
               <h2 className="todaysDrink">{!dateLookup || dateLookup === today ? "Today's Drink" : dateLookup}</h2>
-              {currentDrink.map((cd) => (cd ? (
-                <React.Fragment key={cd.id}>
-
+              {currentDrink.map((cd) => cd ? (
+                <div key={cd.id}>
                   <div className="dailyDrink">{!dateLookup ? lastDrinkOfTheDay : cd.drink_name}</div>
                   <Link key={cd.drink_name} className="recipeButton" to={`/${slugify(cd.base_alcohol)}/${slugify(cd.drink_name)}`}>
                     Recipe
                   </Link>
-                </React.Fragment>
-              ) : (<h2>Loading</h2>)
-
-              ))}
+                </div>
+              ) : (<h2 key="loading">Loading</h2>))}
             </div>
 
             <div className={dodElementVisible ? `dodRightSide show` : `dodRightSide hidden`}>
@@ -67,8 +64,6 @@ export const DailyDrink = ({ drinks, date, year, month, dd, mm, lastDrinkOfTheDa
                 month={month}
                 handleDateClick={handleDateClick}
                 drinkOfTheDay={drinkOfTheDay}
-              // generateCalendar={generateCalendar}
-              // adjustMonth={adjustMonth}
               />
             </div>
           </div>

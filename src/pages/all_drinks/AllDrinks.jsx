@@ -2,21 +2,24 @@ import React, { useState, useEffect, useCallback } from 'react'
 import slugify from 'react-slugify';
 import { useParams } from 'react-router-dom';
 
-import { Navigation } from '../../components/LogoNavFooterPageComponents/navigation/Navigation'
 import { DrinksAll } from '../../components/drinks_all/DrinksAll';
 import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
+import { useCookies } from '../../providers/cookiesProvider/CookiesProvider';
 
-import { Footer } from '../../components/LogoNavFooterPageComponents/footer/Footer'
+import { useOutletContext } from 'react-router-dom';
 
-export const AllDrinks = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, navLinkText,
-  isCookieSet, cookiesAccept, coockiesDeclined, showCookieBanner }) => {
+import { convertAlcoholNameUtils } from '../pagesUtilities/Utilities';
+import { convertText } from '../pagesUtilities/Utilities';
 
+export const AllDrinks = () => {
+  const { cookiesConsent, acceptCookies, declineCookies, showCookieBanner } = useCookies();
 
   let { alcohol } = useParams()
-
   const [displayName, setDisplayName] = useState("")
+  const { cocktails } = useOutletContext()
 
-
+  convertAlcoholNameUtils(alcohol, cocktails)
+  convertText(alcohol, cocktails)
 
   const convertAlcoholName = useCallback((alcohol) => {
     // gets base alcoohl as it appears from API
@@ -59,27 +62,17 @@ export const AllDrinks = ({ drinks, cocktails, baseAlcohol, fetchAlcoholType, na
 
   return (
     <>
-      <Navigation
-        drinks={drinks}
-        baseAlcohol={baseAlcohol}
-        fetchAlcoholType={fetchAlcoholType}
-        navLinkText={navLinkText}
-        alcohol={alcohol}
-      />
       <DrinksAll
         alcohol={alcohol}
         cocktails={cocktails}
         displayName={displayName}
       />
-      {!isCookieSet ? (
-        <CoockieBar
-          showCookieBanner={showCookieBanner}
-          isCookieSet={isCookieSet}
-          cookiesAccept={cookiesAccept}
-          coockiesDeclined={coockiesDeclined}
-        />
-      ) : ""}
-      <Footer />
+      <CoockieBar
+        showCookieBanner={showCookieBanner}
+        cookiesConsent={cookiesConsent}
+        acceptCookies={acceptCookies}
+        declineCookies={declineCookies}
+      />
     </>
   )
 }
