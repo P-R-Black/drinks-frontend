@@ -53,10 +53,10 @@ export const DailyDrink = ({ date, year, month, dd, mm, lastDrinkOfTheDay, curre
                 {!dateLookup || dateLookup === today ? "Today's Drink" : dateLookup}
               </h2>
               {currentDrink.map((cd) => cd ? (
-                <React.Fragment>
-                  <div key={cd.id} className="dailyDrink">{!dateLookup ? lastDrinkOfTheDay : cd.drink_name}</div>
+                <React.Fragment key={cd.id}>
+                  <div className="dailyDrink">{!dateLookup ? lastDrinkOfTheDay : cd.drink_name}</div>
 
-                  <Link key={cd.drink_name} className="recipeButton" to={`/${slugify(cd.base_alcohol)}/${slugify(cd.drink_name)}`}>
+                  <Link className="recipeButton" to={`/${slugify(cd.base_alcohol)}/${slugify(cd.drink_name)}`}>
                     <button aria-label={`View the recipe for ${cd.drink_name}`}>Recipe</button>
                   </Link>
 

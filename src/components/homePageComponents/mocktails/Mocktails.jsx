@@ -45,7 +45,7 @@ export const Mocktails = ({ cocktails }) => {
 
     // normal screen => medium screen => small screen
     return (
-        <section id="mocktailSection" className="moctailSection">
+        <section id="mocktailSection" className="moctailSection" aria-label="Non-Alcoholic Drink Options">
             <Parallax>
                 <Background>
                     {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? (<img
@@ -54,21 +54,21 @@ export const Mocktails = ({ cocktails }) => {
                             height: "auto", width: "100vw", backfaceVisibility: "hidden",
                             transform: 'translate3d(-50%, -49.5868px, 0px)', left: "50%", transformStyle: 'preserve-3d',
                             backgroundSize: "cover"
-                        }} alt={altImage}
+                        }} alt=""
                     />) : (<img
                         src={mocktailImage} className='parallaxDiscoverImage' style={{
                             position: "absolute",
                             height: "auto", width: "auto", backfaceVisibility: "hidden",
                             transform: 'translate3d(-50%, -49.5868px, 0px)', left: "50%", transformStyle: 'preserve-3d',
                             backgroundSize: "cover"
-                        }} alt={altImage}
+                        }} alt=""
                     />) : (<img
                         src={mocktailImage} className='parallaxDiscoverImage' style={{
                             position: "absolute",
                             height: "auto", width: "auto", backfaceVisibility: "hidden",
                             transform: 'translate3d(-50%, -49.5868px, 0px)', left: "50%", transformStyle: 'preserve-3d',
                             backgroundSize: "cover"
-                        }} alt={altImage}
+                        }} alt=""
                     />)}
 
                 </Background>
@@ -76,16 +76,23 @@ export const Mocktails = ({ cocktails }) => {
                     <div className="mocktailContainer">
                         <div className="mocktailTitleContainer" ref={mocktailTitleRef}>
                             <>
-                                <h1 className={mocktailElementVisible ? `mocktailTitleH1 show` : `mocktailTitleH1 hidden`}>Mocktails</h1>
-                                <h2 className={mocktailElementVisible ? `mocktailTitleH2 show` : `mocktailTitleH2 hidden`}>No Alcohol, No Problem</h2>
+                                <h1 className={mocktailElementVisible ? `mocktailTitleH1 show` : `mocktailTitleH1 hidden`} aria-live="polite">Mocktails</h1>
+                                <h2 className={mocktailElementVisible ? `mocktailTitleH2 show` : `mocktailTitleH2 hidden`} aria-live="polite">No Alcohol, No Problem</h2>
                             </>
                         </div>
                         <div className="MockLinksToDrinksContainerCard">
                             {mocktails.map((mt) => (
-                                <div ref={tooTipCardRef} className={toolTipCardVisible ? `toolTipCards show` : `toolTipCards hidden`} key={mt.id}>
+                                <div
+                                    ref={tooTipCardRef}
+                                    className={toolTipCardVisible ? `toolTipCards show` : `toolTipCards hidden`}
+                                    key={mt.id}
+                                    aria-live="polite"
+                                >
 
                                     <Link className="linktoRecipeThreeCard"
-                                        to={`/${slugify(mt.base_alcohol)}/${slugify(mt.drink_name)}`}>
+                                        to={`/${slugify(mt.base_alcohol)}/${slugify(mt.drink_name)}`}
+                                        aria-label={`View the recipe for ${mt.drink_name}`}
+                                    >
                                         {mt.drink_name}
                                     </Link>
                                     <ol className="mockIngredientContainer">
@@ -96,13 +103,20 @@ export const Mocktails = ({ cocktails }) => {
                                         ))}
                                     </ol>
 
-                                    <Link className="linktoRecipe" to={`/${slugify(mt.base_alcohol)}/${slugify(mt.drink_name)}`}>
-                                        Recipe</Link>
+                                    <Link
+                                        className="linktoRecipe"
+                                        to={`/${slugify(mt.base_alcohol)}/${slugify(mt.drink_name)}`}
+                                        aria-label={`Get the full recipe for ${mt.drink_name}`}
+                                    >
+                                        Recipe
+                                    </Link>
 
                                 </div >
                             ))}
                             <Link className={toolTipCardVisible ? `mocktailMore show` : `mocktailMore hidden`}
-                                to={"/non-alcoholic"}>
+                                to={"/non-alcoholic"}
+                                aria-label="See more non-alcoholic drinks"
+                            >
                                 More
                             </Link>
 

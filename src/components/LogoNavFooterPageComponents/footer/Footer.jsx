@@ -17,15 +17,17 @@ export const Footer = () => {
 
     return (
         <>
-            <section className='footerSection'>
+            <section id="footerSection" className='footerSection' role="contentinfo">
                 <div className='footerContainer container'>
                     <div className="footerLogoSocials">
                         <Logo />
                         <div className="footerSocials">
+                            <a href="/" className="skip-to-content">Skip to main content</a>
                             <Link
                                 className="footerSocials"
                                 to="https://www.facebook.com/profile.php?id=61560894480981"
                                 target="_blank"
+                                aria-label="Facebook page"
                             > <FaFacebookF />
                             </Link>
                             <Link
@@ -39,6 +41,7 @@ export const Footer = () => {
                                 className="footerSocials"
                                 to="https://x.com/KeepsGuide"
                                 target="_blank"
+                                aria-label="Instagram page"
                             >
                                 <FaXTwitter />
                             </Link>
@@ -47,6 +50,7 @@ export const Footer = () => {
                                 className="footerSocials"
                                 to="https://www.tiktok.com/@keeps.guide?_t=8n7xviIyRTj&_r=1"
                                 target="_blank"
+                                aria-label="TikTock page"
                             >
                                 <FaTiktok />
                             </Link>
@@ -55,46 +59,46 @@ export const Footer = () => {
                     </div>
                     {window.innerWidth < 601 ? (
                         <div className="mobileDivisionContainer">
-                            <div className="footerSiteSections">
+                            <ul className="footerSiteSections">
                                 <HashLink to="/#dodSection">{"Drink of the Day"}</HashLink>
                                 <HashLink to="/#discoverSection">{"Discover Cocktails"}</HashLink>
                                 <HashLink to="/#discoverShotsSection">{"Discover Shots"}</HashLink>
                                 <HashLink to="/#mocktailSection">{"Mocktails"}</HashLink>
                                 <HashLink to="/#mustKnowSection">{"Bartender Must Knows"}</HashLink>
                                 <NavLink to="/build-drink">{"Build A Drink"}</NavLink>
-                            </div>
-                            <div className="footerSiteInfo">
+                            </ul>
+                            <ul className="footerSiteInfo">
                                 <NavLink to="/about-us">{"About Us"}</NavLink>
                                 <NavLink to="/contact-us">{"Contact"}</NavLink>
-                                <NavLink onClick={() => setButtonPopUp(true)} to="">{"Privacy Choices"}</NavLink>
+                                <NavLink onClick={() => setButtonPopUp(true)} to="/privacy-policy">{"Privacy Choices"}</NavLink>
                                 <PrivacyChoice trigger={buttonPopUp} setTrigger={setButtonPopUp}></PrivacyChoice>
                                 <NavLink to="/privacy-policy">{"Privacy Policy"}</NavLink>
                                 <NavLink to="/terms-and-conditions">{"Terms Of Service"}</NavLink>
-                            </div>
+                            </ul>
                         </div>
                     ) : (
                         <>
                             <div className="footerSiteSections">
-                                <div className="footerSiteSectionsLeft">
+                                <ul className="footerSiteSectionsLeft">
                                     <HashLink to="/#dodSection">{"Drink of the Day"}</HashLink>
                                     <HashLink to="/#discoverSection">{"Discover Cocktails"}</HashLink>
                                     <HashLink to="/#discoverShotsSection">{"Discover Shots"}</HashLink>
-                                </div>
-                                <div className="footerSiteSectionsRight">
+                                </ul>
+                                <ul className="footerSiteSectionsRight">
                                     <HashLink to="/#mocktailSection">{"Mocktails"}</HashLink>
                                     <HashLink to="/#mustKnowSection">{"Bartender Must Knows"}</HashLink>
                                     <NavLink to="/build-drink">{"Build A Drink"}</NavLink>
 
-                                </div>
+                                </ul>
                             </div>
-                            <div className="footerSiteInfo">
+                            <ul className="footerSiteInfo">
                                 <NavLink to="/about-us">{"About Us"}</NavLink>
                                 <NavLink to="/contact-us">{"Contact"}</NavLink>
-                                <NavLink onClick={() => setButtonPopUp(true)} to="">{"Privacy Choices"}</NavLink>
+                                <NavLink onClick={() => setButtonPopUp(true)} to="/privacy-policy">{"Privacy Choices"}</NavLink>
                                 <PrivacyChoice trigger={buttonPopUp} setTrigger={setButtonPopUp}></PrivacyChoice>
                                 <NavLink to="/privacy-policy">{"Privacy Policy"}</NavLink>
                                 <NavLink to="/terms-and-conditions">{"Terms Of Service"}</NavLink>
-                            </div>
+                            </ul>
                         </>
                     )}
 

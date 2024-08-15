@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 export const MustKnows = ({ mustKnows }) => {
 
   return (
-    <section id="mustKnowSection" className="mustKnowSection">
+    <section id="mustKnowSection" className="mustKnowSection" aria-label="Must know drinks for bartenders">
       <div className="container">
         <div className="mustKnowContainer">
           <div className="mustKnowTitleContainer">
@@ -17,7 +17,10 @@ export const MustKnows = ({ mustKnows }) => {
             {mustKnows && mustKnows.sort((a, b) => a.drink_name > b.drink_name ? 1 : -1).map((mk) => {
               return (
                 <div key={mk.id} className="drinkGlass">
-                  <Link to={`/${slugify(mk.base_alcohol)}/${slugify(mk.drink_name)}`}>
+                  <Link
+                    to={`/${slugify(mk.base_alcohol)}/${slugify(mk.drink_name)}`}
+                    aria-label={`Learn more about ${mk.drink_name}`}
+                  >
                     <h2>{mk.drink_name}</h2>
                   </Link>
                 </div>

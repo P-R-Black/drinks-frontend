@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Logo } from '../../components/LogoNavFooterPageComponents/logo/Logo'
 import { Link } from 'react-router-dom'
 import './user_privacy.css'
@@ -13,26 +13,27 @@ export const PrivacyChoice = (props) => {
 
     const [hasConsetValue, setHasConsentValue] = useState(false);
     const [isCookieSet, setCookie] = useState(false);
-    let googleAnalyticsScript;
+    const googleAnalyticsScriptRef = useRef(null);
+    const closeButtonRef = useRef(null)
 
-
-    // console.log('props', props, 'test props testing')
     useEffect(() => {
-        setHasConsentValue(!!isCookieSet)
-        if (isCookieSet === "true") {
-            loadGoogleAnalytics();
+        if (props.trigger) {
+            closeButtonRef.current.focus();
         }
-
-    }, [isCookieSet])
+        setHasConsentValue(!!isCookieSet);
+        if (isCookieSet == "true") {
+            loadGoogleAnalytics()
+        }
+    }, [isCookieSet, props.trigger])
 
 
     const loadGoogleAnalytics = () => {
         setHasConsentValue(true)
-        googleAnalyticsScript = document.createElement('script');
-        googleAnalyticsScript.async = true;
-        googleAnalyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ANALYTICS}`;
+        googleAnalyticsScriptRef.current = document.createElement('script');
+        googleAnalyticsScriptRef.current.async = true;
+        googleAnalyticsScriptRef.current.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ANALYTICS}`
 
-        document.head.appendChild(googleAnalyticsScript);
+        document.head.appendChild(googleAnalyticsScriptRef.current)
 
         let dataLayer = window.dataLayer || [];
 
@@ -46,9 +47,9 @@ export const PrivacyChoice = (props) => {
     }
 
     const removeGoogleAnalytics = () => {
-        if (googleAnalyticsScript) {
-            document.head.removeChild(googleAnalyticsScript);
-            googleAnalyticsScript = null;
+        if (googleAnalyticsScriptRef.current) {
+            document.head.removeChild(googleAnalyticsScriptRef.current);
+            googleAnalyticsScriptRef.current = null;
             if (window.dataLayer) {
                 window.dataLayer = [];
             }
@@ -79,10 +80,23 @@ export const PrivacyChoice = (props) => {
     }
 
     return (props.trigger) ? (
-        <section className="privacyChoiceSection privacyPopup">
+        <section
+            className="privacyChoiceSection privacyPopup"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="privacy-title"
+        >
+
             <div className="logoDiv">
                 <Logo />
-                <button onClick={() => props.setTrigger(false)} className="closeButton">X</button>
+                <button
+                    onClick={() => props.setTrigger(false)}
+                    className="closeButton"
+                    aria-label="Close Privacy Choices"
+                    ref={closeButtonRef}
+                >
+                    X
+                </button>
                 {props.children}
             </div>
             <div className="privacyChoiceContainer">
@@ -103,9 +117,18 @@ export const PrivacyChoice = (props) => {
                 </p>
             </div>
             <Link to="mailto:pblackdevdemo@gmail.com">Send Opt Out Email</Link>
-            {/* <button className="privacyChoiceConfirmChoice">Confirm My Choices</button> */}
-            <button className="privacyChoiceOptButton" onClick={cookiesAccept}>Accept Cookies Targeting</button>
-            <button className="privacyChoiceOptButton" onClick={coockiesDeclined}>Opt Out of Cookies Targetig</button>
+            <button
+                className="privacyChoiceOptButton"
+                onClick={cookiesAccept}
+                aria-label="Accept Cookies Targeting">
+                Accept Cookies Targeting
+            </button>
+            <button
+                className="privacyChoiceOptButton"
+                onClick={coockiesDeclined}
+                aria-label="Opt Out of Cookies Targeting">
+                Opt Out of Cookies Targetig
+            </button>
         </section>
     ) : "";
 }

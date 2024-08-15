@@ -115,9 +115,9 @@ export const DrinkRecipe = ({ drinks, drinkRecipe }) => {
             <div className="container">
                 {recipe.map((dr) => {
                     return (
-                        <div className="recipeContainer" key={dr.id}>
-                            <div className="titleAndLikes">
-                                <h2 id="recipeTitle" className="recipeTitle">{dr.drink_name}</h2>
+                        <article className="recipeContainer" key={dr.id}>
+                            <header className="titleAndLikes">
+                                <h2 id="recipeTitle" className="recipeTitle" aria-label={`${dr.drink_name}`}>{dr.drink_name}</h2>
                                 <div className="likesAndShare" style={{ color: "white" }}>
                                     <Share
                                         recipeInPlay={dr.drink_name}
@@ -128,10 +128,10 @@ export const DrinkRecipe = ({ drinks, drinkRecipe }) => {
                                         shareUrl={shareUrl}
                                     />
                                 </div>
-                            </div>
+                            </header>
                             <div className="ingredientInstructionContainer">
                                 <div className="allIngredientsContainer">
-                                    <h3 className="ingredientTitle">Ingredients</h3>
+                                    <h3 className="ingredientTitle" aria-label="Drink ingredients">Ingredients</h3>
 
                                     {unitMeasure === "ml" ? (
                                         <>
@@ -173,6 +173,9 @@ export const DrinkRecipe = ({ drinks, drinkRecipe }) => {
                                                     onClick={() => setUnitMeasure("oz")}
                                                     className="ozButton"
                                                     type="submit"
+                                                    aria-label="Use ounces as measurement"
+                                                // tabIndex="0"
+
 
                                                 >
                                                     oz
@@ -180,7 +183,8 @@ export const DrinkRecipe = ({ drinks, drinkRecipe }) => {
                                                 <button
                                                     onClick={() => { setUnitMeasure("ml"); convertUnitMeasurements() }}
                                                     className="mlButton"
-                                                    type="submit">
+                                                    type="submit"
+                                                    aria-label="Use milliliters as measurement">
                                                     ml
                                                 </button>
                                             </div>
@@ -189,7 +193,7 @@ export const DrinkRecipe = ({ drinks, drinkRecipe }) => {
                                 </div>
                                 <div className="garnishAndGlassContainer">
                                     <div className="garnishContainer">
-                                        <h3 className="garnishTitle">Garnish</h3>
+                                        <h3 className="garnishTitle" aria-label="Drink garnish">Garnish</h3>
                                         {dr.garnish.map((mg, mgIndex) => {
                                             return (
                                                 <h4 key={mgIndex} className="garnish">{mg !== "0 None" ? mg : "None"}</h4>
@@ -198,24 +202,28 @@ export const DrinkRecipe = ({ drinks, drinkRecipe }) => {
 
                                     </div>
                                     <div className="glassContainer">
-                                        <h3 className="glassTitle">Serving Glass</h3>
+                                        <h3 className="glassTitle" aria-label="Drink serving glass">Serving Glass</h3>
                                         <h4 className="glass">{dr.serving_glass}</h4>
                                     </div>
                                     <div className="servingAmountContainer">
-                                        <h3 className="servingSize">Serving</h3>
+                                        <h3 className="servingSize" aria-label="Drink serving size">Serving</h3>
                                         <div className="incrementUnit">
                                             <h4 className="servings">{unitCount} </h4>
                                             <div className="buttonContainer">
                                                 <button
                                                     onClick={() => setUnitCount(unitCount + 1)}
                                                     className="plusButton"
-                                                    type="submit">
+                                                    type="submit"
+                                                    aria-label="Increase serving size">
+
                                                     <AiOutlinePlus />
                                                 </button>
                                                 <button
                                                     onClick={() => setUnitCount(unitCount > 1 ? unitCount -= 1 : 1)}
                                                     className="minusButton"
-                                                    type="submit">
+                                                    type="submit"
+                                                    aria-label="Decrease serving size">
+
                                                     <AiOutlineMinus />
                                                 </button>
                                             </div>
@@ -225,7 +233,7 @@ export const DrinkRecipe = ({ drinks, drinkRecipe }) => {
                                 </div>
                                 <div className="recipeInstructionContainer">
                                     <div className="instructionContainer">
-                                        <h3 className="instructionTitle">Instructions</h3>
+                                        <h3 className="instructionTitle" aria-label="Drink instructions">Instructions</h3>
                                         <h4 className="instructions" style={{ color: "white" }}>
                                             {dr.mixing_direction}
                                         </h4>
@@ -233,7 +241,7 @@ export const DrinkRecipe = ({ drinks, drinkRecipe }) => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </article>
                     )
                 })}
 

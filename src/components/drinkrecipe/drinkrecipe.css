@@ -185,6 +185,12 @@
     font-weight: 800;
 }
 
+.ozButton:focus,
+.mlButton:focus,
+.plusButton:focus,
+.minusButton:focus {
+    outline-offset: 2px;
+}
 
 /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
 @media screen and (max-width: 1024px) {}

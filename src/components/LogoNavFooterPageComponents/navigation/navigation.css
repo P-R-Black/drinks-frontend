@@ -28,6 +28,10 @@
 }
 
 
+form.searchId {
+    margin: 0 0;
+}
+
 .navbarContainer {
     align-items: center;
     display: flex;

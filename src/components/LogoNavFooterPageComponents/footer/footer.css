@@ -127,6 +127,24 @@
     color: #ef4c3a;
 }
 
+.skip-to-content {
+    font-family: 'lobster';
+    position: absolute;
+    top: -50px;
+    /* Hide off-screen */
+    left: 1;
+    background: red;
+    color: #fff;
+    z-index: 100;
+    text-decoration: none;
+    transition: top 0.3s ease;
+}
+
+.skip-to-content:focus {
+    top: 0;
+    /* Bring it into view when focused */
+}
+
 /* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
 @media screen and (max-width: 1024px) {}
 

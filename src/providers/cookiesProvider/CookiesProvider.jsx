@@ -26,7 +26,7 @@ export const CookiesProvider = ({ children }) => {
 
         const script = document.createElement('script');
         script.async = true;
-        script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ANALYTICS}`;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_UA_ID}`;
 
         document.head.appendChild(script);
 
@@ -37,7 +37,8 @@ export const CookiesProvider = ({ children }) => {
         }
         gtag("js", new Date());
         gtag("config", `${GA_ANALYTICS}`, {
-            page_path: window.location.pathme
+            cookie_flags: 'SameSite=None;Secure',
+            // page_path: window.location.pathme
 
         });
     };
@@ -54,7 +55,10 @@ export const CookiesProvider = ({ children }) => {
     }
 
     const acceptCookies = () => {
-        Cookies.set("cookiesConsent", true)
+        Cookies.set("cookiesConsent", true, {
+            sameSite: 'None',
+            secure: true
+        })
         setCookiesConsent(true);
         setShowCookieBanner(false);
         loadGoogleAnalytics()

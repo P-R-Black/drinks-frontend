@@ -36,44 +36,50 @@ export const DrinksAll = ({ cocktails, alcohol, displayName }) => {
             <h1 id="baseAhotName">{newDisplayName}</h1>
             <h2>Drinks & Cocktails</h2>
           </div>
-          <div className="linksToDrinksContainer">
+          <ul className="linksToDrinksContainer">
             {alldrinks.map((ad, adIdx) => (
               <React.Fragment key={adIdx}>
                 {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? (
-                  <>
+                  <li>
                     <ToolTip text={ad}>
                       <Link
                         key={ad.id}
                         className="linktoRecipeTwo"
-                        to={`/${slugify(alcohol)}/${slugify(ad)}`}>
+                        to={`/${slugify(alcohol)}/${slugify(ad)}`}
+                        aria-label={`View the recipe for ${ad}`}
+                      >
                         {ad.length < 16 && window.innerWidth > 1024 ? ad : ad.slice(0, 14) + "..."}
                       </Link>
                     </ToolTip>
-                  </>
-                ) : (<>
+                  </li>
+                ) : (<li>
                   <ToolTip text={ad}>
                     <Link
                       key={ad.id}
                       className="linktoRecipeTwo"
-                      to={`/${slugify(alcohol)}/${slugify(ad)}`}>
+                      to={`/${slugify(alcohol)}/${slugify(ad)}`}
+                      aria-label={`View the recipe for ${ad}`}
+                    >
                       {ad.length < 13 && window.innerWidth > 601 ? ad : ad.slice(0, 11) + "..."}
                     </Link>
                   </ToolTip>
-                </>) : (
-                  <>
+                </li>) : (
+                  <Link>
                     <ToolTip text={ad}>
                       <Link
                         key={ad.id}
                         className="linktoRecipeTwo"
-                        to={`/${slugify(alcohol)}/${slugify(ad)}`}>
+                        to={`/${slugify(alcohol)}/${slugify(ad)}`}
+                        aria-label={`View the recipe for ${ad}`}
+                      >
                         {ad.length < 11 && window.innerWidth < 601 ? ad : ad.slice(0, 11) + "..."}
                       </Link>
                     </ToolTip>
-                  </>
+                  </Link>
                 )}
               </React.Fragment>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
     </section>

@@ -107,6 +107,17 @@ input {
     transition: var(--transition);
 }
 
+.buttonLight:focus {
+    outline: 3px solid #148fd6;
+    outline-offset: 2px;
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+}
+
+.buttonLight:hover {
+    background-color: #148fd6;
+    /* Adjust color for hover state */
+}
+
 .emailSent {
     text-transform: capitalize;
 }

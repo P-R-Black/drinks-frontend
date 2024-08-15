@@ -72,32 +72,38 @@ export const AlcoholSelect = ({ cocktails, alcohol, displayName }) => {
             <h1 id="baseAlcoholName">{newDisplayName}</h1>
             <h2>Drinks & Cocktails</h2>
           </div>
-          <div className="drinkListContainer">
-            <ul data-testid="buttonTest" className="drinkListUl" style={{ animationDuration: `${(filteredDrink.length * 100) / 20}s` }}>
+          <div className="drinkListContainer" role="region" aria-labelledby="baseAlcoholName">
+            <ul className="drinkListUl" style={{ animationDuration: `${(filteredDrink.length * 100) / 20}s` }}>
               {filteredDrink.map((fd, fdIdx) => {
                 return (
-                  <React.Fragment key={fdIdx} >
-                    <li className="drinkListLi">{fd}
-                      <Link to={`/${slugify(alcohol)}/${slugify(fd)}`} className="linktoRecipe">Recipe</Link>
-                    </li>
-                  </React.Fragment>
+                  <li className="drinkListLi" key={fdIdx} >{fd}
+                    {/* <li className="drinkListLi">{fd} */}
+                    <Link to={`/${slugify(alcohol)}/${slugify(fd)}`} className="linktoRecipe" aria-label={`View recipe for ${fd}`}>Recipe</Link>
+                    {/* </li> */}
+                  </li>
 
                 )
               })}
               {filteredDrink.map((fd, fdIdx) => {
                 return (
-                  <React.Fragment key={fdIdx} >
-                    <li className="drinkListLi">{fd}
-                      <Link to={`/${slugify(alcohol)}/${slugify(fd)}`} className="linktoRecipe">Recipe</Link>
-                    </li>
-                  </React.Fragment>
+                  <li className="drinkListLi" key={fdIdx} >{fd}
+                    {/* <li className="drinkListLi">{fd} */}
+                    <Link
+                      to={`/${slugify(alcohol)}/${slugify(fd)}`}
+                      className="linktoRecipe"
+                      aria-label={`Recipe for ${fd}`}
+                    >
+                      Recipe
+                    </Link>
+                    {/* </li> */}
+                  </li>
 
                 )
               })}
 
             </ul>
             <div className="moreDrinkLinkContainer">
-              <Link to={`/${slugify(alcohol)}/drinks`} className="linktoRecipeLarge">All {newDisplayName} Drinks</Link>
+              <Link to={`/${slugify(alcohol)}/drinks`} className="linktoRecipeLarge" aria-label={`All ${newDisplayName} Drinks`}>All {newDisplayName} Drinks</Link>
             </div>
           </div>
         </div>

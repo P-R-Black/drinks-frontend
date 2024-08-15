@@ -8,8 +8,7 @@ import buldDrinkBGPic from '../../../../src/assets/pexels-overhead.jpg'
 let picBuldDrinkBGPic = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${buldDrinkBGPic})`;
 
 
-export const BuildDrink = ({ drinks, showCookieBanner, isCookieSet, cookiesAccept,
-    coockiesDeclined }) => {
+export const BuildDrink = ({ drinks }) => {
 
     const [selectedBaseAlcohols, setSelectedBaseAlcohols] = useState([""]);
     const [selectedIngredients, setSelectedIngredients] = useState([""])
@@ -170,13 +169,13 @@ export const BuildDrink = ({ drinks, showCookieBanner, isCookieSet, cookiesAccep
                     <h1>Build A Drink</h1>
                     <h2>What Can You Make With
                         <div className="innerMovingText">
-                            <span className="innerMovingAlcText">{alcoholText} </span>
+                            <span className="innerMovingAlcText" aria-live="polite">{alcoholText} </span>
                             &amp;
-                            <span className="innerMovingIngText"> {ingredientText}</span>
+                            <span className="innerMovingIngText" aria-live="polite"> {ingredientText}</span>
                         </div>
                     </h2>
                 </div>
-                <div id="allContainer">
+                <fieldset id="allContainer">
                     <div className="selectionContainer">
                         <div className="alcSelectionContainer">
                             <div className="chooseAlcTitle">
@@ -189,7 +188,8 @@ export const BuildDrink = ({ drinks, showCookieBanner, isCookieSet, cookiesAccep
                                             className="checkBoxField"
                                             type="checkbox"
                                             id={bal}
-                                            onChange={() => handleCheckboxChange(bal)} />
+                                            onChange={() => handleCheckboxChange(bal)}
+                                            aria-label={`Select ${bal}`} />
                                         {bal}
                                     </label>
                                 ))}
@@ -206,14 +206,15 @@ export const BuildDrink = ({ drinks, showCookieBanner, isCookieSet, cookiesAccep
                                             className="checkBoxField"
                                             type="checkbox"
                                             id={bal}
-                                            onChange={() => handleIngredientboxChange(bal)} />
+                                            onChange={() => handleIngredientboxChange(bal)}
+                                            aria-label={`Select ${bal}`} />
                                         {bal}
                                     </label>
                                 ))}
                             </div>
                         </div>
                     </div>
-                    <div className="resultsContainer">
+                    <div className="resultsContainer" aria-live="polite">
                         <div className="resultsTitle">
                             <h3>Results</h3>
                         </div>
@@ -223,18 +224,22 @@ export const BuildDrink = ({ drinks, showCookieBanner, isCookieSet, cookiesAccep
                                     <ToolTipTwo key={fd.id} text={fd.ingredients.map((min, minIndex) => (
                                         <li key={minIndex}>{min.replace(min.split(" ")[0], "").replace(min.split(" ")[1], "").trim()}</li>
                                     ))}>
-                                        <Link
-                                            key={fd.id}
-                                            className="drinkNameResults"
-                                            to={`/${slugify(fd.base_alcohol)}/${slugify(fd.drink_name)}`}
-                                        >   {fd.drink_name}
-                                        </Link>
+                                        <li>
+                                            <Link
+                                                key={fd.id}
+                                                className="drinkNameResults"
+                                                to={`/${slugify(fd.base_alcohol)}/${slugify(fd.drink_name)}`}
+                                                aria-label={`View the recipes for ${fd.drink_name}`}
+                                            >   {fd.drink_name}
+                                            </Link>
+                                        </li>
+
                                     </ToolTipTwo>
                                 )
                             })}
                         </div>
                     </div>
-                </div>
+                </fieldset>
             </div>
         </section>
     )

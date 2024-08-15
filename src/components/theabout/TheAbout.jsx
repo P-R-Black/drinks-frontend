@@ -4,11 +4,11 @@ import './theabout.css'
 
 export const TheAbout = () => {
   return (
-    <section className="aboutSection">
+    <section className="aboutSection" aria-labelledby='about-title'>
       <div className="container">
         <div className="aboutContainer">
           <div className="aboutTitleContainer">
-            <h1>About Us</h1>
+            <h1 id="about-title">About Us</h1>
             <h2>What is Keep's Guide</h2>
           </div>
           <div className="aboutParagraphContainer">
