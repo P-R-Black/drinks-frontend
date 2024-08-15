@@ -40,10 +40,10 @@ export const Discover = ({ cocktails }) => {
     })
 
     return (
-        <section id="discoverSection" className="discoverSection">
+        <section id="discoverSection" className="discoverSection" aria-label="Discover your next cocktail">
             <Parallax
                 blur={5}
-                bgImageAlt={altImage}
+                bgImageAlt={"background picture of a darkly lit bar shelf with alcohol bottles."}
                 strength={500}>
 
                 <div className="container">
@@ -60,6 +60,7 @@ export const Discover = ({ cocktails }) => {
                                             <Link
                                                 className="linktoRecipeThree"
                                                 to={`/${slugify(ad)}`}
+                                                aria-label={`Explore cocktails with ${ad}`}
                                             >
                                                 {ad.length < 18 ? ad : ad.slice(0, 15) + "..."}
                                             </Link>

@@ -26,18 +26,20 @@ export const Navigation = ({ drinks }) => {
         let navBarDropdown = document.querySelector('.navDropdown');
 
         if (visibility === "false" || visibility == null) {
-            navBarMenu.setAttribute('aria-expanded', 'true')
-            navBarMenu.setAttribute('data-visible', 'true')
-            navBarDropdown.classList.add('show')
+            navBarMenu.setAttribute('aria-expanded', 'true');
+            navBarMenu.setAttribute('data-visible', 'true');
+            navBarDropdown.classList.add('show');
+            navBarDropdown.firstChild.focus();
 
             // move focust to the first link in the dropdown.
             const firstLink = navBarDropdown.querySelector('a');
             if (firstLink) firstLink.focus();
 
         } else {
-            navBarMenu.setAttribute('aria-expanded', 'false')
-            navBarMenu.setAttribute('data-visible', 'false')
-            navBarDropdown.classList.remove('show')
+            navBarMenu.setAttribute('aria-expanded', 'false');
+            navBarMenu.setAttribute('data-visible', 'false');
+            navBarDropdown.classList.remove('show');
+            navBarMenu.focus();
         }
 
     }

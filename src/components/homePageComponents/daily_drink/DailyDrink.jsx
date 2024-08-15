@@ -36,24 +36,33 @@ export const DailyDrink = ({ date, year, month, dd, mm, lastDrinkOfTheDay, curre
       <Parallax
         blur={{ min: -15, max: 15 }}
         bgImage={dodImage}
-        bgImageAlt={altImage}
+        bgImageAlt={"background picture of a hand boring a drink."}
         strength={500}>
 
         <div className="container dodOuterContainer">
           <div ref={titleRefTwo}>
-            <h1 className={dodElementVisible ? `drinkOfDayTitle show` : `drinkOfDayTitle hidden`}>Drink of the Day</h1>
+            <h1
+              className={dodElementVisible ? `drinkOfDayTitle show` : `drinkOfDayTitle hidden`}
+            >
+              Drink of the Day
+            </h1>
           </div>
           <div className="dodContainer">
             <div className={dodElementVisible ? `dodLeftSide show` : `dodLeftSide hidden`}>
-              <h2 className="todaysDrink">{!dateLookup || dateLookup === today ? "Today's Drink" : dateLookup}</h2>
+              <h2 className="todaysDrink" aria-live='polite'>
+                {!dateLookup || dateLookup === today ? "Today's Drink" : dateLookup}
+              </h2>
               {currentDrink.map((cd) => cd ? (
-                <div key={cd.id}>
-                  <div className="dailyDrink">{!dateLookup ? lastDrinkOfTheDay : cd.drink_name}</div>
+                <React.Fragment>
+                  <div key={cd.id} className="dailyDrink">{!dateLookup ? lastDrinkOfTheDay : cd.drink_name}</div>
+
                   <Link key={cd.drink_name} className="recipeButton" to={`/${slugify(cd.base_alcohol)}/${slugify(cd.drink_name)}`}>
-                    Recipe
+                    <button aria-label={`View the recipe for ${cd.drink_name}`}>Recipe</button>
                   </Link>
-                </div>
-              ) : (<h2 key="loading">Loading</h2>))}
+
+                </React.Fragment>
+
+              ) : (<h2 key="loading" role="status" aria-live="polite">Today's Drink is Loading...</h2>))}
             </div>
 
             <div className={dodElementVisible ? `dodRightSide show` : `dodRightSide hidden`}>
