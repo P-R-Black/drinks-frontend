@@ -202,9 +202,6 @@
     animation: scrollTwo 20s linear infinite
 }
 
-.test {
-    background-color: red !important;
-}
 
 @keyframes scrollTwo {
     to {
@@ -228,7 +225,7 @@
 @media screen and (max-width: 600px) {
 
     .ginBackground {
-        margin-top: -7rem;
+        margin-top: -9rem;
     }
 
     .baseAlcTitleContainer {

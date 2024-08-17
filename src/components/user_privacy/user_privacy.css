@@ -9,11 +9,13 @@
     flex-direction: column;
     gap: .75rem;
     justify-content: center;
-    min-height: 35rem;
+    height: 42rem;
+    height: clamp(30rem, 40rem, 80vh);
+    margin: 1rem 0 1rem 0;
     right: 10%;
     padding: 0 1rem 0 1rem;
     position: fixed;
-    width: 40rem;
+    width: clamp(20rem, 45rem, 45vw);
     z-index: 999;
 }
 
@@ -34,7 +36,12 @@
 
 
 .privacyChoiceContainer {
-    margin: 2rem 0 1rem 0;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin: 1rem 0 1rem 0;
 }
 
 .privacyChoiceContainer p {
@@ -53,7 +60,6 @@ span.privacyChoiceSpan span {
 
 .privacyChoiceContainer a {
     text-align: center;
-
 }
 
 .privacyChoiceConfirmChoice {
@@ -173,7 +179,25 @@ ol.privacyBulletListInner li {
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
     .privacyPolicySection {
-        margin-top: -7rem;
+        margin-top: -9rem;
 
     }
+
+
+    /* = = = = = = = = = START OF Privacy Choice CSS = = = = = = = = = */
+    .privacyPopup {
+        height: 96vh;
+        overflow: hidden;
+        overflow-y: scroll;
+
+    }
+
+    .privacyChoiceContainer {
+        gap: 1rem;
+        margin: .5rem 0 .5rem 0;
+    }
+
+
+
+    /* = = = = = = = = = END OF Privacy Choice CSS = = = = = = = = = */
 }

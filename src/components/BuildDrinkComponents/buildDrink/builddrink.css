@@ -175,7 +175,7 @@ input.checkBoxField {
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
     .buildDrinkSection {
-        margin-top: -7rem;
+        margin-top: -9rem;
     }
 
     .buildADrinkTitle {

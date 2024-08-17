@@ -80,7 +80,7 @@
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
     .allDrinksBackground {
-        margin-top: -7rem;
+        margin-top: -9rem;
     }
 
     .allDrinksContainer {

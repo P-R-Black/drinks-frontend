@@ -148,7 +148,7 @@ input {
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
     .contactSection {
-        margin-top: -7rem;
+        margin-top: -9rem;
     }
 
     .contactTitleContainer {
