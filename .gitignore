@@ -24,3 +24,9 @@ yarn-debug.log*
 yarn-error.log*
 /Users/paulblack/VS Code/drinks-app/to_do_list.txt
 to_do_list.txt
+
+
+
+# ssh root@162.243.168.128
+# cat /etc/nginx/sites-enabled/keepsguide.paulrblack.com
+# scp -r ./build/* root@162.243.168.128:/var/www/keepsguide.paulrblack.com/html

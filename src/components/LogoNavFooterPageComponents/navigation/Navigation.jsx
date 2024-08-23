@@ -7,11 +7,7 @@ import { Search } from '../search/Search';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link'
 
-export const Navigation = ({ drinks }) => {
-
-    const [numofRecipes, setNumOfRecipes] = useState(0)
-
-
+export const Navigation = ({ drinks, numOfRecipes }) => {
 
     const dropDownSelection = [
         'Bourbon', 'Brandy', 'Gin', 'Mezcal', 'Non-Alcoholic', 'Rum', 'Rum (Dark)', 'Rum (Gold)',
@@ -70,21 +66,21 @@ export const Navigation = ({ drinks }) => {
     }, []);
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const drinksCount = () => {
-            let recipeLengthRounded = Math.round(drinks?.length / 5) * 5;
-            if (drinks?.length % 5 <= 5) {
-                setNumOfRecipes(`Over ${recipeLengthRounded} recipes, with more added daily`)
-            } else {
-                setNumOfRecipes(`Nearly ${recipeLengthRounded} recipes, with more added daily`)
-            }
+    //     const drinksCount = () => {
+    //         let recipeLengthRounded = Math.round(drinks?.length / 5) * 5;
+    //         if (drinks?.length % 5 <= 5) {
+    //             setNumOfRecipes(`Over ${recipeLengthRounded} recipes, with more added daily`)
+    //         } else {
+    //             setNumOfRecipes(`Nearly ${recipeLengthRounded} recipes, with more added daily`)
+    //         }
 
-        }
-        const navBarLogo = document.querySelector('#logoId');
-        navBarLogo.focus()
-        drinksCount()
-    }, [drinks])
+    //     }
+    //     const navBarLogo = document.querySelector('#logoId');
+    //     navBarLogo.focus()
+    //     drinksCount()
+    // }, [drinks])
 
     const fetchAlcoholType = async () => {
         let filteredBase = []
@@ -108,7 +104,7 @@ export const Navigation = ({ drinks }) => {
         <>
             <div className="bannerContainer">
                 <div className="container">
-                    <div className="bannerContainerTitle">{numofRecipes}</div>
+                    <div className="bannerContainerTitle">{numOfRecipes}</div>
                 </div>
             </div>
 

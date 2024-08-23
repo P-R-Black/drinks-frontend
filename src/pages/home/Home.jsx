@@ -54,7 +54,6 @@ export const Home = () => {
   }, [drinks]);
 
 
-
   useEffect(() => {
     // returns past drinks of the date and their date
     const fetchData = async () => {
@@ -65,8 +64,6 @@ export const Home = () => {
 
       }
     }
-
-
 
 
 
@@ -87,12 +84,16 @@ export const Home = () => {
 
 
   const eventMap = {};
-  drinkOfTheDay.forEach(event => {
-    const date = event.theDate.split('T')[0];
-    eventMap[date] = event.name;
+  if (!drinkOfTheDay) {
+    drinkOfTheDay?.forEach(event => {
+      const date = event.theDate.split('T')[0];
+      eventMap[date] = event.name;
 
 
-  });
+    });
+
+
+  }
 
 
   const handleDateClick = async (date) => {

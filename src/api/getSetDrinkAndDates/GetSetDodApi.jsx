@@ -12,6 +12,7 @@ export const GetBackendApi = () => {
         queryKey: ['getBackend'],
         queryFn: async () => {
             const newData = await axios.get(getBackendApi)
+
             return newData.data
         },
         refetchOnWindowFocus: false,

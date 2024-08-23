@@ -5,8 +5,7 @@ import './index.css'
 import { Navigation } from './components/LogoNavFooterPageComponents/navigation/Navigation';
 import { Footer } from './components/LogoNavFooterPageComponents/footer/Footer';
 import { Outlet } from 'react-router-dom';
-
-
+import { Loading } from './components/loadingComponents/loading/Loading';
 
 import { DrinksAPI } from './api/allDrinksApi/DrinksAPI'
 import { MustKnowAPI } from './api/mustKnowApi/MustKnowAPI';
@@ -27,9 +26,9 @@ const App = () => {
   const [drinks, setDrinks] = useState([])
 
 
-  const { initialData, fullData, isLoading, error } = DrinksAPI();
 
-  // const { data: drinks, isLoading, error } = DrinksAPI()
+  const { initialData, fullData, isLoading, numOfRecipes, error } = DrinksAPI();
+
   const { data: mustKnows } = MustKnowAPI()
 
   const { data: backendApi } = GetBackendApi()
@@ -46,6 +45,7 @@ const App = () => {
     setAllShots(getShot)
 
   }
+
 
 
   useEffect(() => {
@@ -67,16 +67,8 @@ const App = () => {
   const PageLoader = () => {
     if (isLoading && !initialData) {
       return (
-        <>
-          <div className="bannerContainer">{"Fetching A New Bottle"}</div>
-          <div className="pageLoading">
-            <div className="loadingText">Loading</div>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-
-        </>)
+        <Loading />
+      )
     }
   }
 
@@ -102,7 +94,7 @@ const App = () => {
 
       {!initialData ? (<PageLoader />) : (
         <>
-          <Navigation drinks={drinks} />
+          <Navigation drinks={drinks} numOfRecipes={numOfRecipes} />
           <Outlet context={{ cocktails, drinks, allShots, mustKnows, backendApi, currDrinkOfTheDay }} />
           <Footer />
         </>
