@@ -7,11 +7,17 @@ import slugify from 'react-slugify'
 
 import { Parallax } from 'react-parallax';
 import dodImage from '../../../assets/pexels-ron-lach.jpg'
-import altImage from '../../../assets/pexels-lime-mint-drinks.jpg'
 import debounce from 'lodash.debounce';
+import { useOutletContext } from 'react-router-dom';
 
-export const DailyDrink = ({ date, year, month, dd, mm, lastDrinkOfTheDay, currentDrink,
-  dateLookup, months, handleDateClick, drinkOfTheDay }) => {
+
+
+
+export const DailyDrink = ({ date, year, month, dd, mm, currentDrink,
+  dateLookup, months, handleDateClick, pastDrinksOfTheDay }) => {
+
+
+  const { lastDrinkOfTheDay } = useOutletContext()
 
   const titleRefTwo = useRef();
   const [dodElementVisible, setDodElementVisible] = useState();
@@ -29,6 +35,7 @@ export const DailyDrink = ({ date, year, month, dd, mm, lastDrinkOfTheDay, curre
     dodObserver.observe(titleRefTwo.current)
 
   }, [])
+
 
 
   return (
@@ -52,9 +59,25 @@ export const DailyDrink = ({ date, year, month, dd, mm, lastDrinkOfTheDay, curre
               <h2 className="todaysDrink" aria-live='polite'>
                 {!dateLookup || dateLookup === today ? "Today's Drink" : dateLookup}
               </h2>
-              {currentDrink.map((cd) => cd ? (
+              {currentDrink[0]?.length === 0 ? (
+                <h2 key="loading" role="status" aria-live="polite">Today's Drink is Loading...</h2>) : (
+                <>
+                  {currentDrink[0]?.map((cd) => (
+                    <React.Fragment key={cd.id}>
+                      <div className="dailyDrink">{!dateLookup ? lastDrinkOfTheDay['name'] : cd.drink_name}</div>
+
+                      <Link className="recipeButton" to={`/${slugify(cd.base_alcohol)}/${slugify(cd.drink_name)}`}>
+                        <button aria-label={`View the recipe for ${cd.drink_name}`}>Recipe</button>
+                      </Link>
+                    </React.Fragment>
+                  ))}
+
+
+                </>
+              )}
+              {/* {currentDrink[0]?.map((cd) => cd ? (
                 <React.Fragment key={cd.id}>
-                  <div className="dailyDrink">{!dateLookup ? lastDrinkOfTheDay : cd.drink_name}</div>
+                  <div className="dailyDrink">{!dateLookup ? lastDrinkOfTheDay['name'] : cd.drink_name}</div>
 
                   <Link className="recipeButton" to={`/${slugify(cd.base_alcohol)}/${slugify(cd.drink_name)}`}>
                     <button aria-label={`View the recipe for ${cd.drink_name}`}>Recipe</button>
@@ -62,7 +85,7 @@ export const DailyDrink = ({ date, year, month, dd, mm, lastDrinkOfTheDay, curre
 
                 </React.Fragment>
 
-              ) : (<h2 key="loading" role="status" aria-live="polite">Today's Drink is Loading...</h2>))}
+              ) : (<h2 key="loading" role="status" aria-live="polite">Today's Drink is Loading...</h2>))} */}
             </div>
 
             <div className={dodElementVisible ? `dodRightSide show` : `dodRightSide hidden`}>
@@ -72,7 +95,9 @@ export const DailyDrink = ({ date, year, month, dd, mm, lastDrinkOfTheDay, curre
                 year={year}
                 month={month}
                 handleDateClick={handleDateClick}
-                drinkOfTheDay={drinkOfTheDay}
+                currentDrink={currentDrink}
+                lastDrinkOfTheDay={lastDrinkOfTheDay}
+                pastDrinksOfTheDay={pastDrinksOfTheDay}
               />
             </div>
           </div>

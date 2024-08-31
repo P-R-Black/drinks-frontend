@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useContext } from 'react'
 
 import { Hero } from '../../components/homePageComponents/hero/Hero';
 import { DailyDrink } from '../../components/homePageComponents/daily_drink/DailyDrink';
@@ -13,17 +13,21 @@ import { useOutletContext } from 'react-router-dom';
 import { useCookies } from '../../providers/cookiesProvider/CookiesProvider';
 
 
+
 export const Home = () => {
 
-  const { cookiesConsent, acceptCookies, declineCookies, showCookieBanner } = useCookies();
-
+  const { cookiesConsent, acceptCookies, declineCookies, showCookieBanner, } = useCookies();
 
   const { drinks } = useOutletContext()
+  const { lastDrinkOfTheDay } = useOutletContext()
+  const { drinkOfTheDay } = useOutletContext()
   const { cocktails } = useOutletContext()
   const { allShots } = useOutletContext()
   const { mustKnows } = useOutletContext()
-  const { backendApi } = useOutletContext()
-  const { currDrinkOfTheDay } = useOutletContext()
+
+
+  // const { data: backendApi } = useOutletContext()
+  // const { data: currDrinkOfTheDay } = useOutletContext()
 
   var date = new Date()
   var year = date.getFullYear();
@@ -32,8 +36,8 @@ export const Home = () => {
   var dd = String(day).padStart(2, '0');
   var mm = String(month + 1).padStart(2, '0'); //January is 0!
 
-  const [drinkOfTheDay, setDrinkOfTheDay] = useState([])
-  const [lastDrinkOfTheDay, setLastDrinkOfTheDay] = useState([])
+  const [pastDrinksOfTheDay, setPastDrinksOfTheDay] = useState([])
+  const [todaysDrinkOfTheDay, seTodaysDrinkOfTheDay] = useState([])
   const [currentDrink, setCurrentDrink] = useState([])
   const [dateLookup, setDateLookup] = useState()
   const [drinkLookup, setDrinkLookup] = useState()
@@ -49,29 +53,29 @@ export const Home = () => {
 
   // gets the drink of the day info file in server directory:
   const getFullDrinkInfo = useCallback(async (theLastDod) => {
-    let ldod = await drinks?.find((drink) => drink?.drink_name === theLastDod)
+    let ldod = await drinks?.filter((drink) => drink.drink_name === theLastDod)
     setCurrentDrink([ldod])
   }, [drinks]);
 
 
+
+
   useEffect(() => {
-    // returns past drinks of the date and their date
+    // returns past drinks of the day and their date
     const fetchData = async () => {
       try {
-        setDrinkOfTheDay(backendApi)
+        setPastDrinksOfTheDay(drinkOfTheDay)
       } catch (error) {
         console.error(error.message)
 
       }
     }
 
-
-
     // gets today's Dod
     const fetchLastRecord = async () => {
       try {
-        setLastDrinkOfTheDay(currDrinkOfTheDay['name'])
-        getFullDrinkInfo(currDrinkOfTheDay['name'])
+        seTodaysDrinkOfTheDay(lastDrinkOfTheDay['name'])
+        getFullDrinkInfo(lastDrinkOfTheDay['name'])
       } catch (error) {
         console.error(error.message)
       }
@@ -79,22 +83,18 @@ export const Home = () => {
 
     fetchData()
     fetchLastRecord()
-  }, [backendApi, currDrinkOfTheDay, drinks]);
 
+  }, [drinks, drinkOfTheDay, getFullDrinkInfo]);
+  // currentDrink,
 
 
   const eventMap = {};
-  if (!drinkOfTheDay) {
-    drinkOfTheDay?.forEach(event => {
+  if (pastDrinksOfTheDay) {
+    pastDrinksOfTheDay?.forEach(event => {
       const date = event.theDate.split('T')[0];
       eventMap[date] = event.name;
-
-
     });
-
-
   }
-
 
   const handleDateClick = async (date) => {
     const event = await eventMap[String(date)];
@@ -102,8 +102,8 @@ export const Home = () => {
       setDrinkLookup(event)
       getFullDrinkInfo(event)
     }
-
   };
+
 
 
   const calDate = document.querySelectorAll('.calDate')
@@ -124,7 +124,6 @@ export const Home = () => {
       }
 
 
-
       if (String(clickedMonth).length < 2) {
         clickedMonth = "0" + String(clickedMonth)
       }
@@ -141,7 +140,6 @@ export const Home = () => {
   })
 
 
-
   return (
     <>
       <Hero />
@@ -152,13 +150,12 @@ export const Home = () => {
         month={month}
         dd={dd}
         mm={mm}
-        lastDrinkOfTheDay={lastDrinkOfTheDay}
+        todaysDrinkOfTheDay={todaysDrinkOfTheDay}
         currentDrink={currentDrink}
         dateLookup={dateLookup}
-        drinkLookup={drinkLookup}
         months={months}
         handleDateClick={handleDateClick}
-        drinkOfTheDay={drinkOfTheDay}
+        pastDrinksOfTheDay={pastDrinksOfTheDay}
       />
       <Discover
         cocktails={cocktails}

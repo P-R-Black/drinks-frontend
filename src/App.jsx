@@ -8,7 +8,6 @@ import { Outlet } from 'react-router-dom';
 import { Loading } from './components/loadingComponents/loading/Loading';
 
 import { DrinksAPI } from './api/allDrinksApi/DrinksAPI'
-import { MustKnowAPI } from './api/mustKnowApi/MustKnowAPI';
 
 import { GetBackendApi } from './api/getSetDrinkAndDates/GetSetDodApi';
 import { GetTodaysDrinkOfTheDay } from './api/getSetDrinkAndDates/GetSetDodApi'
@@ -16,23 +15,24 @@ import { GetTodaysDrinkOfTheDay } from './api/getSetDrinkAndDates/GetSetDodApi'
 // // import { isError } from 'lodash';
 
 
-
-
-
 const App = () => {
 
+  const [drinks, setDrinks] = useState([])
   const [cocktails, setCocktails] = useState([])
   const [allShots, setAllShots] = useState([])
-  const [drinks, setDrinks] = useState([])
+  const [mustKnows, setMustKnows] = useState([])
 
+  const [lastDrinkOfTheDay, setLastDrinkOfTheDay] = useState([])
+  const [drinkOfTheDay, setDrinkOfTheDay] = useState([])
 
 
   const { initialData, fullData, isLoading, numOfRecipes, error } = DrinksAPI();
-
-  const { data: mustKnows } = MustKnowAPI()
-
   const { data: backendApi } = GetBackendApi()
   const { data: currDrinkOfTheDay } = GetTodaysDrinkOfTheDay()
+
+
+  // const { data: mustKnows } = MustKnowAPI()
+
 
   const filterCocktails = async (arr) => {
     let getCocktails = await arr.filter((ct) => ct.drink_type === "cocktail")
@@ -41,11 +41,15 @@ const App = () => {
 
 
   const filterShots = async (arr) => {
-    let getShot = await arr.filter((ct) => ct.drink_type === "shot")
+    let getShot = await arr.filter((ct) => ct.drink_type !== "cocktail")
     setAllShots(getShot)
 
   }
 
+  const filterMustKnows = async (arr) => {
+    let getMustKnow = await arr.filter((ct) => ct.must_know_drink === true)
+    setMustKnows(getMustKnow)
+  }
 
 
   useEffect(() => {
@@ -55,13 +59,19 @@ const App = () => {
     if (fullData) {
       setDrinks(fullData)
     }
+    if (currDrinkOfTheDay) {
+      setLastDrinkOfTheDay(currDrinkOfTheDay)
+    }
+    if (backendApi) {
+      setDrinkOfTheDay(backendApi)
+    }
     if (drinks) {
       filterCocktails(drinks)
       filterShots(drinks)
+      filterMustKnows(drinks)
     }
 
-
-  }, [drinks, fullData, initialData])
+  }, [backendApi, currDrinkOfTheDay, drinks, fullData, initialData])
 
 
   const PageLoader = () => {
@@ -95,7 +105,7 @@ const App = () => {
       {!initialData ? (<PageLoader />) : (
         <>
           <Navigation drinks={drinks} numOfRecipes={numOfRecipes} />
-          <Outlet context={{ cocktails, drinks, allShots, mustKnows, backendApi, currDrinkOfTheDay }} />
+          <Outlet context={{ cocktails, drinks, allShots, mustKnows, lastDrinkOfTheDay, drinkOfTheDay }} />   {/* backendApi, currDrinkOfTheDay  */}
           <Footer />
         </>
       )}

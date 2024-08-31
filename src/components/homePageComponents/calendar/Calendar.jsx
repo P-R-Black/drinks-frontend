@@ -3,10 +3,12 @@ import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import debounce from 'lodash/debounce';
 import './calendar.css'
 
-export const Calendar = ({ date, year, month, handleDateClick, drinkOfTheDay }) => {
+export const Calendar = ({ date, year, month, handleDateClick, currentDrink, pastDrinksOfTheDay }) => {
     const [calendarYear, setCalendarYear] = useState(year);
     const [calendarMonth, setCalendarMonth] = useState(month);
     const [calendarData, setCalendarData] = useState([]);
+
+
 
     const months = [
         'January', 'February', 'March', 'April', 'May', 'June',
@@ -21,8 +23,7 @@ export const Calendar = ({ date, year, month, handleDateClick, drinkOfTheDay }) 
 
         let dates = [];
 
-        const drinkDates = drinkOfTheDay.map(drink => drink.theDate.split('T')[0]);
-
+        const drinkDates = pastDrinksOfTheDay.map(drink => drink.theDate.split('T')[0]);
 
         // Add the last dates of the previous month
         for (let i = dayOne; i > 0; i--) {
@@ -33,7 +34,12 @@ export const Calendar = ({ date, year, month, handleDateClick, drinkOfTheDay }) 
         for (let i = 1; i <= lastDate; i++) {
             const isToday = i === date.getDate() && calendarMonth === new Date().getMonth() && calendarYear === new Date().getFullYear();
             const currentDate = `${calendarYear}-${String(calendarMonth + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
-            const hasDrink = drinkDates.includes(currentDate);
+            let hasDrink;
+            if (drinkDates.includes(currentDate)) {
+                hasDrink = true;
+            } else {
+                hasDrink = false;
+            }
             dates.push({ date: i, inactive: false, isToday, hasDrink, type: '' });
         }
 
@@ -123,11 +129,7 @@ export const Calendar = ({ date, year, month, handleDateClick, drinkOfTheDay }) 
                         {calendarData.map((day, index) => (
                             <li
                                 key={index}
-                                // onClick={onDateClick(`${calendarYear}-${String(calendarMonth + 1).padStart(2, '0')}-${String(day.date).padStart(2, '0')}`)}
                                 onClick={onDateClick}
-                                // className={getClassNames(day)}
-                                // className={`${day.inactive ? 'inactive ' : ''}${day.isToday ? 'active ' : ''} calDate ${day.type}`}
-                                // data-date={`${calendarYear}-${String(calendarMonth + 1).padStart(2, '0')}-${String(day.date).padStart(2, '0')}`}
                                 className={`${day.inactive ? 'inactive ' : ''}${day.isToday ? 'active ' : ''}${day.hasDrink ? 'has-drink ' : ''} calDate ${day.type}`}
                                 data-date={`${calendarYear}-${String(calendarMonth + 1).padStart(2, '0')}-${String(day.date).padStart(2, '0')}`}
                             >

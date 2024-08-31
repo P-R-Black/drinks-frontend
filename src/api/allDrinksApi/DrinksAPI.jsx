@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import axios from 'axios';
 
-
 import { useQuery } from '@tanstack/react-query';
+import { allDrinksApiFile } from './allDrinksFile';
 
 export const FetchPaginatedData = async ({ queryKey, maxItems = Infinity, onUpdate }) => {
 
 	const [url, headers] = queryKey;
 	let apiData = [];
 	let nextUrl = url;
+
 
 
 	while (nextUrl && apiData.length < maxItems) {
@@ -52,8 +53,16 @@ export const DrinksAPI = () => {
 	const [numOfRecipes, setNumOfRecipes] = useState('');
 
 	const handleUpdate = (count) => {
-		const recipeLengthRounded = Math.round(count / 5) * 5;
-		setNumOfRecipes(`Over ${recipeLengthRounded} recipes, with more added daily`)
+		const onFileData = allDrinksApiFile['results'].length
+
+		if (count < 800) {
+			setNumOfRecipes(`${onFileData} recipes, with more added daily`)
+		} else {
+			const recipeLengthRounded = Math.round(count / 5) * 5;
+			setNumOfRecipes(`Over ${recipeLengthRounded} recipes, with more added daily`)
+
+		}
+
 	}
 
 

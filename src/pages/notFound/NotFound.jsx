@@ -6,14 +6,7 @@ import { Footer } from '../../components/LogoNavFooterPageComponents/footer/Foot
 export const PageNotFound = ({ baseAlcohol, fetchAlcoholType, navLinkText, drinks }) => {
   return (
     <>
-      <Navigation
-        drinks={drinks}
-        baseAlcohol={baseAlcohol}
-        fetchAlcoholType={fetchAlcoholType}
-        navLinkText={navLinkText}
-      />
       <ErrorPage />
-      <Footer />
     </>
   )
 }

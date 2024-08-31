@@ -12,6 +12,7 @@
 /build
 
 # misc
+allDrinksApi/allDrinksFile.js
 .env
 .DS_Store
 .env.local
