@@ -55,7 +55,7 @@ export const DrinksAPI = () => {
 	const handleUpdate = (count) => {
 		const onFileData = allDrinksApiFile['results'].length
 
-		if (count < 800) {
+		if (count < 850) {
 			setNumOfRecipes(`${onFileData} recipes, with more added daily`)
 		} else {
 			const recipeLengthRounded = Math.round(count / 5) * 5;

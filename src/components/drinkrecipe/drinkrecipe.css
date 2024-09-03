@@ -42,8 +42,6 @@
 }
 
 
-
-
 .ingredientInstructionContainer {
     align-items: flex-start;
     display: grid;
@@ -51,10 +49,7 @@
     justify-content: center;
     margin-top: 2rem;
     width: 100%;
-
 }
-
-
 
 .ingredientInstructionContainer h3 {
     color: var(--color-primary-font);
@@ -199,7 +194,7 @@
 @media screen and (max-width: 600px) {
 
     .recipeBackground {
-        margin-top: -9rem;
+        margin-top: -10rem;
     }
 
     .recipeContainer {
@@ -243,4 +238,18 @@
         margin-bottom: .25rem;
     }
 
+}
+
+
+/* =============== MEDIA QUERIES (SMALL LANDSCAPE) =============== */
+@media (max-width: 670px) and (orientation: landscape) {
+    .ingredientInstructionContainer {
+        display: grid;
+        gap: 10%;
+        grid-template-columns: 45% 45%;
+    }
+
+    .instructionContainer {
+        min-width: 85vw;
+    }
 }

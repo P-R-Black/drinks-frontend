@@ -44,10 +44,10 @@ export const ContactUs = () => {
                     <div className="formContainer">
                         <form ref={form} onSubmit={sendEmail} className="contactForm">
                             <label htmlFor="name">Your Name</label>
-                            <input type="text" name="name" placeholder="Your Name" required />
+                            <input className="contactFormInput" type="text" name="name" placeholder="Your Name" required />
 
                             <label htmlFor="email">Your Email</label>
-                            <input type="email" name="email" placeholder="Your Email" required />
+                            <input className="contactFormInput" type="email" name="email" placeholder="Your Email" required />
 
                             <label htmlFor="message">Your Message</label>
                             <textarea name="message" placeholder="Your Message" id="" cols="30" rows="10" required />

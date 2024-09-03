@@ -90,11 +90,12 @@
 }
 
 
-input.checkBoxField {
-    width: 1rem;
-
+input[type="checkbox"].checkBoxField {
+    width: .75rem;
+    height: .75rem;
 
 }
+
 
 .resultsContainer {
     height: 100vh;
@@ -126,6 +127,10 @@ input.checkBoxField {
     font-size: clamp(.75rem, 1rem, 3vw);
     list-style-type: circle;
     margin-left: .5rem;
+}
+
+li::marker {
+    color: var(--color-primary-font);
 }
 
 .drinkNameResults {
@@ -175,7 +180,7 @@ input.checkBoxField {
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
     .buildDrinkSection {
-        margin-top: -9rem;
+        margin-top: -10rem;
     }
 
     .buildADrinkTitle {
@@ -194,6 +199,12 @@ input.checkBoxField {
         grid-template-columns: repeat(2, 50%);
         height: 35vh;
         overflow-y: scroll;
+
+    }
+
+    input[type="checkbox"].checkBoxField {
+        height: .75rem;
+        width: .75rem;
 
     }
 
@@ -222,7 +233,6 @@ input.checkBoxField {
         justify-content: flex-start;
         max-height: 100vh;
         overflow-y: scroll;
-
         padding: .5rem 0 1rem .5rem;
 
     }
@@ -234,4 +244,29 @@ input.checkBoxField {
 
     }
 
+}
+
+/* =============== MEDIA QUERIES (SMALL LANDSCAPE) =============== */
+@media (max-width: 670px) and (orientation: landscape) {
+    #allContainer {
+        margin-top: -2rem;
+    }
+
+    input[type="checkbox"].checkBoxField {
+        width: .50rem;
+        height: .50rem;
+    }
+
+
+    .resultSection {
+        max-height: 55vh;
+        width: 11rem;
+    }
+
+    .resultSection li {
+        font-size: .80rem;
+        list-style-type: circle;
+        margin: 0 .25rem;
+
+    }
 }

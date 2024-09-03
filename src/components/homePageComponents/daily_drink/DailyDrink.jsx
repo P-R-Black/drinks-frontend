@@ -11,11 +11,8 @@ import debounce from 'lodash.debounce';
 import { useOutletContext } from 'react-router-dom';
 
 
-
-
 export const DailyDrink = ({ date, year, month, dd, mm, currentDrink,
   dateLookup, months, handleDateClick, pastDrinksOfTheDay }) => {
-
 
   const { lastDrinkOfTheDay } = useOutletContext()
 

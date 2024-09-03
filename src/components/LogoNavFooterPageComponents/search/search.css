@@ -116,6 +116,12 @@ button.searchIcons {
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
 
+    .searchSection {
+
+        padding-top: 1rem;
+
+    }
+
     .searchInputDiv {
         width: 90vw;
     }

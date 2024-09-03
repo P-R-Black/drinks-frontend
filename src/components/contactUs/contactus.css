@@ -52,7 +52,7 @@ form {
 
 }
 
-input,
+.contactForm input,
 textarea {
     background: transparent;
     border: 2px solid var(--color-primary-font);
@@ -61,25 +61,29 @@ textarea {
     padding: 1.5rem;
     position: relative;
     resize: none;
-    width: clamp(20rem, 40rem, 65vw)
+    width: clamp(20rem, 40rem, 65vw);
 }
 
-input::placeholder {
+.formContainer input::placeholder {
     font-family: 'Work Sans', sans-serif;
     font-weight: 700;
     font-size: .75rem;
 }
 
-textarea::placeholder {
+.formContainer textarea::placeholder {
     font-family: 'Work Sans', sans-serif;
     font-weight: 700;
     font-size: .75rem;
+
+
 }
 
-input {
+.formContainer input.contactFormInput {
     height: 2rem;
     position: relative;
+    /* border: 2px solid red; */
 }
+
 
 .contactForm {
     position: relative;

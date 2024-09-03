@@ -53,7 +53,7 @@ export const Shots = () => {
       setDisplayName(alcoholConvert)
     }
 
-  }, [allShots, displayName])
+  }, [allShots])
 
   useEffect(() => {
     convertAlcoholName(alcohol)

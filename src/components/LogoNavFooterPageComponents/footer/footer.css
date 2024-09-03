@@ -207,3 +207,45 @@
     }
 
 }
+
+
+/* =============== MEDIA QUERIES (SMALL LANDSCAPE) =============== */
+@media (max-width: 670px) and (orientation: landscape) {
+
+    .footerSiteSections {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        gap: .01rem;
+        height: 85%;
+
+    }
+
+    .footerSiteSections ul.footerSiteSectionsLeft {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footerSiteSections ul.footerSiteSectionsRight {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    .footerSiteInfo {
+        width: 20%;
+
+    }
+
+    .footerSiteInfo a {
+
+        text-align: center;
+    }
+
+}

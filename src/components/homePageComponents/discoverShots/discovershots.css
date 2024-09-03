@@ -175,6 +175,9 @@
 
 }
 
+
+
+
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
 
@@ -189,6 +192,19 @@
         height: 24rem;
         overflow-y: scroll;
         margin-top: -8rem;
+    }
+
+}
+
+/* =============== MEDIA QUERIES (SMALL LANDSCAPE) =============== */
+@media (max-width: 670px) and (orientation: landscape) {
+    .discoverShotsSection {
+        padding-bottom: 2rem;
+
+    }
+
+    .discShotsLinksToDrinkContainer {
+        margin-top: -11rem;
     }
 
 }

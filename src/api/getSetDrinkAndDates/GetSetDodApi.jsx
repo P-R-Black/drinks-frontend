@@ -3,9 +3,6 @@ import { useQuery } from '@tanstack/react-query';
 
 
 
-
-
-
 export const GetBackendApi = () => {
     const getBackendApi = process.env.REACT_APP_DB_GET_KEY
     return useQuery({

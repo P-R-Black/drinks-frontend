@@ -215,3 +215,13 @@
     }
 
 }
+
+/* =============== MEDIA QUERIES (SMALL LANDSCAPE) =============== */
+@media (max-width: 670px) and (orientation: landscape) {
+
+    .discLinksToDrinkContainer {
+
+        margin-top: -7rem;
+    }
+
+}

@@ -177,3 +177,12 @@
     }
 
 }
+
+/* =============== MEDIA QUERIES (SMALL LANDSCAPE ) =============== */
+@media (max-width: 670px) and (orientation: landscape) {
+    .drinkGlassContainer {
+        margin-top: -12rem;
+
+    }
+
+}

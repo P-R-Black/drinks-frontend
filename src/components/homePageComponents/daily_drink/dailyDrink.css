@@ -88,12 +88,12 @@ h1.drinkOfDayTitle.show {
     border-radius: 10px;
     color: var(--color-primary-font);
     cursor: pointer;
-    font-size: clamp(1rem, 2vw, 10rem);
+    font-size: clamp(1.25rem, 2vw, 10rem);
     font-weight: 700;
 
     outline: none;
     text-align: center;
-    /* padding: .35rem 1.25rem; */
+    padding: .30rem 1.20rem;
     width: clamp(7rem, 12vw, 12rem);
 }
 

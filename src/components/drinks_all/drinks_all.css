@@ -80,7 +80,7 @@
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
     .allDrinksBackground {
-        margin-top: -9rem;
+        margin-top: -10rem;
     }
 
     .allDrinksContainer {
@@ -98,5 +98,19 @@
     }
 
 
+
+}
+
+/* =============== MEDIA QUERIES (SMALL HORIZONTAL DEVICES) =============== */
+@media (orientation: landscape) {
+    .linksToDrinksContainer {
+
+        margin-top: -.45rem;
+    }
+
+    .baseAlcTitleContainerTwo h2 {
+        margin-bottom: .5rem;
+        margin-top: .75rem;
+    }
 
 }

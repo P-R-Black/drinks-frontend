@@ -8,8 +8,6 @@ export const Calendar = ({ date, year, month, handleDateClick, currentDrink, pas
     const [calendarMonth, setCalendarMonth] = useState(month);
     const [calendarData, setCalendarData] = useState([]);
 
-
-
     const months = [
         'January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December'

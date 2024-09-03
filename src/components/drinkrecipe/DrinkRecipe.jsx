@@ -244,7 +244,6 @@ export const DrinkRecipe = ({ drinks, drinkRecipe }) => {
                         </article>
                     )
                 })}
-
             </div>
         </section>
     )

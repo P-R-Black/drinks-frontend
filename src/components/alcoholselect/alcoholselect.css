@@ -225,7 +225,7 @@
 @media screen and (max-width: 600px) {
 
     .ginBackground {
-        margin-top: -9rem;
+        margin-top: -10rem;
     }
 
     .baseAlcTitleContainer {
@@ -242,4 +242,35 @@
         width: auto;
     }
 
+}
+
+/* =============== MEDIA QUERIES (SMALL HORIZONTAL DEVICES) =============== */
+@media (max-width: 670px) and (orientation: landscape) {
+    .ginBackground {
+        padding-bottom: 6rem;
+
+    }
+
+    .drinkListContainer {
+        margin-bottom: -5rem;
+
+    }
+
+    .moreDrinkLinkContainer {
+        margin-bottom: 2rem;
+    }
+
+    a.linktoRecipeLarge {
+        margin: 0 0;
+    }
+
+    .baseAlcTitleContainer {
+        margin-top: 6rem;
+    }
+
+    .baseAlcTitleContainer h2 {
+        line-height: 0%;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
 }

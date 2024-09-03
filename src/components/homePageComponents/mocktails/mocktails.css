@@ -293,3 +293,18 @@ ol.mockIngredientContainer li {
     }
 
 }
+
+
+/* =============== MEDIA QUERIES (SMALL LANDSCAPE) =============== */
+@media (max-width: 670px) and (orientation: landscape) {
+    .MockLinksToDrinksContainerCard {
+        margin-top: -5rem;
+
+    }
+
+    .toolTipCards.show {
+        height: 15rem;
+
+    }
+
+}

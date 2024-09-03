@@ -193,3 +193,30 @@
 
 
 }
+
+/* =============== MEDIA QUERIES (SMALL HORIZONTAL DEVICES) =============== */
+@media (orientation: landscape) {
+    .shotSelectBackground {
+        padding-bottom: 6rem;
+
+    }
+
+    .shotListContainer {
+        margin-bottom: -5rem;
+
+    }
+
+    .moreShotLinkContainer {
+        margin-bottom: 2rem;
+    }
+
+
+    .baseShotAlcTitleContainer {
+        margin-top: 6rem;
+    }
+
+    .baseShotAlcTitleContainer h2 {
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+}

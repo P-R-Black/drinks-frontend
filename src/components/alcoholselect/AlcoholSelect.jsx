@@ -77,9 +77,7 @@ export const AlcoholSelect = ({ cocktails, alcohol, displayName }) => {
               {filteredDrink.map((fd, fdIdx) => {
                 return (
                   <li className="drinkListLi" key={fdIdx} >{fd}
-                    {/* <li className="drinkListLi">{fd} */}
                     <Link to={`/${slugify(alcohol)}/${slugify(fd)}`} className="linktoRecipe" aria-label={`View recipe for ${fd}`}>Recipe</Link>
-                    {/* </li> */}
                   </li>
 
                 )
@@ -87,7 +85,6 @@ export const AlcoholSelect = ({ cocktails, alcohol, displayName }) => {
               {filteredDrink.map((fd, fdIdx) => {
                 return (
                   <li className="drinkListLi" key={fdIdx} >{fd}
-                    {/* <li className="drinkListLi">{fd} */}
                     <Link
                       to={`/${slugify(alcohol)}/${slugify(fd)}`}
                       className="linktoRecipe"
@@ -95,7 +92,6 @@ export const AlcoholSelect = ({ cocktails, alcohol, displayName }) => {
                     >
                       Recipe
                     </Link>
-                    {/* </li> */}
                   </li>
 
                 )

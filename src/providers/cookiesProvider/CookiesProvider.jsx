@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 
 import Cookies from 'js-cookie';
 import ReactGA from 'react-ga';
@@ -15,8 +15,6 @@ export const CookiesProvider = ({ children }) => {
         const consent = Cookies.get('cookiesConsent')
         return consent === undefined ? null : consent === "true";
     })
-
-    // const [hasConset, setHasConset] = useState(false);
 
     const [showCookieBanner, setShowCookieBanner] = useState(true)
 

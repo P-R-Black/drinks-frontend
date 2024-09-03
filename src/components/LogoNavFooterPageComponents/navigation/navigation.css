@@ -15,7 +15,6 @@
 
 
 .navbar {
-
     align-items: center;
     background-color: rgba(16, 14, 14, 0.727);
     display: flex;
@@ -124,10 +123,7 @@ form.searchId {
     position: absolute;
     right: 0;
     top: 0;
-
     z-index: 10;
-
-
 }
 
 .dodNav {
@@ -166,9 +162,6 @@ form.searchId {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-
-
-
 
 
 /* Add animation (fade in the popup) */
@@ -235,5 +228,33 @@ form.searchId {
     .navDropdown.show {
         margin-top: 0rem;
     }
+
+
+}
+
+/* =============== MEDIA QUERIES (SMALL HORIZONTAL DEVICES) =============== */
+@media (max-width: 670px) and (orientation: landscape) {
+
+    .navBarMenu[aria-expanded="true"] {
+        margin-bottom: 5rem;
+    }
+
+    .navDropdown.show {
+        height: 23rem;
+        overflow-y: scroll;
+
+    }
+
+
+}
+
+
+/* =============== MEDIA QUERIES (MED LANDSCAPE) =============== */
+@media (max-width: 768px) and (orientation: landscape) {
+
+    .navBarMenu[aria-expanded="true"] {
+        margin-bottom: 1rem;
+    }
+
 
 }
