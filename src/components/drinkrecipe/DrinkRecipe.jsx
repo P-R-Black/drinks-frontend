@@ -196,7 +196,7 @@ export const DrinkRecipe = ({ drinks, drinkRecipe }) => {
                                         <h3 className="garnishTitle" aria-label="Drink garnish">Garnish</h3>
                                         {dr.garnish.map((mg, mgIndex) => {
                                             return (
-                                                <h4 key={mgIndex} className="garnish">{mg !== "0 None" ? mg : "None"}</h4>
+                                                <h4 key={mgIndex} className="garnish">{mg !== "0 None" ? mg : ""}</h4>
                                             )
                                         })}
 
